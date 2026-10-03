@@ -1,100 +1,95 @@
 # Forge · Local fine-tuning dashboard
 
-로컬 LLM/VLM 파인튜닝 모니터링을 위한 작고 실행 가능한 **데모 프로토타입**입니다.
-Python 표준 라이브러리 + HTML/CSS/JavaScript로 동작합니다. Node, CUDA, PyTorch, 모델 파일은 실행에 필요하지 않습니다.
+LLM/VLM 로컬 파인튜닝을 준비하고 실험 상태를 살펴보는 **실행 가능한 프로토타입**입니다. Python 표준 라이브러리와 HTML/CSS/JavaScript만 사용합니다.
 
-> **현재 실제 학습 기능은 없습니다.** 모든 실행, 손실, 로그, 체크포인트, GPU 수치는 합성 데이터입니다. GPU를 감지하거나 사용하지 않으며 모델/데이터셋을 다운로드하지 않습니다. 화면의 RTX 3060 / 12 GB는 **데모 가정**이며 사용자 GPU의 실제 VRAM을 확인한 결과가 아닙니다.
+> **실제 학습은 아직 구현되지 않았습니다.** 학습 실행·손실·GPU pulse·로그·체크포인트는 합성 시뮬레이션입니다. 실제 기능은 데이터셋 검증/저장/분할/내보내기, 설정 검증, 환경 진단, 인증과 접근 설정입니다. 12 GB는 기본 VRAM 계획 가정이며 사용자 RTX 3060의 측정값이 아닙니다.
 
 ## 빠른 시작 · Ubuntu / WSL2
 
-Python 3.10 이상이 필요합니다. 별도 Python 패키지는 필요하지 않습니다.
+Python 3.10 이상이 필요합니다. Python 패키지, CUDA, PyTorch, 모델 다운로드는 필요하지 않습니다.
 
 ```bash
-git clone https://github.com/Phjrab/234.git local-finetune-dashboard
+git clone https://github.com/Phjrab/local-finetune-dashboard.git
 cd local-finetune-dashboard
 python3 server.py
 ```
 
-브라우저에서 **http://127.0.0.1:8765** 를 엽니다. 종료는 `Ctrl+C`입니다.
-다른 프로세스가 포트를 사용하면 `python3 server.py --port 8766`으로 변경할 수 있습니다.
-WSL2 안에서 서버를 실행하는 경우 Windows 브라우저에서도 localhost 주소를 사용할 수 있는지 확인하세요. 이 프로토타입은 루프백 주소에만 바인딩하며 LAN/인터넷 공개를 지원하지 않습니다.
+현재 코드는 draft PR에서 개발됩니다. main에 아직 앱이 없다면 [draft PR](https://github.com/Phjrab/local-finetune-dashboard/pull/1)의 실제 head branch를 체크아웃한 뒤 실행하세요.
 
-## 사용할 수 있는 기능
+1. 같은 컴퓨터에서 http://127.0.0.1:8765 를 엽니다
+2. 처음에는 ID admin / 비밀번호 admin 으로 **로컬에서만** 로그인합니다
+3. Access settings에서 현재 비밀번호를 입력하고 고유한 강한 새 비밀번호로 변경합니다
+4. 설정 완료 후 데이터와 데모 제어가 열립니다. 종료는 Ctrl+C입니다
 
-- LLM/VLM 실행 목록, 필터, 실행별 손실/eval loss/학습률/진행률
-- 합성 GPU VRAM, 온도, 사용률 표시와 명확한 DEMO 표기
-- 새 데모 실행 설정과 시작/일시정지/재개/취소
-- 실패/취소된 실행을 새 실행으로 재시도; 기존 이력 보존
-- OOM 실패 시나리오, 가상 체크포인트, 로그 및 구성 보기
-- SQLite에 실행 상태 보존; 서버 재시작 후 복원
-- 2초 주기 API 갱신, 반응형 데스크톱/모바일 화면
-- 단일 모의 GPU. 실행/일시정지 중인 실험은 슬롯을 예약하고 슬롯이 비면 대기 실행을 FIFO 순서로 자동 시작
+새 비밀번호는 최소 12자이며 20자 미만이면 문자 종류 3개 이상, 서로 다른 문자 6개 이상이 필요합니다. 초기 비밀번호는 LAN에서 사용할 수 없습니다. 새 비밀번호와 실제 계정 정보를 저장소에 넣지 마세요.
 
-데모의 `Pause`는 시뮬레이터를 멈춥니다. 실제 훈련 프로세스 일시정지를 구현했다고 뜻하지 않습니다. 체크포인트는 **메타데이터만 존재**하며 학습된 가중치 파일은 생성하지 않습니다.
+다른 포트가 필요하면 `python3 server.py --port 8766`을 사용합니다. `--no-worker`는 자동 모의 진행을 끄고 API/설정 제어만 유지하는 테스트 모드입니다.
 
-## 동작 확인
+## 화면별 기능
+
+| 화면 | 구현된 기능 | 범위/제한 |
+|---|---|---|
+| Home | 현재 running/paused 작업, 진행률, 손실, GPU pulse, 오류 | 학습/GPU 수치 합성, 과거 실험은 Experiments에서 확인 |
+| Experiments | LLM/VLM 필터, 시작/일시정지/재개/취소/재시도, 로그/구성/체크포인트 탭 | 단일 모의 GPU, FIFO 자동 대기열, 체크포인트는 가상 메타데이터 |
+| Datasets | JSONL 붙여넣기/파일 입력, LLM/VLM 스키마 검사, 오류 줄 번호, 미리보기, 저장, seed 기반 분할, JSONL 내보내기 | 128 KiB 텍스트/1000행/50개 데이터셋. 이미지 파일 접근/업로드 없음 |
+| Training setup | 작은 LoRA/QLoRA 프리셋, 기본/접힌 고급 설정, dry-run, 명시적 VRAM 가정, 메모리 위험 경고, 설정 내보내기 | 휴리스틱이며 모델 호환성/학습 가능성 보장 아님. 실제 실행 없음 |
+| Compare | 두 실험의 합성 손실 곡선/설정/eval loss 비교, JSON/CSV 내보내기 | 실제 평가/생성 결과 비교 아님. CSV는 수식 실행을 방지하도록 문자열 보호 |
+| Environment | 서버 호스트의 실제 Python/OS/디스크 조회, 설치된 nvidia-smi의 읽기 전용 GPU 탐지 | 현재 서버 VM의 진단. 미래 사용자 학습 컴퓨터의 상태가 아님 |
+| Access settings | 로그인, 초기 비밀번호 변경, LAN/view/control 설정, 로그아웃 | 로컬 우선, 실제 LAN 리스너 시작은 별도 명시적 실행 필요 |
+
+모바일은 상단 화면 선택 메뉴를 사용합니다. 모든 기능을 한 화면에 펼치지 않았으며 학습 고급 옵션은 접어서 볼 수 있습니다. 실제 브라우저 레이아웃 검증은 현재 환경에서 막혀 있으므로 아래 검증 기록을 확인하세요.
+
+### 데이터 준비
+
+LLM은 instruction/input/output 또는 user/assistant 메시지를 지원합니다. VLM은 messages와 `images:["images/example.png"]` 같은 상대 경로 **라벨**을 지원합니다. 절대 경로, 상위 경로 이동, URL은 거부합니다. 이미지 존재/크기/내용은 검사하지 않습니다.
+
+가져온 JSONL 텍스트는 서버의 로컬 SQLite에 실제 저장됩니다. 분할은 seed와 비율이 같으면 재현 가능하며 원본 행을 보존합니다. 중복이 양쪽 분할에 남으면 평가 누출 경고를 표시하므로 원본을 정리한 뒤 실제 평가에 사용해야 합니다. 스키마 통과가 내용 정확성/라이선스/토큰 길이 검증을 의미하지 않습니다.
+
+### 데모 실행과 실패 처리
+
+대기 작업은 모의 GPU가 비면 FIFO로 자동 시작됩니다. Pause는 시뮬레이터만 멈추고 슬롯을 유지합니다. Retry는 원본 이력을 보존한 새 작업이며 OOM 주입 설정도 복사합니다. 주입 OOM을 없애려면 오류의 Review training recipe를 눌러 설정을 검토하고 정상 데모 시나리오로 새 실행을 만드세요. 실제 GPU 메모리를 고치거나 훈련 프로세스를 재시작하는 기능이 아닙니다.
+
+## LAN 접속 · 선택 사항
+
+LAN access / remote view / remote control의 **저장 기본값은 모두 ON**입니다. 그러나 초기 비밀번호 상태에서는 실제 원격 접근은 모두 OFF이며, 비밀번호 변경 후에도 기본 루프백 리스너에서는 원격 접근이 열리지 않습니다. 설정 화면에서 저장값과 실제 적용 상태를 구분해 보여줍니다.
+
+사용자 학습 컴퓨터에서 로컬 설정을 완료한 다음에만 별도 LAN 실행을 선택하세요. LAN은 인증과 직접 private-IP TLS를 기본 요구합니다. HTTP 예외는 명시적 위험 동의 플래그이며 비밀번호/쿠키/데이터를 가로챌 수 있습니다. 인증 없는 LAN, 공용 인터넷 공개, 임의 reverse proxy/tunnel, 자동 방화벽/라우터 변경은 지원하지 않습니다.
+
+자세한 실행 조건, TLS, Ubuntu/WSL2 주의점은 [LAN 가이드](docs/lan-access.md)를 참고하세요. 이 개발 작업에서 VM의 LAN 포트나 방화벽을 열지 않았고 실제 계정/비밀번호를 생성하지 않았습니다.
+
+## 검증 결과와 남은 확인
+
+정확한 상태와 증거/차단 원인/사용자 로컬 확인 절차는 [검증 매트릭스](docs/validation.md)와 [JSON 기록](docs/validation.json)에 있습니다.
 
 ```bash
 python3 -m unittest discover -s tests -v
-node --check static/app.js  # Node가 설치되어 있을 때만 필요
-node tests/test_frontend.js  # DOM 스텁 테스트; 실제 브라우저 테스트는 아님
+node --check static/app.js
+node --check static/workspace.js
+node tests/test_frontend.js
 ```
 
-API 예제:
+Node는 프런트엔드 소스 검사 때만 필요합니다. 앱 실행에는 필요하지 않습니다. DOM 스텁 테스트는 실제 브라우저·CSS·모바일·키보드 동작 검증을 대신하지 않습니다.
 
-```bash
-curl http://127.0.0.1:8765/api/status
-curl -X POST http://127.0.0.1:8765/api/runs \
-  -H 'Content-Type: application/json' \
-  -d '{"name":"my-demo","kind":"LLM","model":"demo/llm-3b","dataset":"synthetic-instructions","max_steps":30}'
-```
+`docs/offline-preview.html`은 합성 fixture를 넣은 읽기 전용 미리보기입니다. 학습, 인증 변경, 데이터 저장, API 제어는 동작하지 않습니다. 이를 실제 서버 통합 검사나 브라우저 통과로 표시하지 않습니다.
 
-슬롯이 비면 대기 실행은 자동으로 시작됩니다. 수동 시작하려면 생성 응답의 `run.id`를 사용해 `/api/runs/{id}/start`에 빈 JSON `{}`을 POST합니다.
-이미 실행/일시정지 중인 실험이 있으면 다른 실험의 수동 시작은 409 오류로 거부됩니다.
-정지된 재현 가능한 스냅샷은 `--no-worker`로 실행할 수 있습니다. 이 모드에서는 제어 상태 변경만 동작하고 자동 진행은 없습니다.
+## 처음 시작한다면
 
-초기 샘플 상태로 되돌리려면 서버를 종료한 뒤 `data/state.sqlite3` 및 같은 이름의 `-wal`, `-shm` 파일을 삭제하고 재시작합니다. **데모 실행 이력이 삭제됩니다.** 별도 테스트 상태는 `--db /tmp/forge-demo.sqlite3`로 지정할 수 있습니다.
+[초보자 가이드](docs/beginner-guide.md)의 Data → Model → Config → Demo run → Compare 순서를 따라 작은 합성 샘플로 시작하세요. Datasets 화면의 접힌 형식 안내에 필수 필드, 지원하지 않는 형식과 다운로드 가능한 샘플이 있습니다. Training setup의 용어 도움말과 오류의 다음 행동/기술 상세를 함께 사용하세요.
 
-## 실제 로컬 학습으로 확장할 때
+## 실제 학습으로 확장할 때
 
-현재 구현된 부분과 예정된 부분을 분리했습니다. `docs/offline-preview.html`은 합성 상태를 보여주는 읽기 전용 파일 미리보기입니다. 실행 제어는 실제 서버에서만 동작합니다. 이 미리보기는 브라우저/API 통합 검증을 대신하지 않습니다.
+[어댑터 계약](docs/adapter-contract.md)과 [데이터/설정 API](docs/workspace-api.md)에 준비 구조를 정리했습니다. `adapter.py`는 실행되지 않는 타입 계약입니다.
 
-`docs/adapter-contract.md`에 향후 로컬 학습 워커의 계약과 보안 경계를 기술했고, `adapter.py`에는 실행되지 않는 타입 계약만 있습니다.
+미구현: 실제 학습 워커, PyTorch/Transformers/PEFT/TRL 연동, 모델/데이터 다운로드, 실제 체크포인트 파일/가중치, 생성 평가, 인증된 별도 원격 워커, 다중 GPU 스케줄러. 어떤 설정이나 LAN 권한도 실제 학습을 자동 시작하지 않습니다.
 
-아직 구현되지 않은 기능:
+사용자 RTX 3060의 실제 VRAM부터 확인한 뒤 모델 크기, 양자화, 컨텍스트, 이미지 해상도와 배치 크기를 정해야 합니다. 12 GB 가정으로 모델 적합성을 보장하지 않습니다.
 
-- NVIDIA GPU 자동 감지 / 실제 텔레메트리
-- Hugging Face/Transformers/PEFT/TRL 또는 VLM 학습 워커
-- 실제 데이터셋 파일 접근, 모델 다운로드, 가중치 체크포인트 저장
-- 인증된 원격 워커 연결, 사용자 인증, 다중 GPU 스케줄링
-- 메트릭 내보내기 및 원격 알림
+- 학습 전용 PC라면 native Ubuntu가 Linux 도구를 한 환경에서 관리하는 선택입니다. 재설치 전 백업/드라이버 호환성을 확인하세요
+- Windows를 유지한다면 Ubuntu on WSL2를 검토하세요. [Microsoft GPU 가이드](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute)를 따르세요
+- WSL2에서는 Windows NVIDIA 드라이버를 사용하며 WSL 안에 Linux NVIDIA 디스플레이 드라이버를 별도 설치하지 마세요. [NVIDIA 공식 WSL 가이드](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)를 참고하세요
 
-RTX 3060의 **실제 VRAM부터 확인**한 뒤 모델 크기, 양자화, 컨텍스트 길이와 배치 크기를 정해야 합니다. 이 화면의 12 GB로 학습 가능성을 보장하지 않습니다.
+## 저장과 공개 저장소
 
-### OS 선택
+data/ 안의 실행 상태, 인증 해시/설정, 데이터셋 SQLite는 버전 관리에서 제외합니다. 서버를 다시 시작해도 상태는 남지만 로그인 세션은 사라집니다. 초기화하려고 인증 데이터베이스까지 무심코 지우면 초기 계정 설정으로 돌아갈 수 있으니 사용자 데이터 백업/복구 결정은 직접 검토하세요.
 
-- 학습 전용 컴퓨터라면 네이티브 Ubuntu를 우선 검토할 수 있습니다. 드라이버/파일 시스템/프로세스 관리가 한 Linux 환경에 모이지만, 재설치 전 데이터 백업과 설치 호환성 확인이 필요합니다
-- Windows를 계속 쓴다면 Ubuntu on WSL2가 Linux 기반 학습 도구를 쓰는 실용적인 선택입니다. 지원 Windows 버전 및 최신 NVIDIA Windows 드라이버 등은 [Microsoft 공식 GPU 가이드](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute)에서 확인하세요
-- WSL2에서는 GPU 드라이버가 Windows에서 제공되므로 WSL 안에 별도 Linux NVIDIA 디스플레이 드라이버를 설치하지 마세요. 설치/지원 제약은 [NVIDIA CUDA on WSL 공식 가이드](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)와 [NVIDIA WSL 안내](https://developer.nvidia.com/cuda/wsl)를 따르세요
-
-이 저장소 실행 자체에는 GPU 드라이버나 CUDA 설치가 필요하지 않습니다. 실제 학습 설치 명령은 아직 제공하지 않으며 사용자의 로컬 환경을 확인한 다음 별도 워커에서 검증해야 합니다.
-
-## 안전한 기본값
-
-기본 바인딩은 `127.0.0.1`; 루프백 외 주소는 거부합니다. 같은 origin의 JSON 요청만 브라우저에서 허용하고, Host 검사/본문 크기 제한/정적 경로 검증/보안 헤더를 적용합니다. 임의 shell 명령 입력이나 실제 작업 실행 API는 없습니다. 로컬 신뢰 사용자만을 위한 데모이며 악성 로컬 소프트웨어를 방어하는 인증 시스템이 아닙니다.
-
-`data/`, 가상 환경, 토큰, 데이터셋, 로그 파일을 공개 저장소에 올리지 마세요. 이 저장소의 샘플은 합성 데이터만 포함합니다. 상세 제한은 `docs/security.md`를 참고하세요.
-
-## 구성
-
-```text
-server.py                 루프백 HTTP API / 정적 파일 서버
-simulator.py              합성 실행 상태 머신 / SQLite 저장
-adapter.py                향후 워커 타입 계약 (실행 구현 없음)
-static/                   의존성 없는 반응형 UI
-tests/                    표준 unittest 백엔드/API 검증
-docs/adapter-contract.md  실제 학습 확장 계획과 이벤트 계약
-docs/sample-run.json      합성 실행 설정 예제
-docs/validation.json      검증 내역
-tests/test_frontend.js    DOM 스텁 기반 렌더링/핸들러 테스트
-```
+공개 저장소에는 합성 샘플과 소스만 포함합니다. 실제 데이터셋, 비밀번호, 토큰, 모델, TLS 인증서/개인 키, 실행 DB, 로그를 커밋하지 마세요. [보안 범위](docs/security.md)를 확인하세요.

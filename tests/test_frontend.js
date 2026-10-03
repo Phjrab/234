@@ -13,30 +13,34 @@ class Element {
   close(){this.open=false;}
   scrollIntoView(){}
   getBoundingClientRect(){return {left:0,top:0,right:100,bottom:100};}
+  querySelectorAll(){return [];}
+  querySelector(selector){return get('#stub '+selector);}
+  reset(){this.testData={};}
 }
+function checkMarkupNesting(html){const stack=[];const voids=new Set(['input','br','hr','img','meta','link','source','wbr']);for(const match of html.matchAll(/<\/?([a-z][a-z0-9-]*)\b[^>]*>/gi)){const tag=match[1].toLowerCase(),token=match[0];if(token.startsWith('</'))assert.equal(stack.pop(),tag,'markup nesting');else if(!voids.has(tag)&&!token.endsWith('/>'))stack.push(tag);}assert.deepEqual(stack,[],'unclosed markup');}
 const nodes=new Map(), get=(s)=>{if(!nodes.has(s))nodes.set(s,new Element());return nodes.get(s);};
 const groups={'.filter':['all','LLM','VLM'].map(filter=>new Element({filter})),'.tab':['logs','checkpoints','configuration'].map(tab=>new Element({tab})),'.nav-item':['overview','runs','worker'].map(nav=>new Element({nav}))};
-let calls=[], failure=null, mutation=null;
+let calls=[], failure=null, mutation=null, routeResponses={};
 const document={hidden:false,querySelector:get,querySelectorAll:s=>{
   if(groups[s])return groups[s];
   if(s==='#runs-body tr[data-run]') return [...get('#runs-body').innerHTML.matchAll(/data-run="([^"]+)"/g)].map(m=>new Element({run:m[1]}));
   if(s==='#run-controls button') return [...get('#run-controls').innerHTML.matchAll(/data-action="([^"]+)"/g)].map(m=>new Element({action:m[1]}));
   return [];
 },addEventListener(){}};
-const ctx=vm.createContext({document,console,Date,JSON,Math,Number,String,Object,Array,Promise,AbortController,encodeURIComponent,localStorage:{getItem:()=>null,setItem(){}},setInterval(){},setTimeout(){return 1;},clearTimeout(){},FormData:class{constructor(form){return Object.entries(form.testData);}},fetch:async(path,options)=>{calls.push({path,options});if(failure)throw new Error(failure);return {ok:true,json:async()=>options.method==='POST' ? (mutation||{run:fixture.runs[0],snapshot:fixture}) : structuredClone(fixture)};}});
+const ctx=vm.createContext({document,console,Date,JSON,Math,Number,String,Object,Array,Promise,AbortController,encodeURIComponent,localStorage:{getItem:()=>null,setItem(){}},setInterval(){},setTimeout(){return 1;},clearTimeout(){},FormData:class{constructor(form){return Object.entries(form.testData);}},fetch:async(path,options)=>{calls.push({path,options});if(failure)throw new Error(failure);return {ok:true,json:async()=>routeResponses[path] || (options.method==='POST' ? (mutation||{run:fixture.runs[0],snapshot:fixture}) : structuredClone(fixture))};}});
 vm.runInContext(fs.readFileSync('static/app.js','utf8'),ctx);
 const run=code=>vm.runInContext(code,ctx), flush=()=>new Promise(resolve=>setImmediate(resolve));
 (async()=>{
   let tests=0;
   await flush();
-  assert.equal(get('#summary-total').textContent,4);assert.match(get('#runs-body').innerHTML,/running/);assert.match(get('#runs-body').innerHTML,/VLM/);assert.match(get('#loss-chart').innerHTML,/<svg/);assert.equal(get('#run-error').hidden,true);tests++;
-  run("filter='VLM';render()");assert.match(get('#runs-body').innerHTML,/VLM/);assert.equal((get('#runs-body').innerHTML.match(/<tr /g)||[]).length,2);tests++;
+  assert.equal(get('#summary-total').textContent,4);assert.match(get('#runs-body').innerHTML,/running/);assert.match(get('#runs-body').innerHTML,/LLM/);assert.equal((get('#runs-body').innerHTML.match(/<tr /g)||[]).length,1);assert.match(get('#loss-chart').innerHTML,/<svg/);assert.equal(get('#run-error').hidden,true);tests++;
+  run("nav='runs';filter='VLM';render()");assert.match(get('#runs-body').innerHTML,/VLM/);assert.equal((get('#runs-body').innerHTML.match(/<tr /g)||[]).length,2);tests++;
   run("filter='all';selectRun(snapshot.runs.find(r=>r.status==='failed').id)");assert.equal(get('#run-error').hidden,false);assert.match(get('#run-controls').innerHTML,/Retry/);tests++;
   run("currentTab='checkpoints';selectRun(snapshot.runs.find(r=>r.status==='completed').id)");assert.match(get('#tab-content').innerHTML,/Virtual checkpoint/);assert.match(get('#tab-content').innerHTML,/no weights saved/);tests++;
   run("currentTab='configuration';render()");assert.match(get('#tab-content').innerHTML,/learning rate/);tests++;
   run("snapshot.runs[0].name='<img src=x onerror=evil()>';selectRun(snapshot.runs[0].id)");assert.ok(!get('#runs-body').innerHTML.includes('<img src=x'));assert.match(get('#runs-body').innerHTML,/&lt;img/);tests++;
   assert.equal(run("chart([],120)"),'<div class="chart-empty">Learning curves appear after a demo run starts</div>');assert.ok(!run("chart([{step:0,loss:NaN,eval_loss:null}],100)").includes('NaN'));tests++;
-  run("setNav('worker')");assert.equal(get('#worker-info').hidden,false);assert.equal(get('#run-detail').hidden,true);run("setNav('overview')");assert.equal(get('#run-detail').hidden,false);tests++;
+  run("setNav('environment')");assert.equal(get('#workspace-view').hidden,false);assert.equal(get('#run-detail').hidden,true);run("setNav('overview')");assert.equal(get('#run-detail').hidden,false);tests++;
   get('#new-run').onclick();assert.equal(get('#run-dialog').open,true);get('#cancel-dialog').onclick();assert.equal(get('#run-dialog').open,false);tests++;
   get('#run-form select[name="kind"]').onchange({target:{value:'VLM'}});assert.equal(get('#run-form select[name="model"]').value,'demo/vlm-3b');assert.equal(get('#run-form input[name="dataset"]').value,'synthetic-image-captions');tests++;
   const before=calls.length;const p1=run("performAction(snapshot.runs[0].id,'pause')"),p2=run("performAction(snapshot.runs[0].id,'pause')");await Promise.all([p1,p2]);assert.equal(calls.filter(c=>c.path.endsWith('/pause')).length,1);assert.ok(calls.length>before);tests++;
@@ -45,5 +49,23 @@ const run=code=>vm.runInContext(code,ctx), flush=()=>new Promise(resolve=>setImm
   const form=get('#run-form');form.testData={name:'front-end-demo',kind:'LLM',model:'demo/llm-3b',dataset:'synthetic',learning_rate:'0.0002',batch_size:'1',lora_rank:'16',epochs:'3',gradient_accumulation:'8',max_steps:'300',failure_mode:'none'};
   await form.listeners.submit({preventDefault(){},target:form});const created=calls.find(c=>c.path==='/api/runs');const body=JSON.parse(created.options.body);assert.equal(body.max_steps,300);assert.equal(typeof body.learning_rate,'number');assert.equal(get('#run-dialog').open,false);tests++;
   failure='rejected';await form.listeners.submit({preventDefault(){},target:form});assert.equal(get('#form-error').hidden,false);assert.equal(get('#form-error').textContent,'rejected');tests++;
+  failure=null;
+  vm.runInContext(fs.readFileSync('static/workspace.js','utf8'),ctx);
+  await flush();
+  run("renderDatasets({datasets:[{id:'dataset-0001',name:'<img onerror=x>',kind:'LLM',count:3}]})");assert.match(get('#workspace-view').innerHTML,/Validate &amp; save/);assert.match(get('#workspace-view').innerHTML,/&lt;img/);assert.match(get('#workspace-view').innerHTML,/Export validation/);tests++;
+  get('#dataset-form').testData={name:'stub-data',kind:'LLM',text:'{\"instruction\":\"Hi\",\"output\":\"Hello\"}'};routeResponses['/api/datasets/validate']={valid:true,count:1,errors:[],warnings:[],preview:[{line:1,record:{instruction:'Hi',output:'Hello'}}]};await run('submitDataset(false)');assert.match(get('#dataset-result').innerHTML,/validation passed/);tests++;
+  run("renderRecipes({presets:[]})");checkMarkupNesting(get('#workspace-view').innerHTML);assert.match(get('#workspace-view').innerHTML,/Real training adapter is not configured/);assert.match(get('#workspace-view').innerHTML,/Dry-run checks/);tests++;
+  run("renderDryRun({valid:true,estimated_memory_gb:6.1,assumed_vram_gb:12,warnings:[{message:'Fit is not guaranteed'}]})");assert.match(get('#recipe-result').innerHTML,/6.1/);assert.match(get('#recipe-result').innerHTML,/Fit is not guaranteed/);tests++;
+  run("snapshot=OFFLINE_TEST_SNAPSHOT;renderCompare()".replace('OFFLINE_TEST_SNAPSHOT',JSON.stringify(fixture)));get('#compare-a').value=fixture.runs[0].id;get('#compare-b').value=fixture.runs[1].id;run('updateComparison()');assert.match(get('#compare-output').innerHTML,/Export A/);assert.match(get('#compare-output').innerHTML,/<svg/);tests++;
+  run("renderEnvironment({python:{version:'3.12'},os:{name:'Linux'},disk:{free_bytes:10737418240},gpu:{detected:false,message:'GPU missing'},warnings:[]})");assert.match(get('#workspace-view').innerHTML,/10.0 GB/);assert.match(get('#workspace-view').innerHTML,/Not detected/);assert.match(get('#workspace-view').innerHTML,/not your future local training computer/);tests++;
+  run("renderSettings({authenticated:false,must_change_password:true,local_peer:true,settings:{configured:{lan_access:true,remote_view:true,remote_control:true},effective:{lan_access:false},bootstrap_required:true}})");assert.match(get('#workspace-view').innerHTML,/LAN is locked/);assert.match(get('#workspace-view').innerHTML,/Sign in locally/);tests++;
+  run("renderSettings({authenticated:true,username:'admin',must_change_password:true,local_peer:true,settings:{configured:{lan_access:true,remote_view:true,remote_control:true},effective:{lan_access:false,remote_view:false,remote_control:false},bootstrap_required:true}})");assert.match(get('#workspace-view').innerHTML,/Configured: ON · Effective: OFF/);assert.match(get('#workspace-view').innerHTML,/Change password/);assert.match(get('#workspace-view').innerHTML,/disabled/);tests++;
+  run("renderSettings({authenticated:true,username:'admin',must_change_password:false,local_peer:true,settings:{configured:{lan_access:true,remote_view:true,remote_control:true},effective:{lan_access:false,remote_view:false,remote_control:false},bootstrap_required:false,listener_lan:false,tls:false}})");checkMarkupNesting(get('#workspace-view').innerHTML);assert.match(get('#workspace-view').innerHTML,/PASSWORD GATE COMPLETE/);assert.match(get('#workspace-view').innerHTML,/loopback only/);tests++;
+  assert.match(get('#workspace-view').innerHTML,/PASSWORD GATE COMPLETE/);run("renderDatasets({datasets:[]})");checkMarkupNesting(get('#workspace-view').innerHTML);assert.match(get('#workspace-view').innerHTML,/CSV, Parquet, JSON arrays, ZIP and image uploads are not supported/);assert.match(get('#workspace-view').innerHTML,/Download VLM JSONL/);tests++;
+  assert.match(run("describeIssue({line:2,field:'messages[0].content',code:'invalid_record',message:'Missing text'})"),/Line 2 · messages/);tests++;
+  const redacted=run("safeTechnicalText('password=synthetic-secret hf_abcdefghijklmnop')");assert.ok(!redacted.includes('synthetic-secret'));assert.ok(!redacted.includes('hf_abcdefghijklmnop'));assert.match(redacted,/REDACTED/);tests++;
+  const advice=run("actionableErrorHtml({code:'weak_password',message:'Use a stronger password'},'Authentication')");assert.match(advice,/Next step/);assert.match(advice,/Technical details/);assert.match(advice,/weak_password/);tests++;
+  const badFileTarget={files:[{name:'data.parquet',size:20,text(){throw Error('must not read unsupported file');}}],value:'selected'};await get('#dataset-file').onchange({target:badFileTarget});assert.equal(badFileTarget.value,'');assert.match(get('#toast').textContent,/unsupported file type/);tests++;
+  const chatRows=run('chatSample()').trim().split('\n').map(JSON.parse);assert.equal(chatRows.length,3);assert.ok(chatRows.every(row=>row.messages.length===2));const instructionRows=run('instructionSample()').trim().split('\n').map(JSON.parse);assert.ok(instructionRows.every(row=>row.instruction&&row.output));tests++;
   console.log(`${tests} frontend DOM-stub tests passed (browser layout/integration not covered)`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

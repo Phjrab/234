@@ -1,0 +1,3 @@
+{"images": ["images/sample-001.png"], "messages": [{"role": "user", "content": "Describe the synthetic image."}, {"role": "assistant", "content": "Synthetic caption 1"}]}
+{"images": ["images/sample-002.png"], "messages": [{"role": "user", "content": "Describe the synthetic image."}, {"role": "assistant", "content": "Synthetic caption 2"}]}
+{"images": ["images/sample-003.png"], "messages": [{"role": "user", "content": "Describe the synthetic image."}, {"role": "assistant", "content": "Synthetic caption 3"}]}

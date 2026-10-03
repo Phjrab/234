@@ -185,7 +185,7 @@ class Simulator:
         run["status"] = "running"
         run["started_at"] = run["started_at"] or timestamp(now)
         run["updated_at"] = timestamp(now)
-        self._log(run, now, "Synthetic training started on the simulated 12 GB GPU. No actual GPU has been detected.")
+        self._log(run, now, "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware.")
         if not run["metrics"]:
             run["metrics"].append(self._metric(run, 0))
 

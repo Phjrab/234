@@ -442,7 +442,7 @@
         {
           "time": "2025-12-31T23:59:25Z",
           "level": "info",
-          "message": "Synthetic training started on the simulated 12 GB GPU. No actual GPU has been detected."
+          "message": "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware."
         },
         {
           "time": "2025-12-31T23:59:45Z",
@@ -739,7 +739,7 @@
         {
           "time": "2025-12-31T23:53:00Z",
           "level": "info",
-          "message": "Synthetic training started on the simulated 12 GB GPU. No actual GPU has been detected."
+          "message": "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware."
         },
         {
           "time": "2025-12-31T23:53:20Z",
@@ -1634,7 +1634,7 @@
         {
           "time": "2025-12-31T23:48:00Z",
           "level": "info",
-          "message": "Synthetic training started on the simulated 12 GB GPU. No actual GPU has been detected."
+          "message": "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware."
         },
         {
           "time": "2025-12-31T23:48:20Z",

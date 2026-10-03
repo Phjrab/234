@@ -6,7 +6,7 @@ import tempfile
 import threading
 import unittest
 
-from server import DashboardServer, MAX_REQUEST_BYTES
+from server import DashboardServer, MAX_REQUEST_BYTES, MAX_DATASET_REQUEST_BYTES
 from simulator import Simulator
 
 
@@ -19,7 +19,7 @@ class ServerTests(unittest.TestCase):
         (self.static / "app.js").write_text("console.log('demo');")
         (self.static / ".secret.js").write_text("secret")
         self.sim = Simulator(Path(self.tmp.name) / "state.sqlite3", seed_demo=False)
-        self.server = DashboardServer(("127.0.0.1", 0), self.sim, self.static)
+        self.server = DashboardServer(("127.0.0.1", 0), self.sim, self.static, auth=False)
         self.port = self.server.server_port
         self.host = f"127.0.0.1:{self.port}"
         self.origin = f"http://{self.host}"
@@ -94,7 +94,7 @@ class ServerTests(unittest.TestCase):
         self.assertEqual(len(body["snapshot"]["runs"]), 4)
 
     def test_invalid_host(self):
-        for host in ["evil.example", f"evil.example:{self.port}", "127.0.0.1", f"127.0.0.1:{self.port+1}", f"user@127.0.0.1:{self.port}", f"127.0.0.1:{self.port}/", f"local\thost:{self.port}"]:
+        for host in ["evil.example", f"evil.example:{self.port}", "127.0.0.1:0", "127.0.0.1", f"127.0.0.1:{self.port+1}", f"user@127.0.0.1:{self.port}", f"127.0.0.1:{self.port}/", f"local\thost:{self.port}"]:
             with self.subTest(host=host):
                 status, _, body = self.json_request("GET", "/api/status", headers={"Host": host})
                 self.assertEqual(status, 403)
@@ -200,6 +200,52 @@ class ServerTests(unittest.TestCase):
     def test_bind_rejects_public_network(self):
         with self.assertRaises(ValueError):
             DashboardServer(("0.0.0.0", 0), self.sim, self.static)
+
+    def test_workspace_routes_and_dataset_roundtrip(self):
+        for path in ["/api/workspace", "/api/presets", "/api/diagnostics"]:
+            status, _, body = self.json_request("GET", path)
+            self.assertEqual(status, 200)
+            self.assertFalse(body.get("real_training", body.get("capabilities", {}).get("real_training")))
+        lines = [json.dumps({"instruction": f"Synthetic question {i}", "output": f"Synthetic answer {i}"}) for i in range(5)]
+        payload = {"name": "Synthetic HTTP fixture", "kind": "LLM", "text": "\n".join(lines), "synthetic": True}
+        status, _, body = self.json_request("POST", "/api/datasets/validate", payload)
+        self.assertEqual(status, 200)
+        self.assertTrue(body["valid"])
+        self.assertEqual(body["count"], 5)
+        status, _, body = self.json_request("POST", "/api/datasets", payload)
+        self.assertEqual(status, 201)
+        dataset_id = body["dataset"]["id"]
+        status, _, body = self.json_request("GET", f"/api/datasets/{dataset_id}")
+        self.assertEqual(status, 200)
+        self.assertEqual(body["dataset"]["count"], 5)
+        self.assertEqual(self.json_request("GET", "/api/datasets")[2]["datasets"][0]["id"], dataset_id)
+        status, _, body = self.json_request("POST", f"/api/datasets/{dataset_id}/split", {"seed": 42, "val_ratio": 0.2})
+        self.assertEqual(status, 200)
+        self.assertEqual(body["train_count"], 4)
+        self.assertEqual(body["validation_count"], 1)
+        status, headers, data = self.request("GET", f"/api/datasets/{dataset_id}/export?split=train")
+        self.assertEqual(status, 200)
+        self.assertEqual(len(data.decode().splitlines()), 4)
+        self.assertIn(dataset_id, headers["Content-Disposition"])
+        self.assertEqual(self.json_request("GET", f"/api/datasets/{dataset_id}/export?split=bad")[0], 400)
+        self.assertEqual(self.json_request("GET", f"/api/datasets/{dataset_id}/export?path=/etc/passwd")[0], 400)
+        status, _, body = self.json_request("POST", "/api/config/dry-run", {"config": {"dataset": dataset_id}})
+        self.assertEqual(status, 200)
+        self.assertFalse(body["can_train"])
+        self.assertEqual(body["dataset"]["id"], dataset_id)
+
+    def test_dataset_only_larger_body_limit(self):
+        # More than16 KiB is accepted by dataset routes only; workspace validates fields separately.
+        text = "\n".join(json.dumps({"instruction": f"Synthetic row {i}", "output": "x" * 100}) for i in range(140))
+        payload = {"kind": "LLM", "name": "Synthetic medium fixture", "synthetic": True, "text": text}
+        self.assertGreater(len(json.dumps(payload).encode()), MAX_REQUEST_BYTES)
+        for path in ["/api/datasets/validate", "/api/datasets/import", "/api/datasets"]:
+            status, _, body = self.json_request("POST", path, payload)
+            self.assertEqual(status, 200 if path.endswith("validate") else 201)
+            self.assertTrue(body.get("valid", body.get("validation", {}).get("valid")))
+        self.assertEqual(self.json_request("POST", "/api/runs", payload)[0], 413)
+        self.assertEqual(self.json_request("POST", "/api/config/dry-run", payload)[0], 413)
+        self.assertEqual(self.json_request("POST", "/api/datasets/validate", "x" * (MAX_DATASET_REQUEST_BYTES + 1), raw=True)[0], 413)
 
     def test_worker_advances_and_stops(self):
         run = self.sim.queue({})

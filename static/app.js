@@ -4,6 +4,7 @@ const $$ = (selector) => [...document.querySelectorAll(selector)];
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = (value, digits = 3) => Number.isFinite(Number(value)) && value !== null && value !== undefined ? Number(value).toFixed(digits) : '—';
 const pct = value => Math.max(0, Math.min(100, Number(value) || 0));
+let authToken = null, remoteControlsAllowed = true;
 let snapshot = null, selectedId = null, filter = 'all', currentTab = 'logs', requestBusy = false, refreshBusy = false, toastTimer, nav = 'overview';
 try { selectedId = localStorage.getItem('forge.selectedRun'); } catch {}
 function toast(message, error = false) { const el = $('#toast'); el.textContent = message; el.hidden = false; el.classList.toggle('error', error); clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.hidden = true; }, 4200); }
@@ -11,9 +12,9 @@ async function api(path, body) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
-    const response = await fetch(path, {method: body === undefined ? 'GET' : 'POST', headers: body === undefined ? {} : {'Content-Type': 'application/json'}, body: body === undefined ? undefined : JSON.stringify(body), cache: 'no-store', signal:controller.signal});
+    const response = await fetch(path, {method: body === undefined ? 'GET' : 'POST', headers: body === undefined ? {} : {'Content-Type': 'application/json',...(authToken ? {'X-CSRF-Token':authToken} : {})}, body: body === undefined ? undefined : JSON.stringify(body), cache: 'no-store', signal:controller.signal});
     let payload; try { payload = await response.json(); } catch { throw new Error('The local API returned an unreadable response'); }
-    if (!response.ok) throw new Error(payload.error?.message || payload.error || `Request failed (${response.status})`);
+    if (!response.ok) { const error = new Error(payload.error?.message || payload.error || `Request failed (${response.status})`); error.status = response.status; error.code = payload.error?.code; error.details = payload.error?.details; if(response.status === 401 && typeof showLogin === 'function') showLogin(); throw error; }
     return payload;
   } catch(error) {
     if(error.name === 'AbortError') throw new Error('The local API timed out. Check that the demo server is running.');
@@ -24,7 +25,7 @@ function setConnection(ok) { const el = $('#connection'); el.className = 'connec
 async function refresh() {
   if (refreshBusy) return; refreshBusy = true;
   try { snapshot = await api('/api/status'); setConnection(true); render(); }
-  catch { setConnection(false); if (!snapshot) { $('#runs-body').innerHTML = '<tr><td colspan="6" class="empty">Local API unavailable. Start python server.py, then refresh.</td></tr>'; $('#selected-title').textContent = 'Waiting for the local demo API'; } }
+  catch(error) { setConnection(false); if(error.status === 401) { snapshot=null; $('#run-detail').hidden=true; $('#tab-content').innerHTML=''; $('#loss-chart').innerHTML=''; } if(error.status === 401 || error.code === 'bootstrap_required' || error.code === 'password_change_required') { $('#connection').innerHTML='<i></i> Local sign-in required'; if(typeof checkAccess === 'function') checkAccess(); } if (!snapshot) { $('#runs-body').innerHTML = '<tr><td colspan="6" class="empty">Sign in locally to finish setup, or check that python server.py is running.</td></tr>'; $('#selected-title').textContent = 'Waiting for the local demo API'; } }
   finally { refreshBusy = false; }
 }
 function selectRun(id) { selectedId = id; try { localStorage.setItem('forge.selectedRun', id); } catch {} render(); }
@@ -36,13 +37,21 @@ function render() {
   $('#summary-total').textContent = runs.length; $('#nav-count').textContent = runs.length; $('#experiment-count').textContent = runs.length;
   const completed = runs.filter(r => r.status === 'completed').length, queued = runs.filter(r => r.status === 'queued').length;
   $('#summary-caption').textContent = `${completed} completed · ${queued} queued`;
+  const failedRuns=runs.filter(run=>run.status==='failed'); const pausedRuns=runs.filter(run=>run.status==='paused');
+  $('#workspace-alerts').hidden = nav!=='overview' || (!failedRuns.length && !pausedRuns.length);
+  $('#workspace-alerts').innerHTML = `${failedRuns.length?`<span>◉ ${failedRuns.length} demo failure${failedRuns.length===1?'':'s'} recorded. Review the injected scenario and next steps.</span><button id="inspect-latest-failure" class="button secondary">Review failure</button>`:''}${pausedRuns.length?'<span>Ⅱ A paused demo job reserves the GPU slot. Resume or cancel it to release the queue.</span>':''}`;
+  if(failedRuns.length) $('#inspect-latest-failure').onclick=()=>{selectedId=failedRuns[0].id;setNav('runs');};
   $('#summary-active').innerHTML = `${runs.filter(r => r.status === 'running').length} <small>running</small>`;
   $('#summary-vram').innerHTML = `${fmt(gpu.used_gb,1)} <small>/ ${fmt(gpu.total_gb,0)} GB</small>`;
   $('#vram-bar').style.width = `${pct(gpu.used_gb / gpu.total_gb * 100)}%`;
   $('#gpu-util').textContent = `${fmt(gpu.utilization,0)}%`; $('#gpu-util-bar').style.width = `${pct(gpu.utilization)}%`;
   $('#gpu-memory').textContent = `${fmt(gpu.used_gb,1)} / ${fmt(gpu.total_gb,0)} GB`; $('#gpu-memory-bar').style.width = `${pct(gpu.used_gb / gpu.total_gb * 100)}%`;
   $('#gpu-temp').textContent = `${fmt(gpu.temp_c,0)} °C`;
-  const shown = runs.filter(run => filter === 'all' || run.kind === filter);
+  const shown = runs.filter(run => (filter === 'all' || run.kind === filter) && (nav !== 'overview' || ['running','paused'].includes(run.status)));
+  $('#no-runs').textContent = nav === 'overview' ? 'No active demo jobs. Open Experiments to start or inspect a queued run.' : 'No experiments in this view yet';
+  if(nav === 'overview' && !runs.some(run => run.id === selectedId && ['running','paused'].includes(run.status))) selectedId = snapshot.active_run_id || runs.find(run => run.status === 'paused')?.id || null;
+  if(['overview','runs'].includes(nav)) $('#run-detail').hidden = nav === 'overview' && !selectedId;
+  $('.run-data').hidden = nav === 'overview';
   $('#no-runs').hidden = shown.length > 0;
   $('#runs-body').innerHTML = shown.map(run => {
     const progress = pct(run.progress ?? run.step / run.total_steps * 100), metric = latest(run);
@@ -50,6 +59,7 @@ function render() {
   }).join('');
   $$('#runs-body tr[data-run]').forEach(row => { row.onclick = () => selectRun(row.dataset.run); row.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectRun(row.dataset.run); } }; });
   const run = runs.find(r => r.id === selectedId); if (run) renderDetail(run);
+  if(nav==='compare' && typeof updateComparison==='function' && $('#compare-output')) updateComparison();
 }
 function renderDetail(run) {
   const metric = latest(run), step = run.step ?? run.current_step ?? 0;
@@ -60,14 +70,16 @@ function renderDetail(run) {
   const defaultActions = {queued:['start','cancel'],running:['pause','cancel'],paused:['resume','cancel'],failed:['retry'],canceled:['retry'],completed:[]};
   const actions = run.allowed_actions || defaultActions[run.status] || [];
   const labels = {start:'▷ Start demo',pause:'Ⅱ Pause demo',resume:'▷ Resume demo',cancel:'× Cancel demo',retry:'↻ Retry as new run'};
-  $('#run-controls').innerHTML = actions.map(action => `<button class="button ${action === 'cancel' ? 'danger' : action === 'start' || action === 'resume' || action === 'retry' ? 'primary' : 'secondary'}" data-action="${escapeHtml(action)}" ${requestBusy ? 'disabled' : ''}>${labels[action] || escapeHtml(action)}</button>`).join('') || '<span class="status completed">Run finished</span>';
+  $('#run-controls').innerHTML = actions.map(action => `<button class="button ${action === 'cancel' ? 'danger' : action === 'start' || action === 'resume' || action === 'retry' ? 'primary' : 'secondary'}" data-action="${escapeHtml(action)}" ${requestBusy || !remoteControlsAllowed ? 'disabled' : ''}>${labels[action] || escapeHtml(action)}</button>`).join('') || '<span class="status completed">Run finished</span>';
   $$('#run-controls button').forEach(btn => { btn.onclick = () => performAction(run.id, btn.dataset.action); });
-  const error = run.error; $('#run-error').hidden = !error; $('#run-error').textContent = error ? `Demo failure: ${typeof error === 'string' ? error : error.message || JSON.stringify(error)} · Retry creates a new queued run; the original stays unchanged.` : '';
+  const error = run.error; $('#run-error').hidden = !error;
+  if(error) { const message = typeof error === 'string' ? error : error.message || JSON.stringify(error); const injected = run.config?.failure_mode === 'oom'; $('#run-error').innerHTML = `<strong>Demo failure:</strong> ${escapeHtml(message)}<div class="field-note" style="margin-top:7px">${injected ? 'Injected OOM scenario. Retry preserves the injection, so it can fail again. Review batch, context and rank in Training setup; a revised recipe uses the normal demo scenario.' : 'Retry creates a new queued run and preserves this original record.'}</div><button id="review-failed-recipe" class="button secondary" style="margin-top:9px">Review training recipe</button>`; $('#review-failed-recipe').onclick = () => { if(typeof prepareRecipeFromRun === 'function') prepareRecipeFromRun(run); else setNav('recipes'); }; }
+  else $('#run-error').textContent = '';
   $('#log-count').textContent = run.logs?.length || 0;
   if (currentTab === 'logs') {
     const wasNearBottom = !$('.log-view') || $('.log-view').scrollHeight - $('.log-view').scrollTop - $('.log-view').clientHeight < 35;
-    const oldScroll = $('.log-view')?.scrollTop || 0;
-    $('#tab-content').innerHTML = `<div class="log-view" aria-label="Synthetic training logs">${run.logs?.length ? run.logs.map(log => `<div class="log-line"><span class="log-time">${escapeHtml(formatTime(log.time))}</span><span class="log-level ${String(log.level).toLowerCase()}">${escapeHtml(String(log.level).toUpperCase())}</span><span class="log-message">${escapeHtml(log.message)}</span></div>`).join('') : '<span class="log-message">No log events yet. Start this queued demo run to generate events.</span>'}</div>`;
+    const oldScroll = $('.log-view')?.scrollTop || 0; const logsOpen = $('.technical-logs')?.open || false;
+    $('#tab-content').innerHTML = `<details class="technical-logs" ${logsOpen ? 'open' : ''}><summary>Technical demo log · synthetic, token-like text redacted</summary><div class="log-view" aria-label="Synthetic training logs">${run.logs?.length ? run.logs.map(log => `<div class="log-line"><span class="log-time">${escapeHtml(formatTime(log.time))}</span><span class="log-level ${String(log.level).toLowerCase()}">${escapeHtml(String(log.level).toUpperCase())}</span><span class="log-message">${escapeHtml(typeof safeTechnicalText === 'function' ? safeTechnicalText(log.message) : log.message)}</span></div>`).join('') : '<span class="log-message">No log events yet. Start this queued demo run to generate events.</span>'}</div></details>`;
     $('.log-view').scrollTop = wasNearBottom ? $('.log-view').scrollHeight : oldScroll;
   } else if (currentTab === 'checkpoints') {
     $('#tab-content').innerHTML = `<div class="checkpoint-list">${run.checkpoints?.length ? run.checkpoints.map(cp => `<div class="checkpoint"><span>▱</span><div>${escapeHtml(cp.name || cp.label)}<div class="run-meta">Virtual checkpoint · no weights saved</div></div><small>Step ${escapeHtml(cp.step)}${cp.size_mb ? ` · ${escapeHtml(cp.size_mb)} MB (simulated)` : ''}</small></div>`).join('') : '<div class="empty">No virtual checkpoints yet. Real model weights are never saved.</div>'}</div>`;
@@ -104,14 +116,31 @@ $('#run-dialog').addEventListener('click', e => { if (e.target === $('#run-dialo
 $('#run-form').addEventListener('submit', async e => {
   e.preventDefault(); if(requestBusy) return; requestBusy = true; const submit = $('#run-form button[type="submit"]'); submit.disabled = true; $('#form-error').hidden = true;
   const data = Object.fromEntries(new FormData(e.target)); for(const key of ['learning_rate','batch_size','lora_rank','epochs','gradient_accumulation','max_steps']) data[key] = Number(data[key]);
-  try { const payload = await api('/api/runs',data); snapshot = payload.snapshot || snapshot; selectedId = payload.run.id; filter = 'all'; $$('.filter').forEach(btn => btn.classList.toggle('active',btn.dataset.filter === filter)); $('#run-dialog').close(); toast('Demo experiment queued. Starts when the simulated GPU is free.'); await refresh(); setNav('overview'); $('#run-detail').scrollIntoView({behavior:'smooth',block:'start'}); }
+  try { const payload = await api('/api/runs',data); snapshot = payload.snapshot || snapshot; selectedId = payload.run.id; filter = 'all'; $$('.filter').forEach(btn => btn.classList.toggle('active',btn.dataset.filter === filter)); $('#run-dialog').close(); toast('Demo experiment queued. Starts when the simulated GPU is free.'); await refresh(); setNav('runs'); $('#run-detail').scrollIntoView({behavior:'smooth',block:'start'}); }
   catch(error) { $('#form-error').textContent = error.message; $('#form-error').hidden = false; }
   finally { requestBusy = false; submit.disabled = false; render(); }
 });
 $$('.filter').forEach(btn => { btn.onclick = () => { filter = btn.dataset.filter; $$('.filter').forEach(other => other.classList.toggle('active',other === btn)); render(); }; });
 $$('.tab').forEach(btn => { btn.onclick = () => { currentTab = btn.dataset.tab; $$('.tab').forEach(other => { other.classList.toggle('active',other === btn); other.setAttribute('aria-selected', String(other === btn)); }); render(); }; });
-function setNav(value) { nav = value; $$('.nav-item').forEach(btn => btn.classList.toggle('active',btn.dataset.nav === value)); $('#worker-info').hidden = value !== 'worker'; $('#run-detail').hidden = value === 'worker'; $('#experiments').hidden = value === 'worker'; $('.breadcrumbs strong').textContent = value === 'worker' ? 'Local worker' : value === 'runs' ? 'Experiments' : 'Overview'; if(value === 'runs') $('#experiments').scrollIntoView({behavior:'smooth',block:'start'}); }
+function setNav(value) {
+  nav = value;
+  $$('.nav-item').forEach(btn => btn.classList.toggle('active',btn.dataset.nav === value));
+  const advanced = !['overview','runs'].includes(value);
+  $('#worker-info').hidden = true;
+  $('#workspace-view').hidden = !advanced;
+  $('#run-detail').hidden = advanced;
+  $('#experiments').hidden = advanced;
+  $('.summary-grid').hidden = advanced;
+  $('#mobile-view').value = value === 'runs' ? 'overview' : value;
+  const names = {overview:'Overview',runs:'Experiments',datasets:'Datasets',recipes:'Training setup',compare:'Compare runs',environment:'Environment',settings:'Access settings'};
+  $('.breadcrumbs strong').textContent = names[value] || value;
+  render();
+  if (advanced && typeof loadWorkspaceView === 'function') loadWorkspaceView(value);
+  if(value === 'runs') $('#experiments').scrollIntoView({behavior:'smooth',block:'start'});
+}
 $$('.nav-item').forEach(btn => { btn.onclick = () => setNav(btn.dataset.nav); });
 refresh(); setInterval(refresh,2000); document.addEventListener('visibilitychange', () => { if(!document.hidden) refresh(); });
 
 $('#run-form select[name="kind"]').onchange = (e) => { const vlm = e.target.value === 'VLM'; $('#run-form select[name="model"]').value = vlm ? 'demo/vlm-3b' : 'demo/llm-3b'; $('#run-form input[name="dataset"]').value = vlm ? 'synthetic-image-captions' : 'synthetic-instructions'; };
+
+$('#mobile-view').onchange = (event) => setNav(event.target.value);
