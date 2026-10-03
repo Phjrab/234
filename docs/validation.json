@@ -1,0 +1,70 @@
+{
+  "verified_at_utc": "2026-10-03T05:11:00Z",
+  "mode": "synthetic_demo_only",
+  "runtime": "Python 3.12 / Node 24 in build environment",
+  "checks": {
+    "backend_api_unittests": {
+      "passed": 37,
+      "failed": 0,
+      "command": "python -m unittest discover -s tests -v"
+    },
+    "frontend_dom_stub_tests": {
+      "passed": 14,
+      "failed": 0,
+      "command": "node tests/test_frontend.js",
+      "scope": "Rendering and handlers with a stub DOM; not a browser/layout test"
+    },
+    "python_compile": "passed",
+    "javascript_syntax": "passed",
+    "actual_static_routes": "/, /style.css, /app.js, /api/status all200",
+    "documented_sample_post": "201 created"
+  },
+  "unverified": [
+    "Live browser/API integration",
+    "Desktop/mobile pixel layout and interaction in an actual browser",
+    "Actual GPU detection or training (not implemented)"
+  ],
+  "browser_qa_blocker": "Build environment blocks headless Chromium socket creation and supported browser URLs for localhost/file preview. No security restrictions were weakened.",
+  "screenshots": {
+    "available": false,
+    "reason": "No permitted browser rendering route was available; no screenshots were fabricated."
+  },
+  "offline_preview": {
+    "path": "docs/offline-preview.html",
+    "read_only": true,
+    "synthetic": true,
+    "browser_verified": false
+  },
+  "publication": {
+    "contains": "Synthetic sample data and source only",
+    "excluded": [
+      "Runtime database",
+      "Caches",
+      "Credentials",
+      "Real datasets",
+      "Model files",
+      "Private filesystem paths"
+    ]
+  },
+  "files_sha256": {
+    ".github/workflows/test.yml": "1b1db035f01fa0258f89205af57c710e039c070cef1144aa6471b394ed1a24e5",
+    ".gitignore": "404f22b39def6b35d2ade24072c8e9981e663ddb6a0d37b01091919f0b67e7e7",
+    "README.md": "8643b4b14068b2f7aed13eb51602da725734c4c37d57404248197fae04d692a8",
+    "adapter.py": "50dc6e109902a058c392fc8b23b2d0cfbbe22ed98cb19dbd7d70344c978b9ec4",
+    "docs/adapter-contract.md": "16c8ae016c473ef71c8da34834c614e70834b236737344586ab7bb6a5f7198ac",
+    "docs/offline-preview.html": "4d080cfeb1761aa04189f9911d7a66c71e36f50f6794ec9ab71c7cd8d27b330d",
+    "docs/sample-run.json": "84d3b2a78c96ff30dcd24bb86f631478d99c6ad1e022e47a29ce33dab20e3b23",
+    "docs/sample-snapshot.json": "3b02772380ebf59341869d1a1d4b7fd7f703e5303c0370ba2ffccdc5052a6bee",
+    "docs/security.md": "ab25ac29157e031816bc11c48a32dc466a42b3fa5f37947d0483f1ca53cf1242",
+    "requirements.txt": "a6cce3660014734e5781a1fa2903422ec4cc7d40bcba0c83528d9363303bff99",
+    "server.py": "735923eea172c0d2c4b77f625114c1a8e42b6bf45967d65a96ed66a940c24360",
+    "simulator.py": "8838c17154238ae71b34d7dd41b71fa05e0c08306af3fa9dea50dde72f3dd9f5",
+    "static/app.js": "06dd342b15e7076a2edd62762ae577a9883fec1a49d6947f3c62f3af12cff35e",
+    "static/index.html": "b6ae8d225beede90bb0d200dc939764adbfe2c6dba3ed71087202980bc07b045",
+    "static/style.css": "53b4a50506fc44e23230a8ddca632bc654a928c276ac99147695bc86a1fcf3d4",
+    "tests/test_frontend.js": "a4e12ba75c8a8e848a107248200ccfe435148c2c9895c473036fc9e4506837e5",
+    "tests/test_server.py": "0bce0f5dc810ed469977b293d11327ccd4b958ff3f544413001f3ac00ceeac91",
+    "tests/test_simulator.py": "d6bba411c685d9ee4ef353800c893a473e8ec5c13bc217d2be0f9f38d9cbe294",
+    "tools/build_preview.py": "32ef71b495a6621289d13bb2854ca3545ce5b90d4e7d7b246204f26b57e76222"
+  }
+}

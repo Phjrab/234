@@ -1,0 +1,13 @@
+{
+  "name": "synthetic-instruction-lora",
+  "kind": "LLM",
+  "model": "demo/llm-3b",
+  "dataset": "synthetic-instructions",
+  "learning_rate": 0.0002,
+  "epochs": 3,
+  "batch_size": 1,
+  "gradient_accumulation": 8,
+  "lora_rank": 16,
+  "max_steps": 120,
+  "failure_mode": "none"
+}
