@@ -10,7 +10,7 @@ try { selectedId = localStorage.getItem('forge.selectedRun'); } catch {}
 function toast(message, error = false) { const el = $('#toast'); el.textContent = t(message); el.hidden = false; el.classList.toggle('error', error); clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.hidden = true; }, 4200); }
 async function api(path, body) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000);
+  const timeout = setTimeout(() => controller.abort(), path.startsWith('/api/huggingface/') ? 45000 : 8000);
   try {
     const response = await fetch(path, {method: body === undefined ? 'GET' : 'POST', headers: body === undefined ? {} : {'Content-Type': 'application/json',...(authToken ? {'X-CSRF-Token':authToken} : {})}, body: body === undefined ? undefined : JSON.stringify(body), cache: 'no-store', signal:controller.signal});
     let payload; try { payload = await response.json(); } catch { throw new Error(t("The local API returned an unreadable response")); }

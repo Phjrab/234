@@ -23,6 +23,8 @@ from auth import AuthStore, COOKIE_NAME, SESSION_SECONDS, is_loopback_peer
 from simulator import DashboardError, Simulator
 from workspace import Workspace
 from training import TrainingManager
+from huggingface import HuggingFaceHub
+from model_downloads import ModelDownloads
 
 MAX_REQUEST_BYTES = 16 * 1024
 MAX_DATASET_REQUEST_BYTES = 256 * 1024
@@ -97,6 +99,8 @@ class DashboardServer(ThreadingHTTPServer):
         self.auth = AuthStore(db_dir / "auth.sqlite3") if auth is None else auth
         self.workspace = workspace if workspace is not None else Workspace(db_dir / "workspace.sqlite3", workspace_path=Path(__file__).resolve().parent)
         self.training = training
+        self.huggingface = HuggingFaceHub(db_dir / "huggingface")
+        self.model_downloads = None
         self._resources_closed = False
         try:
             super().__init__(address, DashboardHandler)
@@ -126,6 +130,8 @@ class DashboardServer(ThreadingHTTPServer):
 
     def server_close(self):
         self.stop_event.set()
+        if self.model_downloads and not self._resources_closed:
+            self.model_downloads.close()
         if self.training and not self._resources_closed:
             self.training.close()
         if self.worker_thread:
@@ -371,6 +377,17 @@ class DashboardHandler(BaseHTTPRequestHandler):
             return self.server.training
         return self.server.simulator
 
+    def _downloads(self):
+        if not self.server.model_downloads:
+            manager = self._training()
+            if not manager.enabled:
+                raise DashboardError('training_unavailable','Enable the training environment before downloading models.',409)
+            # Creation is serialized across concurrent API handlers.
+            with manager.lock:
+                if not self.server.model_downloads:
+                    self.server.model_downloads = ModelDownloads(manager.model_root,self.server.huggingface)
+        return self.server.model_downloads
+
     def _training(self):
         if not self.server.training:
             raise DashboardError('training_unavailable','Real training is disabled on this server.',409)
@@ -423,6 +440,25 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 self._authorize(bootstrap=path == "/api/settings")
                 if path == "/api/settings":
                     return self._json(200, self._settings())
+                if path == '/api/huggingface/account':
+                    return self._json(200,self.server.huggingface.account())
+                if path == '/api/huggingface/models':
+                    query=self._query({'search','author','kind','family','sort','cursor'})
+                    return self._json(200,self.server.huggingface.search(query))
+                if path == '/api/huggingface/model':
+                    query=self._query({'id'})
+                    info=self.server.huggingface.detail(query.get('id'))
+                    installed = self.server.training.capabilities()['models'] if self.server.training else []
+                    info['installed']=any(m['id']==info['id'] and m['installed'] and m['revision']==info['revision'] for m in installed)
+                    return self._json(200,info)
+                if path == '/api/huggingface/avatar':
+                    query=self._query({'author'})
+                    body,mime=self.server.huggingface.avatar(query.get('author'))
+                    self._headers(200,mime,len(body))
+                    if self.command != 'HEAD':self.wfile.write(body)
+                    return
+                if path == '/api/huggingface/download':
+                    return self._json(200,self._downloads().status())
                 if path == "/api/training":
                     return self._json(200, self._training().capabilities())
                 if path == "/api/status":
@@ -465,8 +501,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
             # The shipped login shell is public after the LAN/bootstrap gate.
             # Knowing its source/routes never grants authenticated API data access.
             relative = "index.html" if path == "/" else path.lstrip("/")
-            target = (self.server.static_dir / relative).resolve()
-            if not target.is_relative_to(self.server.static_dir) or target.suffix.lower() not in STATIC_TYPES or not target.is_file():
+            static_root = self.server.static_dir.resolve()
+            target = (static_root / relative).resolve()
+            if not target.is_relative_to(static_root) or target.suffix.lower() not in STATIC_TYPES or not target.is_file():
                 raise DashboardError("not_found", "Static file does not exist.", 404)
             if target.stat().st_size > MAX_STATIC_BYTES:
                 raise DashboardError("not_found", "Static file is too large.", 404)
@@ -521,6 +558,21 @@ class DashboardHandler(BaseHTTPRequestHandler):
             if path == "/api/settings":
                 self.server.auth.update_settings(payload)
                 return self._json(200, self._settings())
+            if path == '/api/huggingface/connect':
+                result=self.server.huggingface.connect(payload)
+                return self._json(200,result if self._can_view_response() else {'connected':True})
+            if path == '/api/huggingface/disconnect':
+                if payload:raise DashboardError('invalid_body','Disconnect body must be empty.')
+                if self.server.model_downloads and self.server.model_downloads.process:
+                    raise DashboardError('download_busy','Cancel the model download before disconnecting.',409)
+                return self._json(200,self.server.huggingface.disconnect())
+            if path == '/api/huggingface/download':
+                result=self._downloads().start(payload)
+                return self._json(202,result if self._can_view_response() else {'status':result['status']})
+            if path == '/api/huggingface/download/cancel':
+                if payload:raise DashboardError('invalid_body','Cancel body must be empty.')
+                result=self._downloads().cancel()
+                return self._json(200,result if self._can_view_response() else {'status':result['status']})
             if path == '/api/training/preflight':
                 return self._json(200, self._training().preflight(payload)[1])
             if path == '/api/training/runs':

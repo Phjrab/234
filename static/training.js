@@ -1,5 +1,5 @@
 'use strict';
-let trainingPanelVersion = 0;
+let trainingPanelVersion = 0, installedTrainingModels = [];
 async function loadTrainingPanel() {
   const host = $('#real-training-panel');
   if (!host) return;
@@ -7,11 +7,15 @@ async function loadTrainingPanel() {
   try {
     const [cap, workspace] = await Promise.all([api('/api/training'), api('/api/workspace')]);
     if (version !== trainingPanelVersion || nav !== 'recipes') return;
+    installedTrainingModels=cap.models;
     const datasets = (workspace.datasets || []).filter(ds => ds.split);
-    host.innerHTML = `<h3>${t('Real GPU training')}</h3><p>${escapeHtml(t(cap.message))}</p><label>${t('Installed base model')}<select id="training-model">${cap.models.filter(m=>m.installed).map(m=>`<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)} · ${m.kind}</option>`).join('')}</select></label><label>${t('Prepared train/validation dataset')}<select id="training-dataset">${datasets.map(ds=>`<option value="${escapeHtml(ds.id)}" data-kind="${ds.kind}">${escapeHtml(ds.name)} · ${ds.kind}</option>`).join('') || `<option value="">${t('Save and split a dataset first')}</option>`}</select></label><p class="field-note">${t('Uses the recipe above. Real jobs allocate the GPU and save adapter weights. Max steps caps optimizer updates; epochs may finish earlier.')}</p><div class="feature-actions"><button type="button" class="button secondary" id="training-preflight">${t('Check real training')}</button><button type="button" class="button primary" id="training-start" ${!cap.available || !remoteControlsAllowed ? 'disabled' : ''}>${t('Start real GPU training')}</button></div><div id="training-result" hidden></div>`;
+    host.innerHTML = `<h3>${t('Real GPU training')}</h3><p>${escapeHtml(t(cap.message))}</p><div class="feature-actions"><button type="button" class="button secondary" id="browse-hf-models">${t('Browse Hugging Face models')}</button></div><div id="selected-model-info" class="model-selection"></div><label>${t('Installed base model')}<select id="training-model">${cap.models.filter(m=>m.installed).map(m=>`<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)} · ${m.kind} · ${escapeHtml(m.family||'—')}</option>`).join('')}</select></label><label>${t('Prepared train/validation dataset')}<select id="training-dataset">${datasets.map(ds=>`<option value="${escapeHtml(ds.id)}" data-kind="${ds.kind}">${escapeHtml(ds.name)} · ${ds.kind}</option>`).join('') || `<option value="">${t('Save and split a dataset first')}</option>`}</select></label><p class="field-note">${t('Uses the recipe above. Real jobs allocate the GPU and save adapter weights. Max steps caps optimizer updates; epochs may finish earlier.')}</p><div class="feature-actions"><button type="button" class="button secondary" id="training-preflight">${t('Check real training')}</button><button type="button" class="button primary" id="training-start" ${!cap.available || !remoteControlsAllowed ? 'disabled' : ''}>${t('Start real GPU training')}</button></div><div id="training-result" hidden></div>`;
+    $('#browse-hf-models').onclick=openModelCatalog;
     function syncModel() {
-      const model = cap.models.find(m=>m.id===$('#training-model').value);
+      const model = installedTrainingModels.find(m=>m.id===$('#training-model').value);
       if (!model) return;
+      selectedHubModel=model;
+      renderSelectedModel();
       $('#recipe-form [name=model]').value=model.id;
       $('#recipe-form [name=kind]').value=model.kind;
       $('#recipe-form [name=sequence_length]').value=model.kind==='VLM'?1536:512;
@@ -23,9 +27,9 @@ async function loadTrainingPanel() {
     $('#training-dataset').onchange=syncDataset;
     if (cap.models.some(m=>m.id===$('#recipe-form [name=model]').value && m.installed)) $('#training-model').value=$('#recipe-form [name=model]').value;
     if(datasets.some(ds=>ds.id===$('#recipe-form [name=dataset]').value))$('#training-dataset').value=$('#recipe-form [name=dataset]').value;
-    if(cap.models.some(m=>m.id===$('#recipe-form [name=model]').value && m.installed))syncDataset();else syncModel();
+    if(cap.models.some(m=>m.id===$('#recipe-form [name=model]').value && m.installed)){selectedHubModel=cap.models.find(m=>m.id===$('#recipe-form [name=model]').value);renderSelectedModel();syncDataset();}else syncModel();
     $('#training-preflight').onclick=async()=>{try{syncDataset();const result=await api('/api/training/preflight',readRecipe());const output=$('#training-result');output.hidden=false;output.className='feature-result';output.innerHTML=`<h4>${t('Real training checks passed')}</h4>${jsonPreview(result)}`;}catch(error){renderFeatureError('#training-result',error);}};
-    $('#training-start').onclick=async()=>{const button=$('#training-start');button.disabled=true;try{syncDataset();const result=await api('/api/training/runs',readRecipe());snapshot=result.snapshot||snapshot;selectedId=result.run.id;toast(t('Real training queued'));setNav('runs');await refresh();}catch(error){renderFeatureError('#training-result',error);}finally{button.disabled=!remoteControlsAllowed;}};
+    $('#training-start').onclick=async()=>{if(selectedHubModel && (!selectedHubModel.installed || !['LLM','VLM'].includes(selectedHubModel.kind))){toast(t('Download a compatible model before training.'),true);return;}const button=$('#training-start');button.disabled=true;try{syncDataset();const result=await api('/api/training/runs',readRecipe());snapshot=result.snapshot||snapshot;selectedId=result.run.id;toast(t('Real training queued'));setNav('runs');await refresh();}catch(error){renderFeatureError('#training-result',error);}finally{button.disabled=!remoteControlsAllowed;}};
   } catch(error) {
     if(version!==trainingPanelVersion || nav!=='recipes')return;
     host.innerHTML=`<h3>${t('Real GPU training')}</h3><p>${escapeHtml(error.message)}</p><p>${t('The operator must enable the installed training environment.')}</p>`;

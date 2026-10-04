@@ -97,7 +97,7 @@ def validate_config(raw: Any) -> dict:
     config = {
         "name": _text(normalized.get("name"), "name", f"{kind} adapter experiment", 80),
         "kind": kind,
-        "model": _text(normalized.get("model"), "model", model, 160),
+        "model": _text(normalized.get("model"), "model", model, 200),
         "dataset": _text(normalized.get("dataset"), "dataset", "vision-demo" if kind == "VLM" else "instruction-demo", 160),
         "method": method,
         "learning_rate": _number(normalized.get("learning_rate"), "learning_rate", 0.0002, 0.0000001, 0.1),

@@ -63,7 +63,7 @@ def train(job_path):
     if free<1024**3:raise RuntimeError('Insufficient free GPU memory before model loading')
     dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
     quantized=config['method']=='qlora'
-    kwargs={'local_files_only':True,'trust_remote_code':False,'dtype':dtype,'attn_implementation':'sdpa'}
+    kwargs={'local_files_only':True,'trust_remote_code':False,'dtype':dtype,'use_safetensors':True}
     if quantized:
         kwargs.update(quantization_config=BitsAndBytesConfig(load_in_4bit=True,bnb_4bit_quant_type='nf4',bnb_4bit_use_double_quant=True,bnb_4bit_compute_dtype=dtype),device_map={'':'cuda:0'})
     is_vlm=config['kind']=='VLM'
@@ -74,7 +74,7 @@ def train(job_path):
     tokenizer=processor.tokenizer if processor else AutoTokenizer.from_pretrained(job['model_path'],local_files_only=True,trust_remote_code=False)
     tokenizer.padding_side='right'
     if tokenizer.pad_token_id is None:tokenizer.pad_token=tokenizer.eos_token
-    if processor:
+    if processor and hasattr(processor.image_processor, 'do_image_splitting'):
         processor.image_processor.do_image_splitting=False
     if stopped_before_training():return
     model.config.use_cache=False
@@ -87,9 +87,11 @@ def train(job_path):
         resume=Path(resume)
         model=PeftModel.from_pretrained(model,str(resume),is_trainable=True,local_files_only=True)
     else:
-        # Both approved architectures expose attention q_proj/v_proj modules.
+        # Preserve the existing attention recipe where available; adapt other native architectures.
+        names = {name.rsplit('.',1)[-1] for name,_ in model.named_modules()}
+        targets = ['q_proj','v_proj'] if {'q_proj','v_proj'} <= names else 'all-linear'
         model=get_peft_model(model,LoraConfig(r=config['lora_rank'],lora_alpha=config['lora_rank']*2,lora_dropout=0.0,
-              target_modules=['q_proj','v_proj'],bias='none',task_type='CAUSAL_LM'))
+              target_modules=targets,bias='none',task_type='CAUSAL_LM'))
     optimizer=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=config['learning_rate'])
     plan=plans(len(job['train']),config)
     step=0;prior_elapsed=0;baseline=None
@@ -113,8 +115,12 @@ def train(job_path):
             full=processor.apply_chat_template(structured,tokenize=False,add_generation_prompt=False)
             prefix=processor.apply_chat_template(structured[:-1],tokenize=False,add_generation_prompt=True)
         else:
-            full=tokenizer.apply_chat_template(convo,tokenize=False,add_generation_prompt=False)
-            prefix=tokenizer.apply_chat_template(convo[:-1],tokenize=False,add_generation_prompt=True)
+            if tokenizer.chat_template:
+                full=tokenizer.apply_chat_template(convo,tokenize=False,add_generation_prompt=False)
+                prefix=tokenizer.apply_chat_template(convo[:-1],tokenize=False,add_generation_prompt=True)
+            else:
+                prefix=''.join(m['role']+': '+m['content']+'\n' for m in convo[:-1])+'assistant: '
+                full=prefix+convo[-1]['content']+(tokenizer.eos_token or '')
         return full,prefix
 
     def load_images(row):

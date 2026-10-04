@@ -1,4 +1,4 @@
-"""Persistent single-GPU supervisor. Only fixed recipes and local snapshots run."""
+"""Persistent single-GPU supervisor. Validated local snapshots run with native Transformers architectures."""
 from __future__ import annotations
 import base64
 import copy
@@ -118,10 +118,29 @@ class TrainingManager:
         run['logs'].append({'time': timestamp(time.time()), 'level': level, 'message': message})
         run['logs'] = run['logs'][-200:]
 
+    def model_definitions(self):
+        definitions = {key: dict(value) for key, value in MODELS.items()}
+        if self.model_root.exists():
+            for folder in sorted(self.model_root.glob('hf-*')):
+                if not folder.is_dir() or folder.is_symlink():
+                    continue
+                try:
+                    from model_downloads import model_directory
+                    manifest = json.loads((folder / 'forge-model.json').read_text())
+                    model = manifest['model']
+                    if folder.name != model_directory(model, manifest['revision']):
+                        continue
+                    definitions[model] = {key: manifest.get(key) for key in ('kind','license','family','publisher','parameters','architectures')}
+                    definitions[model]['directory'] = folder.name
+                except (OSError,ValueError,KeyError,DashboardError):
+                    continue
+        return definitions
+
     def _model(self, model):
-        if model not in MODELS:
-            raise DashboardError('unsupported_model', 'Select one of the installed, approved training models.')
-        folder = contained(self.model_root, MODELS[model]['directory'])
+        definitions = self.model_definitions()
+        if model not in definitions:
+            raise DashboardError('unsupported_model', 'Download the selected Hugging Face model before training.')
+        folder = contained(self.model_root, definitions[model]['directory'])
         try:
             manifest = json.loads((folder / 'forge-model.json').read_text())
             if manifest['model'] != model or not re.fullmatch('[a-f0-9]{40}', manifest['revision']):
@@ -129,16 +148,20 @@ class TrainingManager:
             if not (folder / 'config.json').is_file() or not list(folder.glob('*.safetensors')):
                 raise ValueError()
         except (OSError, ValueError, KeyError):
-            raise DashboardError('model_unavailable', 'The selected model must be staged locally by the operator.', 409) from None
+            raise DashboardError('model_unavailable', 'Download the selected model before training.', 409) from None
         return folder, manifest
 
     def capabilities(self):
         deps = all(importlib.util.find_spec(name) for name in ('torch', 'transformers', 'peft', 'PIL', 'bitsandbytes'))
         models = []
-        for key, value in MODELS.items():
+        for key, value in self.model_definitions().items():
             try:
                 _, manifest = self._model(key)
                 ready, revision = True, manifest['revision']
+                config = json.loads((self.model_root / value['directory'] / 'config.json').read_text())
+                value['family'] = value.get('family') or config.get('model_type')
+                value.setdefault('publisher', key.split('/')[0])
+                value.setdefault('architectures', config.get('architectures', []))
             except DashboardError:
                 ready, revision = False, None
             models.append({'id': key, **{k:v for k,v in value.items() if k != 'directory'}, 'installed': ready, 'revision': revision})
@@ -153,8 +176,9 @@ class TrainingManager:
         if not self.capabilities()['available']:
             raise DashboardError('training_unavailable', 'Real training is unavailable on this server.', 409)
         config = validate_config(raw)
-        if config['model'] not in MODELS or MODELS[config['model']]['kind'] != config['kind']:
-            raise DashboardError('unsupported_model', 'Choose an approved model matching the dataset kind.')
+        definition = self.model_definitions().get(config['model'])
+        if not definition or definition['kind'] != config['kind']:
+            raise DashboardError('unsupported_model', 'Download a model matching the dataset kind.')
         if config['failure_mode'] != 'none':
             raise DashboardError('invalid_config', 'Failure injection is available only in demo mode.')
         for key, high in [('batch_size',4),('gradient_accumulation',32),('lora_rank',32),('sequence_length',2048),('epochs',20)]:
@@ -192,7 +216,7 @@ class TrainingManager:
         validation = [records[i]['record'] for i in dataset['split_indices']['validation']]
         batches = math.ceil(len(train) / config['batch_size'])
         total = min(config['max_steps'], math.ceil(batches / config['gradient_accumulation']) * config['epochs'])
-        return config, {'valid':True,'model_revision':manifest['revision'],'license':MODELS[config['model']]['license'],
+        return config, {'valid':True,'model_revision':manifest['revision'],'license':definition['license'],
                         'train_count':len(train),'validation_count':len(validation),'total_steps':total,
                         'evaluation':'held-out assistant-token cross entropy','can_train':True,
                         'warnings':['A small dataset verifies the pipeline; it does not establish model quality.','Context token lengths and actual VRAM are checked by the worker before optimization.']}, folder, train, validation, image_bytes
