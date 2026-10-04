@@ -27,9 +27,9 @@ def classify(info):
     config = info.get('config') or {}
     task = info.get('pipeline_tag') or ''
     architectures = config.get('architectures') or []
-    if task in VLM_TASKS or config.get('vision_config'):
+    if task in VLM_TASKS or config.get('vision_config') or any(tag in VLM_TASKS for tag in info.get('tags') or []):
         return 'VLM'
-    if task == 'text-generation':
+    if task in {'text-generation','text2text-generation'}:
         return 'LLM'
     if not task and any(str(a).endswith('ForCausalLM') for a in architectures):
         return 'LLM'
@@ -221,7 +221,7 @@ class HuggingFaceHub:
                     from transformers.models.auto.modeling_auto import MODEL_FOR_CAUSAL_LM_MAPPING_NAMES, MODEL_FOR_IMAGE_TEXT_TO_TEXT_MAPPING_NAMES
                     supported=MODEL_FOR_IMAGE_TEXT_TO_TEXT_MAPPING_NAMES if result['kind']=='VLM' else MODEL_FOR_CAUSAL_LM_MAPPING_NAMES
                     if result['kind'] in {'LLM','VLM'} and result['family'] not in supported:
-                        reasons.append('The installed Transformers version does not support this architecture without remote code.')
+                        reasons.append('The local LLM/VLM worker does not support this architecture with the installed Transformers version.')
                 except ImportError:pass
             result['training_candidate']=not reasons
             result['reasons']=reasons

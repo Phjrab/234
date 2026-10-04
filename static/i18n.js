@@ -65,7 +65,7 @@ const I18n = (() => {
     "This task is not supported by the LLM/VLM training worker.": "이 작업 유형은 LLM/VLM 학습 워커에서 지원하지 않습니다.",
     "This repository has no safetensors weights.": "이 저장소에는 safetensors 가중치가 없습니다.",
     "Use the original unquantized Transformers model for LoRA/QLoRA training.": "LoRA/QLoRA 학습에는 양자화되지 않은 원본 Transformers 모델을 사용하세요.",
-    "The installed Transformers version does not support this architecture without remote code.": "설치된 Transformers 버전은 원격 코드 없이 이 아키텍처를 지원하지 않습니다.",
+    "The local LLM/VLM worker does not support this architecture with the installed Transformers version.": "현재 LLM/VLM 워커와 설치된 Transformers 버전으로는 이 아키텍처를 학습할 수 없습니다.",
     "Connect a valid Hugging Face read token in Settings.": "설정에서 유효한 Hugging Face 읽기 토큰을 연결하세요.",
     "Accept the model access terms on Hugging Face and check token permissions.": "Hugging Face에서 모델 접근 조건에 동의하고 토큰 권한을 확인하세요.",
     "Hugging Face model or profile was not found.": "Hugging Face 모델 또는 프로필을 찾지 못했습니다.",

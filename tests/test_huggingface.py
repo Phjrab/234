@@ -32,6 +32,8 @@ class HubTests(unittest.TestCase):
     def test_kind_uses_metadata_not_model_name(self):
         self.assertEqual(classify(fixture(id='example/vision-name')),'LLM')
         self.assertEqual(classify(fixture(id='example/text-name',pipeline_tag='image-text-to-text')),'VLM')
+        self.assertEqual(classify(fixture(pipeline_tag='text2text-generation')),'LLM')
+        self.assertEqual(classify(fixture(pipeline_tag='any-to-any',tags=['image-text-to-text'])),'VLM')
         self.assertEqual(classify(fixture(pipeline_tag='feature-extraction')),'OTHER')
         self.assertEqual(classify({'id':'example/no-metadata'}),'UNKNOWN')
         self.assertEqual(classify({'config':{'architectures':['GPT2LMHeadModel']}}),'UNKNOWN')
