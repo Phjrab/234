@@ -1,8 +1,8 @@
 {
-  "version": 7,
+  "version": 8,
   "project": "Forge Fine-tuning Dashboard",
   "repository": "https://github.com/Phjrab/forge-finetune-dashboard",
-  "verified_at_utc": "2026-10-04T11:32:38.725991+00:00",
+  "verified_at_utc": "2026-10-04T11:42:27.763Z",
   "mode": {
     "training": "local_cuda_lora_qlora_and_separate_synthetic_demo",
     "preparation": "functional_local_jsonl_images_config_diagnostics",
@@ -334,6 +334,24 @@
       "login_dialog_after_expiry": true,
       "reauthentication": "PASS",
       "completed_at_utc": "2026-10-04T11:31:52.290Z"
+    },
+    "interface_copy": {
+      "status": "PASS",
+      "source_commit": "69ad6b17e116bca8d9f510c50c492246828468d1",
+      "verified_at_utc": "2026-10-04T11:42:27.763Z",
+      "scope": [
+        "Plain Korean and English headings on five feature pages",
+        "Overview and login headings",
+        "Desktop and mobile layout",
+        "Unsaved recipe values preserved when changing language",
+        "No browser JavaScript errors",
+        "Read-only offline preview: Korean, no network, writes rejected"
+      ],
+      "frontend_dom_stub_tests": 37,
+      "i18n_tests": "PASS",
+      "ci": "https://github.com/Phjrab/forge-finetune-dashboard/actions/runs/37199569165",
+      "training_rerun": false,
+      "service_restarted": false
     }
   },
   "not_run": [
@@ -350,7 +368,8 @@
       "docs/screenshots/settings-korean-mobile.png",
       "docs/screenshots/real-training-evaluation.png",
       "docs/screenshots/real-training-mobile.png"
-    ]
+    ],
+    "verified_at_utc": "2026-10-04T11:42:27.763Z"
   },
   "lan_listener_started": true,
   "firewall_or_router_changed": false,
@@ -382,13 +401,13 @@
     "docs/samples/llm-chat.jsonl": "d16647f0c04d15f209d41fe09ce73df1c5f6aa760f09eb1d67f8043be7966a17",
     "docs/samples/llm-instruction.jsonl": "9d1e8dfa036be53b378640ebbbab617d6710ca10e4935877026f4715cfde9a2a",
     "docs/samples/vlm-image-text.jsonl": "fbc9a264e7fc62201063608d71b7a24076b83551690a400dda2d81ef06bab4ff",
-    "docs/screenshots/real-training-evaluation.png": "28e2de72b914867cd3e30d8176b27bd831da662c0cf6af13bd97c5813cdf4fff",
-    "docs/screenshots/real-training-mobile.png": "bc90eb1588c39149a0894c5b034e259dfd78d33333940c472b8650853132c7fe",
-    "docs/screenshots/settings-korean-desktop.png": "a04f60acad8fe0ab1e8e7d4368a126752c9428c6f936540de4102d0d91c8170e",
-    "docs/screenshots/settings-korean-mobile.png": "690b32f0f50a8a4e3eb29b6b79d79d5d82aa3848d66ee3775e1e4c472e090593",
+    "docs/screenshots/real-training-evaluation.png": "8c77f73c565c9a7e0148604ae211006c183d7292beeb0fff7f35bfda0601044c",
+    "docs/screenshots/real-training-mobile.png": "fa9cedde607ba8206ddb5812f29151afb33a59a9abeb731a2f54a74e231c8ae7",
+    "docs/screenshots/settings-korean-desktop.png": "82f31eed150a5b14d2f6d748850c8afaffe1a1dd39998dbb22c3a46031bc881e",
+    "docs/screenshots/settings-korean-mobile.png": "5376a7a8d8c251cca21f18f8ad2445e498279db01d5eaa73eb220ac4dfc42f21",
     "docs/security.md": "be5ef800873c022ef58c12c5a2b730bbb49dfcbc9c56e24fa308b9813377603d",
     "docs/training-validation.json": "0d48d2a2447da8a634ffb93c64a749ba47aec48db7c3036ad6f6623d924ea85d",
-    "docs/validation.md": "b56faa93390d3256e0cc71d3f0eb09431bdd427782903733db58c5a3b9ea9a23",
+    "docs/validation.md": "4a5fea2d71b58dbf0d3bf1fb35b32daa89296adfaca5e16f6b8011e90bc1a042",
     "docs/workspace-api.md": "aed68e21ca771c682165328fe89f396f85922077a96a4acbca3f38b790ab1498",
     "requirements-training.txt": "a2cf18116ee23d34bd0e149b8d2687a6ba5d02e9e1ed17b3469944550d63f10b",
     "requirements.txt": "a6cce3660014734e5781a1fa2903422ec4cc7d40bcba0c83528d9363303bff99",
