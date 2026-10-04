@@ -10,3 +10,9 @@
 .technical-logs>summary{cursor:pointer;font-size:10px;color:var(--muted);padding:14px 22px;background:#14171d}.technical-logs[open]>summary{border-bottom:1px solid var(--border)}
 
 .workspace-alerts{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid #4f3d36;background:#29211f;color:#d4ac96;border-radius:7px;padding:10px 14px;margin:0 0 18px;font-size:10px}.workspace-alerts .button{font-size:9px;padding:6px 10px}
+
+/* Language settings use the same form controls at desktop and mobile widths. */
+.language-settings { margin-bottom: 20px; }
+.language-settings select { width: min(100%, 320px); min-height: 44px; }
+html[lang="ko"] .card-label, html[lang="ko"] .eyebrow { letter-spacing: .04em; }
+html[lang="ko"] .field-note, html[lang="ko"] p { word-break: keep-all; overflow-wrap: anywhere; }

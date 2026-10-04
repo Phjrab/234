@@ -1,20 +1,20 @@
-# Forge · Local fine-tuning dashboard
+# Forge Fine-tuning Dashboard
 
 LLM/VLM 로컬 파인튜닝을 준비하고 실험 상태를 살펴보는 **실행 가능한 프로토타입**입니다. Python 표준 라이브러리와 HTML/CSS/JavaScript만 사용합니다.
 
-> **실제 학습은 아직 구현되지 않았습니다.** 학습 실행·손실·GPU pulse·로그·체크포인트는 합성 시뮬레이션입니다. 실제 기능은 데이터셋 검증/저장/분할/내보내기, 설정 검증, 환경 진단, 인증과 접근 설정입니다. 12 GB는 기본 VRAM 계획 가정이며 사용자 RTX 3060의 측정값이 아닙니다.
+> **실제 학습은 아직 구현되지 않았습니다.** 학습 실행·손실·GPU pulse·로그·체크포인트는 합성 시뮬레이션입니다. 실제 기능은 데이터셋 검증/저장/분할/내보내기, 설정 검증, 환경 진단, 인증과 접근 설정입니다. Training setup의 12 GB는 기본 VRAM 계획 가정입니다. Environment에서 읽은 실제 GPU 정보와 합성 학습 수치는 별개입니다.
 
 ## 빠른 시작 · Ubuntu / WSL2
 
 Python 3.10 이상이 필요합니다. Python 패키지, CUDA, PyTorch, 모델 다운로드는 필요하지 않습니다.
 
 ```bash
-git clone https://github.com/Phjrab/local-finetune-dashboard.git
-cd local-finetune-dashboard
+git clone --branch feature/local-finetune-dashboard https://github.com/Phjrab/forge-finetune-dashboard.git
+cd forge-finetune-dashboard
 python3 server.py
 ```
 
-현재 코드는 draft PR에서 개발됩니다. main에 아직 앱이 없다면 [draft PR](https://github.com/Phjrab/local-finetune-dashboard/pull/1)의 실제 head branch를 체크아웃한 뒤 실행하세요.
+현재 코드는 draft PR에서 개발됩니다. main에 아직 앱이 없다면 [draft PR](https://github.com/Phjrab/forge-finetune-dashboard/pull/1)의 실제 head branch를 체크아웃한 뒤 실행하세요.
 
 1. 같은 컴퓨터에서 http://127.0.0.1:8765 를 엽니다
 2. 처음에는 ID admin / 비밀번호 admin 으로 **로컬에서만** 로그인합니다
@@ -25,6 +25,10 @@ python3 server.py
 
 다른 포트가 필요하면 `python3 server.py --port 8766`을 사용합니다. `--no-worker`는 자동 모의 진행을 끄고 API/설정 제어만 유지하는 테스트 모드입니다.
 
+### 표시 언어
+
+설정(Access settings) 화면의 **표시 언어(Display language)**에서 한국어 또는 English를 선택할 수 있습니다. 선택한 언어는 즉시 적용되며 이 브라우저에 저장되어 새로고침이나 재접속 후에도 유지됩니다. 다른 브라우저에서는 별도로 선택합니다. 실험 이름, 입력한 데이터셋, 기술 로그와 내보내는 JSON의 필드·값은 번역하지 않습니다.
+
 ## 화면별 기능
 
 | 화면 | 구현된 기능 | 범위/제한 |
@@ -34,10 +38,10 @@ python3 server.py
 | Datasets | JSONL 붙여넣기/파일 입력, LLM/VLM 스키마 검사, 오류 줄 번호, 미리보기, 저장, seed 기반 분할, JSONL 내보내기 | 128 KiB 텍스트/1000행/50개 데이터셋. 이미지 파일 접근/업로드 없음 |
 | Training setup | 작은 LoRA/QLoRA 프리셋, 기본/접힌 고급 설정, dry-run, 명시적 VRAM 가정, 메모리 위험 경고, 설정 내보내기 | 휴리스틱이며 모델 호환성/학습 가능성 보장 아님. 실제 실행 없음 |
 | Compare | 두 실험의 합성 손실 곡선/설정/eval loss 비교, JSON/CSV 내보내기 | 실제 평가/생성 결과 비교 아님. CSV는 수식 실행을 방지하도록 문자열 보호 |
-| Environment | 서버 호스트의 실제 Python/OS/디스크 조회, 설치된 nvidia-smi의 읽기 전용 GPU 탐지 | 현재 서버 VM의 진단. 미래 사용자 학습 컴퓨터의 상태가 아님 |
+| Environment | 서버 호스트의 실제 Python/OS/디스크 조회, 설치된 nvidia-smi의 읽기 전용 GPU 탐지 | 서버를 실행하는 PC의 실제 상태. 모델 학습 호환성을 보장하지 않음 |
 | Access settings | 로그인, 초기 비밀번호 변경, LAN/view/control 설정, 로그아웃 | 로컬 우선, 실제 LAN 리스너 시작은 별도 명시적 실행 필요 |
 
-모바일은 상단 화면 선택 메뉴를 사용합니다. 모든 기능을 한 화면에 펼치지 않았으며 학습 고급 옵션은 접어서 볼 수 있습니다. 실제 브라우저 레이아웃 검증은 현재 환경에서 막혀 있으므로 아래 검증 기록을 확인하세요.
+모바일은 상단 화면 선택 메뉴를 사용합니다. 모든 기능을 한 화면에 펼치지 않았으며 학습 고급 옵션은 접어서 볼 수 있습니다. 데스크톱과 모바일 Chromium에서 화면·로그인·언어 전환·내보내기를 확인했습니다. 자세한 검증 범위는 아래 기록에 있습니다.
 
 ### 데이터 준비
 
@@ -55,22 +59,26 @@ LAN access / remote view / remote control의 **저장 기본값은 모두 ON**�
 
 사용자 학습 컴퓨터에서 로컬 설정을 완료한 다음에만 별도 LAN 실행을 선택하세요. LAN은 인증과 직접 private-IP TLS를 기본 요구합니다. HTTP 예외는 명시적 위험 동의 플래그이며 비밀번호/쿠키/데이터를 가로챌 수 있습니다. 인증 없는 LAN, 공용 인터넷 공개, 임의 reverse proxy/tunnel, 자동 방화벽/라우터 변경은 지원하지 않습니다.
 
-자세한 실행 조건, TLS, Ubuntu/WSL2 주의점은 [LAN 가이드](docs/lan-access.md)를 참고하세요. 이 개발 작업에서 VM의 LAN 포트나 방화벽을 열지 않았고 실제 계정/비밀번호를 생성하지 않았습니다.
+자세한 실행 조건, TLS, Ubuntu/WSL2 주의점은 [LAN 가이드](docs/lan-access.md)를 참고하세요. 2026-10-04에는 Ubuntu PC에 인증된 HTTPS LAN 서비스를 설치하고 다른 컴퓨터에서 접속을 검증했습니다. 설치 방식과 서비스 예시는 [배포 가이드](docs/deployment.md)에 있습니다. 인증서 신뢰 등록은 브라우저별로 별도 확인해야 합니다.
 
 ## 검증 결과와 남은 확인
 
-정확한 상태와 증거/차단 원인/사용자 로컬 확인 절차는 [검증 매트릭스](docs/validation.md)와 [JSON 기록](docs/validation.json)에 있습니다.
+2026-10-04 기준 Python 테스트 93개, 프런트엔드 DOM 테스트 35개와 언어 테스트가 통과했습니다. Ubuntu 24.04 / RTX 3060 12 GB에서 HTTPS 접속과 CUDA 13.2 커널 실행을 확인했습니다. CUDA 검증은 대시보드의 실제 학습 지원을 의미하지 않습니다. 자세한 범위는 [검증 매트릭스](docs/validation.md)와 [JSON 기록](docs/validation.json)에 있습니다.
 
 ```bash
 python3 -m unittest discover -s tests -v
 node --check static/app.js
+node --check static/i18n.js
 node --check static/workspace.js
 node tests/test_frontend.js
+node tests/test_i18n.js
 ```
 
 Node는 프런트엔드 소스 검사 때만 필요합니다. 앱 실행에는 필요하지 않습니다. DOM 스텁 테스트는 실제 브라우저·CSS·모바일·키보드 동작 검증을 대신하지 않습니다.
 
 `docs/offline-preview.html`은 합성 fixture를 넣은 읽기 전용 미리보기입니다. 학습, 인증 변경, 데이터 저장, API 제어는 동작하지 않습니다. 이를 실제 서버 통합 검사나 브라우저 통과로 표시하지 않습니다.
+
+프로젝트 이름은 **Forge Fine-tuning Dashboard**, 저장소 이름은 **forge-finetune-dashboard**입니다. 화면의 짧은 브랜드는 `forge.`이며 브라우저 설정 키는 `forge.*`를 사용합니다. 기존 설치의 디렉터리와 서비스 이름은 데이터 호환성을 위해 유지할 수 있습니다.
 
 ## 처음 시작한다면
 

@@ -585,7 +585,7 @@ def main(argv=None):
         server.start_worker()
     display_host = f"[{args.host}]" if ":" in args.host else args.host
     scheme = "https" if server.tls else "http"
-    print(f"Local fine-tuning DEMO: {scheme}://{display_host}:{server.server_port}", flush=True)
+    print(f"Forge Fine-tuning Dashboard (synthetic demo): {scheme}://{display_host}:{server.server_port}", flush=True)
     print("Training telemetry is synthetic. No training or model downloads. Diagnostics may read an installed GPU utility. Ctrl+C stops the service.", flush=True)
     if auth.bootstrap_required:
         print("LOCAL SETUP REQUIRED: log in as admin on loopback and change the initial password; external LAN is blocked.", flush=True)

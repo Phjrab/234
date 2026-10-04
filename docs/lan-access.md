@@ -1,4 +1,4 @@
-# Local-first authentication and optional LAN access
+# Forge Fine-tuning Dashboard · Authentication and LAN access
 
 This is a single-admin preparation dashboard with a synthetic run simulator, not a production training service. Creating code for LAN access does not enable it. The default listener remains `127.0.0.1:8765`; no router, firewall, network settings or public exposure are changed by the application.
 
@@ -76,10 +76,10 @@ Ordinary JSON bodies stay capped at 16 KiB. Only dataset validation/import bodie
 
 ## Verification scope
 
-Tests use temporary databases, explicitly synthetic credentials and loopback HTTP only. Socket-peer guard tests inject documentation-only external peer addresses without creating LAN listeners. TLS cookie attributes are checked without generating real certificates. No LAN session, public listener, firewall change or deployment is performed during validation. The injected `auth=False` constructor is only for legacy unit fixtures; it cannot be used on a LAN listener and has no runtime CLI option.
+The automated unit tests use temporary databases, explicitly synthetic credentials and loopback HTTP only. Socket-peer guard tests inject documentation-only external peer addresses without creating LAN listeners. TLS cookie attributes are checked without generating real certificates. Separate deployment integration checks on 2026-10-04 exercised authenticated private-IP HTTPS from a second computer. See [validation](validation.md) for certificate handling and scope. Unit tests do not modify host firewall or router settings. The injected `auth=False` constructor is only for legacy unit fixtures; it cannot be used on a LAN listener and has no runtime CLI option.
 
 ## Ubuntu and WSL2 host notes
 
 On native Ubuntu, the machine's private address, trusted certificate and local firewall rules still determine whether another LAN device can reach the listener. This code does not discover the correct address or open any firewall rule.
 
-WSL2 normally uses NAT, where Windows localhost access does not by itself prove LAN access. Supported Windows11 configurations can offer mirrored networking, but Windows/Hyper-V firewall behavior and WSL version still matter. Review [Microsoft's official WSL networking guide](https://learn.microsoft.com/en-us/windows/wsl/networking) before choosing a deployment. Do not blindly relay an externally reachable port to the loopback listener, since that destroys socket-peer locality. Network-mode, firewall, certificate and router changes are separate user-approved setup actions, not performed by this project or its validation.
+WSL2 normally uses NAT, where Windows localhost access does not by itself prove LAN access. Supported Windows11 configurations can offer mirrored networking, but Windows/Hyper-V firewall behavior and WSL version still matter. Review [Microsoft's official WSL networking guide](https://learn.microsoft.com/en-us/windows/wsl/networking) before choosing a deployment. Do not blindly relay an externally reachable port to the loopback listener, since that destroys socket-peer locality. Network-mode, firewall, certificate and router changes are separate user-approved setup actions, not automatically performed by the application. The recorded deployment used native Ubuntu; WSL2 networking remains unverified.

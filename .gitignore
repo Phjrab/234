@@ -17,3 +17,8 @@ node_modules/
 models/
 datasets/
 checkpoints/
+
+# Deployment secrets and certificates
+*.pem
+*.key
+credentials.json
