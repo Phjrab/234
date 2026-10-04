@@ -1,8 +1,8 @@
 {
-  "version": 9,
+  "version": 10,
   "project": "Forge Fine-tuning Dashboard",
   "repository": "https://github.com/Phjrab/forge-finetune-dashboard",
-  "verified_at_utc": "2026-10-04T11:42:27.763Z",
+  "verified_at_utc": "2026-10-04T12:14:59.986Z",
   "mode": {
     "training": "local_cuda_lora_qlora_and_separate_synthetic_demo",
     "preparation": "functional_local_jsonl_images_config_diagnostics",
@@ -13,7 +13,7 @@
       "status": "PASS",
       "passed": 130,
       "failed": 0,
-      "host": "macOS Python 3.13",
+      "host": "Ubuntu 24.04 / macOS Python 3.13",
       "command": "python3 -m unittest discover -s tests -q"
     },
     "frontend_dom_stub_tests": {
@@ -364,14 +364,35 @@
         "download permission and CSRF",
         "additional model discovery and queue"
       ],
-      "live_hub": "pending deployment verification"
+      "live_hub": "PASS: public catalog, official icons, pinned download and actual GPU training"
+    },
+    "huggingface_live": {
+      "status": "PASS",
+      "report": "docs/huggingface-validation.json",
+      "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "real_training": {
+        "status": "completed",
+        "steps": 10,
+        "baseline_eval_loss": 1.0490544438362122,
+        "eval_loss": 0.8831570744514465,
+        "checkpoint_count": 4,
+        "simulated": false
+      },
+      "browser_audited_views": 4,
+      "axe_a_aa_violations": 0,
+      "javascript_errors": 0,
+      "verified_at_utc": "2026-10-04T12:14:59.986Z",
+      "ci": "https://github.com/Phjrab/forge-finetune-dashboard/actions/runs/37201588590"
     }
   },
   "not_run": [
     "WSL2 deployment",
     "Other models/GPU/library combinations",
     "Real-world dataset quality benchmark",
-    "Full keyboard and assistive-technology audit"
+    "Full keyboard and assistive-technology audit",
+    "Real user Hugging Face token connection",
+    "Gated/private model downloads with a real account"
   ],
   "screenshots": {
     "available": true,
@@ -408,6 +429,7 @@
     "docs/beginner-guide.md": "23082d76e29d3935d205e4c39f1393179f779428d4e0a2a31ef309ddea36e95a",
     "docs/deployment.md": "0fcfcfeb323b2d85fb5c465beb1e2d4f488ada1ce8f098106883b396595997c4",
     "docs/huggingface-api.md": "d154bbbd126a7b9938b6a34fa7dceae7607f5122ee428dead50d46d1299d9b0d",
+    "docs/huggingface-validation.json": "a4ee9c78e1fa3cf7fd240629d37a771bc0bc1643be6de19e535cac5eaf5609f5",
     "docs/lan-access.md": "90c8fa917bbb20d9a79ea113c3f23225910c433584ecde22b9ffaeffc6dba8d3",
     "docs/offline-preview.html": "26d8bc50300ed0516a670db9e4f205616ee57a189efff5d75df1ef4aeedf296f",
     "docs/sample-run.json": "84d3b2a78c96ff30dcd24bb86f631478d99c6ad1e022e47a29ce33dab20e3b23",
@@ -421,7 +443,7 @@
     "docs/screenshots/settings-korean-mobile.png": "5376a7a8d8c251cca21f18f8ad2445e498279db01d5eaa73eb220ac4dfc42f21",
     "docs/security.md": "2f10550ca0636f15ddade777f84994989d760447a8768b5acb9dd4297cb3c047",
     "docs/training-validation.json": "0d48d2a2447da8a634ffb93c64a749ba47aec48db7c3036ad6f6623d924ea85d",
-    "docs/validation.md": "4a5fea2d71b58dbf0d3bf1fb35b32daa89296adfaca5e16f6b8011e90bc1a042",
+    "docs/validation.md": "0f0ea8a8ca7ae5373cf91da4f49f0a6eebcc8b568c220212053ee1d9b92f9e4c",
     "docs/workspace-api.md": "aed68e21ca771c682165328fe89f396f85922077a96a4acbca3f38b790ab1498",
     "huggingface.py": "8536a3465845ba3a4822cce5232c1e0162e807320c2738c2b04a00fde6ff3915",
     "model_downloads.py": "d8df41a342d8f33e53a68a430194a458089aec37114af1cec6b8c1d49dc6c321",

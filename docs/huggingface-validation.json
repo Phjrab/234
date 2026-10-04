@@ -1,0 +1,70 @@
+{
+  "project": "Forge Fine-tuning Dashboard",
+  "live_hub": {
+    "status": "PASS",
+    "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "started_at_utc": "2026-10-04T12:08:50.858Z",
+    "checks": [
+      "Korean settings and official sign-in/token links; no token echo",
+      "Live Hub pagination",
+      "Metadata-based LLM/family/publisher filters and official publisher icon",
+      "Explicit public model download requested",
+      "Selected additional model survives language switching",
+      "Additional downloaded model completed actual GPU training and checkpoint/evaluation"
+    ],
+    "download": {
+      "status": "completed",
+      "expected_bytes": 272496399,
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac"
+    },
+    "training": {
+      "status": "completed",
+      "steps": 10,
+      "baseline_eval_loss": 1.0490544438362122,
+      "eval_loss": 0.8831570744514465,
+      "checkpoint_count": 4,
+      "simulated": false
+    },
+    "javascript_errors": 0,
+    "completed_at_utc": "2026-10-04T12:09:40.486Z"
+  },
+  "browser_ui": {
+    "status": "PASS",
+    "checks": [
+      "Invalid token rejected without replacing the connected account",
+      "Live VLM task filter",
+      "Exact model ID and VLM metadata",
+      "Other task selectable with unsupported-training reason",
+      "Mobile model details and native Escape close"
+    ],
+    "audits": [
+      {
+        "view": "hf-settings",
+        "violations": []
+      },
+      {
+        "view": "hf-catalog-desktop",
+        "violations": []
+      },
+      {
+        "view": "hf-catalog-mobile",
+        "violations": []
+      },
+      {
+        "view": "hf-settings-mobile",
+        "violations": []
+      }
+    ],
+    "javascript_errors": 0,
+    "verified_at_utc": "2026-10-04T12:14:59.986Z"
+  },
+  "backend_tests": 130,
+  "frontend_tests": 39,
+  "i18n": "PASS",
+  "scope": "Public model download and synthetic GPU pipeline verification; not a model quality benchmark",
+  "not_verified": [
+    "Real user Hugging Face token connection",
+    "Gated/private model downloads with a real account",
+    "Arbitrary model/GPU/library combinations"
+  ]
+}
