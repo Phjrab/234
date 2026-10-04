@@ -26,10 +26,10 @@
 
 ## 설치 · Ubuntu + NVIDIA CUDA GPU
 
-코드는 [실제 학습 PR](https://github.com/Phjrab/forge-finetune-dashboard/pulls)에 반영됩니다. 아직 main에 앱 소스가 없다면 아래 브랜치로 설치하세요.
+기본 `main` 브랜치에서 설치합니다. 실제 CUDA 학습과 별도의 합성 데모를 포함합니다.
 
 ```bash
-git clone --branch feature/local-finetune-dashboard https://github.com/Phjrab/forge-finetune-dashboard.git
+git clone https://github.com/Phjrab/forge-finetune-dashboard.git
 cd forge-finetune-dashboard
 sudo apt-get install python3-venv
 python3 -m venv .venv

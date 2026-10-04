@@ -1,8 +1,8 @@
 {
-  "version": 4,
+  "version": 5,
   "project": "Forge Fine-tuning Dashboard",
   "repository": "https://github.com/Phjrab/forge-finetune-dashboard",
-  "verified_at_utc": "2026-10-04T09:53:31.186487+00:00",
+  "verified_at_utc": "2026-10-04T10:16:29.487106+00:00",
   "mode": {
     "training": "local_cuda_lora_qlora_and_separate_synthetic_demo",
     "preparation": "functional_local_jsonl_images_config_diagnostics",
@@ -144,15 +144,43 @@
       "checkpoint_step": 33,
       "resumed_final_step": 100,
       "snapshot_preserved": true
+    },
+    "keyboard_browser": {
+      "status": "PASS",
+      "checks": [
+        "login Tab/Enter",
+        "experiment Enter/Space and focus after polling",
+        "tab arrows/Home/End and panel focus",
+        "log details focus after polling",
+        "dialog name/focus containment/Escape/restoration",
+        "language selector focus; options selected programmatically",
+        "mobile experiments selector focus; options selected programmatically"
+      ]
+    },
+    "session_boundary_browser": {
+      "status": "PASS",
+      "scope": "Isolated live HTTP/browser with injected authentication clock; SESSION_SECONDS remains 3600; no one-hour wall-clock wait",
+      "before_expiry": 200,
+      "after_expiry": 401,
+      "login_dialog_shown": true,
+      "reauthentication": 200,
+      "valid_at_seconds": 3599,
+      "expired_at_seconds": 3600
+    },
+    "client_certificate_trust": {
+      "status": "PENDING_OS_APPROVAL",
+      "public_certificate_imported": true,
+      "default_os_verification": "NOT_TRUSTED",
+      "scope": "Current macOS user login keychain; native OS authorization required"
     }
   },
   "not_run": [
     "WSL2 deployment",
-    "Default OS/browser certificate trust installation",
-    "Full keyboard accessibility",
     "Actual one-hour browser session expiry",
     "Other models/GPU/library combinations",
-    "Real-world dataset quality benchmark"
+    "Real-world dataset quality benchmark",
+    "Full keyboard and assistive-technology audit",
+    "Native select-menu keyboard selection (test Chromium limitation reproduced on plain HTML)"
   ],
   "screenshots": {
     "available": true,
@@ -181,14 +209,14 @@
   "files_sha256": {
     ".github/workflows/test.yml": "7637e8a60fb379b58d9611a6702834787dc7908a08c6919e59befa63410c5303",
     ".gitignore": "84cc4fded0e1cdfe8695297bb7a4b5a46727799a0f4dea803287d64422089c68",
-    "README.md": "6b3360b134689e289551c304ff6b0a132f90807ea5ab8b841f18854e7d0652f9",
+    "README.md": "38bd8d0ad2e51c45768314f1a3e0051cd602d73ca3660c1d8bc4f285d0c2012c",
     "adapter.py": "c5c8da98d4ab9055d9aed8c7edd7461e498c8dd578713110db0fec42b9ad3931",
     "auth.py": "f5923f5b381087c7805edde439e04c352675dbe6f6e6a1b7e5ff2d6408b34c3d",
     "docs/adapter-contract.md": "819a329895eaf2fa03db15e42e1f1a757be27428993b36f12fc6a2e7652dc846",
     "docs/beginner-guide.md": "23082d76e29d3935d205e4c39f1393179f779428d4e0a2a31ef309ddea36e95a",
     "docs/deployment.md": "0fcfcfeb323b2d85fb5c465beb1e2d4f488ada1ce8f098106883b396595997c4",
     "docs/lan-access.md": "90c8fa917bbb20d9a79ea113c3f23225910c433584ecde22b9ffaeffc6dba8d3",
-    "docs/offline-preview.html": "0090c45d8ff228f2ef7de8745978b355fc843618f7a37ac35500e7302a4e33af",
+    "docs/offline-preview.html": "2f57c55b69c2eb14af97b905cc776011e64e1c151db4c69a8f53006a91ffe9c1",
     "docs/sample-run.json": "84d3b2a78c96ff30dcd24bb86f631478d99c6ad1e022e47a29ce33dab20e3b23",
     "docs/sample-snapshot.json": "8d6df5c7deb589e93e9bd0f52513da1670aaed6219c759b745c28654e11e62fc",
     "docs/samples/llm-chat.jsonl": "d16647f0c04d15f209d41fe09ce73df1c5f6aa760f09eb1d67f8043be7966a17",
@@ -200,15 +228,15 @@
     "docs/screenshots/settings-korean-mobile.png": "690b32f0f50a8a4e3eb29b6b79d79d5d82aa3848d66ee3775e1e4c472e090593",
     "docs/security.md": "be5ef800873c022ef58c12c5a2b730bbb49dfcbc9c56e24fa308b9813377603d",
     "docs/training-validation.json": "0d48d2a2447da8a634ffb93c64a749ba47aec48db7c3036ad6f6623d924ea85d",
-    "docs/validation.md": "c36dc24493f74da13697ec47b96eb3b6c29699089241a3f1df525a24262f481d",
+    "docs/validation.md": "f627f1ddd15f4ba2c876e7072f1daa19e9924d05deceba3489b7f0dc20bc915e",
     "docs/workspace-api.md": "aed68e21ca771c682165328fe89f396f85922077a96a4acbca3f38b790ab1498",
     "requirements-training.txt": "a2cf18116ee23d34bd0e149b8d2687a6ba5d02e9e1ed17b3469944550d63f10b",
     "requirements.txt": "a6cce3660014734e5781a1fa2903422ec4cc7d40bcba0c83528d9363303bff99",
     "server.py": "7806fbed2e1a8e6878f31d9656bfc28e4d6b696c5e0a63dcd1a9ae036b565a53",
     "simulator.py": "79d7f337f63cccc4c315599e0bc89388e710d5c4d45629a47c8629ea1ccf4295",
-    "static/app.js": "ba6b5f7f8189d2ddf94f161f00a92505cf4198df297c2bf7e6b0dd6ef116ad76",
+    "static/app.js": "311c2002866da982e26a2859d704ac541840b640b4ab0cf00c02174d1c8edf85",
     "static/i18n.js": "c41931bb0e4a07809da91e35c4b6f6872e4b7adce9be439465e62de5064c9eeb",
-    "static/index.html": "2aad4242862303c39f7284c6c4c6fe4aba0ae269d02f13ea1509bae79c2b6d94",
+    "static/index.html": "7301fa2f1ceccfa0a0b3923fa5af7f03d6eb8128adbac50385528e0b89418b9e",
     "static/style.css": "bc00009de0bcb04fbf1f2411078c5c880f6de18a55626312f2573fd391ae6cf3",
     "static/training.js": "5a34efce842777f1aa604915592b3935f4b71b02ce0124f0d967593c69d68e6a",
     "static/workspace.js": "9afd984b6ac6f9a000732167b051737fb0ed25806761d55147833870bbfcbe11",
@@ -233,5 +261,15 @@
     "Full base-model fine-tuning",
     "Arbitrary model IDs/remote code/shell commands",
     "Separate inference serving endpoint"
-  ]
+  ],
+  "deployment": {
+    "source_branch": "main",
+    "initial_application_pr": 1,
+    "merge_commit": "9e01e3b",
+    "existing_data_and_service_paths_preserved": true
+  },
+  "real_world_data": {
+    "available": false,
+    "quality_benchmark": "not_run"
+  }
 }

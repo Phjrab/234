@@ -32,6 +32,12 @@ function selectRun(id) { selectedId = id; try { localStorage.setItem('forge.sele
 function latest(run) { return run.latest_metrics || run.metrics?.at(-1) || {}; }
 function render() {
   if (!snapshot) return;
+  const focused = document.activeElement;
+  const focusRun = focused?.dataset?.run;
+  const focusAction = focused?.dataset?.action;
+  const focusHref = focused?.closest?.('#tab-content') ? focused.getAttribute('href') : null;
+  const focusId = focused?.id;
+  const focusLog = focused?.matches?.('.technical-logs > summary');
   const runs = snapshot.runs || [], gpu = snapshot.gpu || {};
   if (!runs.some(run => run.id === selectedId)) selectedId = snapshot.active_run_id || runs[0]?.id;
   $('#summary-total').textContent = runs.length; $('#nav-count').textContent = runs.length; $('#experiment-count').textContent = runs.length;
@@ -61,6 +67,13 @@ function render() {
   const run = runs.find(r => r.id === selectedId); if (run) renderDetail(run);
   if(typeof renderTrainingSource==='function')renderTrainingSource();
   if(nav==='compare' && typeof updateComparison==='function' && $('#compare-output')) updateComparison();
+  if (focused && !focused.isConnected) {
+    const replacement = focusRun ? $$('#runs-body tr[data-run]').find(el => el.dataset.run === focusRun)
+      : focusAction ? $$('#run-controls button').find(el => el.dataset.action === focusAction)
+      : focusHref ? $$('#tab-content a').find(el => el.getAttribute('href') === focusHref)
+      : focusLog ? $('.technical-logs > summary') : focusId ? document.getElementById?.(focusId) : null;
+    if (replacement && !replacement.disabled) replacement.focus({preventScroll:true});
+  }
 }
 function renderDetail(run) {
   const real=run.simulated===false;
@@ -125,7 +138,23 @@ $('#run-form').addEventListener('submit', async e => {
   finally { requestBusy = false; submit.disabled = false; render(); }
 });
 $$('.filter').forEach(btn => { btn.onclick = () => { filter = btn.dataset.filter; $$('.filter').forEach(other => other.classList.toggle('active',other === btn)); render(); }; });
-$$('.tab').forEach(btn => { btn.onclick = () => { currentTab = btn.dataset.tab; $$('.tab').forEach(other => { other.classList.toggle('active',other === btn); other.setAttribute('aria-selected', String(other === btn)); }); render(); }; });
+$$('.tab').forEach(btn => {
+  btn.id = `tab-${btn.dataset.tab}`;
+  btn.setAttribute('aria-controls', 'tab-content');
+  btn.setAttribute('tabindex', btn.dataset.tab === currentTab ? '0' : '-1');
+  btn.onclick = () => {
+    currentTab = btn.dataset.tab;
+    $$('.tab').forEach(other => { other.classList.toggle('active',other === btn); other.setAttribute('aria-selected', String(other === btn)); other.setAttribute('tabindex',other === btn ? '0' : '-1'); });
+    $('#tab-content').setAttribute('aria-labelledby', btn.id);
+    render();
+  };
+  btn.onkeydown = event => {
+    const tabs = $$('.tab'), index = tabs.indexOf(btn);
+    const next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : event.key === 'ArrowLeft' ? (index - 1 + tabs.length) % tabs.length : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : null;
+    if (next === null) return;
+    event.preventDefault(); tabs[next].focus(); tabs[next].click();
+  };
+});
 function setNav(value) {
   nav = value;
   $$('.nav-item').forEach(btn => btn.classList.toggle('active',btn.dataset.nav === value));
@@ -135,7 +164,7 @@ function setNav(value) {
   $('#run-detail').hidden = advanced;
   $('#experiments').hidden = advanced;
   $('.summary-grid').hidden = advanced;
-  $('#mobile-view').value = value === 'runs' ? 'overview' : value;
+  $('#mobile-view').value = value;
   const names = {overview:t("Overview"),runs:t("Experiments"),datasets:t("Datasets"),recipes:t("Training setup"),compare:t("Compare runs"),environment:t("Environment"),settings:t("Access settings")};
   $('.breadcrumbs strong').textContent = names[value] || value;
   render();

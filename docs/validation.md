@@ -33,17 +33,23 @@ PyTorch 2.8.0+cu128, Transformers 4.57.1, PEFT 0.17.1, bitsandbytes 0.48.1, NVID
 | 모바일 | PASS | Chromium 390×844 학습 패널, 가로 넘침/JS 오류 없음 |
 | 오프라인 preview | PASS | 한국어, 외부 네트워크 없음, 쓰기 거부, real worker unavailable |
 | 기존 API/인증/영속성 | PASS | HTTPS 로그인, secure cookie, CSRF, 준비 데이터/데모 제어, 기존 설치의 상태 보존 |
-| 일반 브라우저 자체 서명 인증서 신뢰 | 미확인 | OS/브라우저 신뢰 등록은 별도 사용자 설정 |
+| 일반 브라우저 자체 서명 인증서 신뢰 | 승인 대기 | 현재 macOS 로그인 키체인에 공개 인증서 추가; 신뢰 설정의 OS 승인이 필요하며 기본 검증은 아직 실패 |
 | WSL2 및 다른 GPU/라이브러리 조합 | 미확인 | 검증은 native Ubuntu / 위의 고정 버전 |
-| 전체 키보드 접근성/실제 1시간 세션 만료 | 미확인 | 단위 검사와 일부 실제 UI 확인; 전체 수동 검증은 없음 |
+| 주요 키보드 흐름 | PASS | 로그인 Tab/Enter, 실험 Enter/Space, 탭 방향키/Home/End, 갱신 후 행·로그 포커스, 모달 이름/Escape/포커스 복귀 |
+| 세션 만료 경계·재로그인 | PASS | 격리된 실제 HTTP/Chromium에서 인증 시계를 주입: 3599초 200 → 3600초 401, 로그인 창 표시와 재로그인 200. 운영 설정은 3600초 유지 |
+| 전체 키보드·보조기술 및 실제 1시간 대기 | 미확인 | 네이티브 select 메뉴의 키보드 선택은 테스트 Chromium 환경에서 검증 불가(기본 HTML select도 동일). select 포커스와 API 옵션 선택은 확인. 스크린리더·실제 1시간 wall-clock 대기는 미실행 |
 | 큰 모델·다중 GPU·원격 worker·full fine-tuning | 미지원 | 지원 범위는 README 모델 두 개의 로컬 LoRA/QLoRA |
 | 업무 데이터 품질 benchmark | 미검증 | 사용자 업무 데이터와 별도 평가 suite는 사용하지 않음 |
 
 ## HTTPS 방식과 자료
 
-Python HTTPS API 검사는 정확한 공개 인증서의 체인·기간·IP를 검증했습니다. 격리된 Chromium은 해당 인증서의 **정확한 SPKI 핀**을 사용하며 전역 certificate-error 무시는 사용하지 않습니다. 일반 브라우저 신뢰 등록을 대신하지 않습니다.
+Python HTTPS API 검사는 정확한 공개 인증서의 체인·기간·IP를 검증했습니다. 격리된 Chromium은 해당 인증서의 **정확한 SPKI 핀**을 사용하며 전역 certificate-error 무시는 사용하지 않습니다. 일반 브라우저 신뢰 등록을 대신하지 않습니다. 현재 클라이언트 공개 인증서는 키체인에 추가했지만 macOS 신뢰 승인 전이므로, 기본 OS 검증은 아직 신뢰 오류를 반환합니다.
 
 [JSON 기록](validation.json), [GPU/브라우저 학습 결과](training-validation.json), [실제 평가 화면](screenshots/real-training-evaluation.png), [모바일 학습 화면](screenshots/real-training-mobile.png)을 참고하세요. 스크린샷과 기록에는 합성 데이터만 포함합니다. 실제 계정 비밀번호·쿠키·토큰·개인 키·기본 모델 가중치·runtime DB는 공개하지 않습니다.
+
+## main 배포
+
+앱 소스와 실제 학습 PR #1은 `main`에 병합되었습니다. README의 기본 clone 명령으로 전체 앱을 설치합니다. 기존 설치 디렉터리·서비스명은 데이터 호환성을 위해 유지할 수 있습니다. 배포 시 실행 중인 학습을 먼저 확인하고, `main`을 fast-forward한 뒤 서비스를 재시작하세요. 사용자 데이터셋이 제공되지 않아 실제 데이터 품질 benchmark는 미실행입니다.
 
 ## 재현
 
