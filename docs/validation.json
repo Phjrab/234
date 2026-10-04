@@ -1,8 +1,8 @@
 {
-  "version": 6,
+  "version": 7,
   "project": "Forge Fine-tuning Dashboard",
   "repository": "https://github.com/Phjrab/forge-finetune-dashboard",
-  "verified_at_utc": "2026-10-04T10:43:48.943169+00:00",
+  "verified_at_utc": "2026-10-04T11:32:38.725991+00:00",
   "mode": {
     "training": "local_cuda_lora_qlora_and_separate_synthetic_demo",
     "preparation": "functional_local_jsonl_images_config_diagnostics",
@@ -155,7 +155,9 @@
         "dialog name/focus containment/Escape/restoration",
         "language selector focus; options selected programmatically",
         "mobile experiments selector focus; options selected programmatically"
-      ]
+      ],
+      "navigation_and_filter_state": true,
+      "source": "tools/verify_browser.js"
     },
     "session_boundary_browser": {
       "status": "PASS",
@@ -263,12 +265,75 @@
           "violations": 0
         }
       ],
-      "scope": "Automated A/AA checks; not a conformance certification or complete assistive-technology audit"
+      "scope": "Automated A/AA checks; not a conformance certification or complete assistive-technology audit",
+      "axe_version": "4.13.0",
+      "verified_against_deployed_source": true
     },
     "session_elapsed_browser": {
-      "status": "RUNNING",
+      "status": "PASS",
       "clock_injected": false,
-      "session_seconds": 3600
+      "session_seconds": 3600,
+      "browser_certificate_policy": "Exact server SPKI pin; global TLS errors ignored=false",
+      "api_certificate_chain_verified": true,
+      "checks": [
+        {
+          "elapsed_seconds": 300,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 600,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 900,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 1200,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 1500,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 1800,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 2100,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 2400,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 2700,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 3000,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 3300.01,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 3590,
+          "http_status": 200
+        },
+        {
+          "elapsed_seconds": 3605,
+          "http_status": 401
+        }
+      ],
+      "browser_tls": "PASS",
+      "started_at_utc": "2026-10-04T10:31:46.911Z",
+      "login_dialog_after_expiry": true,
+      "reauthentication": "PASS",
+      "completed_at_utc": "2026-10-04T11:31:52.290Z"
     }
   },
   "not_run": [
@@ -317,13 +382,13 @@
     "docs/samples/llm-chat.jsonl": "d16647f0c04d15f209d41fe09ce73df1c5f6aa760f09eb1d67f8043be7966a17",
     "docs/samples/llm-instruction.jsonl": "9d1e8dfa036be53b378640ebbbab617d6710ca10e4935877026f4715cfde9a2a",
     "docs/samples/vlm-image-text.jsonl": "fbc9a264e7fc62201063608d71b7a24076b83551690a400dda2d81ef06bab4ff",
-    "docs/screenshots/real-training-evaluation.png": "699d4cdf77d7ec3f6989b5b43ffc016c9dc140f5dd1a1f20a1632da9c7fc991d",
-    "docs/screenshots/real-training-mobile.png": "88ad06f51950ddb1f935e2d054bd568467ae0039105164357ba5022c900ab97b",
+    "docs/screenshots/real-training-evaluation.png": "28e2de72b914867cd3e30d8176b27bd831da662c0cf6af13bd97c5813cdf4fff",
+    "docs/screenshots/real-training-mobile.png": "bc90eb1588c39149a0894c5b034e259dfd78d33333940c472b8650853132c7fe",
     "docs/screenshots/settings-korean-desktop.png": "a04f60acad8fe0ab1e8e7d4368a126752c9428c6f936540de4102d0d91c8170e",
     "docs/screenshots/settings-korean-mobile.png": "690b32f0f50a8a4e3eb29b6b79d79d5d82aa3848d66ee3775e1e4c472e090593",
     "docs/security.md": "be5ef800873c022ef58c12c5a2b730bbb49dfcbc9c56e24fa308b9813377603d",
     "docs/training-validation.json": "0d48d2a2447da8a634ffb93c64a749ba47aec48db7c3036ad6f6623d924ea85d",
-    "docs/validation.md": "1a8ed5f1ce621ac9851017cf97cfdcdc3165a7203c3d9c01bc206ba7808603a6",
+    "docs/validation.md": "b56faa93390d3256e0cc71d3f0eb09431bdd427782903733db58c5a3b9ea9a23",
     "docs/workspace-api.md": "aed68e21ca771c682165328fe89f396f85922077a96a4acbca3f38b790ab1498",
     "requirements-training.txt": "a2cf18116ee23d34bd0e149b8d2687a6ba5d02e9e1ed17b3469944550d63f10b",
     "requirements.txt": "a6cce3660014734e5781a1fa2903422ec4cc7d40bcba0c83528d9363303bff99",
@@ -368,7 +433,5 @@
     "available": false,
     "quality_benchmark": "not_run"
   },
-  "in_progress": [
-    "Actual one-hour browser session expiry"
-  ]
+  "in_progress": []
 }

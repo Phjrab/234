@@ -39,7 +39,7 @@ PyTorch 2.8.0+cu128, Transformers 4.57.1, PEFT 0.17.1, bitsandbytes 0.48.1, NVID
 | 세션 만료 경계·재로그인 | PASS | 격리된 실제 HTTP/Chromium에서 인증 시계를 주입: 3599초 200 → 3600초 401, 로그인 창 표시와 재로그인 200. 운영 설정은 3600초 유지 |
 | Safari 네이티브 언어 메뉴 | PASS | Space로 메뉴 열기, 방향키/Enter로 영어·한국어 선택, 한국어 복귀 확인 |
 | WCAG A/AA 자동 검사 | PASS | axe-core: 로그인, 7개 화면, 상세 탭, 모바일을 포함한 16개 화면의 위반 0. 보조 텍스트·차트 대비, 입력 경계와 포커스 표시 보완 |
-| 실제 1시간 세션 대기 | 진행 중 | 운영 HTTPS의 독립 브라우저 세션에서 시계 주입 없이 유지 중. 원본 쿠키로 서버 만료와 UI 재로그인을 검사 |
+| 실제 1시간 세션 대기 | PASS | 운영 HTTPS에서 시계 주입 없이 원본 쿠키 유지: 3590초 HTTP 200 → 3605초 HTTP 401. 로그인 창 표시와 재로그인 HTTP 200 확인 |
 | 전체 보조기술 감사 | 미실행 | Safari 접근성 트리의 이름·역할은 확인. VoiceOver/NVDA 전체 시나리오와 수동 WCAG 적합성 인증은 별도 |
 | 큰 모델·다중 GPU·원격 worker·full fine-tuning | 미지원 | 지원 범위는 README 모델 두 개의 로컬 LoRA/QLoRA |
 | 업무 데이터 품질 benchmark | 미검증 | 사용자 업무 데이터와 별도 평가 suite는 사용하지 않음 |
