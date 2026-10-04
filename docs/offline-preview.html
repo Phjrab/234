@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forge Fine-tuning Dashboard</title><style>:root{color-scheme:dark;--bg:#101217;--surface:#181b22;--surface2:#1e222b;--border:#2a2e39;--text:#f1f1f5;--muted:#969cae;--faint:#626a7d;--purple:#b0a0ff;--mint:#8ee3cc;--red:#faad9c}*{box-sizing:border-box}body{margin:0;font:14px/1.5 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.5}button,a,input,select{outline-offset:4px}button:focus-visible,a:focus-visible{outline:2px solid var(--purple)}a{color:inherit;text-decoration:none}button{color:inherit}.app{display:flex;min-height:100vh}.sidebar{width:216px;position:fixed;inset:0 auto 0 0;background:#14171d;border-right:1px solid var(--border);padding:34px 20px;display:flex;flex-direction:column}.brand{font-size:31px;font-weight:750;letter-spacing:-1.5px;display:flex;gap:10px;align-items:center;margin-bottom:46px}.brandmark{font-size:22px;display:grid;place-items:center;width:36px;height:37px;background:var(--purple);color:#202032;border-radius:10px;transform:rotate(-5deg);letter-spacing:-2px}.brand-dot{color:var(--purple)}.workspace-label,.eyebrow{font-size:10px;font-weight:650;letter-spacing:1.7px;color:var(--muted)}.workspace-label{margin-bottom:12px}.workspace{border:1px solid var(--border);border-radius:9px;padding:12px 8px;display:flex;align-items:center;gap:8px;font-size:11px}.workspace small{display:block;color:var(--faint);font-size:9px}.machine-icon{font-size:22px;color:var(--purple)}.tiny-dot{width:5px;height:5px;display:inline-block;background:var(--mint);border-radius:50%}.workspace .tiny-dot{margin-left:auto}nav{margin-top:26px;display:grid;gap:8px}.nav-item{background:transparent;border:0;border-radius:8px;padding:11px 9px;display:flex;align-items:center;gap:12px;text-align:left;color:var(--muted);font-size:12px}.nav-item>span:first-child{font-size:18px;width:20px}.nav-item.active{background:#262535;color:#d4caff}.nav-count{font-size:10px;background:#373447;padding:0 6px;margin-left:auto;border-radius:4px}.sidebar-bottom{margin-top:auto;padding-top:30px}.demo-tag{font-size:9px;letter-spacing:1.4px;color:var(--purple)}.sidebar-bottom p{font-size:12px;color:var(--muted);line-height:1.8}.local-badge{border-top:1px solid var(--border);margin-top:24px;padding-top:20px;font-size:9px;color:var(--faint);white-space:nowrap}main{margin-left:216px;width:calc(100% - 216px)}.topbar{height:79px;padding:0 40px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.breadcrumbs{font-size:12px;color:var(--faint)}.breadcrumbs span{padding:0 12px}.breadcrumbs strong{color:#b8bdca;font-weight:450}.topbar-right{display:flex;gap:24px;align-items:center}.connection{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px}.connection i{width:6px;height:6px;border-radius:100%;background:var(--faint)}.connection.ok i{background:var(--mint)}.connection.error i{background:var(--red)}.button{border:1px solid var(--border);border-radius:7px;padding:10px 16px;font-size:11px;font-weight:650;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}.primary{background:var(--purple);color:#202030;border-color:var(--purple)}.primary:hover{background:#c2b5ff}.secondary{background:var(--surface2);color:#d6d8e0}.danger{background:#352a2b;color:var(--red);border-color:#5e3937}.content{max-width:1500px;margin:auto;padding:36px 40px 0}.page-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.page-heading h1{font-size:30px;letter-spacing:-.9px;font-weight:560;margin:8px 0 5px}.page-heading h1>span{color:var(--purple)}.page-heading p{font-size:12px;color:var(--muted);margin:0}.heading-badge{font-size:12px;border:1px solid var(--border);padding:8px 12px;border-radius:6px;letter-spacing:1px;color:#c4c7d2}.heading-badge span{color:var(--faint);margin:0 5px}.demo-notice{display:flex;gap:14px;align-items:center;border:1px solid #373248;background:#201e2a;border-radius:9px;padding:13px 17px;margin-bottom:24px}.notice-icon{font-size:20px;color:var(--purple)}.demo-notice strong{display:block;font-size:11px;font-weight:550;color:#d7d0ee}.demo-notice div>span{display:block;font-size:10px;color:#a49bb9;margin-top:2px}.pill{display:inline-flex;align-items:center;font-size:9px;letter-spacing:.7px;border-radius:4px;padding:3px 7px;font-weight:650}.pill.demo{background:#343043;color:#c8bcfb;border:1px solid #4c445f;margin-left:auto}.pill.small{font-size:8px;padding:2px 6px}.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}.summary-card{background:var(--surface);border:1px solid var(--border);padding:17px 19px;border-radius:9px;min-height:137px}.card-label{font-size:9px;letter-spacing:1.1px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}.card-label>span{font-size:14px;color:var(--faint)}.summary-number{font-size:32px;line-height:1.1;margin:14px 0 11px;font-weight:520;letter-spacing:-.8px}.summary-number small{font-size:14px;color:var(--faint);letter-spacing:0}.summary-number.worker-value{font-size:21px;line-height:1.65}.card-caption{font-size:9px;color:var(--faint)}.card-caption .tiny-dot{margin-right:4px}.live-dot{width:6px;height:6px;background:var(--mint);border-radius:100%;box-shadow:0 0 0 4px #273733}.meter{height:3px;border-radius:10px;background:#2a2e39;overflow:hidden}.meter>span{height:100%;display:block;background:var(--purple);transition:width .5s}.summary-card .meter{margin-top:-5px;margin-bottom:8px}.panel{background:var(--surface);border:1px solid var(--border);border-radius:9px}.panel-heading{padding:21px 22px 16px;display:flex;justify-content:space-between;align-items:center}.panel-heading h2{font-size:14px;font-weight:550;margin:0;display:flex;align-items:center;gap:8px}.panel-heading p{font-size:10px;color:var(--faint);margin:3px 0 0}.count-badge{font-size:10px;background:#292d38;border-radius:4px;padding:1px 6px;color:#a5acba}.filter-group{display:flex;gap:3px;background:#12151b;border:1px solid var(--border);padding:3px;border-radius:6px}.filter{border:0;background:transparent;color:var(--faint);font-size:10px;padding:5px 10px;border-radius:4px}.filter.active{background:#2b2f39;color:#dadde6}.runs-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;text-align:left}th{font-size:8px;letter-spacing:1px;color:var(--faint);font-weight:600;padding:10px 22px;border-bottom:1px solid var(--border);background:#151820}td{padding:15px 22px;border-bottom:1px solid #262a34;font-size:11px}tr:last-child td{border-bottom:0}tbody tr{cursor:pointer}tbody tr:hover,tbody tr.selected{background:#1f222c}tbody tr.selected td:first-child{box-shadow:inset 2px 0 var(--purple)}.run-name{font-size:11px;font-weight:550;display:flex;gap:10px;align-items:center}.type-icon{background:#302c43;color:#c3b6ff;border-radius:7px;width:30px;height:30px;display:grid;place-items:center;font-size:12px}.type-icon.vlm{background:#223830;color:#a5decd}.run-meta{font-size:9px;color:var(--faint);margin-top:2px}.status{display:inline-flex;gap:5px;align-items:center;border:1px solid transparent;border-radius:5px;font-size:9px;padding:3px 7px;text-transform:capitalize}.status:before{content:"";width:4px;height:4px;border-radius:50%;background:currentColor}.status.running{color:var(--mint);background:#243731;border-color:#2d4940}.status.queued,.status.paused{color:#cfbc86;background:#353022;border-color:#484029}.status.completed{color:#a7afbf;background:#282e37;border-color:#343c47}.status.failed,.status.canceled{color:#edab9c;background:#362a2a;border-color:#503635}.progress-line{display:flex;gap:10px;align-items:center}.progress-line .meter{width:82px;height:3px}.progress-line>span{font-size:9px;color:#aab0bf;width:28px}.method-tag{font-size:9px;color:#9fa5b8;border:1px solid #333847;border-radius:4px;padding:3px 5px}.row-arrow{color:var(--faint)}.empty{padding:30px;text-align:center;color:var(--muted)}.detail-area{margin-top:29px}.detail-title{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:17px}.detail-title h2{font-size:20px;font-weight:500;letter-spacing:-.4px;margin:5px 0 3px}.detail-title p{font-size:10px;color:var(--faint);margin:0}.run-controls{display:flex;gap:7px}.run-controls .button{padding:8px 11px;font-size:10px}.detail-grid{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(270px,1fr);gap:16px}.chart-heading{display:flex;justify-content:space-between;align-items:center;gap:8px}.chart-heading h3{font-size:13px;font-weight:550;margin:0}.chart-heading p{font-size:10px;color:var(--faint);margin:3px 0 0}.loss-panel,.gpu-panel{padding:21px 22px}.legend{display:flex;gap:13px;font-size:9px;color:var(--muted)}.legend span{display:flex;gap:5px;align-items:center}.legend i{width:6px;height:6px;border-radius:50%}.purple{background:var(--purple)}.mint{background:var(--mint)}.chart-stats{display:flex;gap:40px;margin:21px 0 8px}.chart-stats div>span{font-size:8px;letter-spacing:1px;color:var(--faint);display:block}.chart-stats strong{font-size:22px;letter-spacing:-.5px;font-weight:450}.chart-stats div:first-child strong{color:#c5baff}.chart-stats div:nth-child(2) strong{color:var(--mint)}.chart-stats div:last-child strong{font-size:20px;color:#c5cad6}.chart{height:178px;position:relative}.chart svg{width:100%;height:100%;display:block}.chart-empty{height:100%;display:grid;place-items:center;color:var(--faint);font-size:11px;border:1px dashed #323742;border-radius:7px}.chart-foot{border-top:1px solid var(--border);display:flex;justify-content:space-between;padding-top:11px;margin-top:8px;color:var(--faint);font-size:8px;letter-spacing:.6px}.chart-foot strong{color:#b5bdca;font-weight:450}.gpu-illustration{display:flex;gap:14px;align-items:center;padding:22px 0 20px}.chip{width:49px;height:49px;border:1px solid #444154;border-radius:9px;padding:5px;box-shadow:0 0 30px #b0a0ff0a;position:relative;background:#252331}.chip-core{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#c9baff;font-size:11px;border:1px solid #5d5476;border-radius:4px}.chip-core span{font-size:6px;letter-spacing:1px;color:var(--faint)}.gpu-illustration h4{font-size:12px;font-weight:550;margin:0}.gpu-illustration p{font-size:9px;color:var(--faint);margin:3px 0 0}.telemetry-row{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-bottom:8px}.telemetry-row strong{font-weight:450;color:#e2e4eb}.telemetry-meter{height:4px;margin-bottom:17px}.mint-meter>span{background:var(--mint)}.gpu-footer{display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:15px}.gpu-footer span{font-size:9px;color:var(--faint);display:block}.gpu-footer strong{font-size:18px;letter-spacing:-.5px;font-weight:450}.gpu-footer .not-connected{font-size:13px;line-height:2.1;color:var(--muted)}.gpu-disclaimer{margin-top:15px;font-size:8px;line-height:1.6;color:var(--faint)}.run-data{margin-top:16px;overflow:hidden}.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 22px;gap:25px;align-items:center}.tab{border:0;background:transparent;font-size:10px;color:var(--faint);padding:15px 0 12px;border-bottom:2px solid transparent}.tab.active{color:#d4c7ff;border-bottom-color:var(--purple)}.tab>span{font-size:8px;background:#292d38;padding:2px 5px;margin-left:4px;border-radius:3px}.data-badge{margin-left:auto;font-size:7px;letter-spacing:1px;color:var(--faint)}.log-view{padding:15px 22px;min-height:144px;max-height:226px;overflow-y:auto;background:#14171d;font:10px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace}.log-line{display:flex;gap:13px}.log-time{color:#626c81;white-space:nowrap}.log-level{color:var(--mint);min-width:38px}.log-level.error{color:var(--red)}.log-level.warning{color:#cfbc86}.log-message{color:#a4aabc;overflow-wrap:anywhere;min-width:0}.checkpoint-list{padding:10px 22px}.checkpoint{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:11px}.checkpoint:last-child{border:0}.checkpoint>span{color:var(--mint)}.checkpoint small{margin-left:auto;font-size:9px;color:var(--faint)}.config-list{display:grid;grid-template-columns:repeat(3,1fr);gap:17px 25px;padding:22px}.config-list div{overflow-wrap:anywhere}.config-list span{font-size:9px;color:var(--faint);display:block;text-transform:uppercase;letter-spacing:.5px}.config-list strong{font-size:11px;font-weight:450;color:#c6cad5}.run-error{border:1px solid #573c38;background:#322421;border-radius:7px;padding:11px 14px;margin-bottom:15px;color:#eeb09f;font-size:11px}.worker-info{padding:25px;margin-top:25px;color:var(--muted)}.worker-info h2{color:var(--text);font-size:20px}.worker-info p{font-size:12px;max-width:760px}.worker-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin:25px 0}.worker-steps span{color:var(--purple);font-size:20px}.worker-steps h3{font-size:13px;color:var(--text)}.worker-planned{padding-top:17px;border-top:1px solid var(--border);color:#cabcff}footer{display:flex;justify-content:space-between;padding:24px 0;color:var(--faint);font-size:8px}dialog{width:min(560px,calc(100% - 28px));border:1px solid #414351;border-radius:13px;color:var(--text);background:#1b1e26;padding:25px;max-height:90vh;overflow:auto;box-shadow:0 20px 100px #0008}dialog::backdrop{background:#06080dbe;backdrop-filter:blur(4px)}.modal-heading{display:flex;justify-content:space-between;align-items:center}.modal-heading h2{font-size:23px;font-weight:500;margin:6px 0 0;letter-spacing:-.5px}.icon-button{background:transparent;border:0;color:var(--muted);font-size:26px;padding:0 4px}.modal-note{font-size:11px;color:var(--muted);margin:15px 0 22px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form-grid.three{grid-template-columns:repeat(3,1fr)}label{display:block;color:#aeb5c5;font-size:10px;margin-bottom:14px}input,select{display:block;margin-top:6px;width:100%;background:#12151b;color:#d5d9e4;border:1px solid #353b48;border-radius:6px;padding:10px;font-size:11px}input:focus,select:focus{border-color:var(--purple);outline:1px solid var(--purple)}label small{font-size:9px;color:var(--faint);display:block;margin-top:5px}.modal-footer{display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--border);padding-top:18px;margin-top:18px}.form-error{color:var(--red);font-size:11px;padding:8px 0}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);border:1px solid #474151;background:#2a2634;padding:13px 20px;border-radius:8px;box-shadow:0 10px 50px #0009;font-size:12px;color:#d9cdfa;z-index:10;max-width:90vw}.toast.error{color:var(--red);background:#35272a;border-color:#593b3d}[hidden]{display:none!important}@media(min-width:1650px){.content{padding-top:45px}}@media(max-width:1150px){.sidebar{width:183px;padding:30px 14px}main{margin-left:183px;width:calc(100% - 183px)}.content{padding:28px 25px 0}.topbar{padding:0 25px}.summary-card{padding:16px 14px}.card-caption{font-size:8px}.detail-grid{grid-template-columns:minmax(0,1.7fr) minmax(250px,1fr)}td,th{padding-left:16px;padding-right:16px}.chart-stats{gap:25px}.page-heading h1{font-size:27px}}@media(max-width:900px){.sidebar{width:70px;padding:25px 12px}.brand{margin-bottom:30px}.brand>span:last-child,.workspace-label,.workspace,.sidebar-bottom,.nav-item>span:not(:first-child){display:none}.nav-item{font-size:0;padding:10px;gap:0}.nav-item>span:first-child{font-size:21px}.nav-item.active{background:#302a45}main{margin-left:70px;width:calc(100% - 70px)}.summary-grid{grid-template-columns:repeat(2,1fr)}.detail-grid{grid-template-columns:1fr}.gpu-panel{display:grid;grid-template-columns:1fr 1fr;column-gap:30px}.gpu-panel .chart-heading,.gpu-disclaimer{grid-column:1/-1}.gpu-illustration{grid-row:2/6}.gpu-footer{grid-column:1/-1}.telemetry-row:first-of-type{margin-top:20px}.telemetry-meter{margin-bottom:12px}.page-heading p{max-width:430px}.heading-badge{display:none}.worker-steps{grid-template-columns:1fr}.connection{font-size:10px}.topbar-right{gap:13px}}@media(max-width:600px){.sidebar{display:none}main{margin-left:0;width:100%}.topbar{height:66px;padding:0 18px}.breadcrumbs{font-size:10px}.breadcrumbs span{padding:0 7px}.topbar-right{gap:9px}.connection{font-size:0}.connection i{width:7px;height:7px}.topbar .button{font-size:9px;padding:9px 10px}.content{padding:25px 16px 0}.page-heading h1{font-size:25px}.page-heading p{font-size:10px;line-height:1.7}.eyebrow{font-size:8px;letter-spacing:1.4px}.demo-notice{padding:12px;gap:9px}.demo-notice strong{font-size:10px}.demo-notice div>span{font-size:9px;line-height:1.6}.demo-notice>.pill{display:none}.summary-grid{gap:9px;margin-bottom:20px}.summary-card{padding:14px;min-height:126px}.card-label{font-size:8px}.summary-number{font-size:29px;margin-top:14px}.summary-number.worker-value{font-size:18px;line-height:1.8}.card-caption{font-size:8px;line-height:1.5}.panel-heading{padding:17px 15px}.panel-heading h2{font-size:12px}.panel-heading p{font-size:9px}.filter{font-size:9px;padding:4px 8px}table{min-width:640px}td,th{padding-left:15px;padding-right:15px}.detail-title{display:block}.detail-title h2{font-size:19px}.detail-title p{line-height:1.6}.run-controls{margin-top:12px}.loss-panel,.gpu-panel{padding:17px 15px}.chart-stats{gap:26px;margin-top:20px}.chart-stats strong{font-size:22px}.chart-stats div:last-child strong{font-size:17px}.chart-stats div>span{font-size:7px}.chart{height:175px}.chart-heading h3{font-size:12px}.legend{font-size:8px;gap:9px}.tabs{padding:0 15px;gap:18px}.tab{font-size:9px}.data-badge{display:none}.log-view{padding:13px;font-size:9px}.log-line{gap:8px}.log-time{font-size:8px}.log-level{min-width:31px}.config-list{grid-template-columns:repeat(2,1fr);padding:17px}.checkpoint{font-size:10px}.checkpoint small{font-size:8px}.gpu-illustration h4{font-size:10px}.gpu-illustration p{font-size:8px}.gpu-panel{column-gap:15px}.gpu-illustration{gap:9px}.chip{width:41px;height:41px;flex-shrink:0}.gpu-footer strong{font-size:17px}footer{display:block;font-size:8px}footer span{display:block;margin-top:5px}dialog{padding:20px}.form-grid.three{grid-template-columns:repeat(2,1fr)}.modal-heading h2{font-size:21px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Workflow workspace extensions */
+.mobile-nav{display:none}.feature-view{margin-top:8px;padding:25px}.feature-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:24px}.feature-heading h2{font-size:23px;letter-spacing:-.5px;font-weight:500;margin:5px 0}.feature-heading p{font-size:11px;color:var(--muted);margin:3px 0;max-width:720px}.feature-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px}.feature-box{border:1px solid var(--border);border-radius:8px;padding:18px;background:#14171e}.feature-box h3{font-size:13px;font-weight:550;margin:0 0 15px}.feature-box p{font-size:11px;color:var(--muted)}textarea{width:100%;display:block;margin-top:7px;resize:vertical;min-height:180px;background:#101319;border:1px solid #353b48;border-radius:7px;color:#c5cbd8;padding:12px;font:10px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}textarea:focus{outline:1px solid var(--purple);border-color:var(--purple)}.feature-actions{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 0}.feature-result{margin-top:18px;padding:15px;background:#1c2325;border:1px solid #31403d;border-radius:7px;font-size:11px;color:#b4d8cc}.feature-result.error{background:#302425;border-color:#543637;color:#e8b1a4}.feature-result h4{margin:0 0 8px;font-size:12px;color:var(--text)}.feature-result ul{padding-left:17px;margin:7px 0}.feature-result li{margin:4px 0}.preview-record{white-space:pre-wrap;overflow-wrap:anywhere;max-height:170px;overflow:auto;padding:10px;margin:8px 0;border:1px solid var(--border);border-radius:5px;background:#11151b;color:#a8b2c5;font:9px/1.65 ui-monospace,monospace}.dataset-item{padding:14px 0;border-bottom:1px solid var(--border)}.dataset-item:last-child{border:0}.dataset-item h4{margin:0;font-size:12px;font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:7px}.dataset-item p{font-size:10px;color:var(--faint);margin:3px 0 8px}.dataset-item .button{font-size:9px;padding:7px 10px}.dataset-tools{display:flex;gap:7px;align-items:end;flex-wrap:wrap}.dataset-tools label{margin:0;max-width:90px}.dataset-tools input{padding:7px;font-size:9px}.preview-caption{font-size:9px;color:var(--faint)}.diagnostic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:22px}.diagnostic-card{padding:18px;border:1px solid var(--border);background:#14171e;border-radius:8px}.diagnostic-card span{display:block;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:var(--faint)}.diagnostic-card strong{display:block;font-size:17px;font-weight:450;overflow-wrap:anywhere;margin:8px 0}.diagnostic-card small{font-size:9px;color:var(--muted)}.check-list{padding:0;list-style:none;margin:0}.check-list li{display:flex;align-items:flex-start;gap:10px;margin:0;padding:11px 0;border-bottom:1px solid var(--border);font-size:11px;color:var(--muted)}.check-list li:last-child{border:0}.check-list b{font-weight:500;color:var(--text);display:block}.check-list .check-icon{color:var(--mint);width:14px;flex-shrink:0}.check-list .check-icon.warning{color:#d8bd85}.settings-row{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--border);padding:15px 0}.settings-row:last-child{border:0}.settings-row strong{font-size:12px;font-weight:500}.settings-row p{margin:4px 0 0;font-size:10px;color:var(--faint)}.switch{appearance:none;width:34px;height:19px;padding:0;margin:0;border-radius:20px;border:1px solid #414756;background:#282e39;cursor:pointer;position:relative;flex-shrink:0}.switch:before{content:'';position:absolute;left:3px;top:3px;width:11px;height:11px;border-radius:50%;background:#788094;transition:all .15s}.switch:checked{background:#60578b;border-color:#8175b1}.switch:checked:before{left:18px;background:#e4dfff}.switch:disabled{opacity:.45;cursor:not-allowed}.auth-warning{padding:14px;border:1px solid #4f452e;background:#2d281d;color:#d9c497;border-radius:7px;font-size:11px;line-height:1.8;margin-bottom:20px}.gate-badge{font-size:9px;border:1px solid #5b4c2d;color:#d8c08b;border-radius:5px;padding:4px 8px}.gate-badge.ready{color:var(--mint);border-color:#385548}.compare-selects{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-bottom:22px}.compare-legend{display:flex;gap:16px;font-size:10px;color:var(--muted);margin-bottom:16px}.compare-table{min-width:0}.compare-table th{font-size:9px}.compare-table td{font-size:11px;white-space:normal}.compare-table td:first-child{color:var(--faint)}.feature-chart{height:240px;margin:18px 0}.export-banner{margin-top:20px;padding:14px 17px;border:1px solid var(--border);border-radius:7px;display:flex;justify-content:space-between;align-items:center;gap:20px;background:#14171e}.export-banner h3{font-size:12px;font-weight:500;margin:0}.export-banner p{font-size:9px;color:var(--faint);margin:4px 0}.export-banner .feature-actions{margin:0}.no-adapter{margin:18px 0;padding:13px;background:#28232f;border:1px solid #494053;border-radius:7px;font-size:10px;color:#c9b9e4}.no-adapter strong{display:block;font-size:11px}.feature-box select{margin-bottom:14px}.section-subheading{font-size:11px;color:var(--muted);margin-top:22px}.field-note{color:var(--faint);font-size:9px}.feature-box input[type=file]{font-size:9px;padding:7px}.read-only-note{font-size:10px;color:var(--muted);margin-top:18px}
+@media(max-width:1000px){.sidebar{width:183px}.feature-grid{grid-template-columns:1fr}.diagnostic-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.sidebar{width:70px}.nav-item{padding:8px}.nav-item>span:first-child{font-size:18px}.feature-view{padding:20px}}@media(max-width:600px){.mobile-nav{display:block;margin-bottom:17px}.mobile-nav select{font-size:11px;padding:8px;margin:0;background:#191c24}.feature-view{padding:17px}.feature-heading{display:block;margin-bottom:20px}.feature-heading h2{font-size:21px}.feature-heading p{font-size:10px}.feature-heading>.button{margin-top:10px}.feature-box{padding:14px}.diagnostic-grid{grid-template-columns:1fr 1fr;gap:9px}.diagnostic-card{padding:13px}.diagnostic-card strong{font-size:15px}.compare-selects{grid-template-columns:1fr;gap:0}.compare-table td,.compare-table th{padding:10px;font-size:9px}.export-banner{display:block;padding:12px}.export-banner .feature-actions{margin-top:10px}.feature-chart{height:180px}.feature-actions .button{font-size:10px;padding:9px 12px}}
+
+.advanced-options{margin:14px 0 18px;padding:12px;border:1px solid var(--border);border-radius:7px}.advanced-options>summary{font-size:11px;color:var(--purple);cursor:pointer}.advanced-options[open]>summary{margin-bottom:17px}
+
+.beginner-guide{margin:0 0 22px;padding:14px 17px;border:1px solid var(--border);border-radius:8px;background:#161920}.beginner-guide>summary,.format-guide>summary,.parameter-guide>summary{cursor:pointer;color:#bfb2ea;font-size:11px}.guided-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:15px}.guided-steps button{text-align:left;border:1px solid var(--border);border-radius:6px;padding:11px;background:#1d2029}.guided-steps b{font-size:10px;color:var(--purple);display:block;font-weight:500}.guided-steps span{font-size:9px;color:var(--faint);display:block;margin-top:4px}.beginner-guide p{font-size:9px;color:var(--faint);margin:14px 0 0}.format-guide{margin:0 0 22px;padding:15px;border:1px solid var(--border);border-radius:7px}.format-guide>p{font-size:11px;color:var(--muted);margin-top:15px}.schema-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.schema-grid h4{font-size:12px;font-weight:500;margin:12px 0}.schema-grid p{font-size:10px;color:var(--faint)}.schema-grid .preview-record{font-size:8px}.schema-grid .button{font-size:9px}.parameter-guide{margin-bottom:17px;padding:11px;border:1px solid var(--border);border-radius:6px}.parameter-guide p{font-size:10px;line-height:1.8}.parameter-guide b{color:#c6bbeb}.feature-result details{margin-top:12px;color:var(--faint);font-size:10px;cursor:pointer}@media(max-width:900px){.schema-grid{grid-template-columns:1fr}}@media(max-width:600px){.guided-steps{grid-template-columns:repeat(2,1fr)}.guided-steps button:last-child{grid-column:1/-1}.beginner-guide>summary{font-size:10px}}
+
+.technical-logs>summary{cursor:pointer;font-size:10px;color:var(--muted);padding:14px 22px;background:#14171d}.technical-logs[open]>summary{border-bottom:1px solid var(--border)}
+
+.workspace-alerts{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid #4f3d36;background:#29211f;color:#d4ac96;border-radius:7px;padding:10px 14px;margin:0 0 18px;font-size:10px}.workspace-alerts .button{font-size:9px;padding:6px 10px}
+
+/* Language settings use the same form controls at desktop and mobile widths. */
+.language-settings { margin-bottom: 20px; }
+.language-settings select { width: min(100%, 320px); min-height: 44px; }
+html[lang="ko"] .card-label, html[lang="ko"] .eyebrow { letter-spacing: .04em; }
+html[lang="ko"] .field-note, html[lang="ko"] p { word-break: keep-all; overflow-wrap: anywhere; }
+</style></head>
+<body>
+<div class="app">
+<aside class="sidebar"><a class="brand" href="/" aria-label="Forge home"><span class="brandmark">F</span><span>forge<span class="brand-dot">.</span></span></a><div class="workspace-label">LOCAL WORKSPACE</div><div class="workspace"><span class="machine-icon">⌘</span><div>Training studio<small>Ubuntu / WSL2 ready</small></div><span class="tiny-dot"></span></div><nav aria-label="Primary navigation"><button class="nav-item active" data-nav="overview"><span>▦</span> Overview</button><button class="nav-item" data-nav="runs"><span>◈</span> Experiments <span class="nav-count" id="nav-count">4</span></button><button class="nav-item" data-nav="datasets"><span>▤</span> Datasets</button><button class="nav-item" data-nav="recipes"><span>⌘</span> Training setup</button><button class="nav-item" data-nav="compare"><span>⇄</span> Compare runs</button><button class="nav-item" data-nav="environment"><span>⌁</span> Environment</button><button class="nav-item" data-nav="settings"><span>⚙</span> Access settings</button></nav><div class="sidebar-bottom"><div class="demo-tag">DEMO ENVIRONMENT</div><p>Explore the workflow.<br>GPU runs in Training setup</p><div class="local-badge"><span class="tiny-dot"></span> Local-first · no cloud training</div></div></aside>
+<main>
+<header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong>Overview</strong></div><div class="topbar-right"><span class="connection" id="connection"><i></i> Connecting</span><button id="new-run" class="button primary"><span>＋</span> New experiment</button></div></header>
+<div class="content"><div class="mobile-nav" aria-label="Workspace views"><select id="mobile-view"><option value="overview">Overview</option><option value="datasets">Datasets</option><option value="recipes">Training setup</option><option value="compare">Compare runs</option><option value="environment">Environment</option><option value="settings">Access settings</option></select></div>
+<section class="page-heading"><div><div class="eyebrow">YOUR MODELS. YOUR MACHINE.</div><h1>Fine-tuning, in focus<span>.</span></h1><p>A clear view of every experiment, from the first step to the final checkpoint.</p></div><div class="heading-badge">LLM <span>+</span> VLM</div></section>
+<div class="demo-notice" role="note"><span class="notice-icon">◉</span><div><strong>You're exploring a simulated workspace</strong><span>READ-ONLY OFFLINE PREVIEW. Synthetic fixture data; no live API, GPU, training or downloads. Controls require the local server.</span></div><span class="pill demo">DEMO</span></div>
+<div id="workspace-alerts" class="workspace-alerts" hidden></div>
+<details class="beginner-guide"><summary>First time fine-tuning? Follow a small, safe workflow</summary><div class="guided-steps"><button data-guide-view="datasets"><b>01 · Data</b><span>Validate a few JSONL examples</span></button><button data-guide-view="recipes"><b>02 · Model</b><span>Pick a small compatible label</span></button><button data-guide-view="recipes"><b>03 · Config</b><span>Use a preset and dry-run</span></button><button data-guide-view="runs"><b>04 · Run</b><span>Try the synthetic queue</span></button><button data-guide-view="compare"><b>05 · Evaluate</b><span>Compare demo eval loss</span></button></div><p>Save and split a dataset, then use Training setup to launch an installed local GPU recipe. Demo experiments remain synthetic.</p></details>
+<section class="summary-grid" aria-label="Workspace summary"><article class="summary-card"><div class="card-label">EXPERIMENTS <span>◈</span></div><div class="summary-number" id="summary-total">—</div><div class="card-caption" id="summary-caption">Loading experiments</div></article><article class="summary-card"><div class="card-label">ACTIVE RUNS <span class="live-dot"></span></div><div class="summary-number" id="summary-active">—</div><div class="card-caption">Single GPU · serialized real training queue</div></article><article class="summary-card"><div class="card-label"><span id="gpu-source-label">SIMULATED VRAM</span> <span>▤</span></div><div class="summary-number" id="summary-vram">—</div><div class="meter"><span id="vram-bar"></span></div><div class="card-caption"><span id="gpu-source-caption">12 GB demo assumption · not measured</span></div></article><article class="summary-card"><div class="card-label">WORKER <span>⌁</span></div><div class="summary-number worker-value">Demo engine</div><div class="card-caption"><span class="tiny-dot"></span> <span id="worker-caption">Deterministic simulation · local API</span></div></article></section>
+<section class="experiments panel" id="experiments"><div class="panel-heading"><div><h2>Experiments <span id="experiment-count" class="count-badge">—</span></h2><p>A small queue. A complete picture.</p></div><div class="filter-group" role="group" aria-label="Filter experiments"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="LLM">LLM</button><button class="filter" data-filter="VLM">VLM</button></div></div><div class="runs-scroll"><table><thead><tr><th>EXPERIMENT</th><th>STATUS</th><th>PROGRESS</th><th>TRAIN LOSS</th><th>METHOD</th><th></th></tr></thead><tbody id="runs-body"></tbody></table></div><div id="no-runs" class="empty" hidden>No experiments in this view yet</div></section>
+<section class="detail-area" id="run-detail" aria-label="Selected experiment">
+<div class="detail-title"><div><div class="eyebrow">EXPERIMENT INSIGHTS</div><h2 id="selected-title">Loading experiment…</h2><p id="selected-subtitle"></p></div><div class="run-controls" id="run-controls"></div></div>
+<div id="run-error" class="run-error" hidden></div>
+<div class="detail-grid"><div class="panel loss-panel"><div class="chart-heading"><div><h3>Learning curve</h3><p>Loss over training steps</p></div><div class="legend"><span><i class="purple"></i>Train</span><span><i class="mint"></i>Eval</span></div></div><div class="chart-stats"><div><span>TRAIN LOSS</span><strong id="train-loss">—</strong></div><div><span>EVAL LOSS</span><strong id="eval-loss">—</strong></div><div><span>LEARNING RATE</span><strong id="learning-rate">—</strong></div></div><div id="loss-chart" class="chart" aria-label="Training and evaluation loss chart"></div><div class="chart-foot"><span>STEP <strong id="current-step">—</strong></span><span id="chart-context">Synthetic metrics</span></div></div><aside class="panel gpu-panel"><div class="chart-heading"><div><h3>GPU pulse</h3><p id="gpu-telemetry-label">Simulated telemetry</p></div><span class="pill demo small" id="gpu-mode">DEMO</span></div><div class="gpu-illustration"><div class="chip"><div class="chip-core">GPU<span id="gpu-chip-mode">SIM</span></div></div><div><h4 id="gpu-model-label">RTX 3060 profile</h4><p id="gpu-memory-note">12 GB assumed for this demo</p></div></div><div class="telemetry-row"><span>Utilization</span><strong id="gpu-util">—</strong></div><div class="meter telemetry-meter"><span id="gpu-util-bar"></span></div><div class="telemetry-row"><span>Memory allocation</span><strong id="gpu-memory">—</strong></div><div class="meter telemetry-meter mint-meter"><span id="gpu-memory-bar"></span></div><div class="gpu-footer"><div><span>Temperature</span><strong id="gpu-temp">—</strong></div><div><span>Training GPU linked</span><strong class="not-connected" id="gpu-linked">No</strong></div></div><div class="gpu-disclaimer" id="gpu-disclaimer">Readings are generated by the demo engine, never read from your computer.</div></aside></div>
+<div class="panel run-data"><div class="tabs" role="tablist" aria-label="Experiment data"><button class="tab active" data-tab="logs" role="tab" aria-selected="true">Training log <span id="log-count"></span></button><button class="tab" data-tab="checkpoints" role="tab" aria-selected="false">Checkpoints</button><button class="tab" data-tab="evaluation" role="tab" aria-selected="false">Evaluation</button><button class="tab" data-tab="configuration" role="tab" aria-selected="false">Configuration</button><span class="data-badge">SYNTHETIC DATA</span></div><div id="tab-content" role="tabpanel"></div></div>
+</section>
+<section id="workspace-view" class="panel feature-view" hidden></section>
+<section id="worker-info" class="panel worker-info" hidden><h2>Connect a local worker</h2><p>Use the installed local CUDA worker from Training setup. Real runs report measured losses and save adapter checkpoints.</p><div class="worker-steps"><div><span>01</span><h3>Prepare locally</h3><p>Confirm VRAM, NVIDIA driver and CUDA support on the training computer.</p></div><div><span>02</span><h3>Use a typed adapter</h3><p>No shell command input. Restrict datasets and outputs to approved local roots.</p></div><div><span>03</span><h3>Keep access private</h3><p>Loopback by default. Authentication and authorization are required before any remote access.</p></div></div><p class="worker-planned">Local LLM/VLM LoRA and QLoRA training is supported. Remote workers and multi-GPU scheduling are not implemented.</p></section>
+<footer>Built for your local training loop <span>Forge · local GPU training and labeled demos</span></footer>
+</div></main></div>
+<dialog id="run-dialog"><form id="run-form"><div class="modal-heading"><div><div class="eyebrow">NEW EXPERIMENT</div><h2>Make room for an idea.</h2></div><button type="button" class="icon-button" id="close-dialog" aria-label="Close dialog">×</button></div><p class="modal-note">Create a simulated run. This does not download a model or start real training.</p><label>Experiment name<input name="name" required maxlength="80" value="instruction-lora-v2"></label><div class="form-grid"><label>Model type<select name="kind"><option value="LLM">LLM · text</option><option value="VLM">VLM · vision + text</option></select></label><label>Base model<select name="model"><option value="demo/llm-3b">Demo LLM · 3B</option><option value="demo/llm-7b">Demo LLM · 7B</option><option value="demo/vlm-3b">Demo VLM · 3B</option></select></label></div><label>Dataset alias<input name="dataset" required value="synthetic-instructions" maxlength="120"><small>A label only. No files are accessed or uploaded.</small></label><div class="form-grid three"><label>Learning rate<input name="learning_rate" type="number" value="0.0002" min="0.0000001" max="0.1" step="any" required></label><label>Batch size<input name="batch_size" type="number" value="1" min="1" max="32" required></label><label>LoRA rank<input name="lora_rank" type="number" value="16" min="1" max="128" required></label><label>Epochs<input name="epochs" type="number" value="3" min="1" max="20" required></label><label>Grad. accumulation<input name="gradient_accumulation" type="number" value="8" min="1" max="128" required></label><label>Demo steps<input name="max_steps" type="number" value="300" min="10" max="2000" required></label></div><label>Demo scenario<select name="failure_mode"><option value="none">Normal completion</option><option value="oom">Simulated out-of-memory failure</option></select></label><div class="form-error" id="form-error" role="alert" hidden></div><div class="modal-footer"><button type="button" class="button secondary" id="cancel-dialog">Cancel</button><button class="button primary" type="submit">Create demo run <span>↗</span></button></div></form></dialog>
+<dialog id="login-dialog"><form id="login-form"><div class="modal-heading"><div><div class="eyebrow">LOCAL WORKSPACE ACCESS</div><h2>Sign in to Forge.</h2></div><button type="button" id="close-login" class="icon-button" aria-label="Close sign-in">×</button></div><p class="modal-note">Initial admin/admin is for local setup only. LAN stays locked until the password is changed locally.</p><label>Username<input name="username" value="admin" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><div id="login-error" class="form-error" role="alert" hidden></div><div class="modal-footer"><button class="button primary" type="submit">Sign in</button></div></form></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<script>'use strict';
+
+// Message keys are English source labels. Translate presentation only; never
+// change API identifiers, dataset records, run names, logs or exported JSON.
+const I18n = (() => {
+  const korean = {
+    "Demo": "데모",
+    "Dashboard API online": "대시보드 API 연결됨",
+    "Measured telemetry": "실제 측정 수치",
+    "Yes": "예",
+    "GPU readings come from nvidia-smi on this server.": "이 서버의 nvidia-smi에서 측정한 GPU 상태입니다.",
+    "LOCAL GPU WORKSPACE": "로컬 GPU 작업 공간",
+    "Use the installed local CUDA worker from Training setup. Real runs report measured losses and save adapter checkpoints.": "학습 설정에서 설치된 로컬 CUDA 워커를 실행하세요. 실제 작업은 측정된 손실을 보고하고 어댑터 체크포인트를 저장합니다.",
+
+    "Required: messages + images array of safe relative labels. Save the dataset, then upload matching images for real VLM training.": "필수: messages와 안전한 상대 라벨의 images 배열. 데이터셋을 저장한 다음 실제 VLM 학습에 사용할 이미지를 올리세요.",
+    "Real GPU training": "실제 GPU 학습",
+    "Installed base model": "설치된 기본 모델",
+    "Prepared train/validation dataset": "분할된 학습/검증 데이터셋",
+    "Save and split a dataset first": "먼저 데이터셋을 저장하고 분할하세요",
+    "Uses the recipe above. Real jobs allocate the GPU and save adapter weights. Max steps caps optimizer updates; epochs may finish earlier.": "위의 학습 설정을 사용합니다. 실제 작업은 GPU를 사용하고 어댑터 가중치를 저장합니다. 최대 스텝은 업데이트 상한이며 에포크가 먼저 끝날 수 있습니다.",
+    "Check real training": "실제 학습 검사",
+    "Start real GPU training": "실제 GPU 학습 시작",
+    "Real training checks passed": "실제 학습 사전 검사 통과",
+    "Real training queued": "실제 학습이 대기열에 추가됐습니다",
+    "The operator must enable the installed training environment.": "운영자가 설치된 학습 환경을 활성화해야 합니다.",
+    "Upload PNG/JPEG images up to 2 MB each.": "이미지당 2 MB 이하의 PNG/JPEG를 올려주세요.",
+    "Dataset images uploaded": "데이터셋 이미지를 업로드했습니다",
+    "Upload referenced images": "참조 이미지 업로드",
+    "Filenames must match images/filename.png labels. PNG/JPEG · 2 MB each. Images are stored privately for VLM training.": "파일 이름은 images/파일이름.png 라벨과 일치해야 합니다. PNG/JPEG · 각 2 MB 이하. 이미지는 VLM 학습용으로 비공개 저장됩니다.",
+    "Local GPU training is ready": "로컬 GPU 학습 준비 완료",
+    "Real jobs use uploaded datasets and save adapter weights. Demo jobs are labeled separately and remain synthetic.": "실제 작업은 업로드한 데이터로 학습하고 어댑터 가중치를 저장합니다. 데모 작업은 별도로 표시되며 모의 데이터를 사용합니다.",
+    "CUDA worker": "CUDA 학습 워커",
+    "MEASURED VRAM": "측정된 VRAM",
+    "Measured on this server": "이 서버에서 측정한 값",
+    "Real GPU": "실제 GPU",
+    "Source": "출처",
+    "points · measured": "개 측정점 · 실제 학습",
+    "▷ Start training": "▷ 학습 시작",
+    "Ⅱ Checkpoint & pause": "Ⅱ 저장 후 일시정지",
+    "▷ Resume training": "▷ 학습 재개",
+    "× Cancel training": "× 학습 취소",
+    "Training failure:": "학습 오류:",
+    "Training worker log": "학습 워커 로그",
+    "Download adapter weights": "어댑터 가중치 다운로드",
+    "Held-out evaluation": "분리된 데이터로 평가",
+    "Baseline eval loss": "학습 전 검증 손실",
+    "Final eval loss": "학습 후 검증 손실",
+    "Generated response": "모델 생성 응답",
+    "Reference answer": "정답 예시",
+    "Small synthetic checks establish pipeline operation, not model quality.": "작은 합성 데이터 검사는 학습 흐름의 동작을 확인합니다. 실제 모델 품질 평가에는 별도의 데이터가 필요합니다.",
+    "Evaluation appears after real training completes": "실제 학습 완료 후 평가 결과가 표시됩니다",
+    "Measured loss chart, {count} points, latest training loss {loss}": "실제 손실 그래프, {count}개 측정점, 최근 학습 손실 {loss}",
+    "pausing": "저장 후 일시정지 중",
+    "canceling": "취소 처리 중",
+    "Ready": "준비 완료",
+    "Local LoRA/QLoRA worker ready.": "로컬 LoRA/QLoRA 워커가 준비됐습니다.",
+    "Real training uses the GPU panel below": "실제 학습은 아래 GPU 패널에서 실행합니다",
+    "Preparation dry-run and demo controls are separate from the real GPU training action.": "준비 검사와 데모 제어는 실제 GPU 학습 실행과 별개입니다.",
+    "Choose a recipe, prepare the dataset split and launch real GPU training below. Memory estimates are heuristics, never a fit guarantee.": "학습 설정을 고르고 데이터셋을 분할한 뒤 아래에서 실제 GPU 학습을 실행하세요. 메모리 추정은 참고용이며 실행 가능성을 보장하지 않습니다.",
+    "Compare loss curves and configurations. Check the source: demo runs are synthetic; real runs use held-out validation data.": "손실 곡선과 설정을 비교합니다. 출처를 확인하세요. 데모는 모의 수치이며 실제 학습은 분리된 검증 데이터로 평가합니다.",
+    "JSON includes configuration, measured or synthetic metrics, logs, checkpoint metadata and evaluation. Adapter weights have separate checkpoint downloads.": "JSON에는 설정, 실제/모의 지표, 로그, 체크포인트 정보와 평가가 포함됩니다. 어댑터 가중치는 체크포인트에서 따로 다운로드합니다.",
+    "Comparison of training loss across steps": "스텝별 학습 손실 비교",
+    "Allow authenticated LAN changes, demo controls and real GPU training.": "인증된 LAN 접속에서 설정 변경, 데모 제어와 실제 GPU 학습을 허용합니다.",
+    "Local LLM/VLM LoRA and QLoRA training is supported. Remote workers and multi-GPU scheduling are not implemented.": "로컬 LLM/VLM LoRA와 QLoRA 학습을 지원합니다. 원격 워커와 다중 GPU 스케줄링은 미구현입니다.",
+    "Forge · local GPU training and labeled demos": "Forge · 로컬 GPU 학습과 구분된 데모",
+    "Evaluation": "평가",
+    "Single GPU · serialized real training queue": "단일 GPU · 순서대로 실행되는 실제 학습 대기열",
+    "Save and split a dataset, then use Training setup to launch an installed local GPU recipe. Demo experiments remain synthetic.": "데이터셋을 저장하고 분할한 다음 학습 설정에서 설치된 로컬 GPU 모델을 학습하세요. 데모 실험은 계속 모의 데이터를 사용합니다.",
+    "Training queue ready": "학습 대기열 준비 완료",
+    "GPU runs in Training setup": "GPU 학습은 학습 설정에서 실행합니다",
+    "Steps · maximum updates": "스텝 · 최대 업데이트 수",
+    "Experiment queued": "실험을 대기열에 추가했습니다",
+    "Worker request acknowledged": "워커 요청을 접수했습니다",
+    "No checkpoints yet": "아직 체크포인트가 없습니다",
+    "Experiment failures recorded. Review the worker error and configuration.": "실험 오류가 기록됐습니다. 워커 오류와 설정을 확인하세요.",
+    "Paused jobs reserve their queue. Resume or cancel to continue.": "일시정지 작업이 대기열을 점유합니다. 계속하려면 재개하거나 취소하세요.",
+    "Validate JSONL labels, then split records. Upload referenced images separately for real VLM training.": "JSONL 라벨을 검증하고 데이터를 분할합니다. 실제 VLM 학습에 사용할 참조 이미지는 따로 업로드하세요.",
+    "JSONL input accepts text only. CSV, Parquet, JSON arrays and ZIP are not supported. Upload VLM images separately below. UTF-8 text · 128 KiB · 1000 records maximum.": "JSONL 입력에는 텍스트만 넣으세요. CSV, Parquet, JSON 배열과 ZIP은 지원하지 않습니다. VLM 이미지는 아래에서 따로 올리세요. UTF-8 텍스트 · 최대 128 KiB · 1000행.",
+    "No verified real training worker": "검증된 실제 학습 워커 없음",
+    "Local GPU worker enabled": "로컬 GPU 워커 활성화됨",
+
+    "The local API returned an unreadable response": "로컬 API 응답을 읽을 수 없습니다",
+    "Request failed (": "요청 실패 (",
+    "The local API timed out. Check that the demo server is running.": "로컬 API 응답 시간이 초과됐습니다. 데모 서버가 실행 중인지 확인하세요.",
+    "Demo API online": "데모 API 연결됨",
+    "API offline · data stale": "API 연결 끊김 · 이전 데이터 표시",
+    "Local sign-in required": "로그인이 필요합니다",
+    "Sign in locally to finish setup, or check that python server.py is running.": "로그인하여 설정을 완료하거나 python server.py가 실행 중인지 확인하세요.",
+    "Waiting for the local demo API": "로컬 데모 API 연결을 기다리는 중",
+    "completed ·": "완료 ·",
+    "queued": "대기 중",
+    "running": "실행 중",
+    "paused": "일시정지",
+    "failed": "실패",
+    "completed": "완료",
+    "canceled": "취소됨",
+    "demo failure": "건의 데모 실패",
+    "recorded. Review the injected scenario and next steps.": "기록됨. 설정된 오류 시나리오와 다음 단계를 확인하세요.",
+    "Review failure": "실패 확인",
+    "Ⅱ A paused demo job reserves the GPU slot. Resume or cancel it to release the queue.": "Ⅱ 일시정지된 데모가 GPU 슬롯을 점유합니다. 재개하거나 취소하면 대기열을 진행할 수 있습니다.",
+    "No active demo jobs. Open Experiments to start or inspect a queued run.": "진행 중인 데모가 없습니다. 실험 화면에서 대기 작업을 확인하거나 시작하세요.",
+    "No experiments in this view yet": "이 화면에 표시할 실험이 없습니다",
+    "demo model": "데모 모델",
+    "steps ·": "스텝 ·",
+    "points · simulated": "개 측정점 · 모의 데이터",
+    "▷ Start demo": "▷ 데모 시작",
+    "Ⅱ Pause demo": "Ⅱ 데모 일시정지",
+    "▷ Resume demo": "▷ 데모 재개",
+    "× Cancel demo": "× 데모 취소",
+    "↻ Retry as new run": "↻ 새 실험으로 재시도",
+    "Run finished": "실험 종료",
+    "Demo failure:": "데모 실패:",
+    "Review training recipe": "학습 설정 검토",
+    "Injected OOM scenario. Retry preserves the injection, so it can fail again. Review batch, context and rank in Training setup; a revised recipe uses the normal demo scenario.": "메모리 부족 오류를 주입한 시나리오입니다. 재시도에도 같은 오류 설정이 유지됩니다. 학습 설정에서 배치, 컨텍스트, LoRA 랭크를 검토하세요. 수정한 설정은 정상 데모 시나리오를 사용합니다.",
+    "Retry creates a new queued run and preserves this original record.": "재시도는 원본 기록을 유지하면서 새 대기 작업을 만듭니다.",
+    "Technical demo log · synthetic, token-like text redacted": "기술 데모 로그 · 모의 데이터, 토큰 형식의 문자열은 숨김",
+    "No log events yet. Start this queued demo run to generate events.": "아직 로그가 없습니다. 대기 중인 데모를 시작하면 로그가 생성됩니다.",
+    "Virtual checkpoint · no weights saved": "가상 체크포인트 · 가중치 저장 없음",
+    "Step": "스텝",
+    "MB (simulated)": "MB (모의)",
+    "No virtual checkpoints yet. Real model weights are never saved.": "아직 가상 체크포인트가 없습니다. 실제 모델 가중치는 저장되지 않습니다.",
+    "Learning curves appear after a demo run starts": "데모를 시작하면 학습 곡선이 표시됩니다",
+    "Waiting for valid metric points": "유효한 측정 데이터를 기다리는 중",
+    "points, latest training loss": "개 측정점, 최근 학습 손실",
+    "Demo run started": "데모를 시작했습니다",
+    "Demo run paused": "데모를 일시정지했습니다",
+    "Demo run resumed": "데모를 재개했습니다",
+    "Demo run canceled": "데모를 취소했습니다",
+    "New retry queued. Starts when the simulated GPU is free.": "재시도 작업이 대기열에 추가됐습니다. 모의 GPU가 비면 시작합니다.",
+    "Demo experiment queued. Starts when the simulated GPU is free.": "데모 실험이 대기열에 추가됐습니다. 모의 GPU가 비면 시작합니다.",
+    "Training setup": "학습 설정",
+    "Compare runs": "실험 비교",
+    "Access settings": "설정",
+    "Data, ready for a run.": "학습을 위한 데이터 준비",
+    "Configure before you commit.": "실행 전 학습 설정 확인",
+    "Every experiment has a story.": "실험 결과를 나란히 비교",
+    "Know the machine first.": "먼저 실행 환경 확인",
+    "Your workspace. Your access.": "언어와 접근 권한 설정",
+    "LOCAL WORKFLOW ·": "로컬 작업 ·",
+    "Line": "줄",
+    "Signed in locally. Change the initial password to unlock the workspace.": "로그인했습니다. 초기 비밀번호를 변경하면 작업 공간을 사용할 수 있습니다.",
+    "Workspace unlocked": "작업 공간을 사용할 수 있습니다",
+    "Connecting to the local API": "로컬 API 연결 중",
+    "Loading your local workspace…": "로컬 작업 공간을 불러오는 중…",
+    "Sign in / finish setup": "로그인 / 설정 완료",
+    "Retry": "다시 시도",
+    "Prepare and manage locally. Actual training requires a verified adapter.": "로컬에서 데이터를 준비하고 관리합니다. 실제 학습에는 검증된 어댑터가 필요합니다.",
+    "Validate JSONL, inspect examples, then make a reproducible train/validation split. Images are path labels only and are never opened.": "JSONL을 검증하고 예제를 확인한 뒤 재현 가능한 학습·검증 분할을 만드세요. 이미지는 경로 라벨만 사용하며 파일을 열지 않습니다.",
+    "Supported formats, required fields &amp; downloadable samples": "지원 형식, 필수 필드와 다운로드 샘플",
+    "JSONL only:": "JSONL만 지원:",
+    "one JSON object per line. CSV, Parquet, JSON arrays, ZIP and image uploads are not supported. UTF-8 text · 128 KiB · 1000 records maximum.": "한 줄에 JSON 객체 하나를 작성하세요. CSV, Parquet, JSON 배열, ZIP 및 이미지 업로드는 지원하지 않습니다. UTF-8 텍스트 · 최대 128 KiB · 1,000개 레코드.",
+    "LLM · chat": "LLM · 대화",
+    "Required: messages array with user and assistant roles; every message has role + text content. Optional system message.": "필수: user와 assistant 역할이 포함된 messages 배열. 각 메시지에 role과 텍스트 content가 필요합니다. system 메시지는 선택 사항입니다.",
+    "Download chat JSONL": "대화 JSONL 다운로드",
+    "LLM · instruction": "LLM · 지시문",
+    "Required: instruction + output text. Optional input text. No extra arbitrary fields.": "필수: instruction과 output 텍스트. input 텍스트는 선택 사항이며 임의의 추가 필드는 허용하지 않습니다.",
+    "Download instruction JSONL": "지시문 JSONL 다운로드",
+    "VLM · image + text": "VLM · 이미지 + 텍스트",
+    "Required: messages + images array of safe relative labels. Images are not uploaded, read or validated.": "필수: messages와 안전한 상대 경로 라벨을 담은 images 배열. 이미지 파일은 업로드하거나 읽거나 검증하지 않습니다.",
+    "Download VLM JSONL": "VLM JSONL 다운로드",
+    "Bring a small dataset": "작은 데이터셋 가져오기",
+    "Dataset name": "데이터셋 이름",
+    "Schema": "스키마",
+    "JSONL file · optional": "JSONL 파일 · 선택 사항",
+    "128 KiB maximum. File contents stay on this dashboard server.": "최대 128 KiB. 파일 내용은 이 대시보드 서버에 저장됩니다.",
+    "JSONL examples": "JSONL 예제",
+    "Load synthetic sample": "모의 샘플 불러오기",
+    "Validate only": "검증만 실행",
+    "Validate &amp; save": "검증 후 저장",
+    "LLM: messages or instruction/output. VLM: messages + relative image label. Absolute paths and traversal are rejected. No training, model download or image validation occurs here.": "LLM: messages 또는 instruction/output. VLM: messages와 상대 이미지 경로 라벨. 절대 경로와 상위 경로 이동은 거부합니다. 여기서는 학습, 모델 다운로드, 이미지 검증을 실행하지 않습니다.",
+    "Prepared datasets": "준비된 데이터셋",
+    "Split/export tools manage actual imported text. Remove private information before sharing exports or this workspace.": "분할·내보내기는 실제로 가져온 텍스트를 처리합니다. 파일이나 작업 공간을 공유하기 전에 개인 정보를 제거하세요.",
+    "Dataset import stage: unsupported file type. Use UTF-8 JSONL, not CSV, Parquet, ZIP or an image.": "데이터셋 가져오기: 지원하지 않는 파일 형식입니다. CSV, Parquet, ZIP, 이미지 대신 UTF-8 JSONL을 사용하세요.",
+    "Dataset file exceeds the 128 KiB preparation limit": "데이터셋 파일이 준비 단계의 128 KiB 제한을 초과합니다",
+    "examples ·": "개 예제 ·",
+    "Inspect": "확인",
+    "Val. fraction": "검증 비율",
+    "Split · seed 42": "분할 · 시드 42",
+    "Export train": "학습 데이터 내보내기",
+    "Export validation": "검증 데이터 내보내기",
+    "No prepared datasets yet": "아직 준비된 데이터셋이 없습니다",
+    "Validate and save a sample to begin": "샘플을 검증하고 저장하여 시작하세요",
+    "Preview · text only, no images loaded": "미리보기 · 텍스트만 표시, 이미지 불러오기 없음",
+    "Reproducible split created": "재현 가능한 분할을 만들었습니다",
+    "Export links now download the assigned JSONL records. Seed 42 repeats this split.": "내보내기 링크에서 분할된 JSONL 레코드를 다운로드할 수 있습니다. 시드 42로 같은 분할을 재현합니다.",
+    "Train/validation split prepared": "학습·검증 분할을 준비했습니다",
+    "Dataset validation ·": "데이터셋 검증 ·",
+    "What was checked:": "검증 내용:",
+    "examples · required fields and safe image labels": "개 예제 · 필수 필드와 안전한 이미지 경로 라벨",
+    "First examples": "첫 번째 예제",
+    "schema validation passed": "스키마 검증 통과",
+    "check failed": "검증 실패",
+    "Next step:": "다음 단계:",
+    "Use one JSON object per line and fix each line/field below. Match a downloadable sample before saving.": "한 줄에 JSON 객체 하나를 작성하고 아래의 줄·필드 오류를 수정하세요. 저장 전에 다운로드 샘플의 형식과 비교하세요.",
+    "Dataset validated and saved locally": "데이터셋을 검증하고 로컬에 저장했습니다",
+    "Dataset import": "데이터셋 가져오기",
+    "Choose a cautious starting recipe, validate the shape and export it for a future local adapter. Memory estimates are heuristics, never a fit guarantee.": "작은 초기 설정을 선택하고 형식을 검증하여 향후 로컬 어댑터용으로 내보내세요. 메모리 추정치는 참고용이며 실행 가능성을 보장하지 않습니다.",
+    "Configuration recipe": "학습 구성",
+    "Preset": "프리셋",
+    "Name": "이름",
+    "Model type": "모델 유형",
+    "Model label": "모델 라벨",
+    "Dataset label": "데이터셋 라벨",
+    "Method": "학습 방식",
+    "Assumed VRAM · GB": "가정한 VRAM · GB",
+    "Advanced training options": "고급 학습 옵션",
+    "Learning rate": "학습률",
+    "Batch size": "배치 크기",
+    "Grad. accumulation": "그래디언트 누적",
+    "LoRA rank": "LoRA 랭크",
+    "Context length": "컨텍스트 길이",
+    "Epochs": "에포크",
+    "Demo steps": "데모 스텝",
+    "Dry-run checks": "실행 전 검증",
+    "Export config": "설정 내보내기",
+    "Queue demo only": "데모를 대기열에 추가",
+    "Before real training": "실제 학습 전 확인",
+    "What do batch size, LR and LoRA mean?": "배치 크기, 학습률, LoRA는 무엇인가요?",
+    "Batch size:": "배치 크기:",
+    "examples handled per device step. Larger batches usually need more activation memory; start small.": "장치가 스텝마다 처리하는 예제 수입니다. 배치가 커지면 보통 더 많은 메모리가 필요하므로 작게 시작하세요.",
+    "Gradient accumulation:": "그래디언트 누적:",
+    "accumulate multiple small batches before updating weights. It can increase the effective batch without the same per-step batch size.": "여러 작은 배치의 결과를 누적한 뒤 가중치를 갱신합니다. 스텝별 배치 크기를 키우지 않고 유효 배치를 늘릴 수 있습니다.",
+    "Learning rate:": "학습률:",
+    "how large each update is. Too high can destabilize training; too low can make progress slow. A preset is a starting point, not a universal optimum.": "각 갱신의 크기입니다. 너무 높으면 학습이 불안정하고 너무 낮으면 진행이 느려질 수 있습니다. 프리셋은 시작점입니다.",
+    "LoRA rank:": "LoRA 랭크:",
+    "adapter capacity. Larger ranks add memory and may need more data. QLoRA combines quantized base weights with adapter training; compatibility still depends on the actual model and toolchain.": "어댑터의 표현 용량입니다. 랭크가 커지면 메모리와 데이터가 더 필요할 수 있습니다. QLoRA는 양자화된 기본 가중치와 어댑터 학습을 결합하며 호환성은 실제 모델과 도구에 따라 달라집니다.",
+    "Real training adapter is not configured": "실제 학습 어댑터가 설정되지 않았습니다",
+    "These checks prepare configuration only. Actual training stays unavailable, regardless of demo controls or LAN settings.": "이 검증은 설정만 준비합니다. 데모 제어나 LAN 설정과 관계없이 실제 학습은 사용할 수 없습니다.",
+    "Confirm actual VRAM locally": "실제 VRAM 확인",
+    "The 12 GB value is an editable assumption, not a detected RTX 3060 specification.": "12 GB 값은 수정 가능한 가정이며, RTX 3060을 측정한 사양이 아닙니다.",
+    "Validate a small local batch": "작은 로컬 배치 검증",
+    "Model architecture, optimizer, image resolution, kernels and sequence length change memory needs.": "모델 구조, 옵티마이저, 이미지 해상도, 커널, 시퀀스 길이에 따라 필요한 메모리가 달라집니다.",
+    "Keep recipe and dataset together": "학습 설정과 데이터셋 함께 보관",
+    "Export the config and deterministic split before connecting a future worker.": "향후 워커를 연결하기 전에 설정과 재현 가능한 데이터 분할을 내보내세요.",
+    "Copied experiment · review parameters": "복사한 실험 · 매개변수 검토",
+    "Custom small QLoRA": "사용자 지정 소형 QLoRA",
+    "Validated recipe exported": "검증한 학습 설정을 내보냈습니다",
+    "Recipe queued in the synthetic demo engine": "모의 데모 엔진의 대기열에 학습 설정을 추가했습니다",
+    "Configuration checks complete": "설정 검증 완료",
+    "No process launched. No GPU allocation, model or dataset opened.": "프로세스를 실행하지 않았습니다. GPU 메모리를 할당하거나 모델·데이터셋을 열지 않았습니다.",
+    "Preparation or settings": "준비 또는 설정",
+    "Compare loss curves and configuration side by side. These are synthetic experiments, not evidence of real model quality.": "손실 곡선과 설정을 나란히 비교합니다. 모의 실험이며 실제 모델 품질의 근거가 아닙니다.",
+    "Experiment A": "실험 A",
+    "Experiment B": "실험 B",
+    "Sign in and load experiments before comparing": "로그인하여 실험을 불러온 뒤 비교하세요",
+    "Type": "유형",
+    "Status": "상태",
+    "Progress": "진행률",
+    "Train loss": "학습 손실",
+    "Eval loss": "검증 손실",
+    "Model": "모델",
+    "Dataset": "데이터셋",
+    "Batch × accumulation": "배치 × 누적",
+    "METRIC / CONFIG": "지표 / 설정",
+    "EXPERIMENT A": "실험 A",
+    "EXPERIMENT B": "실험 B",
+    "Take the experiment record with you": "실험 기록 내보내기",
+    "JSON includes config, metrics, logs and virtual checkpoint metadata. CSV includes numeric metrics only.": "JSON에는 설정, 지표, 로그와 가상 체크포인트 메타데이터가 포함됩니다. CSV에는 수치 지표가 포함됩니다.",
+    "Export A · JSON": "실험 A 내보내기 · JSON",
+    "Export A · CSV": "실험 A 내보내기 · CSV",
+    "Export B · JSON": "실험 B 내보내기 · JSON",
+    "No metric points yet": "아직 측정 데이터가 없습니다",
+    "Read-only diagnostics from the machine running this server. These checks report this host, not model training compatibility. No software is installed or changed.": "이 서버를 실행하는 컴퓨터의 읽기 전용 진단입니다. 이 결과는 서버 상태를 보여주며 모델 학습 호환성을 보장하지 않습니다. 소프트웨어를 설치하거나 변경하지 않습니다.",
+    "↻ Refresh checks": "↻ 진단 새로고침",
+    "Server OS": "서버 운영체제",
+    "Dashboard runtime only": "대시보드 실행 환경",
+    "Available disk": "사용 가능한 디스크",
+    "Workspace filesystem · measured": "작업 공간 파일 시스템 · 측정값",
+    "Real training adapter": "실제 학습 어댑터",
+    "Unavailable": "사용 불가",
+    "Not configured or implemented": "설정 또는 구현되지 않음",
+    "Demo GPU profile": "데모 GPU 프로필",
+    "12 GB assumed": "12 GB 가정",
+    "Synthetic only · not this host": "모의 데이터 · 이 서버의 측정값 아님",
+    "Preflight findings": "사전 진단 결과",
+    "Before connecting your RTX 3060": "RTX 3060 연결 전 확인",
+    "Confirm the actual VRAM, available disk and NVIDIA driver on the training machine. Choose Ubuntu for a dedicated Linux workflow or WSL2 if you continue using Windows.": "학습 컴퓨터의 실제 VRAM, 사용 가능한 디스크와 NVIDIA 드라이버를 확인하세요. 전용 Linux 환경에는 Ubuntu, Windows를 유지하려면 WSL2를 검토하세요.",
+    "In WSL2, use the Windows NVIDIA driver. Do not install a separate Linux NVIDIA display driver inside WSL.": "WSL2에서는 Windows NVIDIA 드라이버를 사용합니다. WSL 안에 별도의 Linux NVIDIA 디스플레이 드라이버를 설치하지 마세요.",
+    "Microsoft GPU guide ↗": "Microsoft GPU 가이드 ↗",
+    "Preflight is not a training guarantee": "사전 진단은 학습 가능성을 보장하지 않습니다",
+    "Model-specific compatibility and a tiny approved test run must be verified by a future adapter.": "모델별 호환성과 작은 시험 실행은 향후 실제 어댑터에서 확인해야 합니다.",
+    "Diagnostic details · no private filesystem roots": "진단 상세 · 비공개 파일 경로 제외",
+    "Read from current host": "현재 서버에서 조회",
+    "Detected": "감지됨",
+    "Not detected": "감지되지 않음",
+    "Read-only local probe": "읽기 전용 로컬 조회",
+    "No verified real training worker": "검증된 실제 학습 워커 없음",
+    "Demo simulation is available; real model training is disabled.": "데모 시뮬레이션은 사용할 수 있으며 실제 모델 학습은 비활성화되어 있습니다.",
+    "Local sign-in, LAN availability and remote permissions are separate.": "로그인, LAN 접속과 원격 권한은 각각 설정합니다.",
+    "The access API is unavailable. Check the local server.": "접근 설정 API를 사용할 수 없습니다. 로컬 서버를 확인하세요.",
+    "Saved permissions and effective access are shown separately. Password changes and access controls apply only to this dashboard.": "저장된 권한과 실제 적용 상태를 구분하여 표시합니다. 비밀번호와 접근 권한은 이 대시보드에만 적용됩니다.",
+    "LOCAL SETUP REQUIRED": "초기 설정 필요",
+    "PASSWORD GATE COMPLETE": "비밀번호 설정 완료",
+    "LAN is locked while the initial password is active.": "초기 비밀번호를 사용하는 동안 LAN 접속은 잠겨 있습니다.",
+    "Initial admin/admin works only from a loopback connection. Sign in locally and replace it with a unique password of at least 12 characters before LAN permissions can take effect. No LAN listener is enabled by this screen.": "초기 admin/admin 계정은 루프백 접속에서만 동작합니다. 로컬에서 로그인하고 12자 이상의 고유한 비밀번호로 변경해야 LAN 권한이 적용됩니다. 이 화면에서 LAN 리스너를 실행하지는 않습니다.",
+    "Workspace access": "작업 공간 접근",
+    "Listener:": "리스너:",
+    "· Transport:": "· 연결 방식:",
+    "Permissions do not open a port, change a firewall or expose a public service.": "권한 설정은 포트나 방화벽을 변경하거나 공개 서비스를 만들지 않습니다.",
+    "Same-network access requires a separate local launch": "같은 네트워크 접속에는 별도 LAN 실행이 필요합니다",
+    "Use the LAN setup guide on your own Ubuntu/WSL2 host. Keep the default loopback for private local use. Use TLS before sending LAN passwords; no router port forwarding is needed.": "Ubuntu/WSL2 서버의 LAN 설정 가이드를 참고하세요. 로컬 전용 사용에는 기본 루프백을 유지하세요. LAN에서 비밀번호를 전송할 때는 TLS를 사용하며 공유기 포트 포워딩은 필요하지 않습니다.",
+    "Sign in to manage settings. The initial account is for local setup only.": "설정을 관리하려면 로그인하세요. 초기 계정은 로컬 설정용입니다.",
+    "Sign in locally": "로그인",
+    "Signed in as": "로그인 계정:",
+    "Save access settings": "접근 설정 저장",
+    "Sign out": "로그아웃",
+    "local connection": "로컬 접속",
+    "remote connection": "원격 접속",
+    "LAN access": "LAN 접속",
+    "Allow authenticated connections on an explicitly configured LAN listener.": "명시적으로 구성한 LAN 리스너에서 인증된 접속을 허용합니다.",
+    "Remote viewing": "원격 조회",
+    "Read workspace data from an authenticated LAN connection.": "인증된 LAN 접속에서 작업 공간 데이터를 조회합니다.",
+    "Remote control": "원격 제어",
+    "Allow authenticated LAN changes and demo controls; real training still needs a verified adapter.": "인증된 LAN 접속에서 설정 변경과 데모 제어를 허용합니다. 실제 학습에는 검증된 어댑터가 필요합니다.",
+    "Configured:": "저장값:",
+    "· Effective:": "· 적용값:",
+    "ON": "켜짐",
+    "OFF": "꺼짐",
+    "LAN opt-in enabled": "LAN 실행 사용",
+    "loopback only": "루프백 전용",
+    "Replace the initial password": "초기 비밀번호 변경",
+    "Change dashboard password": "대시보드 비밀번호 변경",
+    "Current password": "현재 비밀번호",
+    "New unique password": "새 비밀번호",
+    "Confirm new password": "새 비밀번호 확인",
+    "Change password": "비밀번호 변경",
+    "& unlock setup": "및 초기 설정 완료",
+    "Sign in locally first. Passwords are hashed server-side and never stored in frontend assets or browser local storage.": "먼저 로그인하세요. 비밀번호는 서버에서 해시로 처리하며 프런트엔드 파일이나 브라우저 저장소에 저장하지 않습니다.",
+    "Access permissions saved": "접근 권한을 저장했습니다",
+    "Signed out": "로그아웃했습니다",
+    "The new passwords do not match": "새 비밀번호와 확인 값이 일치하지 않습니다",
+    "Password changed. Setup gate is complete.": "비밀번호를 변경했습니다. 초기 설정이 완료됐습니다.",
+    "Use one valid JSON object on each line, with double-quoted keys and no trailing commas.": "한 줄에 올바른 JSON 객체 하나를 작성하세요. 키에는 큰따옴표를 사용하고 마지막 항목 뒤에 쉼표를 붙이지 마세요.",
+    "Match the documented required fields and message roles. Check the highlighted line and field.": "문서의 필수 필드와 메시지 역할에 맞춰 작성하세요. 표시된 줄과 필드를 확인하세요.",
+    "Validate first, fix every reported row, then save again.": "먼저 검증하고 표시된 모든 행을 수정한 뒤 다시 저장하세요.",
+    "Use a smaller UTF-8 JSONL sample under 128 KiB. Keep full training data on the future local worker.": "128 KiB 이하의 작은 UTF-8 JSONL 샘플을 사용하세요. 전체 학습 데이터는 향후 로컬 워커에서 관리하세요.",
+    "Use a unique 12+ character password, or a 20+ character passphrase; confirm both fields match.": "12자 이상의 고유한 비밀번호 또는 20자 이상의 암호 구문을 사용하고 두 입력값이 일치하는지 확인하세요.",
+    "Enter the same new password in both fields before submitting.": "제출하기 전에 두 필드에 같은 새 비밀번호를 입력하세요.",
+    "Check the admin ID and current password. Initial admin/admin is accepted only for local first-use setup.": "관리자 ID와 현재 비밀번호를 확인하세요. 초기 admin/admin은 최초 로컬 설정에서만 사용할 수 있습니다.",
+    "Sign in on the same machine and change the initial password in Access settings.": "같은 컴퓨터에서 로그인한 뒤 설정 화면에서 초기 비밀번호를 변경하세요.",
+    "Sign out and sign in again to refresh the session. Do not copy a token from another session.": "로그아웃 후 다시 로그인하여 세션을 갱신하세요. 다른 세션의 토큰을 복사하지 마세요.",
+    "Wait five minutes before trying again. Repeated attempts do not bypass the limit.": "5분 뒤 다시 시도하세요. 반복해서 시도해도 제한은 해제되지 않습니다.",
+    "Ask the local admin to enable remote viewing. Control permission does not grant access to data.": "로컬 관리자에게 원격 조회 활성화를 요청하세요. 제어 권한만으로는 데이터를 조회할 수 없습니다.",
+    "Ask the local admin to enable remote control, or use the local dashboard.": "로컬 관리자에게 원격 제어 활성화를 요청하거나 로컬 대시보드를 사용하세요.",
+    "Use preparation/demo tools only. A verified real local adapter is not implemented yet.": "준비·데모 도구를 사용하세요. 검증된 실제 로컬 어댑터는 아직 구현되지 않았습니다.",
+    "Review the reported field and use the documented format or a smaller safe preset. Retry after correcting the input.": "표시된 필드를 확인하고 문서의 형식이나 작은 프리셋을 사용하세요. 입력값을 수정한 뒤 다시 시도하세요.",
+    "· check failed": "· 검증 실패",
+    "What failed:": "실패 내용:",
+    "Technical details · safe": "기술 상세 · 민감정보 제외",
+    "Authentication": "인증",
+    "Forge Fine-tuning Dashboard": "Forge 파인튜닝 대시보드",
+    "LOCAL WORKSPACE": "로컬 작업 공간",
+    "Training studio": "학습 작업 공간",
+    "Ubuntu / WSL2 ready": "Ubuntu / WSL2 지원",
+    "Overview": "개요",
+    "Experiments": "실험",
+    "Datasets": "데이터셋",
+    "Environment": "환경",
+    "DEMO ENVIRONMENT": "데모 환경",
+    "Explore the workflow.": "작업 흐름을 살펴보세요.",
+    "Connect your GPU later.": "GPU 연결은 향후 지원됩니다.",
+    "Local-first · no cloud training": "로컬 중심 · 클라우드 학습 없음",
+    "Workspace": "작업 공간",
+    "Connecting": "연결 중",
+    "New experiment": "새 실험",
+    "YOUR MODELS. YOUR MACHINE.": "나의 모델, 나의 컴퓨터.",
+    "Fine-tuning, in focus": "한눈에 보는 파인튜닝",
+    "A clear view of every experiment, from the first step to the final checkpoint.": "첫 스텝부터 마지막 체크포인트까지 모든 실험을 한눈에 확인하세요.",
+    "You're exploring a simulated workspace": "모의 작업 공간을 살펴보고 있습니다",
+    "All runs, charts and GPU readings are synthetic. No training GPU is connected and no model is downloaded.": "모든 실행, 차트와 GPU 수치는 모의 데이터입니다. 학습 GPU가 연결되지 않았으며 모델을 다운로드하지 않습니다.",
+    "DEMO": "데모",
+    "First time fine-tuning? Follow a small, safe workflow": "파인튜닝이 처음인가요? 작은 단계부터 시작하세요",
+    "01 · Data": "01 · 데이터",
+    "Validate a few JSONL examples": "소량의 JSONL 예제 검증",
+    "02 · Model": "02 · 모델",
+    "Pick a small compatible label": "작은 모델 라벨 선택",
+    "03 · Config": "03 · 설정",
+    "Use a preset and dry-run": "프리셋과 실행 전 검증 사용",
+    "04 · Run": "04 · 실행",
+    "Try the synthetic queue": "모의 대기열 사용",
+    "05 · Evaluate": "05 · 평가",
+    "Compare demo eval loss": "데모 검증 손실 비교",
+    "Preparation tools are real; training/evaluation runs are simulated. A verified local adapter is still required before your GPU can train a model.": "데이터 준비 도구는 실제로 동작하며 학습·평가 실행은 모의 동작입니다. GPU로 모델을 학습하려면 검증된 로컬 어댑터가 필요합니다.",
+    "EXPERIMENTS": "실험",
+    "Loading experiments": "실험 불러오는 중",
+    "ACTIVE RUNS": "진행 중인 실험",
+    "One simulated GPU · single-run queue": "모의 GPU 1개 · 단일 실행 대기열",
+    "SIMULATED VRAM": "모의 VRAM",
+    "12 GB demo assumption · not measured": "데모에서 12 GB 가정 · 측정값 아님",
+    "WORKER": "워커",
+    "Demo engine": "데모 엔진",
+    "Deterministic simulation · local API": "재현 가능한 시뮬레이션 · 로컬 API",
+    "A small queue. A complete picture.": "작은 대기열에서 전체 흐름을 확인하세요.",
+    "All": "전체",
+    "EXPERIMENT": "실험",
+    "STATUS": "상태",
+    "PROGRESS": "진행률",
+    "TRAIN LOSS": "학습 손실",
+    "METHOD": "학습 방식",
+    "EXPERIMENT INSIGHTS": "실험 상세",
+    "Loading experiment…": "실험 불러오는 중…",
+    "Learning curve": "학습 곡선",
+    "Loss over training steps": "학습 스텝별 손실",
+    "Train": "학습",
+    "Eval": "검증",
+    "EVAL LOSS": "검증 손실",
+    "LEARNING RATE": "학습률",
+    "STEP": "스텝",
+    "Synthetic metrics": "모의 지표",
+    "GPU pulse": "GPU 상태",
+    "Simulated telemetry": "모의 사용량",
+    "SIM": "모의",
+    "RTX 3060 profile": "RTX 3060 프로필",
+    "12 GB assumed for this demo": "이 데모에서는 12 GB 가정",
+    "Utilization": "사용률",
+    "Memory allocation": "메모리 할당",
+    "Temperature": "온도",
+    "Training GPU linked": "학습 GPU 연결",
+    "No": "아니요",
+    "Readings are generated by the demo engine, never read from your computer.": "수치는 데모 엔진에서 생성하며 컴퓨터의 실제 상태를 조회하지 않습니다.",
+    "Training log": "학습 로그",
+    "Checkpoints": "체크포인트",
+    "Configuration": "설정",
+    "SYNTHETIC DATA": "모의 데이터",
+    "Connect a local worker": "로컬 워커 연결",
+    "This prototype runs a demo engine only. The future worker adapter must run on your own Ubuntu or WSL2 machine and emit validated metrics, logs and checkpoint metadata.": "이 프로토타입은 데모 엔진만 실행합니다. 향후 워커 어댑터는 Ubuntu 또는 WSL2 컴퓨터에서 실행하여 검증된 지표, 로그와 체크포인트 메타데이터를 제공해야 합니다.",
+    "Prepare locally": "로컬 환경 준비",
+    "Confirm VRAM, NVIDIA driver and CUDA support on the training computer.": "학습 컴퓨터의 VRAM, NVIDIA 드라이버와 CUDA 지원을 확인하세요.",
+    "Use a typed adapter": "형식이 정의된 어댑터 사용",
+    "No shell command input. Restrict datasets and outputs to approved local roots.": "셸 명령을 입력하지 않습니다. 데이터셋과 출력은 승인된 로컬 경로로 제한하세요.",
+    "Keep access private": "비공개 접근 유지",
+    "Loopback by default. Authentication and authorization are required before any remote access.": "기본 접속은 루프백입니다. 원격 접속에는 인증과 권한 확인이 필요합니다.",
+    "Real training and remote worker connections are planned, not implemented.": "실제 학습과 원격 워커 연결은 아직 구현되지 않았습니다.",
+    "Built for your local training loop": "로컬 학습 흐름을 위한 도구",
+    "Forge · demo prototype · synthetic data only": "Forge · 데모 프로토타입 · 모의 데이터만 사용",
+    "NEW EXPERIMENT": "새 실험",
+    "Make room for an idea.": "새로운 실험을 만들어 보세요.",
+    "Create a simulated run. This does not download a model or start real training.": "모의 실험을 생성합니다. 모델을 다운로드하거나 실제 학습을 시작하지 않습니다.",
+    "Experiment name": "실험 이름",
+    "LLM · text": "LLM · 텍스트",
+    "VLM · vision + text": "VLM · 이미지 + 텍스트",
+    "Base model": "기본 모델",
+    "Demo LLM · 3B": "데모 LLM · 3B",
+    "Demo LLM · 7B": "데모 LLM · 7B",
+    "Demo VLM · 3B": "데모 VLM · 3B",
+    "Dataset alias": "데이터셋 라벨",
+    "A label only. No files are accessed or uploaded.": "라벨만 사용하며 파일을 읽거나 업로드하지 않습니다.",
+    "Demo scenario": "데모 시나리오",
+    "Normal completion": "정상 완료",
+    "Simulated out-of-memory failure": "모의 메모리 부족 오류",
+    "Cancel": "취소",
+    "Create demo run": "데모 실험 생성",
+    "LOCAL WORKSPACE ACCESS": "로컬 작업 공간 접속",
+    "Sign in to Forge.": "Forge에 로그인하세요.",
+    "Initial admin/admin is for local setup only. LAN stays locked until the password is changed locally.": "초기 admin/admin은 로컬 설정용입니다. 로컬에서 비밀번호를 변경할 때까지 LAN 접속은 잠겨 있습니다.",
+    "Username": "사용자 이름",
+    "Password": "비밀번호",
+    "Sign in": "로그인",
+    "Display language": "표시 언어",
+    "Language": "언어",
+    "Choose the interface language. This preference is saved in this browser and applies immediately.": "화면에 표시할 언어를 선택하세요. 선택은 이 브라우저에 저장되며 즉시 적용됩니다.",
+    "Language changed": "표시 언어를 변경했습니다",
+    "DATASETS": "데이터셋",
+    "RECIPES": "학습 설정",
+    "COMPARE": "실험 비교",
+    "ENVIRONMENT": "환경",
+    "SETTINGS": "설정",
+    "learning rate": "학습률",
+    "batch size": "배치 크기",
+    "gradient accumulation": "그래디언트 누적",
+    "lora rank": "LoRA 랭크",
+    "epochs": "에포크",
+    "sequence length": "시퀀스 길이",
+    "max steps": "최대 스텝",
+    "kind": "모델 유형",
+    "model": "모델",
+    "dataset": "데이터셋",
+    "method": "학습 방식",
+    "seed": "시드",
+    "failure mode": "오류 시나리오",
+    "Small LLM LORA prep": "소형 LLM LoRA 준비",
+    "Small LLM QLORA prep": "소형 LLM QLoRA 준비",
+    "Small VLM LORA prep": "소형 VLM LoRA 준비",
+    "Small VLM QLORA prep": "소형 VLM QLoRA 준비",
+    "No local training adapter is connected or implemented. Preparation does not start training.": "로컬 학습 어댑터가 연결되거나 구현되지 않았습니다. 준비 작업은 학습을 시작하지 않습니다.",
+    "Read-only installed nvidia-smi query completed.": "설치된 nvidia-smi의 읽기 전용 조회를 완료했습니다.",
+    "No installed nvidia-smi utility was found; GPU availability is unknown.": "nvidia-smi가 설치되어 있지 않아 GPU 사용 가능 여부를 확인할 수 없습니다.",
+    "Imported datasets have not been tokenized or measured for this model.": "가져온 데이터셋을 이 모델에 맞춰 토큰화하거나 측정하지 않았습니다.",
+    "Image existence, contents and dimensions are not validated.": "이미지의 존재 여부, 내용과 크기는 검증하지 않습니다.",
+    "Use a new password with 12–256 characters.": "12~256자의 새 비밀번호를 사용하세요.",
+    "Use at least three character types, or a passphrase of 20+ characters.": "세 종류 이상의 문자를 사용하거나 20자 이상의 암호 구문을 사용하세요.",
+    "Invalid username or password.": "사용자 이름 또는 비밀번호가 올바르지 않습니다.",
+    "{count} demo failure recorded. Review the injected scenario and next steps.": "데모 실패 {count}건이 기록됐습니다. 설정된 오류 시나리오와 다음 단계를 확인하세요.",
+    "{count} demo failures recorded. Review the injected scenario and next steps.": "데모 실패 {count}건이 기록됐습니다. 설정된 오류 시나리오와 다음 단계를 확인하세요.",
+    "Select": "선택:",
+    "Synthetic loss chart, {count} points, latest training loss {loss}": "모의 손실 차트, 측정점 {count}개, 최근 학습 손실 {loss}",
+    "Synthetic training logs": "모의 학습 로그",
+    "Comparison of synthetic training loss across steps": "스텝별 모의 학습 손실 비교",
+    "Forge home": "Forge 홈",
+    "Primary navigation": "주요 메뉴",
+    "Workspace views": "작업 공간 화면",
+    "Workspace summary": "작업 공간 요약",
+    "Filter experiments": "실험 필터",
+    "Selected experiment": "선택한 실험",
+    "Training and evaluation loss chart": "학습·검증 손실 차트",
+    "Experiment data": "실험 데이터",
+    "Close dialog": "대화상자 닫기",
+    "Close sign-in": "로그인 창 닫기",
+    "Blank line ignored.": "빈 줄은 건너뜁니다.",
+    "Line must be valid JSON with unique keys, finite values and bounded nesting.": "각 줄은 중복 없는 키, 유한한 값과 제한된 중첩 깊이를 가진 올바른 JSON이어야 합니다.",
+    "At least one nonempty JSONL record is required.": "비어 있지 않은 JSONL 레코드가 하나 이상 필요합니다.",
+    "Fewer than 10 valid records: this is suitable for preparation checks, not evidence of training quality.": "유효한 레코드가 10개 미만입니다. 준비 단계의 검증용이며 학습 품질의 근거가 아닙니다.",
+    "The same normalized records already exist in the workspace; importing again will create a separate dataset.": "같은 정규화 레코드가 작업 공간에 있습니다. 다시 가져오면 별도 데이터셋이 생성됩니다.",
+    "Image labels are syntactically valid; files, existence, dimensions and image contents have not been checked.": "이미지 경로 라벨의 형식은 올바르지만 파일의 존재 여부, 크기와 내용은 확인하지 않았습니다.",
+    "This split prepares records only; it does not tokenize, train, evaluate or open images.": "이 분할은 레코드만 준비합니다. 토큰화, 학습, 평가 또는 이미지 열기는 수행하지 않습니다.",
+    "Small split counts make validation results unstable.": "분할된 데이터가 적으면 검증 결과가 불안정할 수 있습니다.",
+    "Model label is unverified. Estimate assumes a small 2B VLM or 3B LLM; no model metadata was downloaded.": "모델 라벨이 검증되지 않았습니다. 소형 2B VLM 또는 3B LLM을 가정하며 모델 메타데이터를 다운로드하지 않았습니다.",
+    "Longer context increases activation memory; VLM image tokens can add further unmeasured cost.": "컨텍스트가 길어지면 활성화 메모리가 증가합니다. VLM의 이미지 토큰은 측정하지 않은 비용을 추가할 수 있습니다.",
+    "Larger per-device batches increase activation memory. Gradient accumulation is usually a safer tuning lever but is not a fit guarantee.": "장치별 배치가 커지면 활성화 메모리가 증가합니다. 그래디언트 누적을 검토할 수 있지만 실행 가능성을 보장하지는 않습니다.",
+    "High LoRA rank increases adapter, optimizer and gradient memory.": "높은 LoRA 랭크는 어댑터, 옵티마이저와 그래디언트 메모리를 늘립니다.",
+    "Image resolution, encoder cost and visual-token counts are not included in this rough estimate; image files remain unopened.": "이 추정치는 이미지 해상도, 인코더 비용과 시각 토큰 수를 반영하지 않으며 이미지 파일을 열지 않습니다.",
+    "Imported dataset has not been split into train and validation records.": "가져온 데이터셋을 학습·검증 데이터로 아직 분할하지 않았습니다.",
+    "Imported dataset contains exact duplicates; check evaluation leakage before training.": "가져온 데이터셋에 동일한 중복 레코드가 있습니다. 학습 전에 평가 데이터 누출을 확인하세요.",
+    "Selected dataset is a synthetic simulator label, not an imported training file.": "선택한 데이터셋은 모의 시뮬레이터 라벨이며 가져온 학습 파일이 아닙니다.",
+    "Dataset label is not in the imported workspace. Its schema and availability have not been checked.": "작업 공간에 가져온 데이터셋 라벨이 아닙니다. 스키마와 사용 가능 여부를 확인하지 않았습니다.",
+    "failure_mode is a simulator-only setting and cannot configure a real training worker.": "failure_mode는 시뮬레이터 전용 설정이며 실제 학습 워커를 구성할 수 없습니다.",
+    "No real local training worker/adapter is implemented.": "실제 로컬 학습 워커·어댑터가 아직 구현되지 않았습니다.",
+    "Workspace disk availability could not be read.": "작업 공간의 디스크 사용 가능 용량을 조회하지 못했습니다.",
+    "The installed utility reported no GPU devices.": "설치된 조회 도구에서 GPU 장치를 찾지 못했습니다.",
+    "The installed GPU utility failed, timed out or returned unsupported output; GPU availability is unknown.": "GPU 조회 도구가 실패하거나 시간 초과 또는 지원하지 않는 응답을 반환했습니다. GPU 사용 가능 여부를 확인할 수 없습니다.",
+    "JSONL text exceeds the 128 KiB limit.": "JSONL 텍스트가 128 KiB 제한을 초과합니다.",
+    "JSONL text exceeds the 128 KiB UTF-8 limit.": "JSONL 텍스트가 UTF-8 기준 128 KiB 제한을 초과합니다.",
+    "Only name, kind, text and optional synthetic fields are supported.": "name, kind, text와 선택 사항인 synthetic 필드만 지원합니다.",
+    "Each message needs role and content fields only.": "각 메시지는 role과 content 필드만 포함해야 합니다.",
+    "Rows require at least one user message and one assistant target.": "각 레코드에는 user 메시지와 assistant 응답이 하나 이상 필요합니다.",
+    "Use a less repetitive password.": "반복이 적은 비밀번호를 사용하세요.",
+    "Choose a less repetitive password.": "반복이 적은 비밀번호를 사용하세요.",
+    "Incorrect username or password.": "사용자 이름 또는 비밀번호가 올바르지 않습니다.",
+    "Unknown": "알 수 없음",
+    "{budget} GB VRAM is an explicit planning assumption. This heuristic does not measure hardware, tokenize data or guarantee that any model/configuration fits.": "VRAM {budget} GB는 계획 단계의 가정입니다. 이 추정치는 하드웨어 측정이나 데이터 토큰화를 수행하지 않으며 모델·설정의 실행 가능성을 보장하지 않습니다.",
+    "Heuristic memory estimate exceeds the assumed {budget} GB budget; reduce context, batch or rank and validate with a real worker.": "메모리 추정치가 가정한 {budget} GB를 초과합니다. 컨텍스트, 배치 또는 랭크를 줄이고 실제 워커에서 검증하세요.",
+    "Heuristic memory estimate leaves limited headroom within the assumed {budget} GB budget.": "가정한 {budget} GB에서 메모리 여유가 부족할 것으로 예상됩니다.",
+    "Exact normalized duplicate of line {line}; retained unless you edit the source.": "{line}번 줄과 정규화된 내용이 같습니다. 원본을 수정하지 않으면 중복이 유지됩니다.",
+    "{count} validation record(s) have exact duplicates in training; edit or deduplicate the source before using this split for evaluation.": "검증 레코드 {count}개가 학습 데이터와 완전히 중복됩니다. 평가에 사용하기 전에 원본을 수정하거나 중복을 제거하세요."
+};
+  const storageKey = 'forge.language';
+  const supported = new Set(['en', 'ko']);
+  let language = 'en';
+  try {
+    const saved = localStorage.getItem(storageKey);
+    if (supported.has(saved)) language = saved;
+  } catch { /* Keep the interface usable when browser storage is disabled. */ }
+
+  const staticText = [];
+  const staticAttributes = [];
+  const numericMessages = [
+    ['{budget} GB VRAM is an explicit planning assumption. This heuristic does not measure hardware, tokenize data or guarantee that any model/configuration fits.', 'budget'],
+    ['Heuristic memory estimate exceeds the assumed {budget} GB budget; reduce context, batch or rank and validate with a real worker.', 'budget'],
+    ['Heuristic memory estimate leaves limited headroom within the assumed {budget} GB budget.', 'budget'],
+    ['Exact normalized duplicate of line {line}; retained unless you edit the source.', 'line'],
+    ['{count} validation record(s) have exact duplicates in training; edit or deduplicate the source before using this split for evaluation.', 'count']
+  ].map(([key, field]) => ({key, field, pattern: new RegExp('^' + key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace('\\{' + field + '\\}', '(\\d+(?:\\.\\d+)?)') + '$')}));
+  const translate = (message, values = {}) => {
+    let text = language === 'ko' && Object.hasOwn(korean, message) ? korean[message] : String(message ?? '');
+    if (language === 'ko' && !Object.hasOwn(korean, message)) {
+      for (const entry of numericMessages) {
+        const match = text.match(entry.pattern);
+        if (match) { text = korean[entry.key]; values = {[entry.field]: match[1], ...values}; break; }
+      }
+    }
+    return text.replace(/\{(\w+)\}/g, (placeholder, key) => Object.hasOwn(values, key) ? String(values[key]) : placeholder);
+  };
+
+  function applyStatic() {
+    if (document.documentElement) document.documentElement.lang = language;
+    for (const entry of staticText) {
+      if (entry.node.isConnected) entry.node.data = entry.leading + translate(entry.key) + entry.trailing;
+    }
+    for (const entry of staticAttributes) {
+      if (entry.element.isConnected) entry.element.setAttribute(entry.name, translate(entry.key));
+    }
+  }
+
+  function registerStatic() {
+    // Register the original HTML once, before app.js renders user content.
+    // Explicit source-node references avoid translating later input/data nodes.
+    if (!document.createTreeWalker) return;
+    const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.parentElement?.closest('script, style, textarea, pre, code')) continue;
+      const key = node.data.trim();
+      if (!Object.hasOwn(korean, key)) continue;
+      staticText.push({node, key, leading: node.data.match(/^\s*/)[0], trailing: node.data.match(/\s*$/)[0]});
+    }
+    for (const element of document.querySelectorAll('[aria-label], [title], [placeholder]')) {
+      for (const name of ['aria-label', 'title', 'placeholder']) {
+        const key = element.getAttribute(name);
+        if (key && Object.hasOwn(korean, key)) staticAttributes.push({element, name, key});
+      }
+    }
+    applyStatic();
+  }
+
+  function setLanguage(next, persist = true) {
+    if (!supported.has(next) || next === language) return false;
+    language = next;
+    if (persist) {
+      try { localStorage.setItem(storageKey, language); } catch { /* In-memory selection still works. */ }
+    }
+    applyStatic();
+    if (document.dispatchEvent && globalThis.CustomEvent) document.dispatchEvent(new CustomEvent('forge:languagechange', {detail: {language}}));
+    return true;
+  }
+
+  registerStatic();
+  globalThis.addEventListener?.('storage', event => {
+    if (event.key === storageKey) setLanguage(event.newValue || 'en', false);
+  });
+  return Object.freeze({translate, setLanguage, applyStatic, get language() { return language; }});
+})();
+const t = (message, values) => I18n.translate(message, values);
+
+const OFFLINE_ROUTES={"/api/status": {"mode": "demo", "demo": true, "health": {"status": "ok", "worker_alive": false, "uptime_seconds": 0}, "gpu": {"name": "Simulated 12 GB GPU", "detected": false, "simulated": true, "total_gb": 12, "used_gb": 5.52, "utilization": 92, "temp_c": 65.0, "vram_total_gb": 12, "vram_used_gb": 5.52, "utilization_percent": 92, "temperature_c": 65.0, "assumption": "Illustrative 12 GB VRAM budget. No GPU hardware is detected or measured."}, "runs": [{"id": "run-0004", "name": "Product captions · vision adapter", "kind": "VLM", "model_type": "vlm", "model_id": "Qwen/Qwen2-VL-2B-Instruct", "model": "Qwen/Qwen2-VL-2B-Instruct", "method": "qlora", "status": "queued", "config": {"name": "Product captions · vision adapter", "kind": "VLM", "model": "Qwen/Qwen2-VL-2B-Instruct", "dataset": "vision-demo", "method": "qlora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 16, "max_steps": 120, "sequence_length": 1024, "seed": 42, "failure_mode": "none"}, "created_at": "2025-12-31T23:59:50Z", "updated_at": "2025-12-31T23:59:50Z", "started_at": null, "finished_at": null, "step": 0, "current_step": 0, "total_steps": 120, "elapsed_seconds": 0, "metrics": [], "logs": [{"time": "2025-12-31T23:59:50Z", "level": "info", "message": "Demo run queued. Model and dataset labels will not be downloaded or opened."}], "checkpoints": [], "error": null, "retry_of": null, "progress": 0.0, "latest_metrics": null, "eta_seconds": null, "allowed_actions": ["start", "cancel"], "simulated": true}, {"id": "run-0003", "name": "Research assistant · QLoRA", "kind": "LLM", "model_type": "llm", "model_id": "Qwen/Qwen2.5-3B-Instruct", "model": "Qwen/Qwen2.5-3B-Instruct", "method": "qlora", "status": "running", "config": {"name": "Research assistant · QLoRA", "kind": "LLM", "model": "Qwen/Qwen2.5-3B-Instruct", "dataset": "instruction-demo", "method": "qlora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 16, "max_steps": 180, "sequence_length": 1024, "seed": 42, "failure_mode": "none"}, "created_at": "2025-12-31T23:59:25Z", "updated_at": "2026-01-01T00:00:00Z", "started_at": "2025-12-31T23:59:25Z", "finished_at": null, "step": 35, "current_step": 35, "total_steps": 180, "elapsed_seconds": 35, "metrics": [{"step": 0, "elapsed_seconds": 0, "loss": 2.9644, "eval_loss": 3.0844, "learning_rate": 0.0002, "tokens_per_second": 175.0, "vram_used_gb": 5.62}, {"step": 1, "elapsed_seconds": 1, "loss": 2.9229, "eval_loss": 3.0463, "learning_rate": 0.00019906, "tokens_per_second": 176.6, "vram_used_gb": 5.64}, {"step": 2, "elapsed_seconds": 2, "loss": 2.8767, "eval_loss": 3.0033, "learning_rate": 0.00019811, "tokens_per_second": 178.1, "vram_used_gb": 5.65}, {"step": 3, "elapsed_seconds": 3, "loss": 2.8271, "eval_loss": 2.9569, "learning_rate": 0.00019717, "tokens_per_second": 179.5, "vram_used_gb": 5.67}, {"step": 4, "elapsed_seconds": 4, "loss": 2.7763, "eval_loss": 2.9089, "learning_rate": 0.00019622, "tokens_per_second": 180.7, "vram_used_gb": 5.68}, {"step": 5, "elapsed_seconds": 5, "loss": 2.7264, "eval_loss": 2.8615, "learning_rate": 0.00019528, "tokens_per_second": 181.7, "vram_used_gb": 5.7}, {"step": 6, "elapsed_seconds": 6, "loss": 2.6796, "eval_loss": 2.8167, "learning_rate": 0.00019433, "tokens_per_second": 182.5, "vram_used_gb": 5.71}, {"step": 7, "elapsed_seconds": 7, "loss": 2.6377, "eval_loss": 2.7762, "learning_rate": 0.00019339, "tokens_per_second": 182.9, "vram_used_gb": 5.72}, {"step": 8, "elapsed_seconds": 8, "loss": 2.6018, "eval_loss": 2.7414, "learning_rate": 0.00019244, "tokens_per_second": 183.0, "vram_used_gb": 5.74}, {"step": 9, "elapsed_seconds": 9, "loss": 2.5725, "eval_loss": 2.7125, "learning_rate": 0.0001915, "tokens_per_second": 182.8, "vram_used_gb": 5.75}, {"step": 10, "elapsed_seconds": 10, "loss": 2.5493, "eval_loss": 2.6891, "learning_rate": 0.00019056, "tokens_per_second": 182.3, "vram_used_gb": 5.75}, {"step": 11, "elapsed_seconds": 11, "loss": 2.5311, "eval_loss": 2.6702, "learning_rate": 0.00018961, "tokens_per_second": 181.5, "vram_used_gb": 5.76}, {"step": 12, "elapsed_seconds": 12, "loss": 2.5161, "eval_loss": 2.6539, "learning_rate": 0.00018867, "tokens_per_second": 180.4, "vram_used_gb": 5.77}, {"step": 13, "elapsed_seconds": 13, "loss": 2.5021, "eval_loss": 2.6382, "learning_rate": 0.00018772, "tokens_per_second": 179.1, "vram_used_gb": 5.77}, {"step": 14, "elapsed_seconds": 14, "loss": 2.4869, "eval_loss": 2.6207, "learning_rate": 0.00018678, "tokens_per_second": 177.7, "vram_used_gb": 5.77}, {"step": 15, "elapsed_seconds": 15, "loss": 2.4686, "eval_loss": 2.5997, "learning_rate": 0.00018583, "tokens_per_second": 176.1, "vram_used_gb": 5.77}, {"step": 16, "elapsed_seconds": 16, "loss": 2.4454, "eval_loss": 2.5736, "learning_rate": 0.00018489, "tokens_per_second": 174.5, "vram_used_gb": 5.77}, {"step": 17, "elapsed_seconds": 17, "loss": 2.4167, "eval_loss": 2.5417, "learning_rate": 0.00018394, "tokens_per_second": 173.0, "vram_used_gb": 5.76}, {"step": 18, "elapsed_seconds": 18, "loss": 2.3824, "eval_loss": 2.504, "learning_rate": 0.000183, "tokens_per_second": 171.5, "vram_used_gb": 5.76}, {"step": 19, "elapsed_seconds": 19, "loss": 2.3432, "eval_loss": 2.4615, "learning_rate": 0.00018206, "tokens_per_second": 170.1, "vram_used_gb": 5.75}, {"step": 20, "elapsed_seconds": 20, "loss": 2.3007, "eval_loss": 2.4156, "learning_rate": 0.00018111, "tokens_per_second": 168.9, "vram_used_gb": 5.74}, {"step": 21, "elapsed_seconds": 21, "loss": 2.2569, "eval_loss": 2.3685, "learning_rate": 0.00018017, "tokens_per_second": 168.0, "vram_used_gb": 5.73}, {"step": 22, "elapsed_seconds": 22, "loss": 2.2139, "eval_loss": 2.3226, "learning_rate": 0.00017922, "tokens_per_second": 167.4, "vram_used_gb": 5.72}, {"step": 23, "elapsed_seconds": 23, "loss": 2.1739, "eval_loss": 2.28, "learning_rate": 0.00017828, "tokens_per_second": 167.1, "vram_used_gb": 5.71}, {"step": 24, "elapsed_seconds": 24, "loss": 2.1388, "eval_loss": 2.2426, "learning_rate": 0.00017733, "tokens_per_second": 167.0, "vram_used_gb": 5.69}, {"step": 25, "elapsed_seconds": 25, "loss": 2.1096, "eval_loss": 2.2117, "learning_rate": 0.00017639, "tokens_per_second": 167.3, "vram_used_gb": 5.68}, {"step": 26, "elapsed_seconds": 26, "loss": 2.0869, "eval_loss": 2.1878, "learning_rate": 0.00017544, "tokens_per_second": 167.9, "vram_used_gb": 5.66}, {"step": 27, "elapsed_seconds": 27, "loss": 2.0703, "eval_loss": 2.1704, "learning_rate": 0.0001745, "tokens_per_second": 168.8, "vram_used_gb": 5.65}, {"step": 28, "elapsed_seconds": 28, "loss": 2.0585, "eval_loss": 2.1585, "learning_rate": 0.00017356, "tokens_per_second": 169.9, "vram_used_gb": 5.63}, {"step": 29, "elapsed_seconds": 29, "loss": 2.0498, "eval_loss": 2.1502, "learning_rate": 0.00017261, "tokens_per_second": 171.3, "vram_used_gb": 5.61}, {"step": 30, "elapsed_seconds": 30, "loss": 2.042, "eval_loss": 2.1434, "learning_rate": 0.00017167, "tokens_per_second": 172.8, "vram_used_gb": 5.6}, {"step": 31, "elapsed_seconds": 31, "loss": 2.0328, "eval_loss": 2.1359, "learning_rate": 0.00017072, "tokens_per_second": 174.3, "vram_used_gb": 5.58}, {"step": 32, "elapsed_seconds": 32, "loss": 2.0204, "eval_loss": 2.1255, "learning_rate": 0.00016978, "tokens_per_second": 175.9, "vram_used_gb": 5.56}, {"step": 33, "elapsed_seconds": 33, "loss": 2.0031, "eval_loss": 2.1106, "learning_rate": 0.00016883, "tokens_per_second": 177.5, "vram_used_gb": 5.55}, {"step": 34, "elapsed_seconds": 34, "loss": 1.9801, "eval_loss": 2.0905, "learning_rate": 0.00016789, "tokens_per_second": 179.0, "vram_used_gb": 5.54}, {"step": 35, "elapsed_seconds": 35, "loss": 1.9515, "eval_loss": 2.0649, "learning_rate": 0.00016694, "tokens_per_second": 180.3, "vram_used_gb": 5.52}], "logs": [{"time": "2025-12-31T23:59:25Z", "level": "info", "message": "Demo run queued. Model and dataset labels will not be downloaded or opened."}, {"time": "2025-12-31T23:59:25Z", "level": "info", "message": "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware."}, {"time": "2025-12-31T23:59:45Z", "level": "info", "message": "Synthetic step 20/180 · loss 2.3007"}], "checkpoints": [], "error": null, "retry_of": null, "progress": 19.4, "latest_metrics": {"step": 35, "elapsed_seconds": 35, "loss": 1.9515, "eval_loss": 2.0649, "learning_rate": 0.00016694, "tokens_per_second": 180.3, "vram_used_gb": 5.52}, "eta_seconds": 145, "allowed_actions": ["pause", "cancel"], "simulated": true}, {"id": "run-0002", "name": "Vision adapter · memory test", "kind": "VLM", "model_type": "vlm", "model_id": "Qwen/Qwen2-VL-2B-Instruct", "model": "Qwen/Qwen2-VL-2B-Instruct", "method": "qlora", "status": "failed", "config": {"name": "Vision adapter · memory test", "kind": "VLM", "model": "Qwen/Qwen2-VL-2B-Instruct", "dataset": "vision-demo", "method": "qlora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 4, "gradient_accumulation": 8, "lora_rank": 16, "max_steps": 100, "sequence_length": 1024, "seed": 42, "failure_mode": "oom"}, "created_at": "2025-12-31T23:53:00Z", "updated_at": "2025-12-31T23:53:24Z", "started_at": "2025-12-31T23:53:00Z", "finished_at": "2025-12-31T23:53:24Z", "step": 24, "current_step": 24, "total_steps": 100, "elapsed_seconds": 24, "metrics": [{"step": 0, "elapsed_seconds": 0, "loss": 2.9645, "eval_loss": 3.0845, "learning_rate": 0.0002, "tokens_per_second": 52.0, "vram_used_gb": 8.92}, {"step": 1, "elapsed_seconds": 1, "loss": 2.8998, "eval_loss": 3.0232, "learning_rate": 0.0001983, "tokens_per_second": 53.6, "vram_used_gb": 8.94}, {"step": 2, "elapsed_seconds": 2, "loss": 2.8307, "eval_loss": 2.9574, "learning_rate": 0.0001966, "tokens_per_second": 55.1, "vram_used_gb": 8.95}, {"step": 3, "elapsed_seconds": 3, "loss": 2.758, "eval_loss": 2.8878, "learning_rate": 0.0001949, "tokens_per_second": 56.5, "vram_used_gb": 8.97}, {"step": 4, "elapsed_seconds": 4, "loss": 2.6833, "eval_loss": 2.8159, "learning_rate": 0.0001932, "tokens_per_second": 57.7, "vram_used_gb": 8.98}, {"step": 5, "elapsed_seconds": 5, "loss": 2.6086, "eval_loss": 2.7436, "learning_rate": 0.0001915, "tokens_per_second": 58.7, "vram_used_gb": 9.0}, {"step": 6, "elapsed_seconds": 6, "loss": 2.5361, "eval_loss": 2.6732, "learning_rate": 0.0001898, "tokens_per_second": 59.5, "vram_used_gb": 9.01}, {"step": 7, "elapsed_seconds": 7, "loss": 2.4679, "eval_loss": 2.6065, "learning_rate": 0.0001881, "tokens_per_second": 59.9, "vram_used_gb": 9.02}, {"step": 8, "elapsed_seconds": 8, "loss": 2.4057, "eval_loss": 2.5452, "learning_rate": 0.0001864, "tokens_per_second": 60.0, "vram_used_gb": 9.04}, {"step": 9, "elapsed_seconds": 9, "loss": 2.3505, "eval_loss": 2.4905, "learning_rate": 0.0001847, "tokens_per_second": 59.8, "vram_used_gb": 9.05}, {"step": 10, "elapsed_seconds": 10, "loss": 2.3027, "eval_loss": 2.4425, "learning_rate": 0.000183, "tokens_per_second": 59.3, "vram_used_gb": 9.05}, {"step": 11, "elapsed_seconds": 11, "loss": 2.2617, "eval_loss": 2.4008, "learning_rate": 0.0001813, "tokens_per_second": 58.5, "vram_used_gb": 9.06}, {"step": 12, "elapsed_seconds": 12, "loss": 2.2262, "eval_loss": 2.364, "learning_rate": 0.0001796, "tokens_per_second": 57.4, "vram_used_gb": 9.07}, {"step": 13, "elapsed_seconds": 13, "loss": 2.1943, "eval_loss": 2.3303, "learning_rate": 0.0001779, "tokens_per_second": 56.1, "vram_used_gb": 9.07}, {"step": 14, "elapsed_seconds": 14, "loss": 2.1638, "eval_loss": 2.2976, "learning_rate": 0.0001762, "tokens_per_second": 54.7, "vram_used_gb": 9.07}, {"step": 15, "elapsed_seconds": 15, "loss": 2.1325, "eval_loss": 2.2637, "learning_rate": 0.0001745, "tokens_per_second": 53.1, "vram_used_gb": 9.07}, {"step": 16, "elapsed_seconds": 16, "loss": 2.0984, "eval_loss": 2.2266, "learning_rate": 0.0001728, "tokens_per_second": 51.5, "vram_used_gb": 9.07}, {"step": 17, "elapsed_seconds": 17, "loss": 2.06, "eval_loss": 2.185, "learning_rate": 0.0001711, "tokens_per_second": 50.0, "vram_used_gb": 9.06}, {"step": 18, "elapsed_seconds": 18, "loss": 2.0167, "eval_loss": 2.1383, "learning_rate": 0.0001694, "tokens_per_second": 48.5, "vram_used_gb": 9.06}, {"step": 19, "elapsed_seconds": 19, "loss": 1.9684, "eval_loss": 2.0866, "learning_rate": 0.0001677, "tokens_per_second": 47.1, "vram_used_gb": 9.05}, {"step": 20, "elapsed_seconds": 20, "loss": 1.916, "eval_loss": 2.0309, "learning_rate": 0.000166, "tokens_per_second": 45.9, "vram_used_gb": 9.04}, {"step": 21, "elapsed_seconds": 21, "loss": 1.8613, "eval_loss": 1.973, "learning_rate": 0.0001643, "tokens_per_second": 45.0, "vram_used_gb": 9.03}, {"step": 22, "elapsed_seconds": 22, "loss": 1.806, "eval_loss": 1.9148, "learning_rate": 0.0001626, "tokens_per_second": 44.4, "vram_used_gb": 9.02}, {"step": 23, "elapsed_seconds": 23, "loss": 1.7526, "eval_loss": 1.8587, "learning_rate": 0.0001609, "tokens_per_second": 44.1, "vram_used_gb": 9.01}, {"step": 24, "elapsed_seconds": 24, "loss": 1.703, "eval_loss": 1.8069, "learning_rate": 0.0001592, "tokens_per_second": 44.0, "vram_used_gb": 8.99}], "logs": [{"time": "2025-12-31T23:53:00Z", "level": "info", "message": "Demo run queued. Model and dataset labels will not be downloaded or opened."}, {"time": "2025-12-31T23:53:00Z", "level": "info", "message": "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware."}, {"time": "2025-12-31T23:53:20Z", "level": "info", "message": "Synthetic step 20/100 · loss 1.9160"}, {"time": "2025-12-31T23:53:24Z", "level": "error", "message": "Simulated CUDA out of memory. This is an injected demo failure, not a real hardware error."}], "checkpoints": [], "error": "Simulated CUDA out of memory. This is an injected demo failure, not a real hardware error.", "retry_of": null, "progress": 24.0, "latest_metrics": {"step": 24, "elapsed_seconds": 24, "loss": 1.703, "eval_loss": 1.8069, "learning_rate": 0.0001592, "tokens_per_second": 44.0, "vram_used_gb": 8.99}, "eta_seconds": null, "allowed_actions": ["retry"], "simulated": true}, {"id": "run-0001", "name": "Support assistant · baseline", "kind": "LLM", "model_type": "llm", "model_id": "Qwen/Qwen2.5-3B-Instruct", "model": "Qwen/Qwen2.5-3B-Instruct", "method": "qlora", "status": "completed", "config": {"name": "Support assistant · baseline", "kind": "LLM", "model": "Qwen/Qwen2.5-3B-Instruct", "dataset": "instruction-demo", "method": "qlora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 16, "max_steps": 90, "sequence_length": 1024, "seed": 42, "failure_mode": "none"}, "created_at": "2025-12-31T23:48:00Z", "updated_at": "2025-12-31T23:49:30Z", "started_at": "2025-12-31T23:48:00Z", "finished_at": "2025-12-31T23:49:30Z", "step": 90, "current_step": 90, "total_steps": 90, "elapsed_seconds": 90, "metrics": [{"step": 0, "elapsed_seconds": 0, "loss": 2.9644, "eval_loss": 3.0844, "learning_rate": 0.0002, "tokens_per_second": 175.0, "vram_used_gb": 5.62}, {"step": 1, "elapsed_seconds": 1, "loss": 2.8876, "eval_loss": 3.011, "learning_rate": 0.00019811, "tokens_per_second": 176.6, "vram_used_gb": 5.64}, {"step": 2, "elapsed_seconds": 2, "loss": 2.8075, "eval_loss": 2.9341, "learning_rate": 0.00019622, "tokens_per_second": 178.1, "vram_used_gb": 5.65}, {"step": 3, "elapsed_seconds": 3, "loss": 2.7254, "eval_loss": 2.8552, "learning_rate": 0.00019433, "tokens_per_second": 179.5, "vram_used_gb": 5.67}, {"step": 4, "elapsed_seconds": 4, "loss": 2.6434, "eval_loss": 2.776, "learning_rate": 0.00019244, "tokens_per_second": 180.7, "vram_used_gb": 5.68}, {"step": 5, "elapsed_seconds": 5, "loss": 2.5635, "eval_loss": 2.6986, "learning_rate": 0.00019056, "tokens_per_second": 181.7, "vram_used_gb": 5.7}, {"step": 6, "elapsed_seconds": 6, "loss": 2.488, "eval_loss": 2.625, "learning_rate": 0.00018867, "tokens_per_second": 182.5, "vram_used_gb": 5.71}, {"step": 7, "elapsed_seconds": 7, "loss": 2.4185, "eval_loss": 2.5571, "learning_rate": 0.00018678, "tokens_per_second": 182.9, "vram_used_gb": 5.72}, {"step": 8, "elapsed_seconds": 8, "loss": 2.3563, "eval_loss": 2.4959, "learning_rate": 0.00018489, "tokens_per_second": 183.0, "vram_used_gb": 5.74}, {"step": 9, "elapsed_seconds": 9, "loss": 2.3017, "eval_loss": 2.4417, "learning_rate": 0.000183, "tokens_per_second": 182.8, "vram_used_gb": 5.75}, {"step": 10, "elapsed_seconds": 10, "loss": 2.2544, "eval_loss": 2.3942, "learning_rate": 0.00018111, "tokens_per_second": 182.3, "vram_used_gb": 5.75}, {"step": 11, "elapsed_seconds": 11, "loss": 2.213, "eval_loss": 2.3521, "learning_rate": 0.00017922, "tokens_per_second": 181.5, "vram_used_gb": 5.76}, {"step": 12, "elapsed_seconds": 12, "loss": 2.1759, "eval_loss": 2.3137, "learning_rate": 0.00017733, "tokens_per_second": 180.4, "vram_used_gb": 5.77}, {"step": 13, "elapsed_seconds": 13, "loss": 2.1408, "eval_loss": 2.2769, "learning_rate": 0.00017544, "tokens_per_second": 179.1, "vram_used_gb": 5.77}, {"step": 14, "elapsed_seconds": 14, "loss": 2.1055, "eval_loss": 2.2393, "learning_rate": 0.00017356, "tokens_per_second": 177.7, "vram_used_gb": 5.77}, {"step": 15, "elapsed_seconds": 15, "loss": 2.0679, "eval_loss": 2.199, "learning_rate": 0.00017167, "tokens_per_second": 176.1, "vram_used_gb": 5.77}, {"step": 16, "elapsed_seconds": 16, "loss": 2.0264, "eval_loss": 2.1546, "learning_rate": 0.00016978, "tokens_per_second": 174.5, "vram_used_gb": 5.77}, {"step": 17, "elapsed_seconds": 17, "loss": 1.9802, "eval_loss": 2.1052, "learning_rate": 0.00016789, "tokens_per_second": 173.0, "vram_used_gb": 5.76}, {"step": 18, "elapsed_seconds": 18, "loss": 1.9292, "eval_loss": 2.0508, "learning_rate": 0.000166, "tokens_per_second": 171.5, "vram_used_gb": 5.76}, {"step": 19, "elapsed_seconds": 19, "loss": 1.8742, "eval_loss": 1.9924, "learning_rate": 0.00016411, "tokens_per_second": 170.1, "vram_used_gb": 5.75}, {"step": 20, "elapsed_seconds": 20, "loss": 1.8167, "eval_loss": 1.9315, "learning_rate": 0.00016222, "tokens_per_second": 168.9, "vram_used_gb": 5.74}, {"step": 21, "elapsed_seconds": 21, "loss": 1.7585, "eval_loss": 1.8702, "learning_rate": 0.00016033, "tokens_per_second": 168.0, "vram_used_gb": 5.73}, {"step": 22, "elapsed_seconds": 22, "loss": 1.702, "eval_loss": 1.8107, "learning_rate": 0.00015844, "tokens_per_second": 167.4, "vram_used_gb": 5.72}, {"step": 23, "elapsed_seconds": 23, "loss": 1.6492, "eval_loss": 1.7553, "learning_rate": 0.00015656, "tokens_per_second": 167.1, "vram_used_gb": 5.71}, {"step": 24, "elapsed_seconds": 24, "loss": 1.6019, "eval_loss": 1.7057, "learning_rate": 0.00015467, "tokens_per_second": 167.0, "vram_used_gb": 5.69}, {"step": 25, "elapsed_seconds": 25, "loss": 1.5612, "eval_loss": 1.6633, "learning_rate": 0.00015278, "tokens_per_second": 167.3, "vram_used_gb": 5.68}, {"step": 26, "elapsed_seconds": 26, "loss": 1.5277, "eval_loss": 1.6285, "learning_rate": 0.00015089, "tokens_per_second": 167.9, "vram_used_gb": 5.66}, {"step": 27, "elapsed_seconds": 27, "loss": 1.5008, "eval_loss": 1.6009, "learning_rate": 0.000149, "tokens_per_second": 168.8, "vram_used_gb": 5.65}, {"step": 28, "elapsed_seconds": 28, "loss": 1.4793, "eval_loss": 1.5794, "learning_rate": 0.00014711, "tokens_per_second": 169.9, "vram_used_gb": 5.63}, {"step": 29, "elapsed_seconds": 29, "loss": 1.4616, "eval_loss": 1.562, "learning_rate": 0.00014522, "tokens_per_second": 171.3, "vram_used_gb": 5.61}, {"step": 30, "elapsed_seconds": 30, "loss": 1.4453, "eval_loss": 1.5468, "learning_rate": 0.00014333, "tokens_per_second": 172.8, "vram_used_gb": 5.6}, {"step": 31, "elapsed_seconds": 31, "loss": 1.4282, "eval_loss": 1.5312, "learning_rate": 0.00014144, "tokens_per_second": 174.3, "vram_used_gb": 5.58}, {"step": 32, "elapsed_seconds": 32, "loss": 1.4083, "eval_loss": 1.5134, "learning_rate": 0.00013956, "tokens_per_second": 175.9, "vram_used_gb": 5.56}, {"step": 33, "elapsed_seconds": 33, "loss": 1.3841, "eval_loss": 1.4916, "learning_rate": 0.00013767, "tokens_per_second": 177.5, "vram_used_gb": 5.55}, {"step": 34, "elapsed_seconds": 34, "loss": 1.3547, "eval_loss": 1.4651, "learning_rate": 0.00013578, "tokens_per_second": 179.0, "vram_used_gb": 5.54}, {"step": 35, "elapsed_seconds": 35, "loss": 1.3201, "eval_loss": 1.4335, "learning_rate": 0.00013389, "tokens_per_second": 180.3, "vram_used_gb": 5.52}, {"step": 36, "elapsed_seconds": 36, "loss": 1.281, "eval_loss": 1.3978, "learning_rate": 0.000132, "tokens_per_second": 181.3, "vram_used_gb": 5.51}, {"step": 37, "elapsed_seconds": 37, "loss": 1.239, "eval_loss": 1.3592, "learning_rate": 0.00013011, "tokens_per_second": 182.2, "vram_used_gb": 5.5}, {"step": 38, "elapsed_seconds": 38, "loss": 1.1961, "eval_loss": 1.3196, "learning_rate": 0.00012822, "tokens_per_second": 182.7, "vram_used_gb": 5.49}, {"step": 39, "elapsed_seconds": 39, "loss": 1.1543, "eval_loss": 1.2811, "learning_rate": 0.00012633, "tokens_per_second": 183.0, "vram_used_gb": 5.48}, {"step": 40, "elapsed_seconds": 40, "loss": 1.116, "eval_loss": 1.2459, "learning_rate": 0.00012444, "tokens_per_second": 182.9, "vram_used_gb": 5.48}, {"step": 41, "elapsed_seconds": 41, "loss": 1.0828, "eval_loss": 1.2155, "learning_rate": 0.00012256, "tokens_per_second": 182.5, "vram_used_gb": 5.47}, {"step": 42, "elapsed_seconds": 42, "loss": 1.056, "eval_loss": 1.1911, "learning_rate": 0.00012067, "tokens_per_second": 181.8, "vram_used_gb": 5.47}, {"step": 43, "elapsed_seconds": 43, "loss": 1.0358, "eval_loss": 1.1729, "learning_rate": 0.00011878, "tokens_per_second": 180.9, "vram_used_gb": 5.47}, {"step": 44, "elapsed_seconds": 44, "loss": 1.022, "eval_loss": 1.1606, "learning_rate": 0.00011689, "tokens_per_second": 179.7, "vram_used_gb": 5.47}, {"step": 45, "elapsed_seconds": 45, "loss": 1.0132, "eval_loss": 1.1528, "learning_rate": 0.000115, "tokens_per_second": 178.3, "vram_used_gb": 5.47}, {"step": 46, "elapsed_seconds": 46, "loss": 1.0077, "eval_loss": 1.1477, "learning_rate": 0.00011311, "tokens_per_second": 176.8, "vram_used_gb": 5.48}, {"step": 47, "elapsed_seconds": 47, "loss": 1.0034, "eval_loss": 1.1432, "learning_rate": 0.00011122, "tokens_per_second": 175.2, "vram_used_gb": 5.49}, {"step": 48, "elapsed_seconds": 48, "loss": 0.9979, "eval_loss": 1.137, "learning_rate": 0.00010933, "tokens_per_second": 173.6, "vram_used_gb": 5.49}, {"step": 49, "elapsed_seconds": 49, "loss": 0.9893, "eval_loss": 1.127, "learning_rate": 0.00010744, "tokens_per_second": 172.1, "vram_used_gb": 5.5}, {"step": 50, "elapsed_seconds": 50, "loss": 0.976, "eval_loss": 1.1119, "learning_rate": 0.00010556, "tokens_per_second": 170.6, "vram_used_gb": 5.51}, {"step": 51, "elapsed_seconds": 51, "loss": 0.9572, "eval_loss": 1.0909, "learning_rate": 0.00010367, "tokens_per_second": 169.4, "vram_used_gb": 5.53}, {"step": 52, "elapsed_seconds": 52, "loss": 0.9329, "eval_loss": 1.064, "learning_rate": 0.00010178, "tokens_per_second": 168.4, "vram_used_gb": 5.54}, {"step": 53, "elapsed_seconds": 53, "loss": 0.904, "eval_loss": 1.032, "learning_rate": 9.989e-05, "tokens_per_second": 167.6, "vram_used_gb": 5.55}, {"step": 54, "elapsed_seconds": 54, "loss": 0.8718, "eval_loss": 0.9967, "learning_rate": 9.8e-05, "tokens_per_second": 167.2, "vram_used_gb": 5.57}, {"step": 55, "elapsed_seconds": 55, "loss": 0.8385, "eval_loss": 0.96, "learning_rate": 9.611e-05, "tokens_per_second": 167.0, "vram_used_gb": 5.59}, {"step": 56, "elapsed_seconds": 56, "loss": 0.8062, "eval_loss": 0.9243, "learning_rate": 9.422e-05, "tokens_per_second": 167.2, "vram_used_gb": 5.6}, {"step": 57, "elapsed_seconds": 57, "loss": 0.7771, "eval_loss": 0.8919, "learning_rate": 9.233e-05, "tokens_per_second": 167.6, "vram_used_gb": 5.62}, {"step": 58, "elapsed_seconds": 58, "loss": 0.7529, "eval_loss": 0.8645, "learning_rate": 9.044e-05, "tokens_per_second": 168.4, "vram_used_gb": 5.63}, {"step": 59, "elapsed_seconds": 59, "loss": 0.7349, "eval_loss": 0.8435, "learning_rate": 8.856e-05, "tokens_per_second": 169.5, "vram_used_gb": 5.65}, {"step": 60, "elapsed_seconds": 60, "loss": 0.7233, "eval_loss": 0.8293, "learning_rate": 8.667e-05, "tokens_per_second": 170.7, "vram_used_gb": 5.67}, {"step": 61, "elapsed_seconds": 61, "loss": 0.7177, "eval_loss": 0.8215, "learning_rate": 8.478e-05, "tokens_per_second": 172.1, "vram_used_gb": 5.68}, {"step": 62, "elapsed_seconds": 62, "loss": 0.7171, "eval_loss": 0.8191, "learning_rate": 8.289e-05, "tokens_per_second": 173.7, "vram_used_gb": 5.7}, {"step": 63, "elapsed_seconds": 63, "loss": 0.7194, "eval_loss": 0.8202, "learning_rate": 8.1e-05, "tokens_per_second": 175.3, "vram_used_gb": 5.71}, {"step": 64, "elapsed_seconds": 64, "loss": 0.7226, "eval_loss": 0.8228, "learning_rate": 7.911e-05, "tokens_per_second": 176.9, "vram_used_gb": 5.72}, {"step": 65, "elapsed_seconds": 65, "loss": 0.7245, "eval_loss": 0.8245, "learning_rate": 7.722e-05, "tokens_per_second": 178.4, "vram_used_gb": 5.73}, {"step": 66, "elapsed_seconds": 66, "loss": 0.723, "eval_loss": 0.8235, "learning_rate": 7.533e-05, "tokens_per_second": 179.7, "vram_used_gb": 5.74}, {"step": 67, "elapsed_seconds": 67, "loss": 0.7166, "eval_loss": 0.8181, "learning_rate": 7.344e-05, "tokens_per_second": 180.9, "vram_used_gb": 5.75}, {"step": 68, "elapsed_seconds": 68, "loss": 0.7045, "eval_loss": 0.8076, "learning_rate": 7.156e-05, "tokens_per_second": 181.9, "vram_used_gb": 5.76}, {"step": 69, "elapsed_seconds": 69, "loss": 0.6868, "eval_loss": 0.792, "learning_rate": 6.967e-05, "tokens_per_second": 182.5, "vram_used_gb": 5.76}, {"step": 70, "elapsed_seconds": 70, "loss": 0.6643, "eval_loss": 0.7719, "learning_rate": 6.778e-05, "tokens_per_second": 182.9, "vram_used_gb": 5.77}, {"step": 71, "elapsed_seconds": 71, "loss": 0.6384, "eval_loss": 0.7488, "learning_rate": 6.589e-05, "tokens_per_second": 183.0, "vram_used_gb": 5.77}, {"step": 72, "elapsed_seconds": 72, "loss": 0.6112, "eval_loss": 0.7248, "learning_rate": 6.4e-05, "tokens_per_second": 182.7, "vram_used_gb": 5.77}, {"step": 73, "elapsed_seconds": 73, "loss": 0.5849, "eval_loss": 0.7018, "learning_rate": 6.211e-05, "tokens_per_second": 182.2, "vram_used_gb": 5.77}, {"step": 74, "elapsed_seconds": 74, "loss": 0.5617, "eval_loss": 0.6819, "learning_rate": 6.022e-05, "tokens_per_second": 181.3, "vram_used_gb": 5.76}, {"step": 75, "elapsed_seconds": 75, "loss": 0.5432, "eval_loss": 0.6669, "learning_rate": 5.833e-05, "tokens_per_second": 180.2, "vram_used_gb": 5.76}, {"step": 76, "elapsed_seconds": 76, "loss": 0.5308, "eval_loss": 0.6577, "learning_rate": 5.644e-05, "tokens_per_second": 178.9, "vram_used_gb": 5.75}, {"step": 77, "elapsed_seconds": 77, "loss": 0.5247, "eval_loss": 0.6547, "learning_rate": 5.456e-05, "tokens_per_second": 177.4, "vram_used_gb": 5.74}, {"step": 78, "elapsed_seconds": 78, "loss": 0.5245, "eval_loss": 0.6573, "learning_rate": 5.267e-05, "tokens_per_second": 175.9, "vram_used_gb": 5.73}, {"step": 79, "elapsed_seconds": 79, "loss": 0.529, "eval_loss": 0.6642, "learning_rate": 5.078e-05, "tokens_per_second": 174.3, "vram_used_gb": 5.72}, {"step": 80, "elapsed_seconds": 80, "loss": 0.5363, "eval_loss": 0.6735, "learning_rate": 4.889e-05, "tokens_per_second": 172.7, "vram_used_gb": 5.71}, {"step": 81, "elapsed_seconds": 81, "loss": 0.5444, "eval_loss": 0.683, "learning_rate": 4.7e-05, "tokens_per_second": 171.2, "vram_used_gb": 5.69}, {"step": 82, "elapsed_seconds": 82, "loss": 0.5509, "eval_loss": 0.6905, "learning_rate": 4.511e-05, "tokens_per_second": 169.9, "vram_used_gb": 5.68}, {"step": 83, "elapsed_seconds": 83, "loss": 0.5538, "eval_loss": 0.6938, "learning_rate": 4.322e-05, "tokens_per_second": 168.8, "vram_used_gb": 5.66}, {"step": 84, "elapsed_seconds": 84, "loss": 0.5518, "eval_loss": 0.6916, "learning_rate": 4.133e-05, "tokens_per_second": 167.9, "vram_used_gb": 5.65}, {"step": 85, "elapsed_seconds": 85, "loss": 0.544, "eval_loss": 0.683, "learning_rate": 3.944e-05, "tokens_per_second": 167.3, "vram_used_gb": 5.63}, {"step": 86, "elapsed_seconds": 86, "loss": 0.5304, "eval_loss": 0.6681, "learning_rate": 3.756e-05, "tokens_per_second": 167.0, "vram_used_gb": 5.61}, {"step": 87, "elapsed_seconds": 87, "loss": 0.5118, "eval_loss": 0.6477, "learning_rate": 3.567e-05, "tokens_per_second": 167.1, "vram_used_gb": 5.6}, {"step": 88, "elapsed_seconds": 88, "loss": 0.4899, "eval_loss": 0.6235, "learning_rate": 3.378e-05, "tokens_per_second": 167.4, "vram_used_gb": 5.58}, {"step": 89, "elapsed_seconds": 89, "loss": 0.4666, "eval_loss": 0.5975, "learning_rate": 3.189e-05, "tokens_per_second": 168.1, "vram_used_gb": 5.57}, {"step": 90, "elapsed_seconds": 90, "loss": 0.4441, "eval_loss": 0.5721, "learning_rate": 3e-05, "tokens_per_second": 169.0, "vram_used_gb": 5.55}], "logs": [{"time": "2025-12-31T23:48:00Z", "level": "info", "message": "Demo run queued. Model and dataset labels will not be downloaded or opened."}, {"time": "2025-12-31T23:48:00Z", "level": "info", "message": "Synthetic training started on the simulated 12 GB GPU. This demo engine does not probe or connect real hardware."}, {"time": "2025-12-31T23:48:20Z", "level": "info", "message": "Synthetic step 20/90 · loss 1.8167"}, {"time": "2025-12-31T23:48:30Z", "level": "info", "message": "Virtual checkpoint recorded at step 30; no adapter file was written."}, {"time": "2025-12-31T23:48:40Z", "level": "info", "message": "Synthetic step 40/90 · loss 1.1160"}, {"time": "2025-12-31T23:49:00Z", "level": "info", "message": "Virtual checkpoint recorded at step 60; no adapter file was written."}, {"time": "2025-12-31T23:49:00Z", "level": "info", "message": "Synthetic step 60/90 · loss 0.7233"}, {"time": "2025-12-31T23:49:20Z", "level": "info", "message": "Synthetic step 80/90 · loss 0.5363"}, {"time": "2025-12-31T23:49:30Z", "level": "info", "message": "Virtual checkpoint recorded at step 90; no adapter file was written."}, {"time": "2025-12-31T23:49:30Z", "level": "info", "message": "Demo simulation completed. Metrics and checkpoints are illustrative only."}], "checkpoints": [{"id": "run-0001-30", "name": "adapter-step-0030", "label": "adapter-step-0030", "step": 30, "size_mb": 38.4, "virtual": true, "created_at": "2025-12-31T23:48:30Z"}, {"id": "run-0001-60", "name": "adapter-step-0060", "label": "adapter-step-0060", "step": 60, "size_mb": 38.4, "virtual": true, "created_at": "2025-12-31T23:49:00Z"}, {"id": "run-0001-90", "name": "adapter-step-0090", "label": "adapter-step-0090", "step": 90, "size_mb": 38.4, "virtual": true, "created_at": "2025-12-31T23:49:30Z"}], "error": null, "retry_of": null, "progress": 100.0, "latest_metrics": {"step": 90, "elapsed_seconds": 90, "loss": 0.4441, "eval_loss": 0.5721, "learning_rate": 3e-05, "tokens_per_second": 169.0, "vram_used_gb": 5.55}, "eta_seconds": null, "allowed_actions": [], "simulated": true}], "active_run_id": "run-0003", "reserved_run_id": "run-0003", "summary": {"running": 1, "queued": 1, "paused": 0, "completed": 1, "failed": 1, "canceled": 0}, "capabilities": {"real_training": false, "pause": true, "downloads": false, "checkpoint_files": false}, "model_catalog": [{"id": "Qwen/Qwen2.5-3B-Instruct", "name": "Qwen 2.5 · 3B", "kind": "LLM"}, {"id": "TinyLlama/TinyLlama-1.1B-Chat-v1.0", "name": "TinyLlama · 1.1B", "kind": "LLM"}, {"id": "Qwen/Qwen2-VL-2B-Instruct", "name": "Qwen 2 VL · 2B", "kind": "VLM"}], "dataset_catalog": [{"id": "instruction-demo", "name": "Instruction demo", "kind": "LLM", "samples": 1200}, {"id": "vision-demo", "name": "Image-caption demo", "kind": "VLM", "samples": 480}], "updated_at": "2026-01-01T00:00:00Z"}, "/api/workspace": {"mode": "preparation", "datasets": [{"id": "dataset-ec16d595ef84", "name": "Synthetic preview data", "kind": "LLM", "samples": 3, "count": 3, "synthetic": true, "source": "imported_jsonl", "imported": true, "simulated": false, "created_at": "2026-01-01T00:00:00Z", "text_bytes": 218, "duplicates": {"count": 0, "groups": []}, "split": {"actual_val_ratio": 0.333333, "algorithm": "seeded-row-shuffle-v1", "dataset_id": "dataset-ec16d595ef84", "exports": [{"filename": "dataset-ec16d595ef84-seed42-train.jsonl", "split": "train"}, {"filename": "dataset-ec16d595ef84-seed42-validation.jsonl", "split": "validation"}], "seed": 42, "train_count": 2, "train_preview": [{"line": 1, "record": {"input": "", "instruction": "Synthetic example 0", "output": "Synthetic response 0"}}, {"line": 3, "record": {"input": "", "instruction": "Synthetic example 2", "output": "Synthetic response 2"}}], "val_ratio": 0.2, "validation_count": 1, "validation_preview": [{"line": 2, "record": {"input": "", "instruction": "Synthetic example 1", "output": "Synthetic response 1"}}], "warnings": [{"code": "split_only", "line": null, "message": "This split prepares records only; it does not tokenize, train, evaluate or open images."}, {"code": "small_split", "line": null, "message": "Small split counts make validation results unstable."}]}}], "adapter": {"available": false, "status": "not_implemented", "real_training": false, "message": "No local training adapter is connected or implemented. Preparation does not start training."}, "capabilities": {"jsonl_validation": true, "dataset_import": true, "deterministic_split": true, "jsonl_export": true, "config_dry_run": true, "read_only_diagnostics": true, "real_training": false, "image_file_access": false, "model_download": false}, "limits": {"text_bytes": 131072, "rows": 1000, "datasets": 50, "preview_records": 3, "messages_per_record": 64, "images_per_record": 16}, "assumed_vram_gb": 12, "warnings": ["12 GB VRAM is a planning assumption, not a detected device or a fit guarantee.", "Imported JSONL is stored locally in the dashboard database; image references remain unopened labels."]}, "/api/presets": {"presets": [{"id": "small-llm-qlora", "name": "Small LLM QLORA prep", "config": {"name": "Small LLM QLORA prep", "kind": "LLM", "model": "Qwen/Qwen2.5-3B-Instruct", "dataset": "instruction-demo", "method": "qlora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 8, "max_steps": 120, "sequence_length": 1024, "seed": 42, "failure_mode": "none"}, "assumed_vram_gb": 12, "warning": "Starting-point configuration only. The assumed 12 GB GPU and model compatibility are unverified; this preset cannot guarantee fit."}, {"id": "small-llm-lora", "name": "Small LLM LORA prep", "config": {"name": "Small LLM LORA prep", "kind": "LLM", "model": "Qwen/Qwen2.5-3B-Instruct", "dataset": "instruction-demo", "method": "lora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 8, "max_steps": 120, "sequence_length": 1024, "seed": 42, "failure_mode": "none"}, "assumed_vram_gb": 12, "warning": "Starting-point configuration only. The assumed 12 GB GPU and model compatibility are unverified; this preset cannot guarantee fit."}, {"id": "small-vlm-qlora", "name": "Small VLM QLORA prep", "config": {"name": "Small VLM QLORA prep", "kind": "VLM", "model": "Qwen/Qwen2-VL-2B-Instruct", "dataset": "vision-demo", "method": "qlora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 8, "max_steps": 120, "sequence_length": 512, "seed": 42, "failure_mode": "none"}, "assumed_vram_gb": 12, "warning": "Starting-point configuration only. The assumed 12 GB GPU and model compatibility are unverified; this preset cannot guarantee fit."}, {"id": "small-vlm-lora", "name": "Small VLM LORA prep", "config": {"name": "Small VLM LORA prep", "kind": "VLM", "model": "Qwen/Qwen2-VL-2B-Instruct", "dataset": "vision-demo", "method": "lora", "learning_rate": 0.0002, "epochs": 3, "batch_size": 1, "gradient_accumulation": 8, "lora_rank": 8, "max_steps": 120, "sequence_length": 512, "seed": 42, "failure_mode": "none"}, "assumed_vram_gb": 12, "warning": "Starting-point configuration only. The assumed 12 GB GPU and model compatibility are unverified; this preset cannot guarantee fit."}], "assumed_vram_gb": 12, "real_training": false, "adapter": {"available": false, "status": "not_implemented", "real_training": false, "message": "No local training adapter is connected or implemented. Preparation does not start training."}}, "/api/training": {"available": false, "models": [], "message": "Offline preview: no real GPU worker"}, "/api/auth/status": {"authenticated": true, "username": "offline-preview", "must_change_password": false, "csrf_token": null, "local_peer": true, "settings": {"configured": {"lan_access": true, "remote_view": true, "remote_control": true}, "effective": {"lan_access": false, "remote_view": false, "remote_control": false}, "bootstrap_required": false, "listener_lan": false, "tls": false}}, "/api/diagnostics": {"python": {"version": "Offline snapshot"}, "os": {"name": "Read-only preview"}, "disk": {"available": false}, "gpu": {"detected": false, "message": "No live probe in this preview"}, "warnings": ["Offline rendering preview, not live environment diagnostics."]}, "/api/datasets/dataset-ec16d595ef84": {"dataset": {"count": 3, "created_at": "2026-01-01T00:00:00Z", "duplicates": {"count": 0, "groups": []}, "id": "dataset-ec16d595ef84", "image_files_verified": null, "imported": true, "kind": "LLM", "name": "Synthetic preview data", "preview": [{"line": 1, "record": {"input": "", "instruction": "Synthetic example 0", "output": "Synthetic response 0"}}, {"line": 2, "record": {"input": "", "instruction": "Synthetic example 1", "output": "Synthetic response 1"}}, {"line": 3, "record": {"input": "", "instruction": "Synthetic example 2", "output": "Synthetic response 2"}}], "samples": 3, "schema": "messages_or_instruction_input_output", "simulated": false, "source": "imported_jsonl", "split": {"actual_val_ratio": 0.333333, "algorithm": "seeded-row-shuffle-v1", "dataset_id": "dataset-ec16d595ef84", "exports": [{"filename": "dataset-ec16d595ef84-seed42-train.jsonl", "split": "train"}, {"filename": "dataset-ec16d595ef84-seed42-validation.jsonl", "split": "validation"}], "seed": 42, "train_count": 2, "train_preview": [{"line": 1, "record": {"input": "", "instruction": "Synthetic example 0", "output": "Synthetic response 0"}}, {"line": 3, "record": {"input": "", "instruction": "Synthetic example 2", "output": "Synthetic response 2"}}], "val_ratio": 0.2, "validation_count": 1, "validation_preview": [{"line": 2, "record": {"input": "", "instruction": "Synthetic example 1", "output": "Synthetic response 1"}}], "warnings": [{"code": "split_only", "line": null, "message": "This split prepares records only; it does not tokenize, train, evaluate or open images."}, {"code": "small_split", "line": null, "message": "Small split counts make validation results unstable."}]}, "synthetic": true, "text_bytes": 218, "warnings": [{"code": "small_dataset", "line": null, "message": "Fewer than 10 valid records: this is suitable for preparation checks, not evidence of training quality."}]}}};
+'use strict';
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = (value, digits = 3) => Number.isFinite(Number(value)) && value !== null && value !== undefined ? Number(value).toFixed(digits) : '—';
+const pct = value => Math.max(0, Math.min(100, Number(value) || 0));
+let authToken = null, remoteControlsAllowed = true, connectionLabel = 'Connecting';
+let snapshot = null, selectedId = null, filter = 'all', currentTab = 'logs', requestBusy = false, refreshBusy = false, toastTimer, nav = 'overview';
+try { selectedId = localStorage.getItem('forge.selectedRun'); } catch {}
+function toast(message, error = false) { const el = $('#toast'); el.textContent = t(message); el.hidden = false; el.classList.toggle('error', error); clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.hidden = true; }, 4200); }
+async function api(path, body) {
+  if (body !== undefined) throw new Error('Offline preview is read-only. Run python server.py for working demo/preparation controls.');
+  return structuredClone(OFFLINE_ROUTES[path] || {});
+}
+function setConnection(ok) { connectionLabel = ok ? 'Offline preview' : 'API offline · data stale'; const el = $('#connection'); el.className = 'connection ' + (ok ? 'ok' : 'error'); el.innerHTML = `<i></i> ${ok ? t("Offline preview") : t("API offline · data stale")}`; }
+async function refresh() {
+  if (refreshBusy) return; refreshBusy = true;
+  try { snapshot = await api('/api/status'); setConnection(true); render(); }
+  catch(error) { setConnection(false); if(error.status === 401) { snapshot=null; $('#run-detail').hidden=true; $('#tab-content').innerHTML=''; $('#loss-chart').innerHTML=''; } if(error.status === 401 || error.code === 'bootstrap_required' || error.code === 'password_change_required') { connectionLabel = 'Local sign-in required'; $('#connection').innerHTML=`<i></i> ${t("Local sign-in required")}`; if(typeof checkAccess === 'function') checkAccess(); } if (!snapshot) { $('#runs-body').innerHTML = `<tr><td colspan="6" class="empty">${t("Sign in locally to finish setup, or check that python server.py is running.")}</td></tr>`; $('#selected-title').textContent = t("Waiting for the local demo API"); } }
+  finally { refreshBusy = false; }
+}
+function selectRun(id) { selectedId = id; try { localStorage.setItem('forge.selectedRun', id); } catch {} render(); }
+function latest(run) { return run.latest_metrics || run.metrics?.at(-1) || {}; }
+function render() {
+  if (!snapshot) return;
+  const runs = snapshot.runs || [], gpu = snapshot.gpu || {};
+  if (!runs.some(run => run.id === selectedId)) selectedId = snapshot.active_run_id || runs[0]?.id;
+  $('#summary-total').textContent = runs.length; $('#nav-count').textContent = runs.length; $('#experiment-count').textContent = runs.length;
+  const completed = runs.filter(r => r.status === 'completed').length, queued = runs.filter(r => r.status === 'queued').length;
+  $('#summary-caption').textContent = `${completed} ${t("completed ·")} ${queued} ${t("queued")}`;
+  const failedRuns=runs.filter(run=>run.status==='failed'); const pausedRuns=runs.filter(run=>run.status==='paused');
+  $('#workspace-alerts').hidden = nav!=='overview' || (!failedRuns.length && !pausedRuns.length);
+  $('#workspace-alerts').innerHTML = `${failedRuns.length?`<span>◉ ${t(snapshot.training?.available ? "Experiment failures recorded. Review the worker error and configuration." : failedRuns.length === 1 ? "{count} demo failure recorded. Review the injected scenario and next steps." : "{count} demo failures recorded. Review the injected scenario and next steps.", {count: failedRuns.length})}</span><button id="inspect-latest-failure" class="button secondary">${t("Review failure")}</button>`:''}${pausedRuns.length?`<span>${t(snapshot.training?.available?"Paused jobs reserve their queue. Resume or cancel to continue.":"Ⅱ A paused demo job reserves the GPU slot. Resume or cancel it to release the queue.")}</span>`:''}`;
+  if(failedRuns.length) $('#inspect-latest-failure').onclick=()=>{selectedId=failedRuns[0].id;setNav('runs');};
+  $('#summary-active').innerHTML = `${runs.filter(r => r.status === 'running').length} <small>${t("running")}</small>`;
+  $('#summary-vram').innerHTML = `${fmt(gpu.used_gb,1)} <small>/ ${fmt(gpu.total_gb,0)} GB</small>`;
+  $('#vram-bar').style.width = `${pct(gpu.used_gb / gpu.total_gb * 100)}%`;
+  $('#gpu-util').textContent = `${fmt(gpu.utilization,0)}%`; $('#gpu-util-bar').style.width = `${pct(gpu.utilization)}%`;
+  $('#gpu-memory').textContent = `${fmt(gpu.used_gb,1)} / ${fmt(gpu.total_gb,0)} GB`; $('#gpu-memory-bar').style.width = `${pct(gpu.used_gb / gpu.total_gb * 100)}%`;
+  $('#gpu-temp').textContent = `${fmt(gpu.temp_c,0)} °C`;
+  const shown = runs.filter(run => (filter === 'all' || run.kind === filter) && (nav !== 'overview' || ['running','paused'].includes(run.status)));
+  $('#no-runs').textContent = nav === 'overview' ? t("No active demo jobs. Open Experiments to start or inspect a queued run.") : t("No experiments in this view yet");
+  if(nav === 'overview' && !runs.some(run => run.id === selectedId && ['running','paused'].includes(run.status))) selectedId = snapshot.active_run_id || runs.find(run => run.status === 'paused')?.id || null;
+  if(['overview','runs'].includes(nav)) $('#run-detail').hidden = nav === 'overview' && !selectedId;
+  $('.run-data').hidden = nav === 'overview';
+  $('#no-runs').hidden = shown.length > 0;
+  $('#runs-body').innerHTML = shown.map(run => {
+    const progress = pct(run.progress ?? run.step / run.total_steps * 100), metric = latest(run);
+    return `<tr tabindex="0" data-run="${escapeHtml(run.id)}" class="${run.id === selectedId ? 'selected' : ''}" aria-label="${t("Select")} ${escapeHtml(run.name)}"><td><div class="run-name"><span class="type-icon ${run.kind === 'VLM' ? 'vlm' : ''}">${run.kind === 'VLM' ? '▧' : '≋'}</span><div>${escapeHtml(run.name)}<div class="run-meta">${escapeHtml(run.kind)} · ${escapeHtml(t(run.simulated===false?"Real GPU":"Demo"))} · ${escapeHtml(run.config?.model || run.model_id || t("demo model"))}</div></div></div></td><td><span class="status ${escapeHtml(run.status)}">${escapeHtml(t(run.status))}</span></td><td><div class="progress-line"><div class="meter"><span style="width:${progress}%"></span></div><span>${Math.round(progress)}%</span></div></td><td>${fmt(metric.loss)}</td><td><span class="method-tag">${escapeHtml((run.method || run.config?.method || 'QLoRA').toUpperCase())} · r${escapeHtml(run.config?.lora_rank || 16)}</span></td><td class="row-arrow">↗</td></tr>`;
+  }).join('');
+  $$('#runs-body tr[data-run]').forEach(row => { row.onclick = () => selectRun(row.dataset.run); row.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectRun(row.dataset.run); } }; });
+  const run = runs.find(r => r.id === selectedId); if (run) renderDetail(run);
+  if(typeof renderTrainingSource==='function')renderTrainingSource();
+  if(nav==='compare' && typeof updateComparison==='function' && $('#compare-output')) updateComparison();
+}
+function renderDetail(run) {
+  const real=run.simulated===false;
+  const metric = latest(run), step = run.step ?? run.current_step ?? 0;
+  $('#selected-title').textContent = run.name; $('#selected-subtitle').textContent = `${run.kind} · ${(run.method || 'qlora').toUpperCase()} · ${step.toLocaleString()} / ${Number(run.total_steps).toLocaleString()} ${t("steps ·")} ${t(run.status)}`;
+  $('#train-loss').textContent = fmt(metric.loss); $('#eval-loss').textContent = fmt(metric.eval_loss); $('#learning-rate').textContent = metric.learning_rate ? Number(metric.learning_rate).toExponential(1) : '—';
+  $('#current-step').textContent = `${step} / ${run.total_steps}`; $('#chart-context').textContent = `${run.metrics?.length || 0} ${t(real?"points · measured":"points · simulated")}`;
+  $('#loss-chart').innerHTML = chart(run.metrics || [], run.total_steps, !real);
+  const defaultActions = {queued:['start','cancel'],running:['pause','cancel'],paused:['resume','cancel'],failed:['retry'],canceled:['retry'],completed:[]};
+  const actions = run.allowed_actions || defaultActions[run.status] || [];
+  const labels = {start:t(real?"▷ Start training":"▷ Start demo"),pause:t(real?"Ⅱ Checkpoint & pause":"Ⅱ Pause demo"),resume:t(real?"▷ Resume training":"▷ Resume demo"),cancel:t(real?"× Cancel training":"× Cancel demo"),retry:t("↻ Retry as new run")};
+  $('#run-controls').innerHTML = actions.map(action => `<button class="button ${action === 'cancel' ? 'danger' : action === 'start' || action === 'resume' || action === 'retry' ? 'primary' : 'secondary'}" data-action="${escapeHtml(action)}" ${requestBusy || !remoteControlsAllowed ? 'disabled' : ''}>${labels[action] || escapeHtml(action)}</button>`).join('') || `<span class="status completed">${t("Run finished")}</span>`;
+  $$('#run-controls button').forEach(btn => { btn.onclick = () => performAction(run.id, btn.dataset.action); });
+  const error = run.error; $('#run-error').hidden = !error;
+  if(error) { const message = typeof error === 'string' ? error : error.message || JSON.stringify(error); const injected = run.config?.failure_mode === 'oom'; $('#run-error').innerHTML = `<strong>${t(real?"Training failure:":"Demo failure:")}</strong> ${escapeHtml(t(message))}<div class="field-note" style="margin-top:7px">${injected ? t("Injected OOM scenario. Retry preserves the injection, so it can fail again. Review batch, context and rank in Training setup; a revised recipe uses the normal demo scenario.") : t("Retry creates a new queued run and preserves this original record.")}</div><button id="review-failed-recipe" class="button secondary" style="margin-top:9px">${t("Review training recipe")}</button>`; $('#review-failed-recipe').onclick = () => { if(typeof prepareRecipeFromRun === 'function') prepareRecipeFromRun(run); else setNav('recipes'); }; }
+  else $('#run-error').textContent = '';
+  $('#log-count').textContent = run.logs?.length || 0;
+  if (currentTab === 'logs') {
+    const wasNearBottom = !$('.log-view') || $('.log-view').scrollHeight - $('.log-view').scrollTop - $('.log-view').clientHeight < 35;
+    const oldScroll = $('.log-view')?.scrollTop || 0; const logsOpen = $('.technical-logs')?.open || false;
+    $('#tab-content').innerHTML = `<details class="technical-logs" ${logsOpen ? 'open' : ''}><summary>${t(real?"Training worker log":"Technical demo log · synthetic, token-like text redacted")}</summary><div class="log-view" aria-label="${t("Synthetic training logs")}">${run.logs?.length ? run.logs.map(log => `<div class="log-line"><span class="log-time">${escapeHtml(formatTime(log.time))}</span><span class="log-level ${String(log.level).toLowerCase()}">${escapeHtml(String(log.level).toUpperCase())}</span><span class="log-message">${escapeHtml(typeof safeTechnicalText === 'function' ? safeTechnicalText(log.message) : log.message)}</span></div>`).join('') : `<span class="log-message">${t("No log events yet. Start this queued demo run to generate events.")}</span>`}</div></details>`;
+    $('.log-view').scrollTop = wasNearBottom ? $('.log-view').scrollHeight : oldScroll;
+  } else if (currentTab === 'checkpoints') {
+    $('#tab-content').innerHTML = `<div class="checkpoint-list">${run.checkpoints?.length ? run.checkpoints.map(cp => `<div class="checkpoint"><span>▱</span><div>${escapeHtml(cp.name || cp.label)}<div class="run-meta">${cp.virtual===false?`<a class="button secondary" href="/api/runs/${encodeURIComponent(run.id)}/artifacts/${encodeURIComponent(cp.name)}">${t("Download adapter weights")}</a>`:t("Virtual checkpoint · no weights saved")}</div></div><small>${t("Step")} ${escapeHtml(cp.step)}${cp.size_mb ? ` · ${escapeHtml(cp.size_mb)} ${t(cp.virtual===false?"MB":"MB (simulated)")}` : ''}</small></div>`).join('') : `<div class="empty">${t(real?"No checkpoints yet":"No virtual checkpoints yet. Real model weights are never saved.")}</div>`}</div>`;
+  } else if (currentTab === 'evaluation') {
+    $('#tab-content').innerHTML = run.evaluation ? `<h4>${t("Held-out evaluation")}</h4><div class="config-list"><div><span>${t("Baseline eval loss")}</span><strong>${fmt(run.evaluation.baseline_eval_loss)}</strong></div><div><span>${t("Final eval loss")}</span><strong>${fmt(run.evaluation.eval_loss)}</strong></div></div><p>${t("Generated response")}</p><pre class="preview-record">${escapeHtml(run.evaluation.generated_response)}</pre><p>${t("Reference answer")}</p><pre class="preview-record">${escapeHtml(run.evaluation.reference)}</pre><p>${t("Small synthetic checks establish pipeline operation, not model quality.")}</p>` : `<div class="empty">${t("Evaluation appears after real training completes")}</div>`;
+  } else {
+    const entries = Object.entries(run.config || {}).filter(([key]) => !['name'].includes(key));
+    $('#tab-content').innerHTML = `<div class="config-list">${entries.map(([key,value]) => `<div><span>${escapeHtml(t(key.replaceAll('_',' ')))}</span><strong>${escapeHtml(value)}</strong></div>`).join('')}</div>`;
+  }
+}
+function formatTime(value) { const date = new Date(value); return Number.isNaN(date.getTime()) ? value : date.toISOString().slice(11,19); }
+function chart(metrics, totalSteps, simulated=true) {
+  if (!metrics.length) return `<div class="chart-empty">${t("Learning curves appear after a demo run starts")}</div>`;
+  const width = 620, height = 175, left = 32, right = 8, top = 12, bottom = 25;
+  const values = metrics.flatMap(m => [m.loss,m.eval_loss]).filter(v => v !== null && v !== undefined && Number.isFinite(Number(v))).map(Number);
+  if (!values.length) return `<div class="chart-empty">${t("Waiting for valid metric points")}</div>`;
+  const lo = Math.max(0,Math.floor(Math.min(...values)*2)/2-.25), hi = Math.ceil(Math.max(...values)*2)/2+.25;
+  const xmax = Math.max(10,metrics.at(-1).step); const x = v => left + v/xmax*(width-left-right), y = v => top + (hi-v)/(hi-lo)*(height-top-bottom);
+  const line = key => metrics.filter(m => m[key] !== null && m[key] !== undefined && Number.isFinite(Number(m[key]))).map((m,i) => `${i ? 'L' : 'M'}${x(m.step).toFixed(1)},${y(Number(m[key])).toFixed(1)}`).join(' ');
+  let grid = '';
+  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="#2a2e39" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="#626a7d" font-size="8">${v.toFixed(1)}</text>`; }
+  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="#626a7d" font-size="8">${Math.round(v)}</text>`; }
+  const train = line('loss'), evalPath = line('eval_loss');
+  const last = metrics.at(-1);
+  return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${t(simulated?"Synthetic loss chart, {count} points, latest training loss {loss}":"Measured loss chart, {count} points, latest training loss {loss}", {count: metrics.length, loss: fmt(last.loss)})}"><defs><linearGradient id="loss-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b0a0ff" stop-opacity=".17"/><stop offset="1" stop-color="#b0a0ff" stop-opacity="0"/></linearGradient></defs>${grid}${train ? `<path d="${train} L${x(last.step)},${height-bottom} L${x(metrics[0].step)},${height-bottom} Z" fill="url(#loss-fill)"/>` : ''}<path d="${train}" fill="none" stroke="#b0a0ff" stroke-width="2" stroke-linejoin="round"/><path d="${evalPath}" fill="none" stroke="#8ee3cc" stroke-width="1.7" stroke-dasharray="4 3" stroke-linejoin="round"/>${Number.isFinite(last.loss) ? `<circle cx="${x(last.step)}" cy="${y(last.loss)}" r="3" fill="#b0a0ff" stroke="#181b22" stroke-width="2"/>` : ''}</svg>`;
+}
+async function performAction(id, action) {
+  if (requestBusy) return; requestBusy = true; render();
+  try { const payload = await api(`/api/runs/${encodeURIComponent(id)}/${action}`, {}); snapshot = payload.snapshot || snapshot; if (payload.run) selectedId = payload.run.id; toast(id.startsWith('train-') ? t('Worker request acknowledged') : {start:t("Demo run started"),pause:t("Demo run paused"),resume:t("Demo run resumed"),cancel:t("Demo run canceled"),retry:t("New retry queued. Starts when the simulated GPU is free.")}[action]); await refresh(); }
+  catch (error) { toast(error.message,true); }
+  finally { requestBusy = false; render(); }
+}
+function openDialog(){ $('#form-error').hidden = true; $('#run-dialog').showModal(); }
+$('#new-run').onclick = ()=>snapshot?.training?.available?setNav('recipes'):openDialog(); $('#close-dialog').onclick = () => $('#run-dialog').close(); $('#cancel-dialog').onclick = () => $('#run-dialog').close();
+$('#run-dialog').addEventListener('click', e => { if (e.target === $('#run-dialog')) { const box = $('#run-dialog').getBoundingClientRect(); if(e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) $('#run-dialog').close(); } });
+$('#run-form').addEventListener('submit', async e => {
+  e.preventDefault(); if(requestBusy) return; requestBusy = true; const submit = $('#run-form button[type="submit"]'); submit.disabled = true; $('#form-error').hidden = true;
+  const data = Object.fromEntries(new FormData(e.target)); for(const key of ['learning_rate','batch_size','lora_rank','epochs','gradient_accumulation','max_steps']) data[key] = Number(data[key]);
+  try { const payload = await api('/api/runs',data); snapshot = payload.snapshot || snapshot; selectedId = payload.run.id; filter = 'all'; $$('.filter').forEach(btn => btn.classList.toggle('active',btn.dataset.filter === filter)); $('#run-dialog').close(); toast(t("Demo experiment queued. Starts when the simulated GPU is free.")); await refresh(); setNav('runs'); $('#run-detail').scrollIntoView({behavior:'smooth',block:'start'}); }
+  catch(error) { $('#form-error').textContent = error.message; $('#form-error').hidden = false; }
+  finally { requestBusy = false; submit.disabled = false; render(); }
+});
+$$('.filter').forEach(btn => { btn.onclick = () => { filter = btn.dataset.filter; $$('.filter').forEach(other => other.classList.toggle('active',other === btn)); render(); }; });
+$$('.tab').forEach(btn => { btn.onclick = () => { currentTab = btn.dataset.tab; $$('.tab').forEach(other => { other.classList.toggle('active',other === btn); other.setAttribute('aria-selected', String(other === btn)); }); render(); }; });
+function setNav(value) {
+  nav = value;
+  $$('.nav-item').forEach(btn => btn.classList.toggle('active',btn.dataset.nav === value));
+  const advanced = !['overview','runs'].includes(value);
+  $('#worker-info').hidden = true;
+  $('#workspace-view').hidden = !advanced;
+  $('#run-detail').hidden = advanced;
+  $('#experiments').hidden = advanced;
+  $('.summary-grid').hidden = advanced;
+  $('#mobile-view').value = value === 'runs' ? 'overview' : value;
+  const names = {overview:t("Overview"),runs:t("Experiments"),datasets:t("Datasets"),recipes:t("Training setup"),compare:t("Compare runs"),environment:t("Environment"),settings:t("Access settings")};
+  $('.breadcrumbs strong').textContent = names[value] || value;
+  render();
+  if (advanced && typeof loadWorkspaceView === 'function') loadWorkspaceView(value);
+  if(value === 'runs') $('#experiments').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$$('.nav-item').forEach(btn => { btn.onclick = () => setNav(btn.dataset.nav); });
+refresh(); setInterval(refresh,2000); document.addEventListener('visibilitychange', () => { if(!document.hidden) refresh(); });
+
+$('#run-form select[name="kind"]').onchange = (e) => { const vlm = e.target.value === 'VLM'; $('#run-form select[name="model"]').value = vlm ? 'demo/vlm-3b' : 'demo/llm-3b'; $('#run-form input[name="dataset"]').value = vlm ? 'synthetic-image-captions' : 'synthetic-instructions'; };
+
+$('#mobile-view').onchange = (event) => setNav(event.target.value);
+
+'use strict';
+let workspaceAuth = null, viewVersion = 0, datasetsCache = [], recipeConfig = null, recipeDraft = null;
+const featureNames = {datasets:'Data, ready for a run.',recipes:'Configure before you commit.',compare:'Every experiment has a story.',environment:'Know the machine first.',settings:'Your workspace. Your access.'};
+const llmSample = JSON.stringify({messages:[{role:'user',content:'What makes a good training example?'},{role:'assistant',content:'A clear prompt and a consistent, accurate response.'}]})+'\n'+JSON.stringify({instruction:'Summarize the following text.',input:'Local-first tools keep the training loop close to your data.',output:'Local tools keep data and training together.'})+'\n'+JSON.stringify({messages:[{role:'user',content:'Explain validation loss in one sentence.'},{role:'assistant',content:'Validation loss measures error on examples held out from training.'}]});
+const vlmSample = JSON.stringify({images:['images/sample-001.png'],messages:[{role:'user',content:'Describe this product image.'},{role:'assistant',content:'A synthetic blue mug on a white background.'}]})+'\n'+JSON.stringify({images:['images/sample-002.png'],messages:[{role:'user',content:'What is the dominant color?'},{role:'assistant',content:'Green.'}]})+'\n'+JSON.stringify({images:['images/sample-003.png'],messages:[{role:'user',content:'Write an accessible caption.'},{role:'assistant',content:'A synthetic notebook lying on a wooden desk.'}]});
+function featureHeading(view,description,extra=''){return `<div class="feature-heading"><div><div class="eyebrow">${t("LOCAL WORKFLOW ·")} ${escapeHtml(t(view.toUpperCase()))}</div><h2>${t(featureNames[view])}</h2><p>${escapeHtml(description)}</p></div>${extra}</div>`;}
+function describeIssue(issue){return typeof issue==='string'?t(issue):`${issue.line ? (t("Line") + " ")+issue.line+' · ' : ''}${issue.field ? issue.field+': ' : ''}${t(issue.message || issue.code || JSON.stringify(issue))}${issue.code?' ['+issue.code+']':''}`;}
+function issueList(issues){return (issues||[]).map(issue=>`<li>${escapeHtml(describeIssue(issue))}</li>`).join('');}
+function jsonPreview(value){return `<pre class="preview-record">${escapeHtml(JSON.stringify(value,null,2))}</pre>`;}
+function downloadJson(name,value){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function showLogin(){if(!$('#login-dialog').open){$('#login-error').hidden=true;$('#login-dialog').showModal();}}
+async function checkAccess(){
+  try{workspaceAuth=await api('/api/auth/status');authToken=workspaceAuth.csrf_token||null;updateClientPermissions(workspaceAuth);
+    if(workspaceAuth.must_change_password&&workspaceAuth.authenticated){$('#login-dialog').close();if(nav!=='settings')setNav('settings');}
+    return workspaceAuth;
+  }catch{return null;}
+}
+$('#close-login').onclick=()=>$('#login-dialog').close();
+$('#login-form').addEventListener('submit',async event=>{
+  event.preventDefault();const button=$('#login-form button[type="submit"]');button.disabled=true;$('#login-error').hidden=true;
+  const form=Object.fromEntries(new FormData(event.target));
+  try{workspaceAuth=await api('/api/auth/login',form);authToken=workspaceAuth.csrf_token||null;updateClientPermissions(workspaceAuth);$('#login-dialog').close();event.target.querySelector('input[name="password"]').value='';
+    if(workspaceAuth.must_change_password){setNav('settings');toast(t("Signed in locally. Change the initial password to unlock the workspace."));}
+    else{toast(t("Workspace unlocked"));await refresh();if(!['overview','runs'].includes(nav))loadWorkspaceView(nav);}
+  }catch(error){$('#login-error').innerHTML=actionableErrorHtml(error,t("Authentication"));$('#login-error').hidden=false;}
+  finally{button.disabled=false;}
+});
+async function loadWorkspaceView(view){
+  const version=++viewVersion, host=$('#workspace-view');host.innerHTML=`${featureHeading(view,t("Loading your local workspace…"))}<div class="empty">${t("Connecting to the local API")}</div>`;
+  try{
+    if(view==='settings'){const state=await checkAccess();if(version===viewVersion)renderSettings(state);return;}
+    if(view==='compare'){if(!snapshot)await refresh();if(version===viewVersion)renderCompare();return;}
+    const endpoint={datasets:'/api/workspace',recipes:'/api/presets',environment:'/api/diagnostics'}[view];
+    const result=await api(endpoint);if(version!==viewVersion)return;
+    if(view==='datasets')renderDatasets(result);else if(view==='recipes')await renderRecipes(result);else if(view==='environment')renderEnvironment(result);
+  }catch(error){if(version!==viewVersion)return;host.innerHTML=`${featureHeading(view,t("Prepare and manage locally. Actual training requires a verified adapter."))}<div class="feature-result error">${escapeHtml(error.message)}</div><div class="feature-actions"><button class="button primary" id="feature-signin">${t("Sign in / finish setup")}</button><button class="button secondary" id="feature-retry">${t("Retry")}</button></div>`;$('#feature-signin').onclick=showLogin;$('#feature-retry').onclick=()=>loadWorkspaceView(view);}
+}
+function renderDatasets(data){
+  datasetsCache=data.datasets||[];
+  $('#workspace-view').innerHTML=featureHeading('datasets',t("Validate JSONL labels, then split records. Upload referenced images separately for real VLM training."))+`<details class="format-guide"><summary>${t("Supported formats, required fields &amp; downloadable samples")}</summary><p><strong>${t("JSONL only:")}</strong> ${t("JSONL input accepts text only. CSV, Parquet, JSON arrays and ZIP are not supported. Upload VLM images separately below. UTF-8 text · 128 KiB · 1000 records maximum.")}</p><div class="schema-grid"><div><h4>${t("LLM · chat")}</h4><p>${t("Required: messages array with user and assistant roles; every message has role + text content. Optional system message.")}</p>${jsonPreview({messages:[{role:'user',content:'Say hello'},{role:'assistant',content:'Hello'}]})}<button class="button secondary" id="download-chat-sample">${t("Download chat JSONL")}</button></div><div><h4>${t("LLM · instruction")}</h4><p>${t("Required: instruction + output text. Optional input text. No extra arbitrary fields.")}</p>${jsonPreview({instruction:'Summarize',input:'Example text',output:'A short summary'})}<button class="button secondary" id="download-instruction-sample">${t("Download instruction JSONL")}</button></div><div><h4>${t("VLM · image + text")}</h4><p>${t("Required: messages + images array of safe relative labels. Save the dataset, then upload matching images for real VLM training.")}</p>${jsonPreview({images:['images/example.png'],messages:[{role:'user',content:'Describe the image'},{role:'assistant',content:'A synthetic object'}]})}<button class="button secondary" id="download-vlm-sample">${t("Download VLM JSONL")}</button></div></div></details><div class="feature-grid"><div class="feature-box"><h3>${t("Bring a small dataset")}</h3><form id="dataset-form"><div class="form-grid"><label>${t("Dataset name")}<input name="name" value="my-instruction-data" maxlength="80" required></label><label>${t("Schema")}<select name="kind" id="dataset-kind"><option>LLM</option><option>VLM</option></select></label></div><label>${t("JSONL file · optional")}<input id="dataset-file" type="file" accept=".jsonl,.ndjson,.txt"><small>${t("128 KiB maximum. File contents stay on this dashboard server.")}</small></label><label>${t("JSONL examples")}<textarea id="dataset-text" name="text" spellcheck="false" required>${escapeHtml(llmSample)}</textarea></label><div class="feature-actions"><button class="button secondary" type="button" id="dataset-sample">${t("Load synthetic sample")}</button><button class="button secondary" type="button" id="dataset-validate">${t("Validate only")}</button><button class="button primary" type="submit">${t("Validate &amp; save")}</button></div></form><div id="dataset-result" hidden></div><p class="field-note">${t("LLM: messages or instruction/output. VLM: messages + relative image label. Absolute paths and traversal are rejected. No training, model download or image validation occurs here.")}</p></div><div class="feature-box"><h3>${t("Prepared datasets")} <span id="prepared-dataset-count" class="count-badge">${datasetsCache.length}</span></h3><div id="dataset-list">${datasetCards(datasetsCache)}</div><div id="dataset-detail" hidden></div><p class="read-only-note">${t("Split/export tools manage actual imported text. Remove private information before sharing exports or this workspace.")}</p></div></div>`;
+  $('#download-chat-sample').onclick=()=>downloadText('forge-chat-sample.jsonl',chatSample());$('#download-instruction-sample').onclick=()=>downloadText('forge-instruction-sample.jsonl',instructionSample());$('#download-vlm-sample').onclick=()=>downloadText('forge-vlm-sample.jsonl',vlmSample+'\n');
+  $('#dataset-sample').onclick=()=>{$('#dataset-text').value=$('#dataset-kind').value==='VLM'?vlmSample:llmSample;$('#dataset-form input[name="name"]').value=$('#dataset-kind').value==='VLM'?'synthetic-image-captions':'synthetic-instructions';};
+  $('#dataset-kind').onchange=()=>{$('#dataset-sample').click();};
+  $('#dataset-file').onchange=async event=>{const file=event.target.files[0];if(!file)return;if(!/\.(jsonl|ndjson|txt)$/i.test(file.name)){toast(t("Dataset import stage: unsupported file type. Use UTF-8 JSONL, not CSV, Parquet, ZIP or an image."),true);event.target.value='';return;}if(file.size>128*1024){toast(t("Dataset file exceeds the 128 KiB preparation limit"),true);event.target.value='';return;}$('#dataset-text').value=await file.text();};
+  $('#dataset-validate').onclick=()=>submitDataset(false);
+  $('#dataset-form').onsubmit=event=>{event.preventDefault();submitDataset(true);};
+  bindDatasetActions();
+}
+function datasetCards(datasets){return datasets.length?datasets.map(ds=>`<div class="dataset-item"><h4>${escapeHtml(ds.name)}<span class="method-tag">${escapeHtml(ds.kind)}</span></h4><p>${escapeHtml(ds.count ?? ds.records_count ?? ds.record_count ?? '—')} ${t("examples ·")} ${escapeHtml(ds.id)}</p><div class="dataset-tools"><button class="button secondary" data-inspect-dataset="${escapeHtml(ds.id)}">${t("Inspect")}</button><label>${t("Val. fraction")}<input data-ratio="${escapeHtml(ds.id)}" type="number" min="0.05" max="0.5" step="0.05" value="0.2"></label><button class="button primary" data-split-dataset="${escapeHtml(ds.id)}">${t("Split · seed 42")}</button></div>${ds.kind==='VLM'?`<label>${t("Upload referenced images")}<input type="file" data-dataset-images="${escapeHtml(ds.id)}" accept=".png,.jpg,.jpeg" multiple></label><p class="field-note">${t("Filenames must match images/filename.png labels. PNG/JPEG · 2 MB each. Images are stored privately for VLM training.")}</p>`:''}<div class="feature-actions"><a class="button secondary" href="/api/datasets/${encodeURIComponent(ds.id)}/export?split=train">${t("Export train")}</a><a class="button secondary" href="/api/datasets/${encodeURIComponent(ds.id)}/export?split=validation">${t("Export validation")}</a></div></div>`).join(''):`<div class="empty">${t("No prepared datasets yet")}<br>${t("Validate and save a sample to begin")}</div>`;}
+function bindDatasetActions(){
+  $$('[data-dataset-images]').forEach(input=>{input.onchange=async()=>{try{await uploadDatasetImages(input.dataset.datasetImages,[...input.files]);}catch(error){toast(error.message,true);}finally{input.value='';}};});
+  $$('[data-inspect-dataset]').forEach(button=>{button.onclick=async()=>{try{const response=await api(`/api/datasets/${encodeURIComponent(button.dataset.inspectDataset)}`);const ds=response.dataset||response;const output=$('#dataset-detail');output.hidden=false;output.innerHTML=`<div class="feature-result"><h4>${escapeHtml(ds.name)}</h4>${jsonPreview(ds.split||ds.split_summary||{})}<div class="preview-caption">${t("Preview · text only, no images loaded")}</div>${(ds.preview||[]).map(jsonPreview).join('')}</div>`;}catch(error){toast(error.message,true);}};});
+  $$('[data-split-dataset]').forEach(button=>{button.onclick=async()=>{button.disabled=true;try{const id=button.dataset.splitDataset;const ratio=Number($(`input[data-ratio="${id}"]`).value);const split=await api(`/api/datasets/${encodeURIComponent(id)}/split`,{seed:42,val_ratio:ratio});const output=$('#dataset-detail');output.hidden=false;output.innerHTML=`<div class="feature-result"><h4>${t("Reproducible split created")}</h4>${jsonPreview(split)}<p>${t("Export links now download the assigned JSONL records. Seed 42 repeats this split.")}</p></div>`;toast(t("Train/validation split prepared"));}catch(error){toast(error.message,true);}finally{button.disabled=false;}};});
+}
+async function submitDataset(save){
+  const form=$('#dataset-form'), controls=[...form.querySelectorAll('button')];controls.forEach(b=>b.disabled=true);
+  try{const payload=Object.fromEntries(new FormData(form));const result=await api(save?'/api/datasets':'/api/datasets/validate',payload);const validation=result.validation||result;const output=$('#dataset-result');output.hidden=false;output.className='feature-result '+(!validation.valid?'error':'');output.innerHTML=`<h4>${t("Dataset validation ·")} ${validation.valid?t("schema validation passed"):t("check failed")}</h4><p><b>${t("What was checked:")}</b> ${escapeHtml(validation.count||0)} ${t("examples · required fields and safe image labels")}</p>${validation.valid?'':`<p><b>${t("Next step:")}</b> ${t("Use one JSON object per line and fix each line/field below. Match a downloadable sample before saving.")}</p>`}<ul>${issueList(validation.errors)}${issueList(validation.warnings)}</ul><div class="preview-caption">${t("First examples")}</div>${(validation.preview||[]).map(jsonPreview).join('')}`;
+    if(save){const workspace=await api('/api/workspace');datasetsCache=workspace.datasets||[];$('#prepared-dataset-count').textContent=datasetsCache.length;$('#dataset-list').innerHTML=datasetCards(datasetsCache);bindDatasetActions();toast(t("Dataset validated and saved locally"));}
+  }catch(error){const output=$('#dataset-result');output.hidden=false;output.className='feature-result error';const validation=error.details?.validation||error.details;if(validation?.errors)output.innerHTML=`${actionableErrorHtml(error,t("Dataset import"))}<ul>${issueList(validation.errors)}${issueList(validation.warnings)}</ul>`;else output.textContent=error.message;}
+  finally{controls.forEach(b=>b.disabled=false);}
+}
+function defaultRecipe(){return {name:'local-qlora-draft',kind:'LLM',model:'demo/llm-3b',dataset:'synthetic-instructions',method:'qlora',learning_rate:0.0002,batch_size:1,gradient_accumulation:8,lora_rank:16,epochs:3,sequence_length:1024,max_steps:120,seed:42,failure_mode:'none'};}
+function renderRecipes(data){
+  const presets=Array.isArray(data)?data:data.presets||[];const draft=recipeDraft;recipeDraft=null;recipeConfig=draft||presets[0]?.config||defaultRecipe();
+  $('#workspace-view').innerHTML=featureHeading('recipes',t("Choose a recipe, prepare the dataset split and launch real GPU training below. Memory estimates are heuristics, never a fit guarantee."))+`<div class="feature-grid"><div class="feature-box"><h3>${t("Configuration recipe")}</h3><label>${t("Preset")}<select id="recipe-preset">${draft?`<option value="">${t("Copied experiment · review parameters")}</option>`:''}${presets.map((preset,index)=>`<option value="${index}">${escapeHtml(t(preset.name||preset.label||preset.id))}</option>`).join('')||`<option>${t("Custom small QLoRA")}</option>`}</select></label><form id="recipe-form"><div class="form-grid"><label>${t("Name")}<input name="name" maxlength="80" required></label><label>${t("Model type")}<select name="kind"><option>LLM</option><option>VLM</option></select></label></div><label>${t("Model label")}<input name="model" maxlength="160" required></label><label>${t("Dataset label")}<input name="dataset" maxlength="120" required></label><div class="form-grid three"><label>${t("Method")}<select name="method"><option value="qlora">QLoRA</option><option value="lora">LoRA</option></select></label><label>${t("Assumed VRAM · GB")}<input id="assumed-vram" type="number" min="2" max="192" value="12" required></label></div><details class="advanced-options"><summary>${t("Advanced training options")}</summary><div class="form-grid three"><label>${t("Learning rate")}<input name="learning_rate" type="number" min="0.0000001" max="0.1" step="any" required></label><label>${t("Batch size")}<input name="batch_size" type="number" min="1" max="32" required></label><label>${t("Grad. accumulation")}<input name="gradient_accumulation" type="number" min="1" max="128" required></label><label>${t("LoRA rank")}<input name="lora_rank" type="number" min="1" max="128" required></label><label>${t("Context length")}<input name="sequence_length" type="number" min="64" max="8192" required></label><label>${t("Epochs")}<input name="epochs" type="number" min="1" max="20" required></label><label>${t("Steps · maximum updates")}<input name="max_steps" type="number" min="10" max="2000" required></label></div></details><div class="feature-actions"><button class="button primary" type="submit">${t("Dry-run checks")}</button><button class="button secondary" type="button" id="recipe-export">${t("Export config")}</button><button class="button secondary" type="button" id="recipe-demo">${t("Queue demo only")}</button></div></form></div><div class="feature-box"><h3>${t("Before real training")}</h3><details class="parameter-guide"><summary>${t("What do batch size, LR and LoRA mean?")}</summary><p><b>${t("Batch size:")}</b> ${t("examples handled per device step. Larger batches usually need more activation memory; start small.")}</p><p><b>${t("Gradient accumulation:")}</b> ${t("accumulate multiple small batches before updating weights. It can increase the effective batch without the same per-step batch size.")}</p><p><b>${t("Learning rate:")}</b> ${t("how large each update is. Too high can destabilize training; too low can make progress slow. A preset is a starting point, not a universal optimum.")}</p><p><b>${t("LoRA rank:")}</b> ${t("adapter capacity. Larger ranks add memory and may need more data. QLoRA combines quantized base weights with adapter training; compatibility still depends on the actual model and toolchain.")}</p></details><div class="no-adapter"><strong>${t("Real training uses the GPU panel below")}</strong>${t("Preparation dry-run and demo controls are separate from the real GPU training action.")}</div><ul class="check-list"><li><span class="check-icon warning">◉</span><div><b>${t("Confirm actual VRAM locally")}</b>${t("The 12 GB value is an editable assumption, not a detected RTX 3060 specification.")}</div></li><li><span class="check-icon warning">◉</span><div><b>${t("Validate a small local batch")}</b>${t("Model architecture, optimizer, image resolution, kernels and sequence length change memory needs.")}</div></li><li><span class="check-icon">✓</span><div><b>${t("Keep recipe and dataset together")}</b>${t("Export the config and deterministic split before connecting a future worker.")}</div></li></ul><div id="recipe-result" hidden></div></div></div>`;
+  $('#workspace-view').innerHTML += '<section id="real-training-panel" class="feature-box"></section>';
+
+  populateRecipe(recipeConfig);
+  $('#recipe-preset').onchange=event=>{recipeConfig=event.target.value===''?(draft||defaultRecipe()):(presets[Number(event.target.value)]?.config||defaultRecipe());populateRecipe(recipeConfig);$('#recipe-result').hidden=true;};
+  $('#recipe-form').addEventListener('invalid',event=>{const details=event.target.closest('details');if(details)details.open=true;},true);
+  $('#recipe-form').onsubmit=async event=>{event.preventDefault();const config=readRecipe();try{const result=await api('/api/config/dry-run',{config,assumed_vram_gb:Number($('#assumed-vram').value)});renderDryRun(result);}catch(error){renderFeatureError('#recipe-result',error);}};
+  $('#recipe-export').onclick=async()=>{try{const result=await api('/api/config/dry-run',{config:readRecipe(),assumed_vram_gb:Number($('#assumed-vram').value)});downloadJson('forge-training-recipe.json',{mode:'preparation_only',real_training:false,assumed_vram_gb:Number($('#assumed-vram').value),config:result.config||readRecipe(),warnings:result.warnings||[]});renderDryRun(result);toast(t("Validated recipe exported"));}catch(error){renderFeatureError('#recipe-result',error);}};
+  $('#recipe-demo').onclick=async()=>{const button=$('#recipe-demo');button.disabled=true;try{const config=readRecipe();const result=await api('/api/runs',config);snapshot=result.snapshot||snapshot;selectedId=result.run.id;toast(t("Recipe queued in the synthetic demo engine"));setNav('runs');await refresh();}catch(error){renderFeatureError('#recipe-result',error);}finally{button.disabled=false;}};
+  if(typeof loadTrainingPanel==='function')return loadTrainingPanel();
+}
+function populateRecipe(config){const merged={...defaultRecipe(),...config};for(const [key,value]of Object.entries(merged)){const input=$(`#recipe-form [name="${key}"]`);if(input)input.value=value;}}
+function readRecipe(){const config=Object.fromEntries(new FormData($('#recipe-form')));for(const key of ['learning_rate','batch_size','gradient_accumulation','lora_rank','sequence_length','epochs','max_steps'])config[key]=Number(config[key]);config.seed=42;config.failure_mode='none';return config;}
+function renderDryRun(result){const output=$('#recipe-result');output.hidden=false;output.className='feature-result';output.innerHTML=`<h4>${t("Configuration checks complete")}</h4><p>${t("No process launched. No GPU allocation, model or dataset opened.")}</p><ul>${issueList(result.errors)}${issueList(result.warnings)}</ul>${jsonPreview(result.memory||result.memory_estimate||result.estimates||result.preflight||{estimated_memory_gb:result.estimated_memory_gb,assumed_vram_gb:result.assumed_vram_gb,estimate:result.estimate,valid:result.valid,real_training:false,can_train:false})}`;}
+function renderFeatureError(selector,error){const output=$(selector);output.hidden=false;output.className='feature-result error';output.innerHTML=actionableErrorHtml(error,t("Preparation or settings"));}
+function renderCompare(){
+  const runs=snapshot?.runs||[];const options=runs.map(run=>`<option value="${escapeHtml(run.id)}">${escapeHtml(run.name)} · ${escapeHtml(t(run.status))}</option>`).join('');
+  $('#workspace-view').innerHTML=featureHeading('compare',t("Compare loss curves and configurations. Check the source: demo runs are synthetic; real runs use held-out validation data."))+`<div class="compare-selects"><label>${t("Experiment A")}<select id="compare-a">${options}</select></label><label>${t("Experiment B")}<select id="compare-b">${options}</select></label></div><div id="compare-output"></div>`;
+  if(!runs.length){$('#compare-output').innerHTML=`<div class="empty">${t("Sign in and load experiments before comparing")}</div>`;return;}
+  $('#compare-a').value=selectedId||runs[0].id;$('#compare-b').value=runs.find(r=>r.id!==$('#compare-a').value)?.id||runs[0].id;
+  $('#compare-a').onchange=updateComparison;$('#compare-b').onchange=updateComparison;updateComparison();
+}
+function updateComparison(){const runs=snapshot?.runs||[],a=runs.find(r=>r.id===$('#compare-a').value),b=runs.find(r=>r.id===$('#compare-b').value);if(!a||!b)return;const ma=latest(a),mb=latest(b);const rows=[[t("Source"),t(a.simulated===false?"Real GPU":"Demo"),t(b.simulated===false?"Real GPU":"Demo")],[t("Type"),a.kind,b.kind],[t("Status"),t(a.status),t(b.status)],[t("Progress"),`${fmt(a.progress,1)}%`,`${fmt(b.progress,1)}%`],[t("Train loss"),fmt(ma.loss),fmt(mb.loss)],[t("Eval loss"),fmt(ma.eval_loss),fmt(mb.eval_loss)],[t("Learning rate"),ma.learning_rate,mb.learning_rate],[t("Model"),a.config.model,b.config.model],[t("Dataset"),a.config.dataset,b.config.dataset],[t("Method"),a.config.method,b.config.method],[t("LoRA rank"),a.config.lora_rank,b.config.lora_rank],[t("Context length"),a.config.sequence_length,b.config.sequence_length],[t("Batch × accumulation"),`${a.config.batch_size} × ${a.config.gradient_accumulation}`,`${b.config.batch_size} × ${b.config.gradient_accumulation}`]];
+  $('#compare-output').innerHTML=`<div class="compare-legend"><span><i class="tiny-dot" style="background:var(--purple)"></i> ${escapeHtml(a.name)}</span><span><i class="tiny-dot"></i> ${escapeHtml(b.name)}</span></div><div class="feature-chart chart">${comparisonChart(a,b)}</div><div class="runs-scroll"><table class="compare-table"><thead><tr><th>${t("METRIC / CONFIG")}</th><th>${t("EXPERIMENT A")}</th><th>${t("EXPERIMENT B")}</th></tr></thead><tbody>${rows.map(row=>`<tr>${row.map(value=>`<td>${escapeHtml(value??'—')}</td>`).join('')}</tr>`).join('')}</tbody></table></div><div class="export-banner"><div><h3>${t("Take the experiment record with you")}</h3><p>${t("JSON includes configuration, measured or synthetic metrics, logs, checkpoint metadata and evaluation. Adapter weights have separate checkpoint downloads.")}</p></div><div class="feature-actions"><a class="button secondary" href="/api/runs/${encodeURIComponent(a.id)}/export?format=json">${t("Export A · JSON")}</a><a class="button secondary" href="/api/runs/${encodeURIComponent(a.id)}/export?format=csv">${t("Export A · CSV")}</a><a class="button secondary" href="/api/runs/${encodeURIComponent(b.id)}/export?format=json">${t("Export B · JSON")}</a></div></div>`;
+}
+function comparisonChart(a,b){const runs=[a,b],points=runs.flatMap(run=>run.metrics||[]).filter(m=>Number.isFinite(m.loss));if(!points.length)return`<div class="chart-empty">${t("No metric points yet")}</div>`;const maxStep=Math.max(10,...points.map(p=>p.step)),minLoss=Math.max(0,Math.min(...points.map(p=>p.loss))-.25),maxLoss=Math.max(...points.map(p=>p.loss))+.25;const width=720,height=220,left=34,bottom=25,top=15;const x=v=>left+v/maxStep*(width-left-10),y=v=>top+(maxLoss-v)/(maxLoss-minLoss)*(height-top-bottom);let grid='';for(let i=0;i<4;i++){const v=minLoss+(maxLoss-minLoss)*i/3;grid+=`<line x1="${left}" x2="${width-10}" y1="${y(v)}" y2="${y(v)}" stroke="#2a2e39" stroke-dasharray="4 5"/><text x="0" y="${y(v)+3}" fill="#626a7d" font-size="9">${v.toFixed(1)}</text>`;}for(let i=0;i<5;i++)grid+=`<text x="${x(maxStep*i/4)}" y="${height-5}" text-anchor="middle" fill="#626a7d" font-size="9">${Math.round(maxStep*i/4)}</text>`;return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${t("Comparison of training loss across steps")}">${grid}${runs.map((run,index)=>`<path d="${(run.metrics||[]).filter(m=>Number.isFinite(m.loss)).map((p,i)=>`${i?'L':'M'}${x(p.step).toFixed(1)},${y(p.loss).toFixed(1)}`).join(' ')}" stroke="${index?'#8ee3cc':'#b0a0ff'}" stroke-width="2" fill="none" stroke-linejoin="round"/>`).join('')}</svg>`;}
+function renderEnvironment(data){
+  const os=data.os||data.platform||{},python=data.python||{},disk=data.disk||{},gpu=data.gpu||{},adapter=data.adapter||{};
+  const osName=typeof os==='string'?os:(os.name||os.system||'Unknown');const py=typeof python==='string'?python:python.version||data.python_version||'—';const free=disk.free_gb??disk.available_gb??(Number.isFinite(disk.free_bytes)?disk.free_bytes/1024**3:undefined);const detected=gpu.detected||gpu.available||false;
+  $('#workspace-view').innerHTML=featureHeading('environment',t("Read-only diagnostics from the machine running this server. These checks report this host, not model training compatibility. No software is installed or changed."),`<button id="diagnostics-refresh" class="button secondary">${t("↻ Refresh checks")}</button>`)+`<div class="diagnostic-grid"><div class="diagnostic-card"><span>${t("Server OS")}</span><strong>${escapeHtml(osName)}</strong><small>${escapeHtml(os.release||data.os_release||t("Read from current host"))}</small></div><div class="diagnostic-card"><span>Python</span><strong>${escapeHtml(py)}</strong><small>${t("Dashboard runtime only")}</small></div><div class="diagnostic-card"><span>${t("Available disk")}</span><strong>${free===undefined?'—':fmt(free,1)+' GB'}</strong><small>${t("Workspace filesystem · measured")}</small></div><div class="diagnostic-card"><span>NVIDIA GPU</span><strong>${detected?t("Detected"):t("Not detected")}</strong><small>${escapeHtml(t(gpu.message||gpu.reason||"Read-only local probe"))}</small></div><div class="diagnostic-card"><span>${t("Real training adapter")}</span><strong>${t(adapter.available?"Ready":"Unavailable")}</strong><small>${escapeHtml(t(adapter.message||"Not configured or implemented"))}</small></div><div class="diagnostic-card"><span>${t("Demo GPU profile")}</span><strong>${t("12 GB assumed")}</strong><small>${t("Synthetic only · not this host")}</small></div></div><div class="feature-grid"><div class="feature-box"><h3>${t("Preflight findings")}</h3><ul class="check-list">${(data.checks||[]).map(check=>`<li><span class="check-icon ${check.ok===false||check.status==='warning'?'warning':''}">${check.ok===false?'◉':'✓'}</span><div><b>${escapeHtml(check.name||check.label||check.id||check.status)}</b>${escapeHtml(t(check.message||check.detail||''))}</div></li>`).join('')||`<li><span class="check-icon warning">◉</span><div><b>${t(adapter.available?"Local GPU worker enabled":"No verified real training worker")}</b>${t(adapter.available?"Local LoRA/QLoRA worker ready.":"Demo simulation is available; real model training is disabled.")}</div></li>`}</ul><ul class="field-note">${issueList(data.warnings)}</ul></div><div class="feature-box"><h3>${t("Before connecting your RTX 3060")}</h3><p>${t("Confirm the actual VRAM, available disk and NVIDIA driver on the training machine. Choose Ubuntu for a dedicated Linux workflow or WSL2 if you continue using Windows.")}</p><p>${t("In WSL2, use the Windows NVIDIA driver. Do not install a separate Linux NVIDIA display driver inside WSL.")}</p><p><a class="button secondary" href="https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute" target="_blank" rel="noopener noreferrer">${t("Microsoft GPU guide ↗")}</a></p><div class="no-adapter"><strong>${t("Preflight is not a training guarantee")}</strong>${t("Model-specific compatibility and a tiny approved test run must be verified by a future adapter.")}</div></div></div><details class="section-subheading"><summary>${t("Diagnostic details · no private filesystem roots")}</summary>${jsonPreview(data)}</details>`;
+  $('#diagnostics-refresh').onclick=()=>loadWorkspaceView('environment');
+}
+function languageSettingsCard() {
+  return `<section class="feature-box language-settings" aria-labelledby="language-heading"><h3 id="language-heading">${t('Display language')}</h3><label for="language-select">${t('Language')}</label><select id="language-select" name="language"><option value="en" ${I18n.language === 'en' ? 'selected' : ''}>English</option><option value="ko" ${I18n.language === 'ko' ? 'selected' : ''}>한국어</option></select><p class="field-note">${t('Choose the interface language. This preference is saved in this browser and applies immediately.')}</p></section>`;
+}
+
+function bindLanguageSettings() {
+  $('#language-select').onchange = event => I18n.setLanguage(event.target.value);
+}
+
+async function refreshLanguageView() {
+  const currentView = nav;
+  // Preserve unsaved form values in memory during a language-only redraw.
+  // Passwords/input data are never written to browser storage by this feature.
+  const host = $('#workspace-view');
+  const fields = [...host.querySelectorAll('input, textarea, select')].filter(input => input.id !== 'language-select' && input.type !== 'file').map(input => ({
+    id: input.id, name: input.name, formId: input.form?.id,
+    value: input.value, checked: input.checked
+  }));
+  const openDetails = [...host.querySelectorAll('details')].map(details => details.open);
+  render();
+  const names = {overview: 'Overview', runs: 'Experiments', datasets: 'Datasets', recipes: 'Training setup', compare: 'Compare runs', environment: 'Environment', settings: 'Access settings'};
+  $('.breadcrumbs strong').textContent = t(names[currentView] || currentView);
+  $('#connection').innerHTML = `<i></i> ${t(connectionLabel)}`;
+  if (!['overview', 'runs'].includes(currentView)) await loadWorkspaceView(currentView);
+  if (nav !== currentView) return;
+  for (const field of fields) {
+    const input = [...host.querySelectorAll('input, textarea, select')].find(node => field.id ? node.id === field.id : node.name === field.name && node.form?.id === field.formId);
+    if (input) { input.value = field.value; input.checked = field.checked; }
+  }
+  [...host.querySelectorAll('details')].forEach((details, index) => { if (index < openDetails.length) details.open = openDetails[index]; });
+  if (currentView === 'settings') $('#language-select').focus();
+  toast(t('Language changed'));
+}
+
+document.addEventListener('forge:languagechange', () => { refreshLanguageView().catch(error => toast(error.message, true)); });
+
+function renderSettings(state){
+  if(!state){$('#workspace-view').innerHTML=featureHeading('settings',t("Local sign-in, LAN availability and remote permissions are separate."))+languageSettingsCard()+`<div class="feature-result error">${t("The access API is unavailable. Check the local server.")}</div>`;bindLanguageSettings();return;}
+  const settings=state.settings||{},configured=settings.configured||{lan_access:true,remote_view:true,remote_control:true},effective=settings.effective||{},gate=settings.bootstrap_required||state.must_change_password;
+  $('#workspace-view').innerHTML=featureHeading('settings',t("Saved permissions and effective access are shown separately. Password changes and access controls apply only to this dashboard."),`<span class="gate-badge ${gate?'':'ready'}">${gate?t("LOCAL SETUP REQUIRED"):t("PASSWORD GATE COMPLETE")}</span>`)+
+    languageSettingsCard()+`${gate?`<div class="auth-warning"><strong>${t("LAN is locked while the initial password is active.")}</strong><br>${t("Initial admin/admin works only from a loopback connection. Sign in locally and replace it with a unique password of at least 12 characters before LAN permissions can take effect. No LAN listener is enabled by this screen.")}</div>`:''}`+
+    `<div class="feature-grid"><div class="feature-box"><h3>${t("Workspace access")}</h3>${!state.authenticated?`<p>${t("Sign in to manage settings. The initial account is for local setup only.")}</p><button id="settings-signin" class="button primary">${t("Sign in locally")}</button>`:`<p>${t("Signed in as")} ${escapeHtml(state.username)} · ${state.local_peer?t("local connection"):t("remote connection")}</p><form id="access-form">${[['lan_access',t("LAN access"),t("Allow authenticated connections on an explicitly configured LAN listener.")],['remote_view',t("Remote viewing"),t("Read workspace data from an authenticated LAN connection.")],['remote_control',t("Remote control"),t("Allow authenticated LAN changes, demo controls and real GPU training.")]].map(([key,label,description])=>`<label class="settings-row"><div><strong>${label}</strong><p>${description}</p><p>${t("Configured:")} ${configured[key]?t("ON"):t("OFF")} ${t("· Effective:")} ${effective[key]?t("ON"):t("OFF")}</p></div><input class="switch" type="checkbox" name="${key}" ${configured[key]?'checked':''} ${gate?'disabled':''}></label>`).join('')}<div class="feature-actions"><button class="button primary" type="submit" ${gate?'disabled':''}>${t("Save access settings")}</button><button class="button secondary" type="button" id="settings-logout">${t("Sign out")}</button></div></form>`}<p class="field-note">${t("Listener:")} ${settings.listener_lan?t("LAN opt-in enabled"):t("loopback only")} ${t("· Transport:")} ${settings.tls?'TLS':'HTTP'}<br>${t("Permissions do not open a port, change a firewall or expose a public service.")}</p></div><div class="feature-box"><h3>${gate?t("Replace the initial password"):t("Change dashboard password")}</h3>${state.authenticated?`<form id="password-form"><label>${t("Current password")}<input name="current_password" type="password" autocomplete="current-password" required></label><label>${t("New unique password")}<input name="new_password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><label>${t("Confirm new password")}<input name="confirmation" type="password" minlength="12" maxlength="128" autocomplete="new-password" required></label><div class="feature-actions"><button class="button primary" type="submit">${t("Change password")}${gate?(" " + t("& unlock setup")):''}</button></div><div id="password-result" hidden></div></form>`:`<p>${t("Sign in locally first. Passwords are hashed server-side and never stored in frontend assets or browser local storage.")}</p>`}<div class="no-adapter"><strong>${t("Same-network access requires a separate local launch")}</strong>${t("Use the LAN setup guide on your own Ubuntu/WSL2 host. Keep the default loopback for private local use. Use TLS before sending LAN passwords; no router port forwarding is needed.")}</div></div></div>`;
+  bindLanguageSettings();
+  if(!state.authenticated){$('#settings-signin').onclick=showLogin;return;}
+  $('#access-form').onsubmit=async event=>{event.preventDefault();const button=event.target.querySelector('button[type="submit"]');button.disabled=true;try{const body={};for(const key of ['lan_access','remote_view','remote_control'])body[key]=event.target.elements[key].checked;await api('/api/settings',body);toast(t("Access permissions saved"));loadWorkspaceView('settings');}catch(error){toast(error.message,true);}finally{button.disabled=false;}};
+  $('#settings-logout').onclick=async()=>{try{await api('/api/auth/logout',{});authToken=null;workspaceAuth=null;snapshot=null;selectedId=null;$('#run-detail').hidden=true;$('#tab-content').innerHTML='';$('#loss-chart').innerHTML='';$('#runs-body').innerHTML='';$('#summary-total').textContent='—';$('#summary-active').textContent='—';$('#summary-vram').textContent='—';toast(t("Signed out"));loadWorkspaceView('settings');}catch(error){toast(error.message,true);}};
+  $('#password-form').onsubmit=async event=>{event.preventDefault();const values=Object.fromEntries(new FormData(event.target));if(values.new_password!==values.confirmation){renderFeatureError('#password-result',Object.assign(new Error(t("The new passwords do not match")),{code:'password_mismatch'}));return;}const button=event.target.querySelector('button[type="submit"]');button.disabled=true;try{workspaceAuth=await api('/api/auth/change-password',{current_password:values.current_password,new_password:values.new_password});authToken=workspaceAuth.csrf_token||null;updateClientPermissions(workspaceAuth);event.target.reset();toast(t("Password changed. Setup gate is complete."));await refresh();loadWorkspaceView('settings');}catch(error){renderFeatureError('#password-result',error);}finally{button.disabled=false;}};
+}
+checkAccess();
+
+function prepareRecipeFromRun(run){recipeDraft={...run.config,name:(run.name+' revised').slice(0,80),failure_mode:'none'};setNav('recipes');}
+
+function updateClientPermissions(state){remoteControlsAllowed=state.local_peer!==false||Boolean(state.settings?.effective?.remote_control);$('#new-run').disabled=!remoteControlsAllowed;}
+
+function chatSample(){return [1,2,3].map(i=>JSON.stringify({messages:[{role:'user',content:'Synthetic prompt '+i},{role:'assistant',content:'Synthetic response '+i}]})).join('\n')+'\n';}
+function instructionSample(){return [1,2,3].map(i=>JSON.stringify({instruction:'Synthetic task '+i,input:'Synthetic context '+i,output:'Synthetic target '+i})).join('\n')+'\n';}
+function downloadText(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/x-ndjson'}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function safeTechnicalText(text){return String(text??'').replace(/\b(?:sk-[A-Za-z0-9_-]{12,}|hf_[A-Za-z0-9]{12,})\b/g,'[REDACTED]').replace(/((?:password|api[_-]?key|access[_-]?token)\s*[:=]\s*)[^\s,;]+/gi,'$1[REDACTED]');}
+function errorNextStep(code){return ({invalid_json:t("Use one valid JSON object on each line, with double-quoted keys and no trailing commas."),invalid_record:t("Match the documented required fields and message roles. Check the highlighted line and field."),invalid_dataset:t("Validate first, fix every reported row, then save again."),text_limit:t("Use a smaller UTF-8 JSONL sample under 128 KiB. Keep full training data on the future local worker."),weak_password:t("Use a unique 12+ character password, or a 20+ character passphrase; confirm both fields match."),password_mismatch:t("Enter the same new password in both fields before submitting."),invalid_credentials:t("Check the admin ID and current password. Initial admin/admin is accepted only for local first-use setup."),password_change_required:t("Sign in on the same machine and change the initial password in Access settings."),invalid_csrf:t("Sign out and sign in again to refresh the session. Do not copy a token from another session."),login_rate_limited:t("Wait five minutes before trying again. Repeated attempts do not bypass the limit."),remote_view_disabled:t("Ask the local admin to enable remote viewing. Control permission does not grant access to data."),remote_control_disabled:t("Ask the local admin to enable remote control, or use the local dashboard."),adapter_unavailable:t("Use preparation/demo tools only. A verified real local adapter is not implemented yet.")})[code]||t("Review the reported field and use the documented format or a smaller safe preset. Retry after correcting the input.");}
+function actionableErrorHtml(error,stage){return `<h4>${escapeHtml(stage)} ${t("· check failed")}</h4><p><b>${t("What failed:")}</b> ${escapeHtml(t(safeTechnicalText(error.message)))}</p><p><b>${t("Next step:")}</b> ${escapeHtml(errorNextStep(error.code))}</p><details><summary>${t("Technical details · safe")}</summary>${jsonPreview({code:error.code||'request_failed',message:safeTechnicalText(error.message)})}</details>`;}
+$$('[data-guide-view]').forEach(button=>{button.onclick=()=>setNav(button.dataset.guideView);});
+
+'use strict';
+let trainingPanelVersion = 0;
+async function loadTrainingPanel() {
+  const host = $('#real-training-panel');
+  if (!host) return;
+  const version = ++trainingPanelVersion;
+  try {
+    const [cap, workspace] = await Promise.all([api('/api/training'), api('/api/workspace')]);
+    if (version !== trainingPanelVersion || nav !== 'recipes') return;
+    const datasets = (workspace.datasets || []).filter(ds => ds.split);
+    host.innerHTML = `<h3>${t('Real GPU training')}</h3><p>${escapeHtml(t(cap.message))}</p><label>${t('Installed base model')}<select id="training-model">${cap.models.filter(m=>m.installed).map(m=>`<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)} · ${m.kind}</option>`).join('')}</select></label><label>${t('Prepared train/validation dataset')}<select id="training-dataset">${datasets.map(ds=>`<option value="${escapeHtml(ds.id)}" data-kind="${ds.kind}">${escapeHtml(ds.name)} · ${ds.kind}</option>`).join('') || `<option value="">${t('Save and split a dataset first')}</option>`}</select></label><p class="field-note">${t('Uses the recipe above. Real jobs allocate the GPU and save adapter weights. Max steps caps optimizer updates; epochs may finish earlier.')}</p><div class="feature-actions"><button type="button" class="button secondary" id="training-preflight">${t('Check real training')}</button><button type="button" class="button primary" id="training-start" ${!cap.available || !remoteControlsAllowed ? 'disabled' : ''}>${t('Start real GPU training')}</button></div><div id="training-result" hidden></div>`;
+    function syncModel() {
+      const model = cap.models.find(m=>m.id===$('#training-model').value);
+      if (!model) return;
+      $('#recipe-form [name=model]').value=model.id;
+      $('#recipe-form [name=kind]').value=model.kind;
+      $('#recipe-form [name=sequence_length]').value=model.kind==='VLM'?1536:512;
+      if (!datasets.some(ds=>ds.id===$('#training-dataset').value && ds.kind===model.kind)) $('#training-dataset').value=datasets.find(ds=>ds.kind===model.kind)?.id||'';
+      syncDataset();
+    }
+    function syncDataset(){ $('#recipe-form [name=dataset]').value=$('#training-dataset').value; }
+    $('#training-model').onchange=syncModel;
+    $('#training-dataset').onchange=syncDataset;
+    if (cap.models.some(m=>m.id===$('#recipe-form [name=model]').value && m.installed)) $('#training-model').value=$('#recipe-form [name=model]').value;
+    if(datasets.some(ds=>ds.id===$('#recipe-form [name=dataset]').value))$('#training-dataset').value=$('#recipe-form [name=dataset]').value;
+    if(cap.models.some(m=>m.id===$('#recipe-form [name=model]').value && m.installed))syncDataset();else syncModel();
+    $('#training-preflight').onclick=async()=>{try{syncDataset();const result=await api('/api/training/preflight',readRecipe());const output=$('#training-result');output.hidden=false;output.className='feature-result';output.innerHTML=`<h4>${t('Real training checks passed')}</h4>${jsonPreview(result)}`;}catch(error){renderFeatureError('#training-result',error);}};
+    $('#training-start').onclick=async()=>{const button=$('#training-start');button.disabled=true;try{syncDataset();const result=await api('/api/training/runs',readRecipe());snapshot=result.snapshot||snapshot;selectedId=result.run.id;toast(t('Real training queued'));setNav('runs');await refresh();}catch(error){renderFeatureError('#training-result',error);}finally{button.disabled=!remoteControlsAllowed;}};
+  } catch(error) {
+    if(version!==trainingPanelVersion || nav!=='recipes')return;
+    host.innerHTML=`<h3>${t('Real GPU training')}</h3><p>${escapeHtml(error.message)}</p><p>${t('The operator must enable the installed training environment.')}</p>`;
+  }
+}
+async function uploadDatasetImages(datasetId, files) {
+  for (const file of files) {
+    if (file.size>2097152 || !/\.(png|jpe?g)$/i.test(file.name))throw new Error(t('Upload PNG/JPEG images up to 2 MB each.'));
+    const bytes=new Uint8Array(await file.arrayBuffer());
+    let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);
+    await api(`/api/datasets/${encodeURIComponent(datasetId)}/images`,{label:`images/${file.name}`,content_base64:btoa(binary)});
+  }
+  toast(t('Dataset images uploaded'));
+}
+function renderTrainingSource() {
+  const enabled=Boolean(snapshot?.training?.available);
+  const notice=$('.demo-notice');
+  if(notice && enabled) notice.innerHTML=`<span class="notice-icon">◉</span><div><strong>${t('Local GPU training is ready')}</strong><span>${t('Real jobs use uploaded datasets and save adapter weights. Demo jobs are labeled separately and remain synthetic.')}</span></div><span class="pill">CUDA</span>`;
+  if(enabled && connectionLabel==='Demo API online'){connectionLabel='Dashboard API online';$('#connection').innerHTML=`<i></i> ${t('Dashboard API online')}`;}
+  const measured=snapshot?.gpu?.simulated===false;
+  const set=(selector,value)=>{const node=$(selector);if(node)node.textContent=value;};
+  set('#gpu-telemetry-label',t(measured?'Measured telemetry':'Simulated telemetry'));
+  set('#gpu-mode',measured?'CUDA':t('DEMO'));
+  set('#gpu-chip-mode',measured?'CUDA':'SIM');
+  set('#gpu-model-label',measured?snapshot.gpu.name:t('RTX 3060 profile'));
+  set('#gpu-memory-note',t(measured?'Measured on this server':'12 GB assumed for this demo'));
+  set('#gpu-linked',t(measured?'Yes':'No'));
+  set('#gpu-disclaimer',t(measured?'GPU readings come from nvidia-smi on this server.':'Readings are generated by the demo engine, never read from your computer.'));
+  set('#worker-caption',t(enabled?'Local LoRA/QLoRA worker ready.':'Deterministic simulation · local API'));
+  set('.demo-tag',t(enabled?'LOCAL GPU WORKSPACE':'DEMO ENVIRONMENT'));
+  const worker=$('.worker-value');if(worker && enabled)worker.textContent=t('CUDA worker');
+  const label=$('#gpu-source-label');if(label)label.textContent=t(snapshot?.gpu?.simulated===false?'MEASURED VRAM':'SIMULATED VRAM');
+  const caption=$('#gpu-source-caption');if(caption)caption.textContent=t(snapshot?.gpu?.simulated===false?'Measured on this server':'12 GB demo assumption · not measured');
+}
+
+document.addEventListener('click', event => {
+ const link = event.target.closest('a[href^="/api/"]');
+ if(link) { event.preventDefault(); toast('Downloads require the running local server'); }
+});
+</script></body></html>

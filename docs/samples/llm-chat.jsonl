@@ -1,0 +1,3 @@
+{"messages": [{"role": "user", "content": "Synthetic prompt 1"}, {"role": "assistant", "content": "Synthetic response 1"}]}
+{"messages": [{"role": "user", "content": "Synthetic prompt 2"}, {"role": "assistant", "content": "Synthetic response 2"}]}
+{"messages": [{"role": "user", "content": "Synthetic prompt 3"}, {"role": "assistant", "content": "Synthetic response 3"}]}

@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-04",
+  "hardware": {
+    "os": "Ubuntu 24.04.5",
+    "gpu": "RTX 3060",
+    "vram_gib": 12,
+    "driver": "595.91.07",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "peft": "0.17.1",
+    "bitsandbytes": "0.48.1"
+  },
+  "dataset_scope": "Synthetic fixtures only; no claim of real-world quality",
+  "gpu_runs": [
+    {
+      "id": "train-a7ae7aaaea42",
+      "kind": "LLM",
+      "method": "lora",
+      "steps": 10,
+      "evaluation": {
+        "baseline_eval_loss": 3.8123718897501626,
+        "eval_loss": 2.563158909479777,
+        "perplexity": 12.976745000882627,
+        "validation_count": 3,
+        "trained_parameters": 270336,
+        "generated_response": "I'm sorry, but I need more information to provide you with a synthetic item. Could you please specify what kind of item you would like me to create?",
+        "reference": "The synthetic code is item-2.",
+        "synthetic_dataset_quality_warning": true,
+        "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775"
+      },
+      "checkpoint_bytes": 4934225,
+      "pause_resume": true
+    },
+    {
+      "id": "train-7c00f57e6707",
+      "kind": "LLM",
+      "method": "qlora",
+      "steps": 10,
+      "evaluation": {
+        "baseline_eval_loss": 3.7137213548024497,
+        "eval_loss": 2.3685524463653564,
+        "perplexity": 10.681918437342551,
+        "validation_count": 3,
+        "trained_parameters": 270336,
+        "generated_response": "I'm sorry, but I am not able to generate or provide codes related to specific items or objects as it goes beyond my capabilities as a text-based AI assistant",
+        "reference": "The synthetic code is item-2.",
+        "synthetic_dataset_quality_warning": true,
+        "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775"
+      },
+      "checkpoint_bytes": 4936501,
+      "pause_resume": false
+    },
+    {
+      "id": "train-6f2c7c3158e9",
+      "kind": "VLM",
+      "method": "lora",
+      "steps": 10,
+      "evaluation": {
+        "baseline_eval_loss": 3.907181978225708,
+        "eval_loss": 3.5258773962656655,
+        "perplexity": 33.98357760346525,
+        "validation_count": 3,
+        "trained_parameters": 377856,
+        "generated_response": " Synthetic color square 2 is a type of color square that is designed to be used as a color square. It is a square with a blue background, and",
+        "reference": "A synthetic solid color square, sample 2.",
+        "synthetic_dataset_quality_warning": true,
+        "model_revision": "7e3e67edbbed1bf9888184d9df282b700a323964"
+      },
+      "checkpoint_bytes": 2594363,
+      "pause_resume": false
+    },
+    {
+      "id": "train-5f75ccd49e20",
+      "kind": "VLM",
+      "method": "qlora",
+      "steps": 10,
+      "evaluation": {
+        "baseline_eval_loss": 3.6371662616729736,
+        "eval_loss": 3.243530511856079,
+        "perplexity": 25.624028174864755,
+        "validation_count": 3,
+        "trained_parameters": 377856,
+        "generated_response": " Synthetic color square 2 is a color square that is used to create a color square. It is used to create a color square by placing a square of color",
+        "reference": "A synthetic solid color square, sample 2.",
+        "synthetic_dataset_quality_warning": true,
+        "model_revision": "7e3e67edbbed1bf9888184d9df282b700a323964"
+      },
+      "checkpoint_bytes": 2598656,
+      "pause_resume": false
+    }
+  ],
+  "browser": {
+    "passed": true,
+    "certificate": "exact-SPKI-pin",
+    "javascript_errors": [],
+    "results": [
+      {
+        "kind": "LLM",
+        "id": "train-2ebd53f88db9",
+        "steps": 40,
+        "evaluation": {
+          "baseline_eval_loss": 1.5396724343299866,
+          "eval_loss": 0.0006764893187209964,
+          "perplexity": 1.0006767181892267,
+          "validation_count": 2,
+          "trained_parameters": 270336,
+          "generated_response": "Synthetic code 5.",
+          "reference": "Synthetic code 5.",
+          "synthetic_dataset_quality_warning": true,
+          "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775"
+        },
+        "pause_resume": true,
+        "download": true
+      },
+      {
+        "kind": "VLM",
+        "id": "train-cd1eee916432",
+        "steps": 10,
+        "evaluation": {
+          "baseline_eval_loss": 4.386008977890015,
+          "eval_loss": 3.9388608932495117,
+          "perplexity": 51.36006337148961,
+          "validation_count": 2,
+          "trained_parameters": 377856,
+          "generated_response": " Test color square 5 is blue.",
+          "reference": "A synthetic colored square, sample 5.",
+          "synthetic_dataset_quality_warning": true,
+          "model_revision": "7e3e67edbbed1bf9888184d9df282b700a323964"
+        },
+        "image_upload": true
+      },
+      {
+        "kind": "LLM",
+        "id": "train-24d539fc5902",
+        "canceled": true
+      }
+    ],
+    "mobile_no_overflow": true
+  },
+  "recovery": {
+    "passed": true,
+    "restart_recovery": true,
+    "retry_checkpoint_step": 33,
+    "resumed_final_step": 100,
+    "copied_checkpoint_export_bytes": 4948317,
+    "snapshot_preserved": true
+  }
+}
