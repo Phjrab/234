@@ -43,7 +43,7 @@ async function uploadDatasetImages(datasetId, files) {
 function renderTrainingSource() {
   const enabled=Boolean(snapshot?.training?.available);
   const notice=$('.demo-notice');
-  if(notice && enabled) notice.innerHTML=`<span class="notice-icon">◉</span><div><strong>${t('Local GPU training is ready')}</strong><span>${t('Real jobs use uploaded datasets and save adapter weights. Demo jobs are labeled separately and remain synthetic.')}</span></div><span class="pill">CUDA</span>`;
+  if(notice && enabled) notice.innerHTML=`<span class="notice-icon">◉</span><div><strong>${t('GPU training enabled')}</strong><span>${t('Real jobs use uploaded datasets and save adapter weights. Demo jobs are labeled separately and remain synthetic.')}</span></div><span class="pill">CUDA</span>`;
   if(enabled && connectionLabel==='Demo API online'){connectionLabel='Dashboard API online';$('#connection').innerHTML=`<i></i> ${t('Dashboard API online')}`;}
   const measured=snapshot?.gpu?.simulated===false;
   const set=(selector,value)=>{const node=$(selector);if(node)node.textContent=value;};
