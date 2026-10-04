@@ -21,5 +21,6 @@ jobs:
       - run: node --check static/i18n.js
       - run: node --check static/workspace.js
       - run: node --check static/training.js
+      - run: node --check tools/verify_browser.js
       - run: node tests/test_frontend.js
       - run: node tests/test_i18n.js

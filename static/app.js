@@ -38,6 +38,7 @@ function render() {
   const focusHref = focused?.closest?.('#tab-content') ? focused.getAttribute('href') : null;
   const focusId = focused?.id;
   const focusLog = focused?.matches?.('.technical-logs > summary');
+  $$('.filter').forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.filter === filter)));
   const runs = snapshot.runs || [], gpu = snapshot.gpu || {};
   if (!runs.some(run => run.id === selectedId)) selectedId = snapshot.active_run_id || runs[0]?.id;
   $('#summary-total').textContent = runs.length; $('#nav-count').textContent = runs.length; $('#experiment-count').textContent = runs.length;
@@ -115,8 +116,8 @@ function chart(metrics, totalSteps, simulated=true) {
   const xmax = Math.max(10,metrics.at(-1).step); const x = v => left + v/xmax*(width-left-right), y = v => top + (hi-v)/(hi-lo)*(height-top-bottom);
   const line = key => metrics.filter(m => m[key] !== null && m[key] !== undefined && Number.isFinite(Number(m[key]))).map((m,i) => `${i ? 'L' : 'M'}${x(m.step).toFixed(1)},${y(Number(m[key])).toFixed(1)}`).join(' ');
   let grid = '';
-  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="#2a2e39" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="#626a7d" font-size="8">${v.toFixed(1)}</text>`; }
-  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="#626a7d" font-size="8">${Math.round(v)}</text>`; }
+  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="#2a2e39" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="var(--faint)" font-size="8">${v.toFixed(1)}</text>`; }
+  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="var(--faint)" font-size="8">${Math.round(v)}</text>`; }
   const train = line('loss'), evalPath = line('eval_loss');
   const last = metrics.at(-1);
   return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${t(simulated?"Synthetic loss chart, {count} points, latest training loss {loss}":"Measured loss chart, {count} points, latest training loss {loss}", {count: metrics.length, loss: fmt(last.loss)})}"><defs><linearGradient id="loss-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b0a0ff" stop-opacity=".17"/><stop offset="1" stop-color="#b0a0ff" stop-opacity="0"/></linearGradient></defs>${grid}${train ? `<path d="${train} L${x(last.step)},${height-bottom} L${x(metrics[0].step)},${height-bottom} Z" fill="url(#loss-fill)"/>` : ''}<path d="${train}" fill="none" stroke="#b0a0ff" stroke-width="2" stroke-linejoin="round"/><path d="${evalPath}" fill="none" stroke="#8ee3cc" stroke-width="1.7" stroke-dasharray="4 3" stroke-linejoin="round"/>${Number.isFinite(last.loss) ? `<circle cx="${x(last.step)}" cy="${y(last.loss)}" r="3" fill="#b0a0ff" stroke="#181b22" stroke-width="2"/>` : ''}</svg>`;
@@ -157,7 +158,7 @@ $$('.tab').forEach(btn => {
 });
 function setNav(value) {
   nav = value;
-  $$('.nav-item').forEach(btn => btn.classList.toggle('active',btn.dataset.nav === value));
+  $$('.nav-item').forEach(btn => { btn.classList.toggle('active',btn.dataset.nav === value); btn.setAttribute('aria-current',btn.dataset.nav === value ? 'page' : 'false'); });
   const advanced = !['overview','runs'].includes(value);
   $('#worker-info').hidden = true;
   $('#workspace-view').hidden = !advanced;

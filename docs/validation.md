@@ -33,17 +33,20 @@ PyTorch 2.8.0+cu128, Transformers 4.57.1, PEFT 0.17.1, bitsandbytes 0.48.1, NVID
 | 모바일 | PASS | Chromium 390×844 학습 패널, 가로 넘침/JS 오류 없음 |
 | 오프라인 preview | PASS | 한국어, 외부 네트워크 없음, 쓰기 거부, real worker unavailable |
 | 기존 API/인증/영속성 | PASS | HTTPS 로그인, secure cookie, CSRF, 준비 데이터/데모 제어, 기존 설치의 상태 보존 |
-| 일반 브라우저 자체 서명 인증서 신뢰 | 승인 대기 | 현재 macOS 로그인 키체인에 공개 인증서 추가; 신뢰 설정의 OS 승인이 필요하며 기본 검증은 아직 실패 |
+| 일반 브라우저 자체 서명 인증서 신뢰 | PASS | macOS 기본 SSL 인증서 검증 성공. Safari 새 탭에서 경고 없이 보안 HTTPS 접속 확인 |
 | WSL2 및 다른 GPU/라이브러리 조합 | 미확인 | 검증은 native Ubuntu / 위의 고정 버전 |
 | 주요 키보드 흐름 | PASS | 로그인 Tab/Enter, 실험 Enter/Space, 탭 방향키/Home/End, 갱신 후 행·로그 포커스, 모달 이름/Escape/포커스 복귀 |
 | 세션 만료 경계·재로그인 | PASS | 격리된 실제 HTTP/Chromium에서 인증 시계를 주입: 3599초 200 → 3600초 401, 로그인 창 표시와 재로그인 200. 운영 설정은 3600초 유지 |
-| 전체 키보드·보조기술 및 실제 1시간 대기 | 미확인 | 네이티브 select 메뉴의 키보드 선택은 테스트 Chromium 환경에서 검증 불가(기본 HTML select도 동일). select 포커스와 API 옵션 선택은 확인. 스크린리더·실제 1시간 wall-clock 대기는 미실행 |
+| Safari 네이티브 언어 메뉴 | PASS | Space로 메뉴 열기, 방향키/Enter로 영어·한국어 선택, 한국어 복귀 확인 |
+| WCAG A/AA 자동 검사 | PASS | axe-core: 로그인, 7개 화면, 상세 탭, 모바일을 포함한 16개 화면의 위반 0. 보조 텍스트·차트 대비, 입력 경계와 포커스 표시 보완 |
+| 실제 1시간 세션 대기 | 진행 중 | 운영 HTTPS의 독립 브라우저 세션에서 시계 주입 없이 유지 중. 원본 쿠키로 서버 만료와 UI 재로그인을 검사 |
+| 전체 보조기술 감사 | 미실행 | Safari 접근성 트리의 이름·역할은 확인. VoiceOver/NVDA 전체 시나리오와 수동 WCAG 적합성 인증은 별도 |
 | 큰 모델·다중 GPU·원격 worker·full fine-tuning | 미지원 | 지원 범위는 README 모델 두 개의 로컬 LoRA/QLoRA |
 | 업무 데이터 품질 benchmark | 미검증 | 사용자 업무 데이터와 별도 평가 suite는 사용하지 않음 |
 
 ## HTTPS 방식과 자료
 
-Python HTTPS API 검사는 정확한 공개 인증서의 체인·기간·IP를 검증했습니다. 격리된 Chromium은 해당 인증서의 **정확한 SPKI 핀**을 사용하며 전역 certificate-error 무시는 사용하지 않습니다. 일반 브라우저 신뢰 등록을 대신하지 않습니다. 현재 클라이언트 공개 인증서는 키체인에 추가했지만 macOS 신뢰 승인 전이므로, 기본 OS 검증은 아직 신뢰 오류를 반환합니다.
+Python HTTPS API 검사는 정확한 공개 인증서의 체인·기간·IP를 검증했습니다. 격리된 Chromium은 해당 인증서의 **정확한 SPKI 핀**을 사용하며 전역 certificate-error 무시는 사용하지 않습니다. 일반 브라우저 신뢰 등록을 대신하지 않습니다. 현재 Mac은 기본 SSL 인증서 검증이 성공하며, Safari 새 탭에서도 경고 없는 보안 접속을 확인했습니다. 테스트 Chromium과 curl/Node 같은 독립 신뢰 저장소는 macOS 신뢰 설정과 다를 수 있습니다.
 
 [JSON 기록](validation.json), [GPU/브라우저 학습 결과](training-validation.json), [실제 평가 화면](screenshots/real-training-evaluation.png), [모바일 학습 화면](screenshots/real-training-mobile.png)을 참고하세요. 스크린샷과 기록에는 합성 데이터만 포함합니다. 실제 계정 비밀번호·쿠키·토큰·개인 키·기본 모델 가중치·runtime DB는 공개하지 않습니다.
 
@@ -63,6 +66,22 @@ node --check static/training.js
 node tests/test_frontend.js
 node tests/test_i18n.js
 python3 tools/build_preview.py
+node --check tools/verify_browser.js
 ```
 
 실제 GPU 검증에는 README의 venv·모델 준비·`--enable-training` 설치가 필요합니다. CI 단위 테스트는 모델을 받거나 GPU를 학습하지 않습니다. DOM 스텁과 오프라인 미리보기는 실제 브라우저/GPU 통합 검사를 대체하지 않습니다.
+
+## 선택적 실제 브라우저 검사
+
+검사 도구는 로그인 및 검사 종료 시 로그아웃만 수행하며 데이터셋·학습·서버 설정은 변경하지 않습니다. 언어 선택은 격리된 브라우저 저장소에 적용합니다. 비공개 JSON 파일에 `url`, `username`, `password`를 넣고 파일 접근 권한을 제한하세요. 비밀번호를 명령줄에 넣지 마세요.
+
+```bash
+npm install --prefix /tmp/forge-browser-check playwright @axe-core/playwright
+NODE_PATH=/tmp/forge-browser-check/node_modules /tmp/forge-browser-check/node_modules/.bin/playwright install chromium
+NODE_PATH=/tmp/forge-browser-check/node_modules node tools/verify_browser.js \
+  --credentials /PRIVATE/credentials.json --report /PRIVATE/a11y-report.json
+```
+
+자체 서명 서버를 격리된 Chromium에서 검사할 때는 `--certificate /PRIVATE/public-server-cert.pem`을 추가합니다. 참조 인증서의 유효 기간과 접속 호스트를 검사한 후 정확한 SPKI 핀을 사용합니다. 이는 OS 신뢰 설치와 구분되며, 전역 TLS 오류 무시는 사용하지 않습니다.
+
+동일 명령에 `--session-expiry`를 추가하면 실제 1시간 대기를 수행합니다. 원본 쿠키를 유지한 HTTPS 요청은 인증서 체인·기간·호스트를 검증하고, 만료 후 401·로그인 창·재로그인을 확인합니다. 테스트 중 서버를 재시작하면 세션이 조기에 만료되므로 검사가 실패할 수 있습니다. 자동 접근성 검사와 주요 키보드 검증은 보조기술 전체 감사나 WCAG 적합성 인증을 대신하지 않습니다.
