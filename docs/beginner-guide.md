@@ -1,6 +1,6 @@
 # Forge Fine-tuning Dashboard · 처음 시작하기
 
-이 버전은 준비 도구와 합성 실행 시뮬레이터입니다. 실제 RTX 3060 학습은 아직 시작할 수 없습니다. 처음에는 실제 개인정보/업무 데이터를 넣지 말고 제공된 합성 샘플로 흐름을 확인하세요.
+이 버전은 준비 도구와 합성 실행 시뮬레이터입니다. 설치된 로컬 CUDA 워커로 실제 LLM/VLM LoRA·QLoRA 학습을 시작할 수 있습니다. 데모는 별도로 남아 있습니다. 처음에는 실제 개인정보/업무 데이터를 넣지 말고 제공된 합성 샘플로 흐름을 확인하세요.
 
 ## 1. Data · 작은 예제부터
 
@@ -8,9 +8,9 @@ Datasets 화면의 형식 안내를 펼치고 샘플을 다운로드합니다.
 
 - [LLM chat 샘플](samples/llm-chat.jsonl): messages 배열, user/assistant 역할, 각 메시지의 role/content 필수
 - [LLM instruction 샘플](samples/llm-instruction.jsonl): instruction/output 필수, input 선택
-- [VLM image + text 샘플](samples/vlm-image-text.jsonl): messages와 images 상대 라벨. 이미지 파일은 샘플에 포함되지 않고 실제로 읽지 않습니다
+- [VLM image + text 샘플](samples/vlm-image-text.jsonl): messages와 images 상대 라벨. 이미지 파일은 샘플에 포함되지 않습니다. VLM을 실제로 학습하려면 참조 파일 이름과 일치하는 PNG/JPEG를 따로 올리세요
 
-JSONL은 한 줄에 JSON 객체 하나입니다. JSON 배열 파일, CSV, Parquet, ZIP, 이미지 업로드는 지원하지 않습니다. UTF-8 텍스트128 KiB/1000행이 최대이며 여기에는 학습 전체 데이터를 넣기보다 작은 준비 샘플을 사용하세요.
+JSONL은 한 줄에 JSON 객체 하나입니다. JSON 배열 파일, CSV, Parquet, ZIP, JSONL 입력에 이미지 binary를 넣는 방식은 지원하지 않습니다. 이미지는 저장된 VLM 데이터셋 카드에서 올립니다. UTF-8 텍스트128 KiB/1000행이 최대이며 여기에는 학습 전체 데이터를 넣기보다 작은 준비 샘플을 사용하세요.
 
 Validate only → 줄/필드 오류 수정 → Validate & save 순서로 진행합니다. 이름과 데이터 종류를 확인한 다음 seed42와 validation 비율0.2로 분할합니다. 같은 seed/비율은 같은 분할을 만듭니다. 중복이 train/validation 양쪽에 남는다는 경고가 있으면 원본 중복을 정리해야 합니다. 현재 서버가 자동으로 내용을 좋게 만들거나 평가 누출을 해결하지는 않습니다.
 
@@ -28,7 +28,7 @@ Training setup에서 작은 LLM/VLM 프리셋을 선택합니다. 모델 이름�
 - Gradient accumulation: 여러 작은 배치의 기울기를 모아 업데이트. per-step batch를 작게 유지하면서 effective batch를 키우는 방법입니다
 - Learning rate: 업데이트 크기. 높으면 불안정해질 수 있고 낮으면 진행이 느릴 수 있습니다. 한 값이 모든 모델에 맞지는 않습니다
 - LoRA rank: 학습하는 어댑터의 규모. 큰 rank는 메모리와 데이터 요구량을 높일 수 있습니다
-- QLoRA: 양자화된 기본 모델과 LoRA 어댑터를 함께 사용하는 방식. 현재 도구가 이를 실제로 실행하는 것은 아닙니다. [Hugging Face 공식 설명](https://huggingface.co/docs/peft/developer_guides/quantization)을 참고하세요
+- QLoRA: 양자화된 기본 모델과 LoRA 어댑터를 함께 사용하는 방식. 실제 GPU 패널에서 4-bit NF4 QLoRA로 실행할 수 있습니다. [Hugging Face 공식 설명](https://huggingface.co/docs/peft/developer_guides/quantization)을 참고하세요
 
 Dry-run은 설정 모양/위험 경고를 점검하는 기능입니다. 학습, 토큰화, 이미지 검증은 하지 않습니다. 경고를 검토한 뒤 설정 JSON과 split JSONL을 저장해 미래 워커에 전달할 준비를 합니다.
 
@@ -40,7 +40,7 @@ OOM 시나리오는 일부러 실패하게 만든 합성 상황입니다. 실제
 
 ## 5. Evaluate · 비교하는 습관부터
 
-Compare에서 두 합성 실행의 train/eval loss와 구성을 비교하고 JSON/CSV를 내보냅니다. 낮은 demo eval loss는 실제 모델 품질이나 일반화 성능을 뜻하지 않습니다. 실제 평가에는 누출 없는 held-out 데이터, 도메인 목표, 생성 예시/기능 평가가 필요하며 이 버전의 실제 평가 워커는 미구현입니다.
+Compare에서 두 합성 실행의 train/eval loss와 구성을 비교하고 JSON/CSV를 내보냅니다. 낮은 demo eval loss는 실제 모델 품질이나 일반화 성능을 뜻하지 않습니다. 실제 평가에는 누출 없는 held-out 데이터, 도메인 목표, 생성 예시/기능 평가가 필요하며 실제 작업의 평가 탭은 분리된 validation의 학습 전후 손실과 생성 응답을 제공합니다.
 
 ## 오류를 볼 때
 
@@ -51,6 +51,12 @@ Compare에서 두 합성 실행의 train/eval loss와 구성을 비교하고 JSO
 
 서버는 경로나 traceback을 오류 응답으로 내보내지 않습니다. 데모 로그는 합성이고 UI는 흔한 토큰 모양을 가립니다. 이것이 모든 비밀을 찾아주는 도구라는 뜻은 아닙니다.
 
-실제 GPU 학습은 미구현입니다. 브라우저 및 HTTPS LAN 검증 범위는 [검증 매트릭스](validation.md)에 있습니다.
+실제 학습은 학습 설정의 설치 모델/분할 데이터셋을 고르고 실제 GPU 학습 시작을 누릅니다. 브라우저 및 HTTPS LAN 검증 범위는 [검증 매트릭스](validation.md)에 있습니다.
 
 설정 → 표시 언어에서 한국어/English를 선택할 수 있습니다. 메뉴 이름은 선택한 언어에 따라 달라집니다.
+
+## 6. 실제 GPU 학습
+
+데이터셋을 저장하고 분할한 뒤, 학습 설정 아래의 실제 GPU 패널에서 설치 모델과 데이터셋을 선택합니다. 위 설정의 method, batch, accumulation, rank, context, epochs와 최대 스텝을 확인하고 실제 학습 검사 → 실제 GPU 학습 시작을 누릅니다. 실패 주입은 데모용이며 실제 학습에는 사용할 수 없습니다.
+
+LLM은 Qwen 0.5B, VLM은 SmolVLM 256M이 제공됩니다. VLM은 한 레코드당 이미지 한 장이며 데이터셋 카드에서 images/파일이름.png에 맞는 이미지를 올립니다. 학습 도중 저장 후 일시정지를 하면 optimizer/RNG를 포함한 checkpoint에서 재개합니다. 완료 후 평가 탭과 checkpoint 다운로드를 확인하세요. 작은 샘플의 낮은 손실만으로 실제 품질을 판단하지 마세요.

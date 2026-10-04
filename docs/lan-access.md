@@ -1,6 +1,6 @@
 # Forge Fine-tuning Dashboard · Authentication and LAN access
 
-This is a single-admin preparation dashboard with a synthetic run simulator, not a production training service. Creating code for LAN access does not enable it. The default listener remains `127.0.0.1:8765`; no router, firewall, network settings or public exposure are changed by the application.
+This is a single-admin preparation dashboard with a local GPU trainer and synthetic run simulator. Creating code for LAN access does not enable it. The default listener remains `127.0.0.1:8765`; no router, firewall, network settings or public exposure are changed by the application.
 
 ## First-use security gate
 
@@ -72,7 +72,7 @@ All authenticated mutations require one exact same-origin `Origin` header, JSON 
 
 Status returns `authenticated`, `username`, `must_change_password`, `csrf_token`, `local_peer` and `settings`. Settings returns `configured`, `effective`, `bootstrap_required`, `listener_lan` and `tls`. No hash, salt, password, TLS private key or internal file path is returned.
 
-Ordinary JSON bodies stay capped at 16 KiB. Only dataset validation/import bodies receive a 256 KiB outer-body cap to permit JSON escaping; supplied JSONL text remains bounded to 128 KiB by the workspace parser. Dataset preparation operates on supplied text, never arbitrary paths. Read-only diagnostics may invoke only an already-installed GPU utility with fixed arguments. Run exports contain synthetic configuration/metrics/logs/checkpoint metadata, with safe generated filenames and formula-safe CSV cells; no adapter/checkpoint files are downloaded.
+Ordinary JSON bodies stay capped at 16 KiB. Referenced PNG/JPEG uploads use a separate 3 MiB JSON-body cap and a 2 MiB decoded image cap. Only dataset validation/import bodies receive a 256 KiB outer-body cap to permit JSON escaping; supplied JSONL text remains bounded to 128 KiB by the workspace parser. Dataset preparation operates on supplied text, never arbitrary paths. Read-only diagnostics may invoke only an already-installed GPU utility with fixed arguments. Run exports identify real versus synthetic configuration/metrics/logs/checkpoint metadata, with safe generated filenames and formula-safe CSV cells; real checkpoint ZIP downloads are authenticated and omit private optimizer state.
 
 ## Verification scope
 

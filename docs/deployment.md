@@ -1,6 +1,6 @@
 # Forge Fine-tuning Dashboard · Ubuntu 배포
 
-앱 실행에는 Python 3.10 이상만 필요합니다. CUDA와 PyTorch는 필수 의존성이 아닙니다. CUDA를 설치해도 이 프로토타입이 실제 학습을 수행하지는 않습니다.
+준비/데모 실행은 Python 3.10 이상만 필요합니다. 실제 학습은 README의 전용 venv와 CUDA PyTorch 설치·모델 준비를 완료하고 --enable-training으로 활성화합니다.
 
 ## 설치와 최초 설정
 
@@ -20,7 +20,7 @@ Wants=network-online.target
 Type=simple
 User=YOUR_USER
 WorkingDirectory=/home/YOUR_USER/forge-finetune-dashboard
-ExecStart=/usr/bin/python3 /home/YOUR_USER/forge-finetune-dashboard/server.py --lan --host YOUR_PRIVATE_IP --port 8765 --tls-cert /home/YOUR_USER/.config/forge-finetune-dashboard/server-cert.pem --tls-key /home/YOUR_USER/.config/forge-finetune-dashboard/server-key.pem
+ExecStart=/home/YOUR_USER/forge-finetune-dashboard/.venv/bin/python /home/YOUR_USER/forge-finetune-dashboard/server.py --enable-training --lan --host YOUR_PRIVATE_IP --port 8765 --tls-cert /home/YOUR_USER/.config/forge-finetune-dashboard/server-cert.pem --tls-key /home/YOUR_USER/.config/forge-finetune-dashboard/server-key.pem
 Restart=on-failure
 RestartSec=5
 UMask=0077
@@ -47,4 +47,4 @@ sudo systemctl status forge-finetune-dashboard.service
 
 ## 검증한 호스트
 
-Ubuntu 24.04.5, Python 3.12.3, NVIDIA RTX 3060 12 GB, 드라이버 595.91.07, CUDA Toolkit 13.2에서 설치와 CUDA 커널 실행을 확인했습니다. 대시보드 HTTPS 로그인·환경 진단·한국어/영어 전환도 검증했습니다. PyTorch 버전 호환성, 모델 다운로드와 실제 파인튜닝은 검증 범위에 포함되지 않습니다.
+Ubuntu 24.04.5, Python 3.12.3, NVIDIA RTX 3060 12 GB, 드라이버 595.91.07, CUDA Toolkit 13.2에서 설치와 CUDA 커널 실행을 확인했습니다. 대시보드 HTTPS 로그인·환경 진단·한국어/영어 전환도 검증했습니다. PyTorch 2.8.0+cu128 / Transformers 4.57.1 / PEFT 0.17.1 / bitsandbytes 0.48.1에서 LLM/VLM LoRA·QLoRA를 실제 검증했습니다. 더 큰 모델과 다른 버전의 호환성은 별도 확인해야 합니다.

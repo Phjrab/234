@@ -1,24 +1,24 @@
 {
-  "version": 3,
+  "version": 4,
   "project": "Forge Fine-tuning Dashboard",
   "repository": "https://github.com/Phjrab/forge-finetune-dashboard",
-  "verified_at_utc": "2026-10-04T09:09:17.807010+00:00",
+  "verified_at_utc": "2026-10-04T09:53:31.186487+00:00",
   "mode": {
-    "training": "synthetic_demo_only",
-    "preparation": "functional_local_jsonl_config_diagnostics",
-    "real_adapter": false
+    "training": "local_cuda_lora_qlora_and_separate_synthetic_demo",
+    "preparation": "functional_local_jsonl_images_config_diagnostics",
+    "real_adapter": true
   },
   "checks": {
     "python_unittests": {
       "status": "PASS",
-      "passed": 93,
+      "passed": 108,
       "failed": 0,
       "host": "Ubuntu 24.04",
       "command": "python3 -m unittest discover -s tests -v"
     },
     "frontend_dom_stub_tests": {
       "status": "PASS",
-      "passed": 35,
+      "passed": 37,
       "failed": 0,
       "command": "node tests/test_frontend.js",
       "scope": "DOM stubs, not browser layout"
@@ -35,7 +35,8 @@
       "files": [
         "static/app.js",
         "static/i18n.js",
-        "static/workspace.js"
+        "static/workspace.js",
+        "static/training.js"
       ]
     },
     "https_api": {
@@ -111,6 +112,38 @@
       "browser_verified": true,
       "language_verified": "ko",
       "network_requests": 0
+    },
+    "actual_gpu_training": {
+      "status": "PASS",
+      "models": [
+        "Qwen/Qwen2.5-0.5B-Instruct",
+        "HuggingFaceTB/SmolVLM-256M-Instruct"
+      ],
+      "methods": [
+        "lora",
+        "qlora"
+      ],
+      "optimizer_steps_per_combination": 10,
+      "evidence": "docs/training-validation.json"
+    },
+    "real_training_browser": {
+      "status": "PASS",
+      "llm_qlora_steps": 40,
+      "vlm_qlora_steps": 10,
+      "image_upload": true,
+      "adapter_zip_download": true,
+      "pause_resume": true,
+      "process_exit_before_canceled": true,
+      "language_recipe_input_preservation": true,
+      "measured_gpu_labels": true,
+      "mobile_overflow": false,
+      "javascript_errors": []
+    },
+    "recovery_retry": {
+      "status": "PASS",
+      "checkpoint_step": 33,
+      "resumed_final_step": 100,
+      "snapshot_preserved": true
     }
   },
   "not_run": [
@@ -118,15 +151,17 @@
     "Default OS/browser certificate trust installation",
     "Full keyboard accessibility",
     "Actual one-hour browser session expiry",
-    "PyTorch and model compatibility",
-    "Real training, evaluation, weights and checkpoint resume (not implemented)"
+    "Other models/GPU/library combinations",
+    "Real-world dataset quality benchmark"
   ],
   "screenshots": {
     "available": true,
     "fabricated": false,
     "files": [
       "docs/screenshots/settings-korean-desktop.png",
-      "docs/screenshots/settings-korean-mobile.png"
+      "docs/screenshots/settings-korean-mobile.png",
+      "docs/screenshots/real-training-evaluation.png",
+      "docs/screenshots/real-training-mobile.png"
     ]
   },
   "lan_listener_started": true,
@@ -144,42 +179,59 @@
     ]
   },
   "files_sha256": {
-    ".github/workflows/test.yml": "98c684ef6fec8add1134c672f4d86d43b109e2b81644e2785517899f91fb551a",
+    ".github/workflows/test.yml": "7637e8a60fb379b58d9611a6702834787dc7908a08c6919e59befa63410c5303",
     ".gitignore": "84cc4fded0e1cdfe8695297bb7a4b5a46727799a0f4dea803287d64422089c68",
-    "README.md": "99c3d5dd94c665cbf76570a22b8f6c0ffcfd23f1dd58b4690e0e9e9fc901c9ad",
-    "adapter.py": "50dc6e109902a058c392fc8b23b2d0cfbbe22ed98cb19dbd7d70344c978b9ec4",
+    "README.md": "6b3360b134689e289551c304ff6b0a132f90807ea5ab8b841f18854e7d0652f9",
+    "adapter.py": "c5c8da98d4ab9055d9aed8c7edd7461e498c8dd578713110db0fec42b9ad3931",
     "auth.py": "f5923f5b381087c7805edde439e04c352675dbe6f6e6a1b7e5ff2d6408b34c3d",
-    "docs/adapter-contract.md": "16c8ae016c473ef71c8da34834c614e70834b236737344586ab7bb6a5f7198ac",
-    "docs/beginner-guide.md": "c19d172b459e04953a94ffb23be346bc9c90e73bc7f8b75362c9920d180d70a6",
-    "docs/deployment.md": "3559cf2c955e0f6f617137f2fe0e3125560e41865e526fcb9fe648ab9222716f",
-    "docs/lan-access.md": "7e3e6ccaf3bb81a5226d5b67555698020a2dc165fd2ed247d675668ae14be6c4",
-    "docs/offline-preview.html": "d80f7abb55552cf6b9b90d0a92a881ec5389581fd479fd812b41f5bbcd7e6729",
+    "docs/adapter-contract.md": "819a329895eaf2fa03db15e42e1f1a757be27428993b36f12fc6a2e7652dc846",
+    "docs/beginner-guide.md": "23082d76e29d3935d205e4c39f1393179f779428d4e0a2a31ef309ddea36e95a",
+    "docs/deployment.md": "0fcfcfeb323b2d85fb5c465beb1e2d4f488ada1ce8f098106883b396595997c4",
+    "docs/lan-access.md": "90c8fa917bbb20d9a79ea113c3f23225910c433584ecde22b9ffaeffc6dba8d3",
+    "docs/offline-preview.html": "0090c45d8ff228f2ef7de8745978b355fc843618f7a37ac35500e7302a4e33af",
     "docs/sample-run.json": "84d3b2a78c96ff30dcd24bb86f631478d99c6ad1e022e47a29ce33dab20e3b23",
     "docs/sample-snapshot.json": "8d6df5c7deb589e93e9bd0f52513da1670aaed6219c759b745c28654e11e62fc",
     "docs/samples/llm-chat.jsonl": "d16647f0c04d15f209d41fe09ce73df1c5f6aa760f09eb1d67f8043be7966a17",
     "docs/samples/llm-instruction.jsonl": "9d1e8dfa036be53b378640ebbbab617d6710ca10e4935877026f4715cfde9a2a",
     "docs/samples/vlm-image-text.jsonl": "fbc9a264e7fc62201063608d71b7a24076b83551690a400dda2d81ef06bab4ff",
+    "docs/screenshots/real-training-evaluation.png": "699d4cdf77d7ec3f6989b5b43ffc016c9dc140f5dd1a1f20a1632da9c7fc991d",
+    "docs/screenshots/real-training-mobile.png": "88ad06f51950ddb1f935e2d054bd568467ae0039105164357ba5022c900ab97b",
     "docs/screenshots/settings-korean-desktop.png": "a04f60acad8fe0ab1e8e7d4368a126752c9428c6f936540de4102d0d91c8170e",
     "docs/screenshots/settings-korean-mobile.png": "690b32f0f50a8a4e3eb29b6b79d79d5d82aa3848d66ee3775e1e4c472e090593",
-    "docs/security.md": "96133a9450ca976d6ca4303cb96d89ca3a4b9f3f72e7bc5143de61dfac22da9c",
-    "docs/validation.md": "20433f84ebd24cbceac2fd569008473307c2e1c05a402d7c37f8b5d1750c03c9",
-    "docs/workspace-api.md": "da2c4162af440f4c80f89c3d00205354008656c7c4882b5c00a671ca57b74d81",
+    "docs/security.md": "be5ef800873c022ef58c12c5a2b730bbb49dfcbc9c56e24fa308b9813377603d",
+    "docs/training-validation.json": "0d48d2a2447da8a634ffb93c64a749ba47aec48db7c3036ad6f6623d924ea85d",
+    "docs/validation.md": "c36dc24493f74da13697ec47b96eb3b6c29699089241a3f1df525a24262f481d",
+    "docs/workspace-api.md": "aed68e21ca771c682165328fe89f396f85922077a96a4acbca3f38b790ab1498",
+    "requirements-training.txt": "a2cf18116ee23d34bd0e149b8d2687a6ba5d02e9e1ed17b3469944550d63f10b",
     "requirements.txt": "a6cce3660014734e5781a1fa2903422ec4cc7d40bcba0c83528d9363303bff99",
-    "server.py": "f8278a3be3d86ec81c53813ecd0cdd7eff2c36da45bb87914061d6bcc6e233bc",
+    "server.py": "7806fbed2e1a8e6878f31d9656bfc28e4d6b696c5e0a63dcd1a9ae036b565a53",
     "simulator.py": "79d7f337f63cccc4c315599e0bc89388e710d5c4d45629a47c8629ea1ccf4295",
-    "static/app.js": "6fb8f38aa4dfa0f8115cbf186028d29408017e3a309024a089e73057c593e4ee",
-    "static/i18n.js": "0312a431c2f594ea36c33d726fd88174747124dfaaa8b876900b89e58bc6edc4",
-    "static/index.html": "9d987a949f5cfa9751522794c33c14b6d0283b05029b81d4d3a15cd2131348ec",
+    "static/app.js": "ba6b5f7f8189d2ddf94f161f00a92505cf4198df297c2bf7e6b0dd6ef116ad76",
+    "static/i18n.js": "c41931bb0e4a07809da91e35c4b6f6872e4b7adce9be439465e62de5064c9eeb",
+    "static/index.html": "2aad4242862303c39f7284c6c4c6fe4aba0ae269d02f13ea1509bae79c2b6d94",
     "static/style.css": "bc00009de0bcb04fbf1f2411078c5c880f6de18a55626312f2573fd391ae6cf3",
-    "static/workspace.js": "67664fab2436a27f3f8684746be00d29c28a2444014673e216fd8b875f6ed027",
+    "static/training.js": "5a34efce842777f1aa604915592b3935f4b71b02ce0124f0d967593c69d68e6a",
+    "static/workspace.js": "9afd984b6ac6f9a000732167b051737fb0ed25806761d55147833870bbfcbe11",
     "tests/test_auth.py": "3466b155b517729098138cc9f876ffa764d31fd99089e353a5b64e771e26e367",
-    "tests/test_frontend.js": "9273ca38f74cf9ef5f3f6a4c6695d047faa6136ac2a14becd8cff9fa33bd066f",
+    "tests/test_frontend.js": "083db716d7e82abb0fe09ab79450ec6bd413ac495672a4b3cd4ea5d3b508ac49",
     "tests/test_i18n.js": "8d75d07891f535b0b0fa9a72239c445bbb940de7cc2b9d53780146f0d465becb",
     "tests/test_samples.py": "7411fb8a6f67e43eb17a7c21e2b1afb58f2626e19cfdffa5aa18f9e8e644f6ba",
     "tests/test_server.py": "5fa8d621fb3f5f814541b0e06221c22f96f5f94136fa9595f8a4292d8648de2b",
     "tests/test_simulator.py": "d6bba411c685d9ee4ef353800c893a473e8ec5c13bc217d2be0f9f38d9cbe294",
+    "tests/test_training.py": "2ef1653d915e2f643f0af505313ff6151533f0bb313159190af95a408a2fe6e5",
+    "tests/test_training_api.py": "6f3e6102f1d83813b0d88e77466f73c9ef983eb09a4708ed52b0376c79e331d0",
     "tests/test_workspace.py": "950d7c63147f48e8bb444c745a264b793f899b911a35922d6f5f098e10334f9f",
-    "tools/build_preview.py": "fae3374b96f3d735f14acf97b4828f18c6f830a1315edc4efcfcd4669c31055b",
+    "tools/build_preview.py": "5bc70368789d0bb61b27fd0dd1d8f48e775282e21501085c13e957999d6e5a6f",
+    "tools/download_models.py": "8c88cf87d4c5bc838855a0f6f5e88450da9bde4a508127c8a8b4122b55728939",
+    "train_worker.py": "1025dd838c5242277948635694bb2adcad01aaf373438eb8c993bb298a2db389",
+    "training.py": "76f18594c206fefdf3aa2fd2e1e7f7b6c912f044626453a8c97008fa4987363b",
     "workspace.py": "169a729a4ca268e0041e4e7bb70e045b5769737694a451a1463c5b1239b3f335"
-  }
+  },
+  "unsupported": [
+    "Remote training worker",
+    "Multi-GPU scheduler",
+    "Full base-model fine-tuning",
+    "Arbitrary model IDs/remote code/shell commands",
+    "Separate inference serving endpoint"
+  ]
 }

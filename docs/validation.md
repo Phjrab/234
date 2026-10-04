@@ -1,43 +1,62 @@
-# Forge Fine-tuning Dashboard · 검증 기록
+# Forge Fine-tuning Dashboard · 실제 학습 검증
 
-2026-10-04 Ubuntu 배포와 다른 LAN 컴퓨터의 Chromium에서 확인했습니다. PASS는 아래에 적힌 범위에서 통과했다는 뜻입니다. 학습 지표와 체크포인트는 계속 합성이며 실제 학습 워커는 미구현입니다.
+2026-10-04 Ubuntu 24.04.5 / NVIDIA RTX 3060 12 GB에서 검증했습니다. **실제 LLM/VLM LoRA·QLoRA, 체크포인트와 평가가 동작합니다.** 기존 데모 작업은 simulated=true로 유지됩니다.
+
+## GPU 검증 결과
+
+PyTorch 2.8.0+cu128, Transformers 4.57.1, PEFT 0.17.1, bitsandbytes 0.48.1, NVIDIA 드라이버 595.91.07을 사용했습니다. CUDA Toolkit 13.2는 별도로 설치되어 있으며 학습은 wheel의 CUDA 12.8 runtime을 사용합니다.
+
+| 실제 경로 | optimizer steps | 학습 전 validation loss | 학습 후 validation loss | 어댑터 ZIP |
+|---|---:|---:|---:|---:|
+| Qwen 0.5B LoRA | 10 | 3.8124 | 2.5632 | 4,934,225 bytes |
+| Qwen 0.5B QLoRA | 10 | 3.7137 | 2.3686 | 4,936,501 bytes |
+| SmolVLM 256M LoRA | 10 | 3.9072 | 3.5259 | 2,594,363 bytes |
+| SmolVLM 256M QLoRA | 10 | 3.6372 | 3.2435 | 2,598,656 bytes |
+
+각 경로에서 CUDA optimizer update, 실제 validation loss, 모델 생성 응답, safetensors adapter와 checkpoint ZIP을 확인했습니다. LLM LoRA는 checkpoint로 일시정지·재개했습니다. 데이터는 합성 JSONL, VLM 이미지는 프로그램으로 만든 작은 색상 사각형입니다. **이 수치는 모델 품질이나 업무 데이터 일반화 성능을 입증하지 않습니다.**
+
+모델 revision: Qwen `7ae557604adf67be50417f59c2c2f167def9a775`, SmolVLM `7e3e67edbbed1bf9888184d9df282b700a323964`.
+
+## 검증 매트릭스
 
 | 항목 | 결과 | 범위 |
 |---|---|---|
-| Python 백엔드 | PASS | unittest 93개: 상태 전이, 영속성, 데이터셋, 인증, 임시 루프백 HTTP |
-| 프런트엔드 | PASS | DOM 스텁 35개, i18n 테스트, 3개 JS 문법 검사 |
-| Python 소스 | PASS | 서버/시뮬레이터/어댑터/인증/워크스페이스/미리보기 컴파일 |
-| 실제 HTTPS API | PASS | 인증, 데이터 준비, 설정 검사, 모의 실행 제어, 내보내기와 재시작 후 영속성 |
-| 실제 Chromium UI | PASS | 로그인, 화면 이동, 데이터 준비와 다운로드, 데스크톱/모바일 표시 |
-| 한국어/영어 | PASS | 즉시 전환, 재접속 유지, 탭 동기화, 미저장 입력 보존, JSON 식별자 보존, 모바일 가로 넘침 없음 |
-| 언어 설정의 부작용 | PASS | 권한/비밀번호 API 쓰기 없음, JavaScript 오류 없음 |
-| Ubuntu LAN 배포 | PASS | systemd 서비스, 사설 IP HTTPS, 별도 컴퓨터에서 접속 |
-| 실제 GPU/CUDA | PASS | RTX 3060 12 GB 탐지, CUDA 13.2 커널 실행. 학습 라이브러리 검증은 아님 |
-| 오프라인 미리보기 | PASS | 합성 데이터의 읽기 전용 렌더링, 번들에 i18n 포함, 로컬 브라우저 확인 |
-| 일반 브라우저 인증서 신뢰 | 미확인 | 운영체제/브라우저 신뢰 저장소 등록은 별도 사용자 설정 |
-| WSL2 배포 | 미확인 | 검증 호스트는 native Ubuntu |
-| 전체 키보드 접근성과 실제 1시간 세션 만료 | 미확인 | 일부 DOM/API 단위 검사는 있으나 완전한 브라우저 수동 검증은 없음 |
-| PyTorch/모델 호환성, 실제 학습/평가/가중치 | 미구현/미검증 | 모델 다운로드와 실제 학습 워커 없음 |
+| Python backend/HTTP/security/workspace | PASS | 기존 93개 + 실제 학습 supervisor/API 15개 = 108개 |
+| frontend DOM/i18n/syntax | PASS | DOM 37개, i18n suite, JS 4개 문법 검사 |
+| 실제 LLM/VLM LoRA/QLoRA | PASS | 위의 네 CUDA 학습 경로, 각 10 updates |
+| pause/resume | PASS | 저장·worker exit 확인, optimizer/RNG에서 학습 재개 |
+| 중단 후 recovery/retry | PASS | 33-step checkpoint 이후 supervisor 종료, 재시작 시 failed 보존, 새 retry가 100-step까지 완료. 불변 dataset snapshot 및 복사한 checkpoint 다운로드 확인 |
+| HTTPS Chromium 학습 UI | PASS | 한국어 LLM QLoRA 40-step + VLM QLoRA 10-step 완료, 실제 평가/생성 표시와 어댑터 다운로드 |
+| 이미지 업로드 | PASS | VLM에 참조 PNG 12개를 웹 UI로 업로드 후 실제 학습 |
+| 실제 취소 | PASS | running → canceling → 실제 worker exit → canceled |
+| 언어/화면 | PASS | 한국어/영어, 언어 변경 시 미저장 recipe 보존, 실제/합성 source 구분, 측정 GPU 문구 |
+| 모바일 | PASS | Chromium 390×844 학습 패널, 가로 넘침/JS 오류 없음 |
+| 오프라인 preview | PASS | 한국어, 외부 네트워크 없음, 쓰기 거부, real worker unavailable |
+| 기존 API/인증/영속성 | PASS | HTTPS 로그인, secure cookie, CSRF, 준비 데이터/데모 제어, 기존 설치의 상태 보존 |
+| 일반 브라우저 자체 서명 인증서 신뢰 | 미확인 | OS/브라우저 신뢰 등록은 별도 사용자 설정 |
+| WSL2 및 다른 GPU/라이브러리 조합 | 미확인 | 검증은 native Ubuntu / 위의 고정 버전 |
+| 전체 키보드 접근성/실제 1시간 세션 만료 | 미확인 | 단위 검사와 일부 실제 UI 확인; 전체 수동 검증은 없음 |
+| 큰 모델·다중 GPU·원격 worker·full fine-tuning | 미지원 | 지원 범위는 README 모델 두 개의 로컬 LoRA/QLoRA |
+| 업무 데이터 품질 benchmark | 미검증 | 사용자 업무 데이터와 별도 평가 suite는 사용하지 않음 |
 
-## 인증서 검증 방식
+## HTTPS 방식과 자료
 
-HTTPS API 검사는 배포 서버의 공개 인증서를 명시적으로 로드해 체인·유효기간·IP를 검증했습니다. 격리된 Chromium 검사는 해당 인증서의 정확한 SPKI 핀을 사용했습니다. 모든 인증서 오류를 무시하는 전역 설정은 사용하지 않았습니다. 이 테스트는 사용자의 일반 브라우저 신뢰 등록을 대신하지 않습니다.
+Python HTTPS API 검사는 정확한 공개 인증서의 체인·기간·IP를 검증했습니다. 격리된 Chromium은 해당 인증서의 **정확한 SPKI 핀**을 사용하며 전역 certificate-error 무시는 사용하지 않습니다. 일반 브라우저 신뢰 등록을 대신하지 않습니다.
 
-## 자료와 재현
+[JSON 기록](validation.json), [GPU/브라우저 학습 결과](training-validation.json), [실제 평가 화면](screenshots/real-training-evaluation.png), [모바일 학습 화면](screenshots/real-training-mobile.png)을 참고하세요. 스크린샷과 기록에는 합성 데이터만 포함합니다. 실제 계정 비밀번호·쿠키·토큰·개인 키·기본 모델 가중치·runtime DB는 공개하지 않습니다.
 
-[JSON 기록](validation.json), [배포 가이드](deployment.md), [한국어 설정 데스크톱](screenshots/settings-korean-desktop.png), [한국어 설정 모바일](screenshots/settings-korean-mobile.png)을 참고하세요. 스크린샷은 설정 화면이며 계정 비밀번호나 실제 데이터셋을 포함하지 않습니다.
+## 재현
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 -m py_compile server.py simulator.py adapter.py auth.py workspace.py tools/build_preview.py
+python3 -m py_compile server.py simulator.py adapter.py auth.py workspace.py training.py train_worker.py tools/build_preview.py tools/download_models.py
 node --check static/app.js
 node --check static/i18n.js
 node --check static/workspace.js
+node --check static/training.js
 node tests/test_frontend.js
 node tests/test_i18n.js
 python3 tools/build_preview.py
 ```
 
-DOM 스텁은 CSS/실제 브라우저 검사를 대체하지 않습니다. `offline-preview.html`은 서버·인증·GPU 없이 렌더링하는 합성 fixture입니다. 데이터 저장과 실행 제어는 거부합니다.
-
-2026-10-03 빌드 환경의 브라우저 차단 기록은 과거의 도구 제한입니다. 위 표는 이후 실제 배포 검증으로 갱신한 결과입니다. 호스트별 방화벽/인증서/라이브러리 구성에 따라 새 설치에서는 다시 확인해야 합니다.
+실제 GPU 검증에는 README의 venv·모델 준비·`--enable-training` 설치가 필요합니다. CI 단위 테스트는 모델을 받거나 GPU를 학습하지 않습니다. DOM 스텁과 오프라인 미리보기는 실제 브라우저/GPU 통합 검사를 대체하지 않습니다.

@@ -251,3 +251,7 @@ imports, SQLite persistence and simulator coexistence, bounded concurrent import
 reproducible splits/exports, leakage warnings, config/preset validity, explicit
 VRAM assumptions, and missing/failed/successful mocked installed GPU probes. The
 tests do not install software, open images, train or perform a live GPU probe.
+
+## Real training extension
+
+The preparation APIs above retain their non-launching semantics and heuristic dry-run. `real_training: false` in preparation exports does not describe the separately enabled CUDA worker. Use `/api/training`, `/api/training/preflight` and `/api/training/runs` for actual training, and `/api/datasets/dataset-ID/images` for dataset-bound image uploads. The authenticated diagnostics endpoint includes real adapter capabilities when enabled. See [worker/API](adapter-contract.md) for lifecycle and artifact routes.

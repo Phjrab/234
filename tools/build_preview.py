@@ -10,6 +10,7 @@ from workspace import Workspace
 html = (ROOT / 'static/index.html').read_text()
 css = (ROOT / 'static/style.css').read_text()
 js = (ROOT / 'static/app.js').read_text()
+training_js = (ROOT / 'static/training.js').read_text()
 i18n_js = (ROOT / 'static/i18n.js').read_text()
 workspace_js = (ROOT / 'static/workspace.js').read_text()
 fixture = json.loads((ROOT / 'docs/sample-snapshot.json').read_text())
@@ -21,6 +22,7 @@ settings = {'configured': {'lan_access': True, 'remote_view': True, 'remote_cont
             'effective': {'lan_access': False, 'remote_view': False, 'remote_control': False},
             'bootstrap_required': False, 'listener_lan': False, 'tls': False}
 routes = {'/api/status': fixture, '/api/workspace': workspace.summary(), '/api/presets': workspace.presets(),
+          '/api/training': {'available': False, 'models': [], 'message': 'Offline preview: no real GPU worker'},
           '/api/auth/status': {'authenticated': True, 'username': 'offline-preview', 'must_change_password': False,
                                'csrf_token': None, 'local_peer': True, 'settings': settings},
           '/api/diagnostics': {'python': {'version': 'Offline snapshot'}, 'os': {'name': 'Read-only preview'},
@@ -38,10 +40,10 @@ js = js[:start] + '''async function api(path, body) {
 js = 'const OFFLINE_ROUTES=' + json.dumps(routes, ensure_ascii=False).replace('<', '\\u003c') + ';\n' + js
 js = js.replace("'Demo API online'", "'Offline preview'").replace('t("Demo API online")', 't("Offline preview")')
 html = html.replace('<link rel="stylesheet" href="/style.css">', '<style>' + css + '</style>')
-html = html.replace('<script src="/i18n.js" defer></script>', '').replace('<script src="/app.js" defer></script>', '').replace('<script src="/workspace.js" defer></script>', '')
+html = html.replace('<script src="/i18n.js" defer></script>', '').replace('<script src="/app.js" defer></script>', '').replace('<script src="/workspace.js" defer></script>', '').replace('<script src="/training.js" defer></script>', '')
 html = html.replace('All runs, charts and GPU readings are synthetic. No training GPU is connected and no model is downloaded.',
                     'READ-ONLY OFFLINE PREVIEW. Synthetic fixture data; no live API, GPU, training or downloads. Controls require the local server.')
-html = html.replace('</body>', '<script>' + i18n_js + '\n' + js + '\n' + workspace_js + '''
+html = html.replace('</body>', '<script>' + i18n_js + '\n' + js + '\n' + workspace_js + '\n' + training_js + '''
 document.addEventListener('click', event => {
  const link = event.target.closest('a[href^="/api/"]');
  if(link) { event.preventDefault(); toast('Downloads require the running local server'); }

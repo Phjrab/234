@@ -22,12 +22,16 @@ from urllib.parse import parse_qs, unquote, urlsplit
 from auth import AuthStore, COOKIE_NAME, SESSION_SECONDS, is_loopback_peer
 from simulator import DashboardError, Simulator
 from workspace import Workspace
+from training import TrainingManager
 
 MAX_REQUEST_BYTES = 16 * 1024
 MAX_DATASET_REQUEST_BYTES = 256 * 1024
+MAX_IMAGE_REQUEST_BYTES = 3 * 1024 * 1024
+ARTIFACT_PATH = re.compile(r"^/api/runs/(train-[a-f0-9]{12})/artifacts/(checkpoint-[0-9]{6})$")
+IMAGE_PATH = re.compile(r"^/api/datasets/(dataset-[a-f0-9]{12})/images$")
 MAX_STATIC_BYTES = 8 * 1024 * 1024
-RUN_PATH = re.compile(r"^/api/runs/(run-[0-9]{4,12})(?:/(start|pause|resume|cancel|retry))?$")
-RUN_EXPORT_PATH = re.compile(r"^/api/runs/(run-[0-9]{4,12})/export$")
+RUN_PATH = re.compile(r"^/api/runs/(run-[0-9]{4,12}|train-[a-f0-9]{12})(?:/(start|pause|resume|cancel|retry))?$")
+RUN_EXPORT_PATH = re.compile(r"^/api/runs/(run-[0-9]{4,12}|train-[a-f0-9]{12})/export$")
 DATASET_PATH = re.compile(r"^/api/datasets/([A-Za-z0-9_-]{1,80})(?:/(split|export))?$")
 LOOPBACK_HOSTS = {"localhost", "127.0.0.1", "::1"}
 STATIC_TYPES = {".html", ".css", ".js", ".svg", ".png", ".jpg", ".jpeg", ".ico", ".webp", ".woff", ".woff2"}
@@ -66,7 +70,7 @@ class DashboardServer(ThreadingHTTPServer):
     allow_reuse_address = True
 
     def __init__(self, address, simulator: Simulator, static_dir: Path, *, auth=None,
-                 workspace=None, lan=False, allowed_hosts=(), tls_context=None, allow_insecure_http=False):
+                 workspace=None, training=None, lan=False, allowed_hosts=(), tls_context=None, allow_insecure_http=False):
         validate_bind(address[0], lan)
         self.listener_lan = address[0] not in LOOPBACK_HOSTS
         if self.listener_lan and auth is False:
@@ -92,6 +96,7 @@ class DashboardServer(ThreadingHTTPServer):
         db_dir = Path(simulator.db_path).parent
         self.auth = AuthStore(db_dir / "auth.sqlite3") if auth is None else auth
         self.workspace = workspace if workspace is not None else Workspace(db_dir / "workspace.sqlite3", workspace_path=Path(__file__).resolve().parent)
+        self.training = training
         self._resources_closed = False
         try:
             super().__init__(address, DashboardHandler)
@@ -121,6 +126,8 @@ class DashboardServer(ThreadingHTTPServer):
 
     def server_close(self):
         self.stop_event.set()
+        if self.training and not self._resources_closed:
+            self.training.close()
         if self.worker_thread:
             self.worker_thread.join(timeout=3)
         super().server_close()
@@ -134,7 +141,7 @@ class DashboardServer(ThreadingHTTPServer):
 
 class DashboardHandler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
-    server_version = "LocalFineTuneDemo/2.0"
+    server_version = "ForgeFineTune/3.0"
     sys_version = ""
 
     def setup(self):
@@ -344,7 +351,30 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if self.server.worker_error:
             snapshot["health"]["status"] = "degraded"
             snapshot["health"]["message"] = "Demo worker stopped. Restart the local service to resume simulation."
+        if self.server.training:
+            real = self.server.training.runs()
+            snapshot['runs'] = real + snapshot['runs']
+            snapshot['training'] = self.server.training.capabilities()
+            snapshot['mode'] = 'local_training_and_demo'
+            active = next((r for r in real if r['status'] in {'running','pausing','canceling'}), None)
+            if active:
+                snapshot['active_run_id'] = active['id']
+            if snapshot['training']['available']:
+                snapshot['gpu'] = self.server.training.gpu_snapshot()
+            snapshot['capabilities'].update(real_training=snapshot['training']['available'],checkpoint_files=True)
         return snapshot
+
+    def _run_store(self, run_id):
+        if run_id.startswith('train-'):
+            if not self.server.training:
+                raise DashboardError('training_unavailable','Real training is unavailable.',409)
+            return self.server.training
+        return self.server.simulator
+
+    def _training(self):
+        if not self.server.training:
+            raise DashboardError('training_unavailable','Real training is disabled on this server.',409)
+        return self.server.training
 
     def _query(self, allowed):
         query = parse_qs(urlsplit(self.path).query, keep_blank_values=True, max_num_fields=8)
@@ -355,14 +385,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
     def _run_export(self, run_id):
         query = self._query({"format"})
         fmt = query.get("format", "json")
-        run = self.server.simulator.get_run(run_id)
+        run = self._run_store(run_id).get_run(run_id)
         # Explicit metadata allowlist; no paths, adapter files, model downloads or credentials.
-        keys = ("id", "name", "status", "config", "metrics", "logs", "checkpoints", "created_at", "started_at", "finished_at", "elapsed_seconds", "step", "total_steps", "retry_of", "simulated")
+        keys = ("id", "name", "status", "config", "metrics", "logs", "checkpoints", "created_at", "started_at", "finished_at", "elapsed_seconds", "step", "total_steps", "retry_of", "simulated", "evaluation", "model_revision", "preflight")
         export = {key: run[key] for key in keys if key in run}
-        export.update(mode="demo", synthetic=True, checkpoint_files=False)
+        export.update(mode="demo" if run["simulated"] else "real_training", synthetic=run["simulated"], checkpoint_files=not run["simulated"])
+        suffix = "synthetic" if run["simulated"] else "training"
         if fmt == "json":
             body = json.dumps(export, ensure_ascii=False, indent=2, allow_nan=False).encode("utf-8")
-            return self._download(body, f"{run_id}-synthetic.json", "application/json; charset=utf-8")
+            return self._download(body, f"{run_id}-{suffix}.json", "application/json; charset=utf-8")
         if fmt == "csv":
             stream = io.StringIO(newline="")
             fields = ["section", "index", "key", "value"]
@@ -379,7 +410,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 for index, row in enumerate(rows):
                     for key, cell in (row.items() if isinstance(row, dict) else [("value", row)]):
                         writer.writerow({"section": section, "index": index, "key": safe(key), "value": safe(cell)})
-            return self._download(stream.getvalue().encode("utf-8"), f"{run_id}-synthetic.csv", "text/csv; charset=utf-8")
+            return self._download(stream.getvalue().encode("utf-8"), f"{run_id}-{suffix}.csv", "text/csv; charset=utf-8")
         raise DashboardError("invalid_query", "Run export format must be json or csv.")
 
     def do_GET(self):
@@ -392,6 +423,8 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 self._authorize(bootstrap=path == "/api/settings")
                 if path == "/api/settings":
                     return self._json(200, self._settings())
+                if path == "/api/training":
+                    return self._json(200, self._training().capabilities())
                 if path == "/api/status":
                     return self._json(200, self._snapshot())
                 if path == "/api/workspace":
@@ -399,7 +432,13 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 if path == "/api/presets":
                     return self._json(200, self.server.workspace.presets())
                 if path == "/api/diagnostics":
-                    return self._json(200, self.server.workspace.diagnostics())
+                    result = self.server.workspace.diagnostics()
+                    if self.server.training:
+                        result['adapter'] = self.server.training.capabilities()
+                        result['local_worker'] = result['adapter']
+                        result['real_training'] = result['adapter']['available']
+                        result['warnings'] = [w for w in result['warnings'] if w.get('code') != 'adapter_unavailable']
+                    return self._json(200, result)
                 if path == "/api/datasets":
                     return self._json(200, {"datasets": self.server.workspace.list_datasets()})
                 dataset = DATASET_PATH.fullmatch(path)
@@ -412,12 +451,16 @@ class DashboardHandler(BaseHTTPRequestHandler):
                         raise DashboardError("invalid_query", "Dataset export split must be train or validation.")
                     body, filename = self.server.workspace.export_dataset(dataset.group(1), split)
                     return self._download(body, filename, "application/x-ndjson; charset=utf-8")
+                artifact = ARTIFACT_PATH.fullmatch(path)
+                if artifact:
+                    body, filename = self._training().artifact(*artifact.groups())
+                    return self._download(body, filename, 'application/zip')
                 export = RUN_EXPORT_PATH.fullmatch(path)
                 if export:
                     return self._run_export(export.group(1))
                 match = RUN_PATH.fullmatch(path)
                 if match and not match.group(2):
-                    return self._json(200, {"run": self.server.simulator.get_run(match.group(1))})
+                    return self._json(200, {"run": self._run_store(match.group(1)).get_run(match.group(1))})
                 raise DashboardError("not_found", "API route does not exist.", 404)
             # The shipped login shell is public after the LAN/bootstrap gate.
             # Knowing its source/routes never grants authenticated API data access.
@@ -459,10 +502,10 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 token, session = self.server.auth.login(payload["username"], payload["password"], self.peer)
                 self._set_session_cookie(token)
                 return self._json(200, self._auth_status(session))
-            operation = ("remote_view" if path in {"/api/datasets/validate", "/api/config/dry-run"}
+            operation = ("remote_view" if path in {"/api/datasets/validate", "/api/config/dry-run", "/api/training/preflight"}
                          else "authentication" if path == "/api/auth/logout" else "remote_control")
             self._authorize(mutation=True, bootstrap=path in {"/api/auth/change-password", "/api/auth/logout", "/api/settings"}, remote_operation=operation)
-            payload = self._body(MAX_DATASET_REQUEST_BYTES if path in {"/api/datasets/validate", "/api/datasets/import", "/api/datasets"} else MAX_REQUEST_BYTES)
+            payload = self._body(MAX_DATASET_REQUEST_BYTES if path in {"/api/datasets/validate", "/api/datasets/import", "/api/datasets"} else MAX_IMAGE_REQUEST_BYTES if IMAGE_PATH.fullmatch(path) else MAX_REQUEST_BYTES)
             if path == "/api/auth/change-password":
                 if set(payload) != {"current_password", "new_password"}:
                     raise DashboardError("invalid_body", "Password change requires only current_password and new_password.")
@@ -478,6 +521,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
             if path == "/api/settings":
                 self.server.auth.update_settings(payload)
                 return self._json(200, self._settings())
+            if path == '/api/training/preflight':
+                return self._json(200, self._training().preflight(payload)[1])
+            if path == '/api/training/runs':
+                run = self._training().queue(payload)
+                result = {'run':run,'snapshot':self._snapshot()} if self._can_view_response() else {'run':{'id':run['id'],'status':run['status']}}
+                return self._json(201,result)
+            image = IMAGE_PATH.fullmatch(path)
+            if image:
+                return self._json(201,self._training().upload_image(image.group(1),payload))
             if path == "/api/datasets/validate":
                 return self._json(200, self.server.workspace.validate_dataset(payload))
             if path in {"/api/datasets/import", "/api/datasets"}:
@@ -503,7 +555,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
             if match and match.group(2):
                 if payload:
                     raise DashboardError("invalid_body", "Run action bodies must be an empty JSON object.")
-                run = sim.action(match.group(1), match.group(2))
+                run = self._run_store(match.group(1)).action(match.group(1), match.group(2))
                 result = {"run": run, "snapshot": self._snapshot()} if self._can_view_response() else {"run": {"id": run["id"], "status": run["status"]}}
                 return self._json(201 if match.group(2) == "retry" else 200, result)
             if path == "/api/demo/reset":
@@ -545,6 +597,9 @@ def main(argv=None):
     parser.add_argument("--allow-insecure-http", action="store_true", help="Explicitly acknowledge insecure LAN HTTP; credentials and cookies can be intercepted.")
     parser.add_argument("--prompt-initial-password", action="store_true", help="Read a strong initial password privately from the terminal, only for a new auth database.")
     parser.add_argument("--no-worker", action="store_true", help="Do not advance the simulation (for tests).")
+    parser.add_argument('--enable-training', action='store_true', help='Enable installed local CUDA LoRA/QLoRA worker.')
+    parser.add_argument('--training-root', type=Path, help='Private output/image root, default data/training.')
+    parser.add_argument('--model-root', type=Path, help='Operator-staged model snapshots root.')
     args = parser.parse_args(argv)
     if not 0 <= args.port <= 65535:
         parser.error("--port must be between 0 and 65535")
@@ -581,12 +636,16 @@ def main(argv=None):
         auth.close()
         simulator.close()
         raise
+    if args.enable_training:
+        server.training = TrainingManager(args.training_root or args.db.parent / 'training', server.workspace,
+                                          enabled=True, model_root=args.model_root)
+        server.training.start()
     if not args.no_worker:
         server.start_worker()
     display_host = f"[{args.host}]" if ":" in args.host else args.host
     scheme = "https" if server.tls else "http"
-    print(f"Forge Fine-tuning Dashboard (synthetic demo): {scheme}://{display_host}:{server.server_port}", flush=True)
-    print("Training telemetry is synthetic. No training or model downloads. Diagnostics may read an installed GPU utility. Ctrl+C stops the service.", flush=True)
+    print(f"Forge Fine-tuning Dashboard: {scheme}://{display_host}:{server.server_port}", flush=True)
+    print("Demo runs are synthetic. Enabled real training runs use local staged models and CUDA. Ctrl+C stops the service.", flush=True)
     if auth.bootstrap_required:
         print("LOCAL SETUP REQUIRED: log in as admin on loopback and change the initial password; external LAN is blocked.", flush=True)
     if remote_listener and not server.tls:

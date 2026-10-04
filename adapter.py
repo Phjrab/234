@@ -1,7 +1,7 @@
-"""Future local worker contract, deliberately not wired to the demo server.
+"""Extension typing contract for local training events.
 
-No worker implementation, subprocess launch, GPU probing or network client exists
-here. A real adapter must enforce the controls documented in adapter-contract.md.
+The deployed implementation lives in training.py and train_worker.py.
+This Protocol remains a reference for future independent adapter integrations.
 """
 from dataclasses import dataclass
 from typing import Callable, Literal, Mapping, Protocol
@@ -18,7 +18,7 @@ class TrainingEvent:
 
 
 class LocalTrainingAdapter(Protocol):
-    """Proposed interface only; demo simulator is not a real adapter."""
+    """Extension interface; the demo simulator remains synthetic."""
 
     def validate(self, config: Mapping[str, object]) -> list[str]: ...
 
