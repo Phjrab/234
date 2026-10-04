@@ -89,7 +89,7 @@ JSONL은 UTF-8 텍스트 128 KiB / 1000행 / 50개 데이터셋까지 지원합�
 | VLM LoRA | 3.9072 | 3.5259 |
 | VLM QLoRA | 3.6372 | 3.2435 |
 
-이 수치는 작은 **합성 데이터의 파이프라인 검사**입니다. 실제 업무 데이터에서의 품질·일반화 성능을 보장하지 않습니다. LLM checkpoint 재개와 어댑터 ZIP도 확인했습니다. Python 130개 테스트, DOM 37개, i18n 테스트가 통과했습니다. 전체 증거와 브라우저 확인 범위는 [검증 기록](docs/validation.md)에 있습니다.
+이 수치는 작은 **합성 데이터의 파이프라인 검사**입니다. 실제 업무 데이터에서의 품질·일반화 성능을 보장하지 않습니다. LLM checkpoint 재개와 어댑터 ZIP도 확인했습니다. Python 130개 테스트, DOM 39개, i18n 테스트가 통과했습니다. 전체 증거와 브라우저 확인 범위는 [검증 기록](docs/validation.md)에 있습니다.
 
 ```bash
 python3 -m unittest discover -s tests -v

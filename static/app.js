@@ -14,7 +14,7 @@ async function api(path, body) {
   try {
     const response = await fetch(path, {method: body === undefined ? 'GET' : 'POST', headers: body === undefined ? {} : {'Content-Type': 'application/json',...(authToken ? {'X-CSRF-Token':authToken} : {})}, body: body === undefined ? undefined : JSON.stringify(body), cache: 'no-store', signal:controller.signal});
     let payload; try { payload = await response.json(); } catch { throw new Error(t("The local API returned an unreadable response")); }
-    if (!response.ok) { const error = new Error(t(payload.error?.message || payload.error || `${t("Request failed (")}${response.status})`)); error.status = response.status; error.code = payload.error?.code; error.details = payload.error?.details; if(response.status === 401 && typeof showLogin === 'function') showLogin(); throw error; }
+    if (!response.ok) { const error = new Error(t(payload.error?.message || payload.error || `${t("Request failed (")}${response.status})`)); error.status = response.status; error.code = payload.error?.code; error.details = payload.error?.details; if(response.status === 401 && !String(error.code).startsWith('hf_') && typeof showLogin === 'function') showLogin(); throw error; }
     return payload;
   } catch(error) {
     if(error.name === 'AbortError') throw new Error(t("The local API timed out. Check that the demo server is running."));

@@ -77,5 +77,11 @@ const run=code=>vm.runInContext(code,ctx), flush=()=>new Promise(resolve=>setImm
   run("I18n.setLanguage('en');renderSettings({authenticated:false,settings:{}})");assert.match(get('#workspace-view').innerHTML,/Display language/);assert.match(get('#workspace-view').innerHTML,/<option value="en" selected>English/);assert.equal(storedPreferences.get('forge.language'),'en');tests++;
   run("renderDetail({...snapshot.runs[0],simulated:false,allowed_actions:['pause','cancel'],checkpoints:[{name:'checkpoint-000010',step:10,virtual:false,size_mb:2}]})");assert.match(get('#run-controls').innerHTML,/Checkpoint & pause/);assert.ok(!get('#chart-context').textContent.includes('simulated'));tests++;
   run("currentTab='evaluation';renderDetail({...snapshot.runs[0],simulated:false,evaluation:{baseline_eval_loss:3,eval_loss:2,generated_response:'<img src=x onerror=evil()>',reference:'Synthetic'}})");assert.match(get('#tab-content').innerHTML,/Held-out evaluation/);assert.ok(!get('#tab-content').innerHTML.includes('<img src=x'));tests++;
+  // Hub account rejection must not be confused with dashboard session expiry.
+  run("fetch=async()=>({ok:false,status:401,json:async()=>({error:{code:'hf_auth_required',message:'Connect a valid token'}})})");
+  get('#login-dialog').open=false;
+  await assert.rejects(run("api('/api/huggingface/connect',{token:'hf_synthetic'})"));assert.equal(get('#login-dialog').open,false);tests++;
+  run("fetch=async()=>({ok:false,status:401,json:async()=>({error:{code:'authentication_required',message:'Sign in'}})})");
+  await assert.rejects(run("api('/api/status')"));assert.equal(get('#login-dialog').open,true);tests++;
   console.log(`${tests} frontend DOM-stub tests passed (browser layout/integration not covered)`);
 })().catch(error=>{console.error(error);process.exitCode=1;});
