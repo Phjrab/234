@@ -41,7 +41,7 @@ PyTorch 2.8.0+cu128, Transformers 4.57.1, PEFT 0.17.1, bitsandbytes 0.48.1, NVID
 | WCAG A/AA 자동 검사 | PASS | axe-core: 로그인, 7개 화면, 상세 탭, 모바일을 포함한 16개 화면의 위반 0. 보조 텍스트·차트 대비, 입력 경계와 포커스 표시 보완 |
 | 실제 1시간 세션 대기 | PASS | 운영 HTTPS에서 시계 주입 없이 원본 쿠키 유지: 3590초 HTTP 200 → 3605초 HTTP 401. 로그인 창 표시와 재로그인 HTTP 200 확인 |
 | 전체 보조기술 감사 | 미실행 | Safari 접근성 트리의 이름·역할은 확인. VoiceOver/NVDA 전체 시나리오와 수동 WCAG 적합성 인증은 별도 |
-| 큰 모델·다중 GPU·원격 worker·full fine-tuning | 미지원 | 지원 범위는 README 모델 두 개의 로컬 LoRA/QLoRA |
+| 다중 GPU·원격 worker·full fine-tuning | 미지원 | 로컬 GPU의 네이티브 Transformers 모델 LoRA/QLoRA 지원. 모델 크기는 실제 VRAM에 제한됨 |
 | 업무 데이터 품질 benchmark | 미검증 | 사용자 업무 데이터와 별도 평가 suite는 사용하지 않음 |
 
 ## HTTPS 방식과 자료
@@ -99,3 +99,22 @@ NODE_PATH=/tmp/forge-browser-check/node_modules node tools/verify_browser.js \
 `HuggingFaceTB/SmolLM2-135M-Instruct`를 공개 Hub에서 272,496,399 bytes 다운로드하고 revision `12fd25f77366fa6b3b4b768ec3050bf629380bac`으로 고정했습니다. 기존 합성 LLM 데이터로 LoRA 10스텝을 실제 GPU에서 완료했으며 검증 손실은 1.0491 → 0.8832, 실제 체크포인트 4개를 저장했습니다. 실제 데이터 품질 평가 결과가 아닙니다. 실제 사용자 토큰 연결과 접근 제한·비공개 모델 다운로드는 계정이 제공되지 않아 실검증하지 않았습니다. 유효 토큰 연결·권한·비노출은 모의 Hub 응답을 사용한 단위 테스트로 확인했습니다.
 
 [검증 JSON](huggingface-validation.json)은 공개 모델 ID·리비전, 합성 학습 지표와 검사 결과만 포함합니다. 이번 화면 스크린샷은 로컬에만 보관합니다.
+
+## 인코더·디코더 아키텍처 확장 검증
+
+2026-10-05, 동일한 Ubuntu / RTX 3060 환경에서 FLAN-T5와 BART의 실제 GPU 학습을 검증했습니다. 설치된 Transformers 4.57.1의 네이티브 seq2seq 구조를 지원하며, PEFT `SEQ_2_SEQ_LM`, 입력과 정답의 분리 토큰화, 개별 길이 검사, 정답 패딩 마스크, 전체 디코더 토큰 평가와 생성 결과 디코딩을 적용했습니다. SentencePiece 0.2.1을 추가했고 FLAN-T5의 느린 토크나이저도 로컬 파일로 확인했습니다.
+
+| 모델 | 경로 | steps | 학습 전 validation loss | 학습 후 validation loss | 재개 |
+|---|---|---:|---:|---:|---|
+| google/flan-t5-small | LORA | 24 | 3.2812 | 2.9323 | PASS |
+| google/flan-t5-small | QLORA | 10 | 3.3874 | 3.2734 | — |
+| facebook/bart-large-cnn | LORA | 10 | 3.3438 | 2.7188 | — |
+| facebook/bart-large-cnn | QLORA | 10 | 3.5088 | 2.7860 | — |
+
+각 경로는 실제 optimizer update, 생성 응답, safetensors 체크포인트 4개와 어댑터 ZIP 다운로드를 완료했습니다. FLAN-T5 LoRA는 저장된 optimizer/RNG 상태에서 일시정지·재개했습니다. 레코드 12개, train 9개 / validation 3개의 합성 LLM JSONL과 batch 2를 사용했습니다. 업무 데이터 품질이나 모델별 일반화 성능은 평가하지 않았습니다.
+
+Python 137개 테스트가 원격에서 모두 통과했습니다. 프런트엔드 39개·언어·문법 검사와 CI도 통과했습니다. 별도 CI 작업에서는 가중치 다운로드 없이 작은 T5/BART/GPT-2 모델을 구성해 LoRA 역전파, 어댑터 저장·재로딩, 생성과 GPT-2의 Conv1D 투영을 검사합니다. 기존 Qwen/SmolVLM GPU 학습과 1시간 세션 검사를 반복하지 않았습니다.
+
+HTTPS Chromium에서 인코더·디코더 검색, 제작사 필터, T5와 요약 BART의 구조·다운로드·설치·선택, 언어 변경 시 선택 유지, 한국어 평가·생성 화면을 확인했습니다. FLAN-T5처럼 `pipeline_tag`가 없는 저장소도 `text2text-generation` 태그로 검색됩니다. 새 목록의 데스크톱·모바일 두 화면에서 가로 넘침, JavaScript 오류, axe-core A/AA 위반은 0건입니다.
+
+[검증 JSON](architecture-validation.json), [CI](https://github.com/Phjrab/forge-finetune-dashboard/actions/runs/37251505151). 공개 기록에는 모델 ID·리비전과 합성 학습 지표만 포함합니다. 원격 호스트·계정·데이터셋 및 작업 식별자는 제외했습니다.

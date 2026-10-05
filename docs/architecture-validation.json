@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "project": "Forge Fine-tuning Dashboard",
+  "status": "PASS",
+  "verified_at_utc": "2026-10-05T01:31:56.620Z",
+  "application_commit": "ef4b651",
+  "environment": {
+    "os": "Ubuntu 24.04",
+    "gpu": "NVIDIA GeForce RTX 3060 12 GB",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1",
+    "peft": "0.17.1",
+    "bitsandbytes": "0.48.1",
+    "sentencepiece": "0.2.1"
+  },
+  "models": [
+    {
+      "id": "google/flan-t5-small",
+      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+      "bytes": 311089056,
+      "family": "t5",
+      "training_architecture": "seq2seq"
+    },
+    {
+      "id": "facebook/bart-large-cnn",
+      "revision": "37f520fa929c961707657b28798b30c003dd100b",
+      "bytes": 1627935435,
+      "family": "bart",
+      "training_architecture": "seq2seq"
+    }
+  ],
+  "synthetic_gpu_training": [
+    {
+      "model": "google/flan-t5-small",
+      "method": "lora",
+      "status": "completed",
+      "steps": 24,
+      "baseline_eval_loss": 3.28125,
+      "eval_loss": 2.9322916666666665,
+      "checkpoint_count": 4,
+      "adapter_bytes": 1681874,
+      "trained_parameters": 172032,
+      "checkpoint_pause_resume": true,
+      "decoder_response_nonempty": true
+    },
+    {
+      "model": "google/flan-t5-small",
+      "method": "qlora",
+      "status": "completed",
+      "steps": 10,
+      "baseline_eval_loss": 3.387420654296875,
+      "eval_loss": 3.2733724117279053,
+      "checkpoint_count": 4,
+      "adapter_bytes": 1681362,
+      "trained_parameters": 172032,
+      "checkpoint_pause_resume": false,
+      "decoder_response_nonempty": true
+    },
+    {
+      "model": "facebook/bart-large-cnn",
+      "method": "lora",
+      "status": "completed",
+      "steps": 10,
+      "baseline_eval_loss": 3.34375,
+      "eval_loss": 2.71875,
+      "checkpoint_count": 4,
+      "adapter_bytes": 3362315,
+      "trained_parameters": 589824,
+      "checkpoint_pause_resume": false,
+      "decoder_response_nonempty": true
+    },
+    {
+      "model": "facebook/bart-large-cnn",
+      "method": "qlora",
+      "status": "completed",
+      "steps": 10,
+      "baseline_eval_loss": 3.5088462034861245,
+      "eval_loss": 2.786043326059977,
+      "checkpoint_count": 4,
+      "adapter_bytes": 3363114,
+      "trained_parameters": 589824,
+      "checkpoint_pause_resume": false,
+      "decoder_response_nonempty": true
+    }
+  ],
+  "browser": {
+    "checks": [
+      "Live LLM encoder-decoder search with publisher filter",
+      "Installed seq2seq selection survives language switching",
+      "Real seq2seq evaluation and generated decoder response shown in Korean UI"
+    ],
+    "audits": [
+      {
+        "view": "seq2seq-desktop",
+        "violations": []
+      },
+      {
+        "view": "seq2seq-mobile",
+        "violations": []
+      }
+    ],
+    "javascript_errors": 0
+  },
+  "tests": {
+    "remote_python": {
+      "passed": 137,
+      "skipped": 0,
+      "failed": 0
+    },
+    "frontend_dom": {
+      "passed": 39,
+      "failed": 0
+    },
+    "native_cpu_models": [
+      "T5",
+      "BART",
+      "GPT-2"
+    ],
+    "native_cpu_checks": [
+      "Loss and backward through adapters",
+      "Encoder/decoder padding and context limits",
+      "Adapter save/reload and generation",
+      "Fused GPT-2 Conv1D projection adapters"
+    ],
+    "sentencepiece_fallback": "PASS",
+    "ci": "https://github.com/Phjrab/forge-finetune-dashboard/actions/runs/37251505151"
+  },
+  "limitations": [
+    "Synthetic data verifies execution, not real dataset quality.",
+    "Architecture support does not verify every repository, tokenizer or quantization combination.",
+    "Remote model Python code and unsupported native architectures remain disabled."
+  ]
+}

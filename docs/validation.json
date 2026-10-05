@@ -1,8 +1,8 @@
 {
-  "version": 10,
+  "version": 11,
   "project": "Forge Fine-tuning Dashboard",
   "repository": "https://github.com/Phjrab/forge-finetune-dashboard",
-  "verified_at_utc": "2026-10-04T12:14:59.986Z",
+  "verified_at_utc": "2026-10-05T01:31:56.620Z",
   "mode": {
     "training": "local_cuda_lora_qlora_and_separate_synthetic_demo",
     "preparation": "functional_local_jsonl_images_config_diagnostics",
@@ -11,9 +11,9 @@
   "checks": {
     "python_unittests": {
       "status": "PASS",
-      "passed": 130,
+      "passed": 137,
       "failed": 0,
-      "host": "Ubuntu 24.04 / macOS Python 3.13",
+      "host": "Ubuntu 24.04 with training runtime (137 tests, no skips); macOS stdlib checks",
       "command": "python3 -m unittest discover -s tests -q"
     },
     "frontend_dom_stub_tests": {
@@ -384,6 +384,36 @@
       "javascript_errors": 0,
       "verified_at_utc": "2026-10-04T12:14:59.986Z",
       "ci": "https://github.com/Phjrab/forge-finetune-dashboard/actions/runs/37201588590"
+    },
+    "native_seq2seq_training": {
+      "status": "PASS",
+      "report": "architecture-validation.json",
+      "models": [
+        "google/flan-t5-small",
+        "facebook/bart-large-cnn"
+      ],
+      "methods": [
+        "lora",
+        "qlora"
+      ],
+      "t5_pause_resume": true,
+      "synthetic_dataset": true
+    },
+    "native_cpu_architecture_ci": {
+      "status": "PASS",
+      "models": [
+        "T5",
+        "BART",
+        "GPT-2"
+      ],
+      "scope": "Actual model loss, adapter gradients, save/reload and generation; no Hub downloads"
+    },
+    "seq2seq_chromium_ui": {
+      "status": "PASS",
+      "javascript_errors": 0,
+      "axe_a_aa_violations": 0,
+      "audited_screens": 2,
+      "report": "architecture-validation.json"
     }
   },
   "not_run": [
@@ -420,18 +450,18 @@
     ]
   },
   "files_sha256": {
-    ".github/workflows/test.yml": "ec74d2c2cf3e5b980ac6753aa5c3d1ab19857a54b4bcd44aa948263c23579f5b",
+    ".github/workflows/test.yml": "6855915204c1dca33aea58c1a4e87deac0b8b3169a50bbbedd7dae2b5e2c4ea5",
     ".gitignore": "84cc4fded0e1cdfe8695297bb7a4b5a46727799a0f4dea803287d64422089c68",
-    "README.md": "c172c57acfa5cbf022afedc7a5f67b8bd324d693fbb3110ca6553f8d8c387440",
+    "README.md": "b2accd7ad696ecb2c84b641e2341d217538ca081169312bf698e515e81e15264",
     "adapter.py": "c5c8da98d4ab9055d9aed8c7edd7461e498c8dd578713110db0fec42b9ad3931",
     "auth.py": "f5923f5b381087c7805edde439e04c352675dbe6f6e6a1b7e5ff2d6408b34c3d",
     "docs/adapter-contract.md": "0ec691b50d3e1d3fc07ecbf57bac6008c4574a94a6891b0d211c9e63255775bf",
     "docs/beginner-guide.md": "23082d76e29d3935d205e4c39f1393179f779428d4e0a2a31ef309ddea36e95a",
     "docs/deployment.md": "0fcfcfeb323b2d85fb5c465beb1e2d4f488ada1ce8f098106883b396595997c4",
-    "docs/huggingface-api.md": "d154bbbd126a7b9938b6a34fa7dceae7607f5122ee428dead50d46d1299d9b0d",
+    "docs/huggingface-api.md": "dc9fcce0b261240964ec17a540e797a10b4f93f7b9ea81fdf5da2d71544f795a",
     "docs/huggingface-validation.json": "a4ee9c78e1fa3cf7fd240629d37a771bc0bc1643be6de19e535cac5eaf5609f5",
     "docs/lan-access.md": "90c8fa917bbb20d9a79ea113c3f23225910c433584ecde22b9ffaeffc6dba8d3",
-    "docs/offline-preview.html": "26d8bc50300ed0516a670db9e4f205616ee57a189efff5d75df1ef4aeedf296f",
+    "docs/offline-preview.html": "c07aa281fd5d88a603892d829d04fcb623abb2fbe64b89b982c9f4883d7310cb",
     "docs/sample-run.json": "84d3b2a78c96ff30dcd24bb86f631478d99c6ad1e022e47a29ce33dab20e3b23",
     "docs/sample-snapshot.json": "8d6df5c7deb589e93e9bd0f52513da1670aaed6219c759b745c28654e11e62fc",
     "docs/samples/llm-chat.jsonl": "d16647f0c04d15f209d41fe09ce73df1c5f6aa760f09eb1d67f8043be7966a17",
@@ -443,25 +473,25 @@
     "docs/screenshots/settings-korean-mobile.png": "5376a7a8d8c251cca21f18f8ad2445e498279db01d5eaa73eb220ac4dfc42f21",
     "docs/security.md": "2f10550ca0636f15ddade777f84994989d760447a8768b5acb9dd4297cb3c047",
     "docs/training-validation.json": "0d48d2a2447da8a634ffb93c64a749ba47aec48db7c3036ad6f6623d924ea85d",
-    "docs/validation.md": "0f0ea8a8ca7ae5373cf91da4f49f0a6eebcc8b568c220212053ee1d9b92f9e4c",
+    "docs/validation.md": "972be0723abcced8636d513b395dacf804bec0493f6081465c20a52001aab3d9",
     "docs/workspace-api.md": "aed68e21ca771c682165328fe89f396f85922077a96a4acbca3f38b790ab1498",
-    "huggingface.py": "8536a3465845ba3a4822cce5232c1e0162e807320c2738c2b04a00fde6ff3915",
+    "huggingface.py": "03c039047bccd040a11f64b6407e2ec6db99709d3b19e7d16440afe9d536e5c5",
     "model_downloads.py": "d8df41a342d8f33e53a68a430194a458089aec37114af1cec6b8c1d49dc6c321",
-    "requirements-training.txt": "bf184b88320a34c181047727c23dc4d15965621b59b0e93de287e2455a93fc0a",
+    "requirements-training.txt": "0d6c784d201e7bd0b51bfb10edaf318fc360c9f93b1446d54ce9fc4d4d919d43",
     "requirements.txt": "a6cce3660014734e5781a1fa2903422ec4cc7d40bcba0c83528d9363303bff99",
-    "server.py": "a45587ef8d49895e0781d4d18c2eee27cfb798840664a2e32b117fcd209dc64a",
+    "server.py": "7a461051f4bf9339d459581cdbdb4cda5d73a89c5c6f6bacd6b2a09ae13deab8",
     "simulator.py": "a163e85ea331da6fbafdef68c80a32350ed2931b244e0f4a3c88ce5901c98f36",
     "static/app.js": "19d5d91f2b474bc508a5f554554c6979c6923ef7a7cbff5992a311a17143ee04",
-    "static/huggingface.js": "93ac27fb1925180a463f8276fc2f50257f3373a6c7ee6b280e1c688ad5a30965",
-    "static/i18n.js": "1e091de0b34f44d0d9ab0d18a5e5ab11ea2986763ff05266c6d6e1cbc847093a",
+    "static/huggingface.js": "0d0b303b29776c0103b32076a154fbf45e8f7a20a538cbbceadf2c6fc127de5f",
+    "static/i18n.js": "1b571e0708553d083078f05493ae98ab172700a8cbfddcc09275196ad2764c10",
     "static/index.html": "4845e2400c14691cc84e559e34559dc657772b0d2d9d9782353761d834eefa78",
     "static/style.css": "81e09003db3760ff01a28fae299b119ff067c8c427d15121ccaca528b4f98ec1",
     "static/training.js": "76109204d8f2ec04a0c3fa98578475644c8689c02499ab4e6ae45bdf82d9a2d8",
     "static/workspace.js": "bae7fa0fe37e051fb7220ba3782e40af5a7de192b2d8ccb782ab3044084e3c22",
     "tests/test_auth.py": "3466b155b517729098138cc9f876ffa764d31fd99089e353a5b64e771e26e367",
     "tests/test_frontend.js": "e616ee38fb6f8c409e90a76cc03fd248c70d305a6bfeb31b36f5e25673d038d9",
-    "tests/test_huggingface.py": "dfb84a5f4fab8bf55a938adb554f42da62ec55c99397443dc96844666a8fc5c9",
-    "tests/test_huggingface_api.py": "ce1351c51a37aa66d90d2a01124000923c8036b85367445b244ae429eaab7955",
+    "tests/test_huggingface.py": "16cb72902d36cd261bf6bec0bf0a53829d09f490f2b70d7386364f106d6fb8b8",
+    "tests/test_huggingface_api.py": "6d96decbd03e5e672461b24d7cafab5ee1524dcd5c110de4c0609d684c649aa8",
     "tests/test_i18n.js": "8d75d07891f535b0b0fa9a72239c445bbb940de7cc2b9d53780146f0d465becb",
     "tests/test_samples.py": "7411fb8a6f67e43eb17a7c21e2b1afb58f2626e19cfdffa5aa18f9e8e644f6ba",
     "tests/test_server.py": "5fa8d621fb3f5f814541b0e06221c22f96f5f94136fa9595f8a4292d8648de2b",
@@ -472,15 +502,18 @@
     "tools/build_preview.py": "6cabe7f7ff5e4dbf442f6a2bc026864595319377a44a99bb0df85c32b6651800",
     "tools/download_models.py": "e223034908c233c30d08000574e144493281810d3f13945d368ef18baf4691b0",
     "tools/verify_browser.js": "c4537eb4562ae1703edb52a6f2d5d363a07addd06efef5f5432acccd031e7d16",
-    "train_worker.py": "23adc230c1e17d6f44b3622589c1b96418760ea36cd861c7ee2e8028792434a7",
-    "training.py": "7e4957429bd1a704adaf940c72fa90c232dc7b2b5f9b0cd9171e60bf4df254e8",
-    "workspace.py": "169a729a4ca268e0041e4e7bb70e045b5769737694a451a1463c5b1239b3f335"
+    "train_worker.py": "902f745c616e8a9150be4855c66d4c62f459216c54ecd38be56a612d9cb0246a",
+    "training.py": "16d3c0b71cbd6451c6eb21e427977f11c50389543d0df252a87e83b2392b5e81",
+    "workspace.py": "169a729a4ca268e0041e4e7bb70e045b5769737694a451a1463c5b1239b3f335",
+    "architectures.py": "868317792cb8c85cc2d2ca26f993bcb6700585afb37899ccf34545d318177548",
+    "tests/test_architectures.py": "275e8feb71fecff66a212687ba440db72f0c9f9e3177226dd3bdaa1cd9b9a34e",
+    "docs/architecture-validation.json": "e147829943df107c40c47d3ef20da5153ace4ebdd25cb59ed5dc919891844cc4"
   },
   "unsupported": [
     "Remote training worker",
     "Multi-GPU scheduler",
     "Full base-model fine-tuning",
-    "Arbitrary model IDs/remote code/shell commands",
+    "Remote model Python code and arbitrary shell commands",
     "Separate inference serving endpoint"
   ],
   "deployment": {
