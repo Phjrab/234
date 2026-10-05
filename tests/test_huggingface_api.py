@@ -25,3 +25,9 @@ class HubAPITests(training_api.TrainingAPITests):
     def test_bad_query_and_arbitrary_asset_paths_rejected(self):
         self.assertEqual(self.request('/api/huggingface/models?url=https://attacker.test')[0],400)
         self.assertEqual(self.request('/api/huggingface/avatar?author=../outside')[0],400)
+    def test_encoder_decoder_query_reaches_the_hub_from_http(self):
+        with patch.object(self.server.huggingface,'search',return_value={'models':[],'next_cursor':None}) as search:
+            status,body=self.request('/api/huggingface/models?search=t5&author=google&kind=LLM&family=t5&sort=downloads&text_task=seq2seq&cursor=page2')
+        self.assertEqual(status,200)
+        self.assertEqual(search.call_args.args[0]['text_task'],'seq2seq')
+        self.assertEqual(search.call_args.args[0]['cursor'],'page2')

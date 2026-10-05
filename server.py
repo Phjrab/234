@@ -443,7 +443,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 if path == '/api/huggingface/account':
                     return self._json(200,self.server.huggingface.account())
                 if path == '/api/huggingface/models':
-                    query=self._query({'search','author','kind','family','sort','cursor'})
+                    query=self._query({'search','author','kind','family','sort','cursor','text_task'})
                     return self._json(200,self.server.huggingface.search(query))
                 if path == '/api/huggingface/model':
                     query=self._query({'id'})
