@@ -76,10 +76,11 @@ class HubTests(unittest.TestCase):
                 with self.assertRaises(DashboardError):self.hub.search(query)
             request.assert_not_called()
     def test_seq2seq_filter_and_metadata_are_available_as_llm(self):
-        info=fixture(pipeline_tag='text2text-generation',config={'model_type':'t5','architectures':['T5ForConditionalGeneration']})
+        info=fixture(pipeline_tag=None,tags=['text2text-generation'],config={'model_type':'t5','architectures':['T5ForConditionalGeneration']})
         with patch.object(self.hub,'_request',return_value=([info],'')) as request:
             result=self.hub.search({'kind':'LLM','text_task':'seq2seq'})
-        self.assertIn('pipeline_tag=text2text-generation',request.call_args.args[0])
+        self.assertIn('filter=text2text-generation',request.call_args.args[0])
+        self.assertNotIn('pipeline_tag=',request.call_args.args[0])
         self.assertEqual(result['models'][0]['training_architecture'],'seq2seq')
         with patch.object(self.hub,'_request',return_value=(info,'')),patch.object(self.hub,'publisher',return_value={}):
             self.assertTrue(self.hub.detail(MODEL)['training_candidate'])

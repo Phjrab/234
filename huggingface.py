@@ -30,7 +30,7 @@ def classify(info):
     architectures = config.get('architectures') or []
     if task in VLM_TASKS or config.get('vision_config') or any(tag in VLM_TASKS for tag in info.get('tags') or []):
         return 'VLM'
-    if task in {'text-generation','text2text-generation','summarization','translation'}:
+    if task in {'text-generation','text2text-generation','summarization','translation'} or any(tag in {'text-generation','text2text-generation','summarization','translation'} for tag in info.get('tags') or []):
         return 'LLM'
     if not task and any(str(a).endswith(('ForCausalLM', 'LMHeadModel', 'ForConditionalGeneration', 'ForSeq2SeqLM')) for a in architectures):
         return 'LLM'
@@ -177,7 +177,10 @@ class HuggingFaceHub:
         params=[('limit','30'),('sort',sort),('direction','-1')]
         for key in ('search','author','cursor'):
             if query.get(key):params.append((key,query[key]))
-        if kind!='ALL':params.append(('pipeline_tag',('text2text-generation' if query.get('text_task')=='seq2seq' else 'text-generation') if kind=='LLM' else 'image-text-to-text'))
+        if kind=='LLM' and query.get('text_task')=='seq2seq':
+            # Many T5/translation/summarization repos have this tag but no pipeline_tag.
+            params.append(('filter','text2text-generation'))
+        elif kind!='ALL':params.append(('pipeline_tag','text-generation' if kind=='LLM' else 'image-text-to-text'))
         if query.get('family'):params.append(('filter',query['family']))
         for field in ('author','config','pipeline_tag','tags','gated','private','downloads','safetensors','sha'):
             params.append(('expand[]',field))
