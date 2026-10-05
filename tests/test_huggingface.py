@@ -33,10 +33,13 @@ class HubTests(unittest.TestCase):
         self.assertEqual(classify(fixture(id='example/vision-name')),'LLM')
         self.assertEqual(classify(fixture(id='example/text-name',pipeline_tag='image-text-to-text')),'VLM')
         self.assertEqual(classify(fixture(pipeline_tag='text2text-generation')),'LLM')
+        self.assertEqual(classify(fixture(pipeline_tag='summarization')),'LLM')
+        self.assertEqual(classify(fixture(pipeline_tag='translation')),'LLM')
         self.assertEqual(classify(fixture(pipeline_tag='any-to-any',tags=['image-text-to-text'])),'VLM')
         self.assertEqual(classify(fixture(pipeline_tag='feature-extraction')),'OTHER')
         self.assertEqual(classify({'id':'example/no-metadata'}),'UNKNOWN')
-        self.assertEqual(classify({'config':{'architectures':['GPT2LMHeadModel']}}),'UNKNOWN')
+        self.assertEqual(classify({'config':{'architectures':['GPT2LMHeadModel']}}),'LLM')
+        self.assertEqual(classify({'config':{'architectures':['T5ForConditionalGeneration']}}),'LLM')
     def test_family_and_publisher_are_structured_metadata(self):
         result=self.hub.normalize(fixture())
         self.assertEqual(result['publisher'],'example');self.assertEqual(result['family'],'qwen2')
@@ -72,6 +75,15 @@ class HubTests(unittest.TestCase):
             for query in ({'url':'https://attacker.test'},{'author':'../x'},{'sort':'arbitrary'},{'kind':'GPU'}):
                 with self.assertRaises(DashboardError):self.hub.search(query)
             request.assert_not_called()
+    def test_seq2seq_filter_and_metadata_are_available_as_llm(self):
+        info=fixture(pipeline_tag='text2text-generation',config={'model_type':'t5','architectures':['T5ForConditionalGeneration']})
+        with patch.object(self.hub,'_request',return_value=([info],'')) as request:
+            result=self.hub.search({'kind':'LLM','text_task':'seq2seq'})
+        self.assertIn('pipeline_tag=text2text-generation',request.call_args.args[0])
+        self.assertEqual(result['models'][0]['training_architecture'],'seq2seq')
+        with patch.object(self.hub,'_request',return_value=(info,'')),patch.object(self.hub,'publisher',return_value={}):
+            self.assertTrue(self.hub.detail(MODEL)['training_candidate'])
+        with self.assertRaises(DashboardError):self.hub.search({'text_task':'custom-python'})
     def test_detail_pins_revision_and_excludes_code_pickle_and_nested_assets(self):
         with patch.object(self.hub,'_request',return_value=(fixture(),'')),patch.object(self.hub,'publisher',return_value={'name':'example'}):
             result=self.hub.detail(MODEL)

@@ -10,6 +10,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, quote, urlsplit, parse_qs
 from urllib.request import Request, urlopen, build_opener, HTTPRedirectHandler
 from simulator import DashboardError
+from architectures import training_architecture, native_support
 
 REPO = re.compile(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,95}/[A-Za-z0-9][A-Za-z0-9_.-]{0,95}')
 AUTHOR = re.compile(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,95}')
@@ -29,9 +30,9 @@ def classify(info):
     architectures = config.get('architectures') or []
     if task in VLM_TASKS or config.get('vision_config') or any(tag in VLM_TASKS for tag in info.get('tags') or []):
         return 'VLM'
-    if task in {'text-generation','text2text-generation'}:
+    if task in {'text-generation','text2text-generation','summarization','translation'}:
         return 'LLM'
-    if not task and any(str(a).endswith('ForCausalLM') for a in architectures):
+    if not task and any(str(a).endswith(('ForCausalLM', 'LMHeadModel', 'ForConditionalGeneration', 'ForSeq2SeqLM')) for a in architectures):
         return 'LLM'
     return 'OTHER' if task else 'UNKNOWN'
 
@@ -158,15 +159,16 @@ class HuggingFaceHub:
                 'downloads':info.get('downloads',0),'parameters':params,'gated':bool(info.get('gated')),
                 'private':bool(info.get('private')),'license':(info.get('cardData') or {}).get('license') or next((tag[8:] for tag in tags if tag.startswith('license:')),None),
                 'architectures':config.get('architectures') or [],
+                'training_architecture':training_architecture(config, classify(info)) if classify(info) in {'LLM','VLM'} else None,
                 'avatar_url':'/api/huggingface/avatar?author='+quote(author),
                 'url':'https://huggingface.co/'+model}
 
     def search(self, query):
-        allowed={'search','author','kind','family','sort','cursor'}
+        allowed={'search','author','kind','family','sort','cursor','text_task'}
         if set(query)-allowed or any(not isinstance(v,str) or len(v)>1200 for v in query.values()):
             raise DashboardError('invalid_query','Invalid model search.')
         kind=query.get('kind','ALL');sort=query.get('sort','downloads')
-        if kind not in {'ALL','LLM','VLM'} or sort not in {'downloads','trendingScore','lastModified'}:
+        if kind not in {'ALL','LLM','VLM'} or sort not in {'downloads','trendingScore','lastModified'} or query.get('text_task','causal') not in {'causal','seq2seq'}:
             raise DashboardError('invalid_query','Invalid model filter.')
         if query.get('author') and not AUTHOR.fullmatch(query['author']):
             raise DashboardError('invalid_query','Invalid publisher filter.')
@@ -175,7 +177,7 @@ class HuggingFaceHub:
         params=[('limit','30'),('sort',sort),('direction','-1')]
         for key in ('search','author','cursor'):
             if query.get(key):params.append((key,query[key]))
-        if kind!='ALL':params.append(('pipeline_tag','text-generation' if kind=='LLM' else 'image-text-to-text'))
+        if kind!='ALL':params.append(('pipeline_tag',('text2text-generation' if query.get('text_task')=='seq2seq' else 'text-generation') if kind=='LLM' else 'image-text-to-text'))
         if query.get('family'):params.append(('filter',query['family']))
         for field in ('author','config','pipeline_tag','tags','gated','private','downloads','safetensors','sha'):
             params.append(('expand[]',field))
@@ -216,13 +218,8 @@ class HuggingFaceHub:
             config=info.get('config') or {}
             if config.get('quantization_config') or any(tag in {'gguf','gptq','awq'} for tag in info.get('tags') or []):
                 reasons.append('Use the original unquantized Transformers model for LoRA/QLoRA training.')
-            if result['family']:
-                try:
-                    from transformers.models.auto.modeling_auto import MODEL_FOR_CAUSAL_LM_MAPPING_NAMES, MODEL_FOR_IMAGE_TEXT_TO_TEXT_MAPPING_NAMES
-                    supported=MODEL_FOR_IMAGE_TEXT_TO_TEXT_MAPPING_NAMES if result['kind']=='VLM' else MODEL_FOR_CAUSAL_LM_MAPPING_NAMES
-                    if result['kind'] in {'LLM','VLM'} and result['family'] not in supported:
-                        reasons.append('The local LLM/VLM worker does not support this architecture with the installed Transformers version.')
-                except ImportError:pass
+            if result['kind'] in {'LLM','VLM'} and native_support(config, result['kind']) is False:
+                reasons.append('The local LLM/VLM worker does not support this architecture with the installed Transformers version.')
             result['training_candidate']=not reasons
             result['reasons']=reasons
             result['publisher_info']=self.publisher(result['publisher'])

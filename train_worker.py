@@ -12,12 +12,48 @@ import subprocess
 import time
 import traceback
 from training import atomic_json, contained
+from architectures import training_architecture, native_support, lora_targets
 
 
 def messages(row):
     if 'messages' in row:return row['messages']
     prompt=row['instruction']+ ('\n'+row['input'] if row.get('input') else '')
     return [{'role':'user','content':prompt},{'role':'assistant','content':row['output']}]
+
+
+def seq2seq_text(row):
+    convo = messages(row)
+    if not convo or convo[-1]['role'] != 'assistant':
+        raise ValueError('Each training record must end with an assistant answer.')
+    context = convo[:-1]
+    source = context[0]['content'] if len(context) == 1 and context[0]['role'] == 'user' else '\n'.join(m['role'] + ': ' + m['content'] for m in context)
+    return source, convo[-1]['content']
+
+
+def encode_seq2seq(tokenizer, rows, sequence_length, *, prompt_only=False):
+    """Encoder sees context only; decoder labels contain only the final answer."""
+    forms = [seq2seq_text(row) for row in rows]
+    batch = tokenizer([source for source, _ in forms], padding=True, return_tensors='pt')
+    if batch['input_ids'].shape[1] > sequence_length:
+        raise ValueError('Encoder input exceeds configured token context.')
+    # Some tokenizers return token_type_ids, which T5/BART do not accept.
+    batch = {key: value for key, value in batch.items() if key in {'input_ids', 'attention_mask'}}
+    if not prompt_only:
+        targets = tokenizer(text_target=[answer for _, answer in forms], padding=True, return_tensors='pt')
+        if targets['input_ids'].shape[1] > sequence_length:
+            raise ValueError('Decoder answer exceeds configured token context.')
+        labels = targets['input_ids'].clone()
+        labels[targets['attention_mask'] == 0] = -100
+        if not (labels != -100).any(dim=1).all():
+            raise ValueError('Training record has no assistant target tokens.')
+        batch['labels'] = labels
+    return batch
+
+
+def target_token_count(labels, architecture):
+    # Causal loss shifts labels by one. Seq2seq shifts decoder inputs internally.
+    supervised = labels if architecture == 'seq2seq' else labels[:, 1:]
+    return int((supervised != -100).sum())
 
 
 def plans(count, config):
@@ -32,7 +68,7 @@ def plans(count, config):
 def train(job_path):
     import torch
     from PIL import Image
-    from transformers import AutoModelForCausalLM,AutoModelForImageTextToText,AutoTokenizer,AutoProcessor,BitsAndBytesConfig
+    from transformers import AutoConfig,AutoModelForCausalLM,AutoModelForSeq2SeqLM,AutoModelForImageTextToText,AutoTokenizer,AutoProcessor,BitsAndBytesConfig
     from peft import LoraConfig,get_peft_model,prepare_model_for_kbit_training,PeftModel
     job=json.loads(job_path.read_text());config=job['config'];out=Path(job['output']).resolve()
     events=out/'events.jsonl';control=out/'control.json'
@@ -67,13 +103,21 @@ def train(job_path):
     if quantized:
         kwargs.update(quantization_config=BitsAndBytesConfig(load_in_4bit=True,bnb_4bit_quant_type='nf4',bnb_4bit_use_double_quant=True,bnb_4bit_compute_dtype=dtype),device_map={'':'cuda:0'})
     is_vlm=config['kind']=='VLM'
-    cls=AutoModelForImageTextToText if is_vlm else AutoModelForCausalLM
+    model_config=AutoConfig.from_pretrained(job['model_path'],local_files_only=True,trust_remote_code=False)
+    architecture=training_architecture(model_config.to_dict(),config['kind'])
+    if native_support(model_config.to_dict(),config['kind']) is False:
+        raise ValueError('Installed Transformers does not support this model architecture.')
+    if job.get('training_architecture',architecture)!=architecture:
+        raise ValueError('Model architecture changed after preflight.')
+    cls={'causal':AutoModelForCausalLM,'seq2seq':AutoModelForSeq2SeqLM,'image_text_to_text':AutoModelForImageTextToText}[architecture]
     emit('log',{'message':'Loading staged model and tokenizer on CUDA. No remote code or network downloads.'})
     model=cls.from_pretrained(job['model_path'],**kwargs)
     processor=AutoProcessor.from_pretrained(job['model_path'],local_files_only=True,trust_remote_code=False) if is_vlm else None
     tokenizer=processor.tokenizer if processor else AutoTokenizer.from_pretrained(job['model_path'],local_files_only=True,trust_remote_code=False)
     tokenizer.padding_side='right'
-    if tokenizer.pad_token_id is None:tokenizer.pad_token=tokenizer.eos_token
+    if tokenizer.pad_token_id is None:
+        if tokenizer.eos_token is None:raise ValueError('Tokenizer needs a padding or EOS token.')
+        tokenizer.pad_token=tokenizer.eos_token
     if processor and hasattr(processor.image_processor, 'do_image_splitting'):
         processor.image_processor.do_image_splitting=False
     if stopped_before_training():return
@@ -87,11 +131,9 @@ def train(job_path):
         resume=Path(resume)
         model=PeftModel.from_pretrained(model,str(resume),is_trainable=True,local_files_only=True)
     else:
-        # Preserve the existing attention recipe where available; adapt other native architectures.
-        names = {name.rsplit('.',1)[-1] for name,_ in model.named_modules()}
-        targets = ['q_proj','v_proj'] if {'q_proj','v_proj'} <= names else 'all-linear'
+        targets = lora_targets(model,architecture)
         model=get_peft_model(model,LoraConfig(r=config['lora_rank'],lora_alpha=config['lora_rank']*2,lora_dropout=0.0,
-              target_modules=targets,bias='none',task_type='CAUSAL_LM'))
+              target_modules=targets,bias='none',task_type='SEQ_2_SEQ_LM' if architecture=='seq2seq' else 'CAUSAL_LM'))
     optimizer=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=config['learning_rate'])
     plan=plans(len(job['train']),config)
     step=0;prior_elapsed=0;baseline=None
@@ -131,6 +173,9 @@ def train(job_path):
         return images
 
     def encode(rows,*,prompt_only=False):
+        if architecture=='seq2seq':
+            batch=encode_seq2seq(tokenizer,rows,config['sequence_length'],prompt_only=prompt_only)
+            return {key:value.to('cuda') for key,value in batch.items()}
         forms=[templates(row) for row in rows]
         texts=[f[1] if prompt_only else f[0] for f in forms]
         if processor:
@@ -166,7 +211,7 @@ def train(job_path):
         with torch.no_grad():
             for row in job['validation']:
                 batch=encode([row]);loss=model(**batch).loss
-                count=int((batch['labels'][:,1:]!=-100).sum())
+                count=target_token_count(batch['labels'],architecture)
                 if not math.isfinite(float(loss.detach())):raise ValueError('Nonfinite validation loss')
                 weighted+=float(loss)*count;tokens+=count
                 del batch,loss
@@ -196,7 +241,8 @@ def train(job_path):
         torch.save({'step':step,'optimizer':optimizer.state_dict(),'elapsed_seconds':elapsed(),'baseline_eval_loss':baseline,
                     'cuda_rng':torch.cuda.get_rng_state(),'cpu_rng':torch.get_rng_state(),'scaler':scaler.state_dict()},target/'training-state.pt')
         atomic_json(target/'forge-checkpoint.json',{'step':step,'config':config,'model_revision':job['model_revision'],
-            'kind':config['kind'],'method':config['method'],'base_model':config['model'],'baseline_eval_loss':baseline})
+            'kind':config['kind'],'method':config['method'],'base_model':config['model'],'baseline_eval_loss':baseline,
+            'training_architecture':architecture})
         for config_file in target.glob('*.json'):
             config_file.write_text(config_file.read_text().replace(job['model_path'],config['model']))
         target.rename(final)
@@ -218,7 +264,7 @@ def train(job_path):
             batch=encode([job['train'][i] for i in indices])
             with torch.autocast('cuda',dtype=dtype):loss=model(**batch).loss
             if not math.isfinite(float(loss.detach())):raise ValueError('Nonfinite training loss')
-            loss_sum+=float(loss.detach());target_tokens+=int((batch['labels'][:,1:]!=-100).sum())
+            loss_sum+=float(loss.detach());target_tokens+=target_token_count(batch['labels'],architecture)
             scaler.scale(loss/len(group)).backward();del batch,loss
         scaler.unscale_(optimizer)
         norm=torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad],1.0)
@@ -235,11 +281,11 @@ def train(job_path):
     prompt=encode([sample],prompt_only=True)
     with torch.no_grad():
         generated=model.generate(**prompt,max_new_tokens=32,do_sample=False,pad_token_id=tokenizer.pad_token_id,eos_token_id=tokenizer.eos_token_id)
-    response=tokenizer.decode(generated[0,prompt['input_ids'].shape[1]:],skip_special_tokens=True)
+    response=tokenizer.decode(generated[0] if architecture=='seq2seq' else generated[0,prompt['input_ids'].shape[1]:],skip_special_tokens=True)
     emit('evaluation',{'baseline_eval_loss':baseline,'eval_loss':final,'perplexity':math.exp(min(final,50)),
           'validation_count':len(job['validation']),'trained_parameters':trainable,'generated_response':response[:2000],
           'reference':messages(sample)[-1]['content'][:2000],'synthetic_dataset_quality_warning':True,
-          'model_revision':job['model_revision']})
+          'model_revision':job['model_revision'],'training_architecture':architecture})
     emit('log',{'message':'Training, held-out evaluation and adapter generation completed. Adapter weights were saved.'})
     emit('status',{'status':'completed'})
 

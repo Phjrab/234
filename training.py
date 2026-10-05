@@ -18,6 +18,7 @@ import time
 import uuid
 import zipfile
 from simulator import DashboardError, timestamp, validate_config
+from architectures import training_architecture, native_support
 
 MODELS = {
     'Qwen/Qwen2.5-0.5B-Instruct': {'kind': 'LLM', 'directory': 'qwen2.5-0.5b', 'license': 'Apache-2.0'},
@@ -162,13 +163,14 @@ class TrainingManager:
                 value['family'] = value.get('family') or config.get('model_type')
                 value.setdefault('publisher', key.split('/')[0])
                 value.setdefault('architectures', config.get('architectures', []))
+                value['training_architecture'] = training_architecture(config, value['kind'])
             except DashboardError:
                 ready, revision = False, None
             models.append({'id': key, **{k:v for k,v in value.items() if k != 'directory'}, 'installed': ready, 'revision': revision})
         available = bool(self.enabled and deps and self.device and self.device.get('available'))
         return {'available': available, 'enabled': self.enabled, 'status': 'ready' if available else 'disabled',
                 'real_training': available, 'pause': True, 'resume': True, 'cancel': True,
-                'llm': True, 'vlm': True, 'models': models, 'gpu': self.device,
+                'llm': True, 'vlm': True, 'seq2seq': True, 'models': models, 'gpu': self.device,
                 'message': 'Local LoRA/QLoRA worker ready.' if available else self.probe_error or 'Enable the training environment and install its dependencies.',
                 'limits': {'batch_size':4,'sequence_length':2048,'lora_rank':32,'image_bytes':2097152,'image_pixels':16777216}}
 
@@ -185,6 +187,10 @@ class TrainingManager:
             if config[key] > high:
                 raise DashboardError('resource_limit', f'Real training {key} is limited to {high}.')
         folder, manifest = self._model(config['model'])
+        model_config = json.loads((folder / 'config.json').read_text())
+        architecture = training_architecture(model_config, config['kind'])
+        if native_support(model_config, config['kind']) is False:
+            raise DashboardError('unsupported_model', 'The local LLM/VLM worker does not support this architecture with the installed Transformers version.', 409)
         with self.workspace.lock:
             dataset, records = self.workspace._load(config['dataset'])
             dataset, records = copy.deepcopy(dataset), copy.deepcopy(records)
@@ -217,6 +223,7 @@ class TrainingManager:
         batches = math.ceil(len(train) / config['batch_size'])
         total = min(config['max_steps'], math.ceil(batches / config['gradient_accumulation']) * config['epochs'])
         return config, {'valid':True,'model_revision':manifest['revision'],'license':definition['license'],
+                        'training_architecture':architecture,
                         'train_count':len(train),'validation_count':len(validation),'total_steps':total,
                         'evaluation':'held-out assistant-token cross entropy','can_train':True,
                         'warnings':['A small dataset verifies the pipeline; it does not establish model quality.','Context token lengths and actual VRAM are checked by the worker before optimization.']}, folder, train, validation, image_bytes
@@ -234,7 +241,8 @@ class TrainingManager:
                 dest.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
                 dest.write_bytes(body)
             job = {'config':config,'model_path':str(folder),'train':train,'validation':validation,
-                   'output':str(directory),'model_revision':report['model_revision'],'resume_from':resume_from}
+                   'output':str(directory),'model_revision':report['model_revision'],'resume_from':resume_from,
+                   'training_architecture':report['training_architecture']}
             atomic_json(directory / 'job.json', job)
             atomic_json(directory / 'control.json', {'action':'run'})
             run = {'id':run_id,'name':config['name'],'kind':config['kind'],'model':config['model'],'model_id':config['model'],
