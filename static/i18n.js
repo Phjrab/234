@@ -728,6 +728,8 @@ const I18n = (() => {
     "{count} validation record(s) have exact duplicates in training; edit or deduplicate the source before using this split for evaluation.": "검증 레코드 {count}개가 학습 데이터와 완전히 중복됩니다. 평가에 사용하기 전에 원본을 수정하거나 중복을 제거하세요."
 };
   Object.assign(korean, {
+    "Expand":"크게 보기", "Menu":"메뉴 보기",
+    "Expand experiment list":"실험 목록 크게 보기", "Show workspace navigation":"작업 공간 메뉴 보기",
     "Appearance":"화면 표시", "Color mode":"화면 모드", "White mode":"화이트 모드", "Dark mode":"다크 모드",
     "Switch to white mode":"화이트 모드로 전환", "Switch to dark mode":"다크 모드로 전환",
     "Color mode changes apply immediately and are saved in this browser.":"화면 모드는 즉시 적용되며 이 브라우저에 저장됩니다."

@@ -87,6 +87,8 @@ JSONL은 UTF-8 텍스트 128 KiB / 1000행 / 50개 데이터셋까지 지원합�
 
 상단 ☀/☾ 버튼 또는 **설정 → 화면 표시 → 화면 모드**에서 화이트·다크 모드를 전환합니다. 선택은 브라우저에 저장되고 새로고침 후 복원됩니다. explorer·console·차트·입력폼 모두 모드를 적용합니다. [테마 검증 및 캡처](docs/ui-redesign/theme/README.md)를 참고하세요.
 
+Experiments를 열면 실험 목록이 왼쪽 영역을 크게 사용합니다. **크게 보기 / 메뉴 보기** 버튼으로 목록과 탐색 메뉴를 전환하며, 실험 항목의 글자·여백과 모바일 선택칸도 넉넉하게 표시합니다.
+
 선택한 실험이 작업 공간의 중심입니다. 오른쪽 inspector는 접을 수 있고 하단 console 높이를 조절할 수 있습니다. 모바일에서는 Run / Inspector / Console을 전환합니다. Datasets / Models / Experiments / Artifacts / Compare / Environment / Access settings에서 기존 기능에 접근합니다.
 
 실측 GPU 값, 예상 VRAM, 합성 Demo loss와 UI fixture 값은 출처를 구분합니다. 결측 loss는 0으로 바꾸지 않으며 차트는 원본 optimizer step을 표시합니다. GPU 정보는 서버 전체 자원으로 실행마다 독립 측정한 값이 아닙니다.

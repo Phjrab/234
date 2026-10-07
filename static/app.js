@@ -5,6 +5,7 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&'
 const fmt = (value, digits = 3) => Number.isFinite(Number(value)) && value !== null && value !== undefined ? Number(value).toFixed(digits) : '—';
 const pct = value => Math.max(0, Math.min(100, Number(value) || 0));
 let authToken = null, remoteControlsAllowed = true, connectionLabel = 'Connecting';
+let explorerExpanded = false;
 let inspectorHidden = false;
 try { inspectorHidden = localStorage.getItem('forge.inspectorHidden') === 'true'; } catch {}
 let snapshot = null, selectedId = null, filter = 'all', currentTab = 'logs', requestBusy = false, refreshBusy = false, toastTimer, nav = 'overview';
@@ -41,6 +42,7 @@ function latest(run) { return run.latest_metrics || run.metrics?.at(-1) || {}; }
 function render() {
   if (!snapshot) return;
   document.body?.setAttribute('data-view', nav);
+  updateExplorerSize();
   const focused = document.activeElement;
   const focusRun = focused?.dataset?.run;
   const focusAction = focused?.dataset?.action;
@@ -185,10 +187,21 @@ $$('.tab').forEach(btn => {
     event.preventDefault(); tabs[next].focus(); tabs[next].click();
   };
 });
+function updateExplorerSize() {
+  document.body?.setAttribute('data-explorer-expanded', String(explorerExpanded));
+  const button = $('#explorer-size-toggle');
+  button.textContent = t(explorerExpanded ? 'Menu' : 'Expand');
+  button.setAttribute('aria-expanded', String(explorerExpanded));
+  const label = t(explorerExpanded ? 'Show workspace navigation' : 'Expand experiment list');
+  button.setAttribute('aria-label', label); button.setAttribute('title', label);
+}
 function setNav(value) {
   if(nav==='recipes' && $('#recipe-form') && typeof readRecipe==='function') recipeDraft=readRecipe();
   if(typeof loadWorkspaceView==='function') viewVersion++;
   nav = value;
+  explorerExpanded = value === 'runs';
+  updateExplorerSize();
+  if (explorerExpanded) $('#explorer-size-toggle').focus?.();
   document.body?.setAttribute('data-view', value);
   $$('.nav-item').forEach(btn => { btn.classList.toggle('active',btn.dataset.nav === value); btn.setAttribute('aria-current',btn.dataset.nav === value ? 'page' : 'false'); });
   const advanced = !['overview','runs','artifacts'].includes(value);
@@ -209,6 +222,7 @@ function setMobileSurface(surface){
   $('#run-detail').dataset.surface=surface;
   $$('.mobile-surfaces button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.surface===surface)));
 }
+$('#explorer-size-toggle').onclick=()=>{explorerExpanded=!explorerExpanded;updateExplorerSize();};
 $('#empty-new').onclick=()=>setNav('recipes');
 $('#mobile-run').onchange=event=>selectRun(event.target.value);
 $$('.mobile-surfaces button').forEach(button=>button.onclick=()=>setMobileSurface(button.dataset.surface));

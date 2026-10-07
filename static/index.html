@@ -17,9 +17,9 @@
     <button class="nav-item" data-nav="compare"><span>⇄</span> Compare runs</button>
   </nav>
   <section class="experiments" id="experiments" aria-label="Experiment explorer">
-    <div class="panel-heading"><h2>EXPERIMENTS <span id="experiment-count" class="count-badge">—</span></h2></div>
+    <div class="panel-heading"><h2>EXPERIMENTS <span id="experiment-count" class="count-badge">—</span></h2><button id="explorer-size-toggle" class="button secondary" type="button" aria-expanded="false" aria-controls="run-explorer-list" aria-label="Expand experiment list">Expand</button></div>
     <div class="filter-group" role="group" aria-label="Filter experiments"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="LLM">LLM</button><button class="filter" data-filter="VLM">VLM</button></div>
-    <div class="runs-scroll"><table><thead><tr><th>EXPERIMENT</th><th>STATUS</th><th>PROGRESS</th><th>TRAIN LOSS</th><th>METHOD</th><th></th></tr></thead><tbody id="runs-body"></tbody></table></div>
+    <div class="runs-scroll" id="run-explorer-list"><table><thead><tr><th>EXPERIMENT</th><th>STATUS</th><th>PROGRESS</th><th>TRAIN LOSS</th><th>METHOD</th><th></th></tr></thead><tbody id="runs-body"></tbody></table></div>
     <div id="no-runs" class="empty" hidden>No experiments in this view yet</div>
   </section>
   <div class="sidebar-bottom"><nav aria-label="Workspace administration"><button class="nav-item" data-nav="environment"><span>⌁</span> Environment</button><button class="nav-item" data-nav="settings"><span>⚙</span> Access settings</button></nav><div class="demo-tag">LOCAL WORKSPACE</div><div class="local-badge">Single GPU · FIFO</div></div>
