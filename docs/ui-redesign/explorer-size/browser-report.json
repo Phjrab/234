@@ -1,0 +1,69 @@
+{
+  "source_sha": "d839feb65ebd1c32ad68ad5b190508ffbb18ca43",
+  "fixture_id": "forge-workbench-v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Keyboard selection and focus survive polling",
+      "pass": true,
+      "observed": {
+        "focus": "train-000000000004",
+        "selected": "train-000000000004",
+        "title": "Qwen adapter \u00b7 paused"
+      }
+    },
+    {
+      "name": "Menu restores primary navigation",
+      "pass": true
+    },
+    {
+      "name": "Korean expansion controls",
+      "pass": true
+    },
+    {
+      "name": "Theme keeps expanded list",
+      "pass": true
+    },
+    {
+      "name": "Mobile 44px selection and correct run",
+      "pass": true,
+      "observed": {
+        "height": 844,
+        "overflow": false,
+        "pickerHeight": 44,
+        "selected": "<redacted>",
+        "title": "Qwen adapter \u00b7 queued",
+        "width": 390
+      },
+      "note": "The browser redacted the native select value; the unique selected-run heading verifies the requested queued run."
+    }
+  ],
+  "geometry": {
+    "collapsedHeight": 112.5,
+    "expandedHeight": 465.5,
+    "nameSize": "14px",
+    "rowHeight": 140.5,
+    "viewport": {
+      "height": 768,
+      "width": 1366
+    }
+  },
+  "captures": [
+    {
+      "filename": "expanded-light.png",
+      "captured_at": "2026-10-07T07:49:30.581Z",
+      "viewport": "1366x768",
+      "route": "http://127.0.0.1:18766/",
+      "scenario": "Korean expanded experiment explorer; selected real-source UI fixture",
+      "mode": "light"
+    },
+    {
+      "filename": "expanded-dark.png",
+      "captured_at": "2026-10-07T07:49:31.083Z",
+      "viewport": "1366x768",
+      "route": "http://127.0.0.1:18766/",
+      "scenario": "Korean expanded experiment explorer; selected real-source UI fixture",
+      "mode": "dark"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Experiment selection readability — 2026-10-07
+
+Source commit `d839feb65ebd1c32ad68ad5b190508ffbb18ca43`. Names are 14px semibold, metadata 11px; row vertical padding is 14px, gaps 8px and minimum target height 104px (long fixture row renders 140.5px). Entering Experiments expands the explorer by hiding its workspace/primary-navigation section. The visible Menu / 메뉴 보기 button restores every navigation entry; Expand / 크게 보기 is available in the normal layout. Environment and Access settings remain visible in both layouts. This is ephemeral display state, reset by navigation/reload, with no added storage/API mutation. Mobile view and experiment selectors are now 44px tall.
+
+Actual IAB at 1366×768: list viewport 112.5px with navigation, 465.5px expanded, a 353px increase. Korean/English expansion controls, theme switching, return to navigation and keyboard selection/focus across the two-second polling timer verified. Mobile 390×844: picker 44px, requested queued run heading shown, no horizontal overflow. The browser redacted native select.value in inspection, so the unique run heading was used for the selection assertion. See browser-report.json (5 checks PASS). Two final screenshots directly opened; all data is synthetic and manifest ties them to the source SHA. Original CUA JPEGs converted to PNG without pixel/content edits.
+
+Regression: `node tests/test_frontend.js` 55 PASS, `node tests/test_i18n.js` PASS, `python3 tools/build_preview.py` PASS, `git diff --check` PASS. No new tests for this display change, no backend/security/lifecycle change. Actual GPU/control/download was never invoked. Owned temporary server on 18766 stopped, owned tab closed, viewport reset. User's 18765 server was untouched.
+
+Rollback this feature with `git revert d839feb65ebd1c32ad68ad5b190508ffbb18ca43` after reviewing later dependent changes. No DB/storage/operating data recovery is needed.
