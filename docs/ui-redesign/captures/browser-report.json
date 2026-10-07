@@ -1,0 +1,596 @@
+{
+  "status": "PASS",
+  "fixture_id": "forge-workbench-v1",
+  "started_at": "2026-10-07T07:01:46.217Z",
+  "checks": [
+    {
+      "name": "after-workspace-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "explorer keyboard focus survives polling",
+      "status": "PASS"
+    },
+    {
+      "name": "paused actions remain server-owned",
+      "status": "PASS"
+    },
+    {
+      "name": "real-source state queued",
+      "status": "PASS"
+    },
+    {
+      "name": "real-source state pausing",
+      "status": "PASS"
+    },
+    {
+      "name": "real-source state paused",
+      "status": "PASS"
+    },
+    {
+      "name": "real-source state completed",
+      "status": "PASS"
+    },
+    {
+      "name": "real-source state failed",
+      "status": "PASS"
+    },
+    {
+      "name": "real-source state canceled",
+      "status": "PASS"
+    },
+    {
+      "name": "missing evaluation stays missing",
+      "status": "PASS"
+    },
+    {
+      "name": "checkpoint download uses selected run",
+      "status": "PASS"
+    },
+    {
+      "name": "after-checkpoints-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-checkpoints-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "after-evaluation-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-evaluation-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "demo source remains explicit",
+      "status": "PASS"
+    },
+    {
+      "name": "after-demo-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-demo-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "injected OOM guidance visible",
+      "status": "PASS"
+    },
+    {
+      "name": "after-demo-oom-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-demo-oom-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "compare rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "environment rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "actual isolated schema validation",
+      "status": "PASS"
+    },
+    {
+      "name": "after-dataset-validation-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-dataset-validation-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "installed model separate from download",
+      "status": "PASS"
+    },
+    {
+      "name": "after-model-readiness-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-model-readiness-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "unsupported model cannot download",
+      "status": "PASS"
+    },
+    {
+      "name": "after-model-unsupported-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-model-unsupported-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "Hub failure is actionable",
+      "status": "PASS"
+    },
+    {
+      "name": "real batch cap blocks navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "review preserves edited recipe",
+      "status": "PASS"
+    },
+    {
+      "name": "after-builder-review-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-builder-review-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "dry-run distinct from GPU preflight",
+      "status": "PASS"
+    },
+    {
+      "name": "fixture preflight denied",
+      "status": "PASS"
+    },
+    {
+      "name": "GPU launch blocked after denied preflight",
+      "status": "PASS"
+    },
+    {
+      "name": "language redraw retains name",
+      "status": "PASS"
+    },
+    {
+      "name": "language redraw retains learning rate",
+      "status": "PASS"
+    },
+    {
+      "name": "Korean builder rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-ko-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-ko-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "1366 no page horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1366 curve nonempty",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-1366 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-1366 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "1024 no page horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1024 curve nonempty",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-1024 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-1024 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "390 no page horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390 curve nonempty",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-390 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-workspace-390 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile inspector exposed",
+      "status": "PASS"
+    },
+    {
+      "name": "after-inspector-390 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-inspector-390 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "console keyboard arrows",
+      "status": "PASS"
+    },
+    {
+      "name": "console keyboard End",
+      "status": "PASS"
+    },
+    {
+      "name": "after-console-390 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-console-390 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "after-builder-review-390 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-builder-review-390 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "200 percent equivalent reflow",
+      "status": "PASS"
+    },
+    {
+      "name": "empty run creation path",
+      "status": "PASS"
+    },
+    {
+      "name": "after-empty-1440 toast settled",
+      "status": "PASS"
+    },
+    {
+      "name": "after-empty-1440 fixture watermark",
+      "status": "PASS"
+    },
+    {
+      "name": "offline/stale is explicit",
+      "status": "PASS"
+    },
+    {
+      "name": "no unexpected browser errors",
+      "status": "PASS"
+    }
+  ],
+  "captures": [
+    {
+      "filename": "after-workspace-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:47.463Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "same selected real-source run as baseline",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-checkpoints-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:51.297Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "real-source fixture checkpoint metadata; no file opened",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-evaluation-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:51.635Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "held-out/generated-response fixture; no model quality claim",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-demo-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:52.109Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "demo-vs-real source distinction",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-demo-oom-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:52.411Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "synthetic injected failure; retry not invoked",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-dataset-validation-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:54.081Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "actual backend validation of synthetic JSONL",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-model-readiness-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:54.939Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "installed model metadata; no download",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-model-unsupported-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:55.665Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "GGUF unsupported/missing safetensors fixture",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-builder-review-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:01:58.311Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "six-step exact recipe review",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-workspace-ko-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:05.163Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "Korean selected-run workspace",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-workspace-1366.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:10.540Z",
+      "viewport": "1366x768",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "selected run responsive layout",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-workspace-1024.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:10.836Z",
+      "viewport": "1024x768",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "selected run responsive layout",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-workspace-390.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:11.037Z",
+      "viewport": "390x844",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "selected run responsive layout",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-inspector-390.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:11.440Z",
+      "viewport": "390x844",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "mobile inspector and immutable config",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-console-390.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:11.844Z",
+      "viewport": "390x844",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "mobile console tabs",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-builder-review-390.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:12.248Z",
+      "viewport": "390x844",
+      "route": "http://127.0.0.1:18765/",
+      "scenario": "mobile draft remains intact",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    },
+    {
+      "filename": "after-empty-1440.jpg",
+      "repo": "Phjrab/forge-finetune-dashboard",
+      "commit_sha": "adac4de56e4653837fbfc81a7e3e401a49c0898c",
+      "captured_at": "2026-10-07T07:02:12.551Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/__fixture__/empty",
+      "scenario": "empty fixture with builder entry",
+      "fixture_id": "forge-workbench-v1",
+      "data_provenance": "synthetic UI fixture; real-source shape and demo are explicit",
+      "live_actions": "none; only isolated validation/dry-run",
+      "privacy_review": "PASS synthetic data only"
+    }
+  ],
+  "console": [],
+  "styles": [
+    {
+      "background": "rgb(243, 242, 238)",
+      "border": "rgb(32, 35, 41)",
+      "color": "rgb(32, 35, 41)",
+      "selector": "body",
+      "stroke": "none"
+    },
+    {
+      "background": "rgb(23, 26, 30)",
+      "border": "rgb(241, 242, 244) rgb(66, 72, 82) rgb(241, 242, 244) rgb(241, 242, 244)",
+      "color": "rgb(241, 242, 244)",
+      "selector": ".sidebar",
+      "stroke": "none"
+    },
+    {
+      "background": "rgb(50, 38, 31)",
+      "border": "rgb(178, 135, 101)",
+      "color": "rgb(255, 181, 128)",
+      "selector": ".nav-item.active",
+      "stroke": "none"
+    },
+    {
+      "background": "rgb(168, 68, 20)",
+      "border": "rgb(168, 68, 20)",
+      "color": "rgb(255, 255, 255)",
+      "selector": ".button.primary",
+      "stroke": "none"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "rgb(197, 199, 192) rgb(96, 100, 107) rgb(96, 100, 107)",
+      "color": "rgb(96, 100, 107)",
+      "selector": ".chart-foot",
+      "stroke": "none"
+    },
+    {
+      "background": "rgb(32, 36, 42)",
+      "border": "rgb(81, 88, 99)",
+      "color": "rgb(241, 242, 244)",
+      "selector": ".run-data",
+      "stroke": "none"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "rgb(255, 181, 128)",
+      "color": "rgb(255, 181, 128)",
+      "selector": ".tab.active",
+      "stroke": "none"
+    },
+    {
+      "background": "rgb(50, 38, 31)",
+      "border": "rgb(178, 135, 101)",
+      "color": "rgb(255, 181, 128)",
+      "selector": ".filter.active",
+      "stroke": "none"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "rgb(32, 35, 41)",
+      "color": "rgb(32, 35, 41)",
+      "selector": ".loss-panel path",
+      "stroke": "rgb(39, 97, 146)"
+    }
+  ],
+  "zoom_scope": "720x450 CSS viewport reflow; native browser zoom not claimed",
+  "expected_console_patterns": [
+    "404 avatar fixture",
+    "503 Hub unavailable fixture",
+    "409 denied preflight fixture",
+    "503 API stale fixture"
+  ],
+  "completed_at": "2026-10-07T07:02:12.763Z"
+}

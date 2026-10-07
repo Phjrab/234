@@ -1,0 +1,61 @@
+{
+  "method": "WCAG sRGB relative luminance; sampled key surfaces, not a complete accessibility audit",
+  "pairs": [
+    {
+      "component": "Body",
+      "foreground": "#202329",
+      "background": "#f3f2ee",
+      "ratio": 14.05,
+      "minimum": 4.5,
+      "status": "PASS"
+    },
+    {
+      "component": "Sidebar",
+      "foreground": "#f1f2f4",
+      "background": "#171a1e",
+      "ratio": 15.58,
+      "minimum": 4.5,
+      "status": "PASS"
+    },
+    {
+      "component": "Primary",
+      "foreground": "#ffffff",
+      "background": "#a84414",
+      "ratio": 6.0,
+      "minimum": 4.5,
+      "status": "PASS"
+    },
+    {
+      "component": "Selected text",
+      "foreground": "#ffb580",
+      "background": "#32261f",
+      "ratio": 8.5,
+      "minimum": 4.5,
+      "status": "PASS"
+    },
+    {
+      "component": "Selected boundary",
+      "foreground": "#b28765",
+      "background": "#32261f",
+      "ratio": 4.57,
+      "minimum": 3,
+      "status": "PASS"
+    },
+    {
+      "component": "Console",
+      "foreground": "#f1f2f4",
+      "background": "#20242a",
+      "ratio": 13.92,
+      "minimum": 4.5,
+      "status": "PASS"
+    },
+    {
+      "component": "Field boundary",
+      "foreground": "#73776f",
+      "background": "#fffefa",
+      "ratio": 4.53,
+      "minimum": 3,
+      "status": "PASS"
+    }
+  ]
+}
