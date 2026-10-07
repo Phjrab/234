@@ -9,6 +9,7 @@ from workspace import Workspace
 
 html = (ROOT / 'static/index.html').read_text()
 css = (ROOT / 'static/style.css').read_text()
+theme_js = (ROOT / 'static/theme.js').read_text()
 js = (ROOT / 'static/app.js').read_text()
 hf_js = (ROOT / 'static/huggingface.js').read_text()
 training_js = (ROOT / 'static/training.js').read_text()
@@ -45,6 +46,7 @@ js = js[:start] + '''async function api(path, body) {
 ''' + js[end:]
 js = 'const OFFLINE_ROUTES=' + json.dumps(routes, ensure_ascii=False).replace('<', '\\u003c') + ';\n' + js
 js = js.replace("'Demo API online'", "'Offline preview'").replace('t("Demo API online")', 't("Offline preview")')
+html = html.replace('<script src="/theme.js"></script>', '<script>' + theme_js + '</script>')
 html = html.replace('<link rel="stylesheet" href="/style.css">', '<style>' + css + '</style>')
 html = html.replace('<script src="/i18n.js" defer></script>', '').replace('<script src="/app.js" defer></script>', '').replace('<script src="/workspace.js" defer></script>', '').replace('<script src="/training.js" defer></script>', '').replace('<script src="/huggingface.js" defer></script>', '').replace('<script src="/builder.js" defer></script>', '')
 html = html.replace('All runs, charts and GPU readings are synthetic. No training GPU is connected and no model is downloaded.',

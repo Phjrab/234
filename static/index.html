@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forge Fine-tuning Dashboard</title><link rel="stylesheet" href="/style.css"><script src="/i18n.js" defer></script><script src="/app.js" defer></script><script src="/workspace.js" defer></script><script src="/huggingface.js" defer></script><script src="/training.js" defer></script><script src="/builder.js" defer></script></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forge Fine-tuning Dashboard</title><script src="/theme.js"></script><link rel="stylesheet" href="/style.css"><script src="/i18n.js" defer></script><script src="/app.js" defer></script><script src="/workspace.js" defer></script><script src="/huggingface.js" defer></script><script src="/training.js" defer></script><script src="/builder.js" defer></script></head>
 <body>
 <div class="app">
 <aside class="sidebar" aria-label="Workspace explorer">
@@ -25,7 +25,7 @@
   <div class="sidebar-bottom"><nav aria-label="Workspace administration"><button class="nav-item" data-nav="environment"><span>⌁</span> Environment</button><button class="nav-item" data-nav="settings"><span>⚙</span> Access settings</button></nav><div class="demo-tag">LOCAL WORKSPACE</div><div class="local-badge">Single GPU · FIFO</div></div>
 </aside>
 <main>
-  <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong>Workbench</strong></div><div class="topbar-right"><span class="connection" id="connection"><i></i> Connecting</span><button id="new-run" class="button primary"><span>＋</span> New experiment</button></div></header>
+  <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong>Workbench</strong></div><div class="topbar-right"><span class="connection" id="connection"><i></i> Connecting</span><button id="theme-toggle" class="button theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false">☾</button><button id="new-run" class="button primary"><span>＋</span> New experiment</button></div></header>
   <div class="content">
     <div class="mobile-nav"><label>Workspace views<select id="mobile-view" aria-label="Workspace views"><option value="overview">Workbench</option><option value="runs">Experiments</option><option value="datasets">Datasets</option><option value="models">Models</option><option value="artifacts">Artifacts</option><option value="recipes">New experiment</option><option value="compare">Compare runs</option><option value="environment">Environment</option><option value="settings">Access settings</option></select></label><label id="mobile-run-label">Selected experiment<select id="mobile-run" aria-label="Selected experiment"></select></label></div>
     <section class="page-heading"><div><div class="eyebrow">FORGE</div><h1>AI Training Workbench</h1><p>Dataset, configuration and results in one workspace.</p></div></section>

@@ -29,6 +29,7 @@ const document={hidden:false,querySelector:get,querySelectorAll:s=>{
   return [];
 },addEventListener(){}};
 const ctx=vm.createContext({document,console,Date,JSON,Math,Number,String,Object,Array,Promise,AbortController,encodeURIComponent,localStorage:{getItem:key=>storedPreferences.get(key)||null,setItem:(key,value)=>storedPreferences.set(key,value)},setInterval(){},setTimeout(){return 1;},clearTimeout(){},FormData:class{constructor(form){return Object.entries(form.testData||{});}},fetch:async(path,options)=>{calls.push({path,options});if(failure)throw new Error(failure);return {ok:true,json:async()=>routeResponses[path] || (options.method==='POST' ? (mutation||{run:fixture.runs[0],snapshot:fixture}) : structuredClone(fixture))};}});
+vm.runInContext(fs.readFileSync('static/theme.js','utf8'),ctx);
 vm.runInContext(fs.readFileSync('static/i18n.js','utf8'),ctx);
 vm.runInContext(fs.readFileSync('static/app.js','utf8'),ctx);
 const run=code=>vm.runInContext(code,ctx), flush=()=>new Promise(resolve=>setImmediate(resolve));
