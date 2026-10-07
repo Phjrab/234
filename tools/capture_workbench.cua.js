@@ -11,6 +11,9 @@ async function captureForgeWorkbench({tab,browser,directory,commitSha}) {
   const check=(name,value)=>{report.checks.push({name,status:value?'PASS':'FAIL'});if(!value)throw Error(name);};
   const snapshot=()=>tab.playwright.domSnapshot();
   async function capture(name,scenario){
+    // Toast has a 4200ms product timer. CUA hidden-wait can time out after it hides.
+    if(await tab.playwright.locator('#toast').isVisible())await tab.playwright.waitForTimeout(4300);
+    check(name+' toast settled',!(await tab.playwright.locator('#toast').isVisible()));
     const state=await snapshot();
     check(name+' fixture watermark',state.includes('UI DEMO / SYNTHETIC FIXTURE'));
     const filename=name+'.jpg';
@@ -60,6 +63,8 @@ async function captureForgeWorkbench({tab,browser,directory,commitSha}) {
     await tab.playwright.locator('#dataset-result h4').click();await capture('after-dataset-validation-1440','actual backend validation of synthetic JSONL');
     await navigate('models');await tab.playwright.locator('[data-hf-model="Qwen/Qwen2.5-0.5B-Instruct"]').click();await snapshot();
     check('installed model separate from download',!(await tab.playwright.locator('#hf-download-model').isEnabled()));
+    await tab.scroll([1200,700],'down',1);
+    await snapshot();
     await capture('after-model-readiness-1440','installed model metadata; no download');
     await tab.playwright.locator('[data-hf-model="fixture/unsupported-GGUF"]').click();await snapshot();
     check('unsupported model cannot download',!(await tab.playwright.locator('#hf-download-model').isEnabled()));
@@ -127,3 +132,6 @@ async function captureForgeWorkbench({tab,browser,directory,commitSha}) {
   finally{report.completed_at=new Date().toISOString();await fs.writeFile(directory+'/browser-report.json',JSON.stringify(report,null,2)+'\n');}
   return {status:report.status,checks:report.checks.length,captures:report.captures.length};
 }
+
+// Node module export lets cua_repl import this authored harness without eval.
+export {captureForgeWorkbench};
