@@ -20,9 +20,19 @@
 - Local implementation validation: 137 Python tests passed, 3 optional-runtime skips; final server suite 20 passed; frontend 57 passed; i18n and offline preview passed. These were completed before delivery; deployment verification did not rerun GPU tests.
 - Matched fixture before/after browser captures and glyph evidence remain in [typography](typography/README.md), [theme](theme/README.md), and [Workbench captures](captures/README.md).
 
-### Production browser limitation
+### Production browser verification follow-up
 
-The in-app browser refused the production HTTPS URL with `net::ERR_CERT_AUTHORITY_INVALID`. The browser warning was not bypassed and trust settings were not changed. Production browser visual validation is **not complete**; no production screenshot is claimed. The authenticated HTTPS and asset checks above passed with certificate verification enabled. An operator can inspect the deployment using a browser that already trusts the server certificate.
+The in-app browser refused the production HTTPS URL with `net::ERR_CERT_AUTHORITY_INVALID`. The later verification used native Safari, which opened the same remote HTTPS production URL without a certificate warning. No warning was bypassed and trust settings were not changed. The authenticated HTTPS and asset checks above were repeated after the browser session and passed with certificate verification enabled.
+
+The macOS Screen Sharing attempt failed; existing RDP/VNC ports were not listening. No remote desktop backend or firewall access was enabled. Production visual validation used a Mac browser accessing the remote server, not a remote Linux desktop session.
+
+- Native Safari: Korean/English, white/dark modes, expanded explorer, existing real learning curve/logs, checkpoints, saved evaluation and configuration, model catalog/search controls, access settings, and all six builder stage views inspected.
+- Safari Responsive Design Mode: Korean and English desktop Workbench at 1920×1080 and 1440×900; 390×844 mobile Run/Inspector/Console surfaces, wrapped logs, and existing Demo failure state inspected. Viewport fields were committed through keyboard input; screenshots include Safari chrome and its scaled preview, not raw viewport-sized pixel captures.
+- No conspicuous text clipping was seen in inspected titles, tab labels, control text, logs, or long model identifiers. Normal panel scrolling and line wrapping remained usable. Native dropdowns fit the text input height. Actual loss, server GPU measurements, injected Demo error/logs and planned VRAM remained labeled by source.
+- Launch was only inspected as a builder stage. Start, retry, GPU preflight, dry-run, evaluation execution, downloads, dataset changes, account changes and access-policy saving were not invoked. No new experiment was created.
+- The original Korean/white mode and selected experiment were restored. The verification session was signed out, and Safari exited Responsive Design Mode.
+- 24 production screenshots and their SHA-256 manifest are retained in the local workspace sibling directory `forge-production-visual-20261007/`, with directory mode 0700 and evidence files mode 0600. They contain existing operational UI and are intentionally outside the public Git repository. This follow-up does not replace the matched synthetic before/after captures referenced above.
+- No additional Safari CDP/Rendered Fonts attribution was captured. Official font response/hash checks and earlier glyph-probe evidence remain the font-loading evidence; screenshots alone are not a new font-attribution test. Execution of training controls remains intentionally untested in production.
 
 ## Backup and rollback
 
