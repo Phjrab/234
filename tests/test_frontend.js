@@ -109,5 +109,13 @@ const run=code=>vm.runInContext(code,ctx), flush=()=>new Promise(resolve=>setImm
   run("fetch=async()=>({ok:false,status:401,json:async()=>({error:{code:'authentication_required',message:'Sign in'}})})");
   await assert.rejects(run("api('/api/status')"));assert.equal(get('#login-dialog').open,true);tests++;
   run("snapshot=null;clearRunSurfaces();setNav('runs')");assert.equal(get('#run-detail').hidden,true);assert.equal(get('#inspector-config').innerHTML,'');assert.equal(get('#mobile-run').innerHTML,'');tests++;
+  // Font-ready redraw touches only charts, preserving an in-progress form/log scroll.
+  run("snapshot="+JSON.stringify(fixture)+";selectedId=snapshot.runs[0].id;nav='recipes'");
+  get('#recipe-form').testData={name:'unsaved typography draft'};get('.log-view').scrollTop=37;
+  const fontCalls=calls.length, formHtml=get('#workspace-view').innerHTML, tabHtml=get('#tab-content').innerHTML;
+  run('redrawTypographyCharts()');assert.equal(get('#workspace-view').innerHTML,formHtml);assert.equal(get('#tab-content').innerHTML,tabHtml);assert.equal(get('.log-view').scrollTop,37);assert.equal(get('#recipe-form').testData.name,'unsaved typography draft');assert.equal(calls.length,fontCalls);tests++;
+  // The newly styled model/step subtitle still escapes server-supplied identifiers.
+  run("snapshot.runs[0].config.model='<img src=x onerror=evil()>';snapshot.runs[0].kind='<svg onload=evil()>';renderDetail(snapshot.runs[0])");
+  assert.ok(!get('#selected-subtitle').innerHTML.includes('<img'));assert.match(get('#selected-subtitle').innerHTML,/&lt;img/);assert.match(get('#selected-subtitle').innerHTML,/&lt;svg/);tests++;
   console.log(`${tests} frontend DOM-stub tests passed (browser layout/integration not covered)`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

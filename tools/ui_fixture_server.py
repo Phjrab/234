@@ -96,10 +96,18 @@ class FixtureHandler(DashboardHandler):
         try:
             self._guard()
             path = self._path()
+            proof_files = {"/__fixture__/typography": "proof.html", "/__fixture__/typography-proof.js": "proof.js"}
+            if path in proof_files:
+                body = (ROOT / "docs/ui-redesign/typography" / proof_files[path]).read_bytes()
+                kind = "text/html" if path.endswith("typography") else "text/javascript"
+                self._headers(200, kind + "; charset=utf-8", len(body))
+                if self.command != "HEAD":
+                    self.wfile.write(body)
+                return
             if path in {"/", "/index.html", "/__fixture__/empty", "/__fixture__/stale"}:
                 self.server.ui_mode = path.rsplit("/", 1)[-1] if path.startswith("/__fixture__/") else "normal"
                 source = (self.server.static_dir / "index.html").read_text()
-                banner = '<div class="fixture-watermark" role="note" style="padding:5px 12px;background:#fff3df;color:#492c11;font:11px/18px system-ui;text-align:center;border-bottom:1px solid #b08042">UI DEMO / SYNTHETIC FIXTURE / 성능·임상·실장비 검증 아님</div>'
+                banner = '<div class="fixture-watermark" role="note" style="padding:5px 12px;background:#fff3df;color:#492c11;text-align:center;border-bottom:1px solid #b08042">UI DEMO / SYNTHETIC FIXTURE / 성능·임상·실장비 검증 아님</div>'
                 body = source.replace("<body>", "<body>" + banner).encode()
                 self._headers(200, "text/html; charset=utf-8", len(body))
                 if self.command != "HEAD":

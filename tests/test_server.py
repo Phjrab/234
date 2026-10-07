@@ -71,6 +71,27 @@ class ServerTests(unittest.TestCase):
         self.assertEqual(data, b"")
         self.assertGreater(int(headers["Content-Length"]), 0)
 
+    def test_bundled_fonts_keep_static_security_boundary(self):
+        source_root = Path(__file__).resolve().parent.parent / 'static'
+        for source in (source_root / 'fonts').rglob('*.woff2'):
+            relative = source.relative_to(source_root)
+            target = self.static / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(source.read_bytes())
+            status, headers, body = self.request('GET', '/' + relative.as_posix())
+            self.assertEqual(status, 200)
+            self.assertEqual(body, source.read_bytes())
+            self.assertEqual(body[:4], b'wOF2')
+            self.assertIn('font/woff2', headers['Content-Type'])
+            self.assertIn("font-src 'self';", headers['Content-Security-Policy'])
+            self.assertNotIn("font-src *", headers['Content-Security-Policy'])
+        # A .woff2 suffix must never make an outside account/data file public.
+        private = Path(self.tmp.name) / 'private.woff2'
+        private.write_bytes(b'private test data')
+        (self.static / 'fonts' / 'outside.woff2').symlink_to(private)
+        self.assertEqual(self.request('GET', '/fonts/outside.woff2')[0], 404)
+        self.assertIn(self.request('GET', '/fonts/../../private.woff2')[0], {400, 404})
+
     def test_create_get_action_retry_lifecycle(self):
         status, _, body = self.json_request("POST", "/api/runs", {"name": "HTTP demo", "max_steps": 10})
         self.assertEqual(status, 201)

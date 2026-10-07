@@ -77,7 +77,7 @@ function render() {
   $('#no-runs').hidden = shown.length > 0;
   $('#runs-body').innerHTML = shown.map(run => {
     const progress = pct(run.progress ?? run.step / run.total_steps * 100), metric = latest(run);
-    return `<tr tabindex="0" data-run="${escapeHtml(run.id)}" class="${run.id === selectedId ? 'selected' : ''}" aria-label="${t("Select")} ${escapeHtml(run.name)}"><td><div class="run-name"><span class="type-icon ${run.kind === 'VLM' ? 'vlm' : ''}">${run.kind === 'VLM' ? '▧' : '≋'}</span><div>${escapeHtml(run.name)}<div class="run-meta">${escapeHtml(run.kind)} · ${escapeHtml(t(run.simulated===false?"Real GPU":"Demo"))} · ${escapeHtml(run.config?.model || run.model_id || t("demo model"))}</div></div></div></td><td><span class="status ${escapeHtml(run.status)}">${escapeHtml(t(run.status))}</span></td><td><div class="progress-line"><div class="meter"><span style="width:${progress}%"></span></div><span>${Math.round(progress)}%</span></div></td><td>${fmt(metric.loss)}</td><td><span class="method-tag">${escapeHtml((run.method || run.config?.method || 'QLoRA').toUpperCase())} · r${escapeHtml(run.config?.lora_rank || 16)}</span></td><td class="row-arrow">↗</td></tr>`;
+    return `<tr tabindex="0" data-run="${escapeHtml(run.id)}" class="${run.id === selectedId ? 'selected' : ''}" aria-label="${t("Select")} ${escapeHtml(run.name)}"><td><div class="run-name"><span class="type-icon ${run.kind === 'VLM' ? 'vlm' : ''}">${run.kind === 'VLM' ? '▧' : '≋'}</span><div>${escapeHtml(run.name)}<div class="run-meta">${escapeHtml(run.kind)} · ${escapeHtml(t(run.simulated===false?"Real GPU":"Demo"))} · <span class="identifier">${escapeHtml(run.config?.model || run.model_id || t("demo model"))}</span></div></div></div></td><td><span class="status ${escapeHtml(run.status)}">${escapeHtml(t(run.status))}</span></td><td><div class="progress-line"><div class="meter"><span style="width:${progress}%"></span></div><span>${Math.round(progress)}%</span></div></td><td>${fmt(metric.loss)}</td><td><span class="method-tag">${escapeHtml((run.method || run.config?.method || 'QLoRA').toUpperCase())} · r${escapeHtml(run.config?.lora_rank || 16)}</span></td><td class="row-arrow">↗</td></tr>`;
   }).join('');
   $$('#runs-body tr[data-run]').forEach(row => { row.onclick = () => selectRun(row.dataset.run); row.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectRun(row.dataset.run); } }; });
   const run = runs.find(r => r.id === selectedId); if (run) renderDetail(run);
@@ -95,7 +95,7 @@ function renderDetail(run) {
   const real=run.simulated===false;
   const metric = latest(run), step = run.step ?? run.current_step ?? 0;
   $('#selected-title').textContent = run.name;
-  $('#selected-subtitle').textContent = `${run.config?.model || run.model_id || '—'} · ${run.kind} · ${(run.method || run.config?.method || 'qlora').toUpperCase()} · ${step.toLocaleString()} / ${Number(run.total_steps).toLocaleString()} ${t('optimizer steps')}`;
+  $('#selected-subtitle').innerHTML = `<span class="identifier">${escapeHtml(run.config?.model || run.model_id || '—')}</span> · ${escapeHtml(run.kind)} · ${escapeHtml((run.method || run.config?.method || 'qlora').toUpperCase())} · <span class="technical-value">${step.toLocaleString()} / ${Number(run.total_steps).toLocaleString()}</span> ${t('optimizer steps')}`;
   $('#run-source').textContent = t(real?'Real GPU':'Demo') + (snapshot?.ui_fixture ? ' · '+t('UI fixture') : '');
   $('#run-source').className = 'pill ' + (real?'real':'demo');
   $('#run-state').textContent = t(run.status);
@@ -112,6 +112,7 @@ function renderDetail(run) {
   $('#train-loss').textContent = fmt(metric.loss); $('#eval-loss').textContent = fmt(metric.eval_loss); $('#learning-rate').textContent = metric.learning_rate ? Number(metric.learning_rate).toExponential(1) : '—';
   $('#current-step').textContent = `${step} / ${run.total_steps}`; $('#chart-context').textContent = `${run.metrics?.length || 0} ${t(snapshot?.ui_fixture && real?'points · measured-source UI fixture':real?'points · measured':'points · simulated')} · ${t('Raw loss · no smoothing')}`;
   $('#loss-chart').innerHTML = chart(run.metrics || [], run.total_steps, !real, Boolean(snapshot?.ui_fixture));
+  fitChartTypography();
   const defaultActions = {queued:['start','cancel'],running:['pause','cancel'],paused:['resume','cancel'],failed:['retry'],canceled:['retry'],completed:[]};
   const actions = run.allowed_actions || defaultActions[run.status] || [];
   const labels = {start:t(real?"▷ Start training":"▷ Start demo"),pause:t(real?"Ⅱ Checkpoint & pause":"Ⅱ Pause demo"),resume:t(real?"▷ Resume training":"▷ Resume demo"),cancel:t(real?"× Cancel training":"× Cancel demo"),retry:t("↻ Retry as new run")};
@@ -129,7 +130,7 @@ function renderDetail(run) {
     $('#tab-content').innerHTML = `<details class="technical-logs" ${logsOpen ? 'open' : ''}><summary>${t(real?"Training worker log":"Technical demo log · synthetic, token-like text redacted")}</summary><div class="log-view" aria-label="${t(real?"Training worker log":"Synthetic training logs")}">${run.logs?.length ? run.logs.map(log => `<div class="log-line"><span class="log-time">${escapeHtml(formatTime(log.time))}</span><span class="log-level ${String(log.level).toLowerCase()}">${escapeHtml(String(log.level).toUpperCase())}</span><span class="log-message">${escapeHtml(typeof safeTechnicalText === 'function' ? safeTechnicalText(log.message) : log.message)}</span></div>`).join('') : `<span class="log-message">${t(real?"No worker log events yet":"No log events yet. Start this queued demo run to generate events.")}</span>`}</div></details>`;
     $('.log-view').scrollTop = !sameRun || wasNearBottom ? $('.log-view').scrollHeight : oldScroll;
   } else if (currentTab === 'checkpoints') {
-    $('#tab-content').innerHTML = `<div class="checkpoint-list">${run.checkpoints?.length ? run.checkpoints.map(cp => `<div class="checkpoint"><span>▱</span><div>${escapeHtml(cp.name || cp.label)}<div class="run-meta">${cp.virtual===false?`<a class="button secondary" href="/api/runs/${encodeURIComponent(run.id)}/artifacts/${encodeURIComponent(cp.name)}">${t("Download adapter weights")}</a>`:t("Virtual checkpoint · no weights saved")}</div></div><small>${t("Step")} ${escapeHtml(cp.step)}${cp.size_mb ? ` · ${escapeHtml(cp.size_mb)} ${t(cp.virtual===false?"MB":"MB (simulated)")}` : ''}</small></div>`).join('') : `<div class="empty">${t(real?"No checkpoints yet":"No virtual checkpoints yet. Real model weights are never saved.")}</div>`}</div>`;
+    $('#tab-content').innerHTML = `<div class="checkpoint-list">${run.checkpoints?.length ? run.checkpoints.map(cp => `<div class="checkpoint"><span>▱</span><div><span class="identifier">${escapeHtml(cp.name || cp.label)}</span><div class="run-meta">${cp.virtual===false?`<a class="button secondary" href="/api/runs/${encodeURIComponent(run.id)}/artifacts/${encodeURIComponent(cp.name)}">${t("Download adapter weights")}</a>`:t("Virtual checkpoint · no weights saved")}</div></div><small>${t("Step")} ${escapeHtml(cp.step)}${cp.size_mb ? ` · ${escapeHtml(cp.size_mb)} ${t(cp.virtual===false?"MB":"MB (simulated)")}` : ''}</small></div>`).join('') : `<div class="empty">${t(real?"No checkpoints yet":"No virtual checkpoints yet. Real model weights are never saved.")}</div>`}</div>`;
   } else if (currentTab === 'evaluation') {
     $('#tab-content').innerHTML = run.evaluation ? `<h4>${t("Held-out evaluation")}</h4><div class="config-list"><div><span>${t("Baseline eval loss")}</span><strong>${fmt(run.evaluation.baseline_eval_loss)}</strong></div><div><span>${t("Final eval loss")}</span><strong>${fmt(run.evaluation.eval_loss)}</strong></div></div><p>${t("Generated response")}</p><pre class="preview-record">${escapeHtml(run.evaluation.generated_response)}</pre><p>${t("Reference answer")}</p><pre class="preview-record">${escapeHtml(run.evaluation.reference)}</pre><p>${t("Small synthetic checks establish pipeline operation, not model quality.")}</p>` : `<div class="empty">${t("Evaluation appears after real training completes")}</div>`;
   } else {
@@ -147,8 +148,8 @@ function chart(metrics, totalSteps, simulated=true, fixture=false) {
   const xmax = Math.max(10,metrics.at(-1).step); const x = v => left + v/xmax*(width-left-right), y = v => top + (hi-v)/(hi-lo)*(height-top-bottom);
   const line = key => { let connected=false; return metrics.map(m=>{if(m[key]===null || m[key]===undefined || !Number.isFinite(Number(m[key]))){connected=false;return '';} const point=`${connected?'L':'M'}${x(m.step).toFixed(1)},${y(Number(m[key])).toFixed(1)}`;connected=true;return point;}).join(' '); };
   let grid = '';
-  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="var(--border)" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="var(--faint)" font-size="11">${v.toFixed(1)}</text>`; }
-  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="var(--faint)" font-size="11">${Math.round(v)}</text>`; }
+  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="var(--border)" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="var(--faint)" font-size="12">${v.toFixed(1)}</text>`; }
+  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="var(--faint)" font-size="12">${Math.round(v)}</text>`; }
   const train = line('loss'), evalPath = line('eval_loss');
   const last = metrics.at(-1);
   return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${t(fixture?"UI fixture loss chart, {count} points, latest training loss {loss}":simulated?"Synthetic loss chart, {count} points, latest training loss {loss}":"Measured loss chart, {count} points, latest training loss {loss}", {count: metrics.length, loss: fmt(last.loss)})}">${grid}<path d="${train}" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linejoin="round"/><path d="${evalPath}" fill="none" stroke="var(--mint)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>${metrics.filter(m=>Number.isFinite(m.eval_loss)).map(m=>`<circle cx="${x(m.step)}" cy="${y(m.eval_loss)}" r="2.5" fill="var(--mint)"/>`).join('')}${Number.isFinite(last.loss) ? `<circle cx="${x(last.step)}" cy="${y(last.loss)}" r="3.5" fill="var(--purple)"/>` : ''}</svg>`;
@@ -234,3 +235,25 @@ refresh(); setInterval(refresh,2000); document.addEventListener('visibilitychang
 $('#run-form select[name="kind"]').onchange = (e) => { const vlm = e.target.value === 'VLM'; $('#run-form select[name="model"]').value = vlm ? 'demo/vlm-3b' : 'demo/llm-3b'; $('#run-form input[name="dataset"]').value = vlm ? 'synthetic-image-captions' : 'synthetic-instructions'; };
 
 $('#mobile-view').onchange = (event) => setNav(event.target.value);
+
+// SVG viewBox scaling must not shrink the 12px axis type below its intended size.
+function fitChartTypography(){
+  $$('.chart svg').forEach(svg=>{
+    const matrix=svg.getScreenCTM?.();
+    const scale=matrix ? Math.hypot(matrix.a,matrix.b) : 0;
+    if(scale>0) svg.style.setProperty('--chart-label-size',`${12/scale}px`);
+  });
+}
+if(typeof ResizeObserver!=='undefined'){
+  const chartTypographyObserver=new ResizeObserver(fitChartTypography);
+  chartTypographyObserver.observe($('#loss-chart'));
+  chartTypographyObserver.observe($('#workspace-view'));
+}
+// SVG text uses CSS tokens; redraw only charts after swap, preserving drafts/log scroll.
+function redrawTypographyCharts(){
+  const run=snapshot?.runs?.find(run=>run.id===selectedId);
+  if(run) $('#loss-chart').innerHTML=chart(run.metrics||[],run.total_steps,run.simulated!==false,Boolean(snapshot?.ui_fixture));
+  if(nav==='compare' && typeof updateComparison==='function' && $('#compare-output')) updateComparison();
+  fitChartTypography();
+}
+if(document.fonts){document.fonts.ready.then(redrawTypographyCharts);document.fonts.addEventListener('loadingdone',redrawTypographyCharts);}
