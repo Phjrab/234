@@ -1,0 +1,1 @@
+PASS: saved preference, both languages, unknown-message fallback, placeholder formatting, unsupported language, cross-tab updates, disabled storage.

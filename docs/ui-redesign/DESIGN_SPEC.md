@@ -1,6 +1,6 @@
 # Design specification
 
-Tokens are defined once in static/style.css. Charcoal `#171A1E` explorer, warm `#F3F2EE` work surface, `#A84414` primary action, `#FFB580` selection/focus on dark surfaces, text `#202329`/`#F1F2F4`. System fonts; no new dependencies/CDN. Corners 4–6px, base body 14px, compact 10–13px metadata.
+Tokens are defined once in static/style.css. Charcoal `#171A1E` explorer, warm `#F3F2EE` work surface, `#A84414` primary action, `#FFB580` selection/focus on dark surfaces, text `#202329`/`#F1F2F4`. Self-hosted Pretendard UI, restricted Space Grotesk English display, and JetBrains Mono technical typography; see [typography rules and evidence](typography/README.md). No runtime CDN or new application dependencies. Corners 4–6px, base body 14px / 1.55, metadata 10–13px, code/logs 13px / 1.6.
 
 Desktop 1440: 248px explorer, flexible selected-run curve, 300px inspector. At 1366 the same widths remain; at ≤1200: 220/280px; at 1024: 210/260px. Run header carries base model/method/source/status/optimizer step and allowed actions. The existing SVG renderer uses raw step positions, breaks missing metric paths, preserves missing eval as unavailable, and distinguishes blue solid train from green dashed eval with point marks. No smoothing/ETA is invented.
 

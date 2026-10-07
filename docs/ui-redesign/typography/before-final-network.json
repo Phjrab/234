@@ -1,0 +1,343 @@
+{
+  "fixture_id": "forge-workbench-v1",
+  "network_policy": "loopback only; Hub canned; no training/download manager",
+  "denied_actions": [],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.027800+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/theme.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.085712+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/style.css",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.090560+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/app.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.093837+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/i18n.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.094088+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/huggingface.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.100133+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/training.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.100261+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/builder.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.100833+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/workspace.js",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.101192+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:40.107971+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.110527+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.283278+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "status": 404,
+      "at": "2026-10-07T08:14:40.283760+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:42.106759+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:42.111725+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:44.104562+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:44.107368+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:46.104509+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:46.107910+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:48.113611+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:48.273508+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:50.104067+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:50.107199+00:00"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "status": 200,
+      "at": "2026-10-07T08:14:51.763462+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:51.770098+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:52.109786+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:54.109366+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:56.107405+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:58.106902+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:00.107255+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:01.187864+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:15:01.195025+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:01.694143+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:15:01.702675+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:02.107491+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:04.110700+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:06.110833+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:08.107051+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:10.109612+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:12.107128+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:13.069965+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:15:13.076262+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:13.463594+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:15:13.468815+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:14.107052+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:16.106857+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:18.111868+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:20.106101+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:22.106972+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:24.107342+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:26.113728+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:27.282721+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:15:27.287809+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:27.517223+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:15:27.521867+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:28.111550+00:00"
+    }
+  ]
+}

@@ -1,0 +1,4785 @@
+[
+  {
+    "capture": "after-en-console-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "WorkbenchExperimentsDatasetsModelsArtifactsNe",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · Real GPU · ",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 52,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 52,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 52.1171875
+      },
+      {
+        "clientWidth": 90,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 90,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 90.421875
+      },
+      {
+        "clientWidth": 76,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 76,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 76.4375
+      },
+      {
+        "clientWidth": 97,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 97,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 96.984375
+      },
+      {
+        "clientWidth": 325,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 62.390625,
+        "id": "",
+        "scrollWidth": 325,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 325
+      }
+    ],
+    "documentWidth": 375,
+    "language": "en",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-en-evaluation-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "WorkbenchExperimentsDatasetsModelsArtifactsNe",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · Real GPU · ",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 52,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 52,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 52.1171875
+      },
+      {
+        "clientWidth": 90,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 90,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 90.421875
+      },
+      {
+        "clientWidth": 76,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 76,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 76.4375
+      },
+      {
+        "clientWidth": 97,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 97,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 96.984375
+      }
+    ],
+    "documentWidth": 375,
+    "language": "en",
+    "selected": "Qwen adapter · completed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-en-configuration-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "WorkbenchExperimentsDatasetsModelsArtifactsNe",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · Real GPU · ",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 52,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 52,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 52.1171875
+      },
+      {
+        "clientWidth": 90,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 90,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 90.421875
+      },
+      {
+        "clientWidth": 76,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 76,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 76.4375
+      },
+      {
+        "clientWidth": 97,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 97,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 96.984375
+      }
+    ],
+    "documentWidth": 375,
+    "language": "en",
+    "selected": "Qwen adapter · completed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-en-builder-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "WorkbenchExperimentsDatasetsModelsArtifactsNe",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 150,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "builder-source",
+        "scrollWidth": 150,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Real GPUDemo · synthetic",
+        "width": 151.5
+      },
+      {
+        "clientWidth": 150,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "",
+        "scrollWidth": 150,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "LLMVLM",
+        "width": 151.5
+      },
+      {
+        "clientWidth": 315,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "training-dataset",
+        "scrollWidth": 315,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Synthetic instruction set · LLM",
+        "width": 317
+      }
+    ],
+    "documentWidth": 375,
+    "language": "en",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-en-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "WorkbenchExperimentsDatasetsModelsArtifactsNe",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · Real GPU · ",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 25,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 25,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 118,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 118,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 215,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 215,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 308,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 308,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 401,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 401,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.40625
+      }
+    ],
+    "documentWidth": 375,
+    "language": "en",
+    "scroll": [
+      0,
+      18
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-ko-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "워크벤치실험데이터셋모델아티팩트새 실험실험 비교실행 환경설정",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · 실제 GPU · 실행",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 27,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 27,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 25,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 25,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 118,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 118,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 215,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 215,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 308,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 308,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 401,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 401,
+        "size": "29.9065px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.40625
+      }
+    ],
+    "documentWidth": 375,
+    "language": "ko",
+    "scroll": [
+      0,
+      1
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-ko-evaluation-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "워크벤치실험데이터셋모델아티팩트새 실험실험 비교실행 환경설정",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · 실제 GPU · 실행",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 46,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 46,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 45.90625
+      },
+      {
+        "clientWidth": 73,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 73,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 72.5
+      },
+      {
+        "clientWidth": 36,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 36,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 36.203125
+      },
+      {
+        "clientWidth": 36,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 36,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 36.203125
+      }
+    ],
+    "documentWidth": 375,
+    "language": "ko",
+    "selected": "Qwen adapter · completed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-ko-configuration-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "워크벤치실험데이터셋모델아티팩트새 실험실험 비교실행 환경설정",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · 실제 GPU · 실행",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 46,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 46,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 45.90625
+      },
+      {
+        "clientWidth": 73,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 73,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 72.5
+      },
+      {
+        "clientWidth": 36,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 36,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 36.203125
+      },
+      {
+        "clientWidth": 36,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 36,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 36.203125
+      }
+    ],
+    "documentWidth": 375,
+    "language": "ko",
+    "selected": "Qwen adapter · completed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-ko-error-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "워크벤치실험데이터셋모델아티팩트새 실험실험 비교실행 환경설정",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-run",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · 실제 GPU · 실행",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 46,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 46,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 45.90625
+      },
+      {
+        "clientWidth": 73,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 73,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 72.5
+      },
+      {
+        "clientWidth": 36,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 36,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 36.203125
+      },
+      {
+        "clientWidth": 36,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 36,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 36.203125
+      }
+    ],
+    "documentWidth": 375,
+    "language": "ko",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-ko-models-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "워크벤치실험데이터셋모델아티팩트새 실험실험 비교실행 환경설정",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 151,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-kind",
+        "scrollWidth": 151,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "전체LLMVLM",
+        "width": 152.5
+      },
+      {
+        "clientWidth": 151,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-text-task",
+        "scrollWidth": 151,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "디코더 전용인코더·디코더",
+        "width": 152.5
+      },
+      {
+        "clientWidth": 151,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-sort",
+        "scrollWidth": 151,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "다운로드 수인기 상승최근 수정",
+        "width": 152.5
+      },
+      {
+        "clientWidth": 151,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-group",
+        "scrollWidth": 151,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "제작사·게시자모델 계열",
+        "width": 152.5
+      }
+    ],
+    "documentWidth": 375,
+    "language": "ko",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-en-model-modal-390",
+    "controls": [
+      {
+        "clientWidth": 169,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44,
+        "id": "mobile-view",
+        "scrollWidth": 169,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "WorkbenchExperimentsDatasetsModelsArtifactsNe",
+        "width": 170.5
+      },
+      {
+        "clientWidth": 315,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 40,
+        "id": "training-model",
+        "scrollWidth": 315,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Qwen/Qwen2.5-0.5B-Instruct",
+        "width": 317
+      },
+      {
+        "clientWidth": 350,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 759.59375,
+        "id": "model-dialog",
+        "scrollWidth": 350,
+        "size": "14px",
+        "tag": "DIALOG",
+        "text": "Hugging Face models×Model search or repositor",
+        "width": 366.59375
+      },
+      {
+        "clientWidth": 143,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-kind",
+        "scrollWidth": 143,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "AllLLMVLM",
+        "width": 144.796875
+      },
+      {
+        "clientWidth": 143,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-text-task",
+        "scrollWidth": 143,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Decoder-onlyEncoder-decoder",
+        "width": 144.796875
+      },
+      {
+        "clientWidth": 143,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-sort",
+        "scrollWidth": 143,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "DownloadsTrendingRecently updated",
+        "width": 144.796875
+      },
+      {
+        "clientWidth": 143,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-group",
+        "scrollWidth": 143,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "PublisherModel family",
+        "width": 144.796875
+      }
+    ],
+    "documentWidth": 375,
+    "language": "en",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "after-en-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 57,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 57,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 56.671875
+      },
+      {
+        "clientWidth": 96,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 96,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 96.1640625
+      },
+      {
+        "clientWidth": 82,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 82,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 81.9140625
+      },
+      {
+        "clientWidth": 103,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 103,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 102.9453125
+      },
+      {
+        "clientWidth": 1269,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 1269,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 1269
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-en-explorer-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 57,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 57,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 56.671875
+      },
+      {
+        "clientWidth": 96,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 96,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 96.1640625
+      },
+      {
+        "clientWidth": 82,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 82,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 81.9140625
+      },
+      {
+        "clientWidth": 103,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 103,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 102.9453125
+      },
+      {
+        "clientWidth": 1269,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 1269,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 1269
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-en-builder-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 1271,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 40,
+        "id": "training-model",
+        "scrollWidth": 1271,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Qwen/Qwen2.5-0.5B-Instruct",
+        "width": 1273
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-en-models-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-kind",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "AllLLMVLM",
+        "width": 514.328125
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-text-task",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Decoder-onlyEncoder-decoder",
+        "width": 514.328125
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-sort",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "DownloadsTrendingRecently updated",
+        "width": 514.3359375
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-group",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "PublisherModel family",
+        "width": 514.328125
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-en-evaluation-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 57,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 57,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 56.671875
+      },
+      {
+        "clientWidth": 96,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 96,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 96.1640625
+      },
+      {
+        "clientWidth": 82,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 82,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 81.9140625
+      },
+      {
+        "clientWidth": 103,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 103,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 102.9453125
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "selected": "Qwen adapter · completed",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-en-error-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 23,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 23,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 116,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 116,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 211,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 211,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 304,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 304,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 396,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 396,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 57,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 57,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 56.671875
+      },
+      {
+        "clientWidth": 96,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 96,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 96.1640625
+      },
+      {
+        "clientWidth": 82,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 82,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 81.9140625
+      },
+      {
+        "clientWidth": 103,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 103,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 102.9453125
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-en-settings-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 318,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "language-select",
+        "scrollWidth": 318,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "English한국어",
+        "width": 320
+      },
+      {
+        "clientWidth": 318,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "theme-select",
+        "scrollWidth": 318,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "White modeDark mode",
+        "width": 320
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "en",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 50,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 50,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 49.90625
+      },
+      {
+        "clientWidth": 77,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 77,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 76.5
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 1269,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 1269,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 1269
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-explorer-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 50,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 50,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 49.90625
+      },
+      {
+        "clientWidth": 77,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 77,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 76.5
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 1269,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 1269,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 1269
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-builder-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 1271,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 40,
+        "id": "training-model",
+        "scrollWidth": 1271,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Qwen/Qwen2.5-0.5B-Instruct",
+        "width": 1273
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-models-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-kind",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "전체LLMVLM",
+        "width": 514.328125
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-text-task",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "디코더 전용인코더·디코더",
+        "width": 514.328125
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-sort",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "다운로드 수인기 상승최근 수정",
+        "width": 514.3359375
+      },
+      {
+        "clientWidth": 512,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "hf-group",
+        "scrollWidth": 512,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "제작사·게시자모델 계열",
+        "width": 514.328125
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-evaluation-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 50,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 50,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 49.90625
+      },
+      {
+        "clientWidth": 77,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 77,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 76.5
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 40.203125
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "selected": "Qwen adapter · completed",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-error-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 13,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 23,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 23,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 116,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 116,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 211,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 211,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 304,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 304,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 396,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 396,
+        "size": "14.4515px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 50,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 50,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 49.90625
+      },
+      {
+        "clientWidth": 77,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 77,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 76.5
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 40.203125
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-settings-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 318,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "language-select",
+        "scrollWidth": 318,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "English한국어",
+        "width": 320
+      },
+      {
+        "clientWidth": 318,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "theme-select",
+        "scrollWidth": 318,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "화이트 모드다크 모드",
+        "width": 320
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "selected": "Qwen adapter · failed",
+    "theme": "light",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-dark-1920",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.6015625
+      },
+      {
+        "clientWidth": 22,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 115,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 115,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 209,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 209,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 302,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 302,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.40625
+      },
+      {
+        "clientWidth": 395,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.50006103515625,
+        "id": "",
+        "scrollWidth": 395,
+        "size": "9.72994px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.4061279296875
+      },
+      {
+        "clientWidth": 50,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 50,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 49.90625
+      },
+      {
+        "clientWidth": 77,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 77,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 76.5
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 1269,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 1269,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 1269
+      }
+    ],
+    "documentWidth": 1905,
+    "language": "ko",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "dark",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "after-ko-1440",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ 워크벤치",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ 데이터셋",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ 모델",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ 실험 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ 아티팩트",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ 새 실험",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ 실험 비교",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ 실행 환경",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ 설정",
+        "width": 223
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.500030517578123,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 24,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 24,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 117,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 117,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 212,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 212,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.39849853515625
+      },
+      {
+        "clientWidth": 305,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 305,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.3984375
+      },
+      {
+        "clientWidth": 398,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 398,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.3984375
+      },
+      {
+        "clientWidth": 50,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 50,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "로그 1",
+        "width": 49.90625
+      },
+      {
+        "clientWidth": 77,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 77,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "체크포인트",
+        "width": 76.5
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "평가",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 40,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 40,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "설정",
+        "width": 40.203125
+      },
+      {
+        "clientWidth": 789,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 789,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 789
+      }
+    ],
+    "documentWidth": 1425,
+    "language": "ko",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "capture": "after-en-1440",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "1.3",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.500030517578123,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "2.1",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "2.9",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 17,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "3.8",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 24,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 24,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 117,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 117,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 212,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 212,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.39849853515625
+      },
+      {
+        "clientWidth": 305,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 305,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.3984375
+      },
+      {
+        "clientWidth": 398,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 398,
+        "size": "18.9481px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.3984375
+      },
+      {
+        "clientWidth": 57,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-logs",
+        "scrollWidth": 57,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Logs 1",
+        "width": 56.671875
+      },
+      {
+        "clientWidth": 96,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-checkpoints",
+        "scrollWidth": 96,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Checkpoints",
+        "width": 96.1640625
+      },
+      {
+        "clientWidth": 82,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-evaluation",
+        "scrollWidth": 82,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Evaluation",
+        "width": 81.9140625
+      },
+      {
+        "clientWidth": 103,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "tab-configuration",
+        "scrollWidth": 103,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "Configuration",
+        "width": 102.9453125
+      },
+      {
+        "clientWidth": 789,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 20.796875,
+        "id": "",
+        "scrollWidth": 789,
+        "size": "13px",
+        "tag": "DIV",
+        "text": "06:00:00INFOUI fixture: optimizer events are ",
+        "width": 789
+      }
+    ],
+    "documentWidth": 1425,
+    "language": "en",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "capture": "after-en-comparison-1440",
+    "controls": [
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◈ Workbench",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▤ Datasets",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "◇ Models",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "≋ Experiments 11",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "▱ Artifacts",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "＋ New experiment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⇄ Compare runs",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⌁ Environment",
+        "width": 223
+      },
+      {
+        "clientWidth": 221,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 44.34375,
+        "id": "",
+        "scrollWidth": 221,
+        "size": "14px",
+        "tag": "BUTTON",
+        "text": "⚙ Access settings",
+        "width": 223
+      },
+      {
+        "clientWidth": 524,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "compare-a",
+        "scrollWidth": 524,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · runningQwen",
+        "width": 526
+      },
+      {
+        "clientWidth": 524,
+        "font": "\"Pretendard Variable\", Pretendard, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+        "height": 40,
+        "id": "compare-b",
+        "scrollWidth": 524,
+        "size": "14px",
+        "tag": "SELECT",
+        "text": "Instruction adapter · Qwen 0.5B · runningQwen",
+        "width": 526
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "1.7",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "2.2",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "2.7",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 9,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 22,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "3.2",
+        "width": 21.59375
+      },
+      {
+        "clientWidth": 19,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 19,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "0",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 103,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 103,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "9",
+        "width": 7.203125
+      },
+      {
+        "clientWidth": 189,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 189,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "18",
+        "width": 14.3984375
+      },
+      {
+        "clientWidth": 274,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 274,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "26",
+        "width": 14.3984375
+      },
+      {
+        "clientWidth": 358,
+        "font": "\"JetBrains Mono\", \"Pretendard Variable\", Pretendard, ui-monospace, SFMono-Regular, Consolas, monospace",
+        "height": 15.5,
+        "id": "",
+        "scrollWidth": 358,
+        "size": "10.1538px",
+        "tag": "text",
+        "text": "35",
+        "width": 14.3984375
+      }
+    ],
+    "documentWidth": 1425,
+    "language": "en",
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "theme": "light",
+    "viewport": [
+      1440,
+      900
+    ]
+  }
+]

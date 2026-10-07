@@ -1,0 +1,695 @@
+[
+  {
+    "file": "after-en-1440.jpg",
+    "pixels": [
+      1440,
+      900
+    ],
+    "sha256": "2f82b76269a004b9c048bf4116194c15f3409922ce89dd3cfc3a4e42e2d883b0",
+    "canonical_pair": true,
+    "phase": "after",
+    "language": "en",
+    "viewport": [
+      1440,
+      900
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "after-en-1920.jpg",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "sha256": "e6ba17de9c2d0e387ced4c7f38afa0e3d4cec3d8408b273b1e259a0abf3e8a17",
+    "canonical_pair": true,
+    "phase": "after",
+    "language": "en",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "after-en-390.jpg",
+    "pixels": [
+      390,
+      844
+    ],
+    "sha256": "d54fa3f74dd3a8dee4cb821da1e6a52d0b45caca2a6c7b47c19b7c03ae1f8c75",
+    "canonical_pair": true,
+    "phase": "after",
+    "language": "en",
+    "viewport": [
+      390,
+      844
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "after-en-builder-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "fbface6ca05c5f237f6d1a0d98692afdbe0280027d1b932ad90062f072db6343",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-builder-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "b8698d8154ea628ec9f3e49645f00aa48059b961499442554acc6b0f1ab85f32",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-builder-dataset-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "39993eaebd8413758a2783b512e8642cc7c0ff1e788efd54fd5cbd444730368d",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-checkpoints-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "9e64b374d0a0cc21ede2f86c793032d4eeb4ba0a37e590ef90b6763b24d1c347",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-comparison-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "285659c99f1e90c6959012a1ebce677359c8b21238681076e8f8ed5e2ae2adc6",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-configuration-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "78d5856a0ae9e98aa3cd569172b299e23e4471db1bc912f773efbaca628f7207",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-configuration-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "35465c4d565e4fc8930d7b7e36f901b1326fa6e561c93889a0f61f8b826282c9",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-console-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "6d92935d0773615e43a0797648790ff76278557d566b09bcd21f3183b47adfd2",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-error-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "272a3e7255775c4b47d74b51ceb7dd0309827b643b31a77e4ea6df9e1217fdd6",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-error-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "391826823ecd4e6ffb2f1c454f188299f8b2d83e1e9d64a1edefedbf6e4925f2",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-evaluation-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "d60c31cd41c1d28013b50e1bc96cbc9797c700930be022e8a9f26e940e22678c",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-evaluation-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "d74aca3c57be1302abe3b887bbe3e1138ac8c7728479876038e8237b4166016d",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-evaluation-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "c320458579be5b9869b3cd1347f9a953c3f5d7ec17911c9c4f6e74a873dfe256",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-explorer-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "ef3d010cee8d136c6068ee407e7f33267e6d6dcdc73673f9ea97ea58b20a4c26",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-hyperparameters-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "0c97d5ca44186266873441e167d70f988f59f291e3abc0df66be2787cd2ce9fb",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-launch-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "63c5d0a621ba5b8317b8d6a75aec07a3bfb7fe611130187de31201a60b71a87b",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-model-modal-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "b9da67c0e0fdc3ae18f63394e3c5a658271c1a0ea74934cd847ee3868184272a",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-model-modal-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "515c3731b7e0ac4dc84481ecd11b3cd2af2f5322f74b060db08dbc25e67179d7",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-models-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "e85e4b7feeecf26835044d987f5b8f0797c84e96c0c29f93033ce662f8adcf72",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-models-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "43e7f77e0e780fca690ce2e295da44bd5d41b40d3d6fc18ea053894852777691",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-review-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "21db29303d046be0b3ebcab3916674b66255d1815dc28ae643843a10833f89ea",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-search-error-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "9d5af74ee9cf6d8aed391b9e50dc8c21c778305e986d3c29e02287c6276e2a83",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-en-settings-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "3c9856b6736585c01b8daa693c40efc8774a87337901ea01b1adae7adf6b7ec4",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-1440.jpg",
+    "pixels": [
+      1440,
+      900
+    ],
+    "sha256": "8cc7891f9463c732e28eddabc14056a0501e9d61a7f457418eabbaa1fa0635f3",
+    "canonical_pair": true,
+    "phase": "after",
+    "language": "ko",
+    "viewport": [
+      1440,
+      900
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "after-ko-1920.jpg",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "sha256": "43d0d91fe33a702a8a1768e5a79dc530868aa4177ee3f0f87a2f61c914d40e74",
+    "canonical_pair": true,
+    "phase": "after",
+    "language": "ko",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "after-ko-390.jpg",
+    "pixels": [
+      390,
+      844
+    ],
+    "sha256": "53a5132aa7c70b7d30fe9fd70eb21f8a5b4f276cf21cae75d846cd53f364c1a2",
+    "canonical_pair": true,
+    "phase": "after",
+    "language": "ko",
+    "viewport": [
+      390,
+      844
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "after-ko-builder-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "7347e33a5563dce1aae78cc9853504577132237bdd07dff66360edd05bd1a468",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-builder-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "3628804905c06d43eece68501c820ebc959f9babc933a72aeb887aee22731e80",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-builder-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "98ef2f2f74f3bb871166d8e564ad750bae8b4f5d2403f61848b7f89b1feb3b73",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-checkpoints-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "e8eb3186a19f7f08effd9ca059701fc466d5abc4ba08182f99c126d6f7187811",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-configuration-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "99dd6e2315df964cbf30c82b25894b636502b7e0e62bbf8ee909986e65d18631",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-configuration-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "1b9c072ef5711e9f334738716da434247405188ceed175efe649679a804fcc96",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-console-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "0a0b217878d70b3e0c755d0d68c91fe99d3804ebf8b2aadcae408c9d8c72d57e",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-dark-1920.jpg",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "sha256": "83a3314200018baf9302bc6ecc367912afb2044b6b3f760e46725640fa08e58a",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-error-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "7eefe3dc4ec07d5938e4288a6091d21c3af96435aa428c1ea2b2f91275a49c54",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-error-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "a131c4c8ec1318516181a5c8db32b192ce192846623668c82bd0d14abfac1d51",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-error-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "f838cf950644659a4ac8bb3109119af188685941aba09c4efcd7e483f4f639f2",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-evaluation-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "88541ea9cd4a06e6013fc4f7cfdfe67be527a18cedfce705525c2ea71196e0b3",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-evaluation-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "0ef2bad269bcf0c090b70e8f6b76fdbd44795ce23856a9d070ef71d8b92e476c",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-evaluation-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "c1197ca971d659d67df60d97d05e0dee08c00cd968fc7907d9169f806e6ef35d",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-explorer-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "ab5d0713813af848e820e7d1a071a2785050df8153f5b718bbfe0b0ce92e0a9e",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-explorer-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "031ad9e0e650bc11d23bf9343f4439f42ad00c6d822001b5915cdd3efa004716",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-hyperparameters-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "f3ef6852dbcc0bb5fddf63c1a2df37f35834eff8e22a78a65af22873534a2396",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-logs-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "b23f8bcbc1933fa1b2e46995476946ac4dbda9622f8fbb233c805b3c67fc474c",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-model-modal-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "890f5f9fd8775f6f2030db8dd8473a5f63e22aee534ecc8283b902b7acfea1e2",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-model-modal-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "ba475a6f94df196cfd0bcb50b8cac1db035bbfc3e0124bae1af79b24a3432a1c",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-models-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "6ee3edb9840fd806d7da6dea3b6f701847e08ece07135adbf079277bbb661501",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-models-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "574e1ed7f421dbfbbb108a3381957fb4b8f8278191d6f7b8b18405fe9374b44b",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-models-390.jpg",
+    "pixels": [
+      375,
+      812
+    ],
+    "sha256": "ec1fc357f6fc2a79a53a97c32e184351878005ffd3f246bfd65748fd0c85aea8",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-search-error-1440.jpg",
+    "pixels": [
+      1425,
+      891
+    ],
+    "sha256": "e22873b33c3a7f92933e80fdffeb948625c4a150e6557a3098d2744e1228e8b0",
+    "canonical_pair": false
+  },
+  {
+    "file": "after-ko-settings-1920.jpg",
+    "pixels": [
+      1859,
+      1072
+    ],
+    "sha256": "0a4594416a4f63a05014dcd4b276f4e691b0861af70c447f62c354a18afa6798",
+    "canonical_pair": false
+  },
+  {
+    "file": "before-en-1440.jpg",
+    "pixels": [
+      1440,
+      900
+    ],
+    "sha256": "5d5e31120aa20dcb5b47454b8b50334176c4164d2d417420578e978de7492bad",
+    "canonical_pair": true,
+    "phase": "before",
+    "language": "en",
+    "viewport": [
+      1440,
+      900
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "before-en-1920.jpg",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "sha256": "ef069c6130aea6fe6a5b4c0c4659fb96fcaf3be608c957b64e98c9c939ecc39e",
+    "canonical_pair": true,
+    "phase": "before",
+    "language": "en",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "before-en-390.jpg",
+    "pixels": [
+      390,
+      844
+    ],
+    "sha256": "5a9cfd194a40a549b794173701958e0c8d1661a285996c4be4bad19a4a14d068",
+    "canonical_pair": true,
+    "phase": "before",
+    "language": "en",
+    "viewport": [
+      390,
+      844
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "before-ko-1440.jpg",
+    "pixels": [
+      1440,
+      900
+    ],
+    "sha256": "a236781f50b00125f026e4e692f30245fa5eca5f4c2d47ce04ee4c0afb980db4",
+    "canonical_pair": true,
+    "phase": "before",
+    "language": "ko",
+    "viewport": [
+      1440,
+      900
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "before-ko-1920.jpg",
+    "pixels": [
+      1920,
+      1080
+    ],
+    "sha256": "b0303e9b5c412abfb4d4cfd0bc932b3217fa55453e89f88893d6e1208bfe6a40",
+    "canonical_pair": true,
+    "phase": "before",
+    "language": "ko",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "before-ko-390.jpg",
+    "pixels": [
+      390,
+      844
+    ],
+    "sha256": "9c6172d7145fd7c20e2bdcf59dd940512fc48ae289006333364c3534bbed4827",
+    "canonical_pair": true,
+    "phase": "before",
+    "language": "ko",
+    "viewport": [
+      390,
+      844
+    ],
+    "fixture": "forge-workbench-v1",
+    "selected": "train-000000000001",
+    "clip_origin": [
+      0,
+      0
+    ]
+  },
+  {
+    "file": "glyph-proof.jpg",
+    "pixels": [
+      1265,
+      4455
+    ],
+    "sha256": "a990c9ef194ac967d4b29a9b7dcc73f932b985657d7ed50ead039d2e34dcde57",
+    "canonical_pair": false
+  }
+]
