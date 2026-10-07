@@ -1,0 +1,3523 @@
+{
+  "fixture_id": "forge-workbench-v1",
+  "network_policy": "loopback only; Hub canned; no training/download manager",
+  "denied_actions": [],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:31.985247+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:32.037457+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:33.985927+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:33.991005+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:35.983699+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:35.991406+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:37.982869+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:37.987700+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:39.989345+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:39.999112+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:41.988104+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:41.991889+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:44.009785+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:44.022111+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:46.018528+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.050359+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.256476+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/theme.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.375794+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/style.css",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.412789+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/app.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.430743+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts.css",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.432471+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/workspace.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.436993+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/training.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.438642+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/builder.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.498977+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/huggingface.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.500008+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/i18n.js",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.505030+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:46.579019+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.636683+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/pretendard/PretendardVariable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.664201+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.665565+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.666362+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:46.725777+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:48.641212+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:48.752944+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:50.587148+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:50.598797+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:52.563355+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:52.573615+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:54.576375+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:54.582121+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:56.573677+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:56.606881+00:00"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "status": 200,
+      "at": "2026-10-07T08:02:58.578384+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:02:58.599534+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:02:58.609468+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:00.576172+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:03:00.677124+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:02.567005+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:04.624190+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:06.562031+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:03:06.929672+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:08.583101+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:10.558701+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:12.562243+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:14.562109+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:16.566944+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:17.204391+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:03:17.213312+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:17.831922+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:03:17.844915+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:18.570259+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:20.580499+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:22.562717+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:24.626270+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:26.598662+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:28.566706+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:30.567251+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:32.565813+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:34.570832+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:36.584593+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:38.586161+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:40.567393+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:42.559701+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:44.562161+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:46.577236+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:48.570923+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:50.815537+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:52.558458+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:54.561119+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:56.557210+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:03:58.559173+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:00.557065+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:02.558151+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:04.557323+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:06.557865+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:08.558232+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:10.556639+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:12.571239+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:14.559991+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:16.557402+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:18.557851+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:20.557388+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:22.559299+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:24.558996+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:26.557462+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:28.557520+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:30.557296+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:32.557602+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:34.210677+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:04:34.219090+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:34.538446+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:04:34.551484+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:34.568218+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:36.559892+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:38.560893+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:40.559143+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:42.560402+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:44.562589+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:04:45.233440+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:04:45.256188+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:04:45.262761+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:46.572033+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:48.561876+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:50.576577+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:52.591880+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:04:54.222149+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:54.573826+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:04:55.219982+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:04:55.255284+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:04:55.265080+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:04:55.267761+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:56.574265+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:04:58.610463+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:00.563561+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:02.562532+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:04.584588+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:06.566547+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:08.578113+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:10.604341+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:12.580973+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:14.580225+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:16.564857+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:18.565776+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:20.581734+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:22.570301+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:24.558246+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:26.680918+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:28.563651+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:05:29.856659+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:05:29.879466+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:05:29.896122+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:05:29.899444+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:30.676747+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:32.558837+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:34.560215+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:36.561970+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:38.563328+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:40.565871+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:42.589652+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 503,
+      "at": "2026-10-07T08:05:43.155399+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:43.627249+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:05:43.633691+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:44.030049+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:05:44.046670+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:05:44.246260+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:05:44.264647+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:05:44.265812+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:44.561962+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:46.559092+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:48.560140+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:50.557926+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:52.569516+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:54.559033+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:05:55.060659+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:05:55.429917+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:05:55.447249+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:05:55.458810+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:05:55.460093+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:56.561504+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:05:58.558940+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:00.575390+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:02.569317+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:04.564423+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:06.561695+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:08.563921+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:10.564302+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:12.562629+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:14.563608+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:16.562810+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:18.563734+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:20.562374+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:06:21.586934+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:06:21.599168+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:06:21.607163+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:06:21.607920+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 503,
+      "at": "2026-10-07T08:06:22.118019+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:22.559955+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:24.563288+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:26.562888+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:28.558729+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:30.563794+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:32.562811+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:34.565315+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:36.564525+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:38.562032+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:40.558367+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:42.560999+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:44.565855+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:06:46.271535+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:06:46.276995+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:06:46.278315+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:46.559503+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:06:46.591376+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:06:46.926767+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:06:46.941972+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:06:46.956770+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:06:46.957055+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:47.486469+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:06:47.492270+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:47.595187+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:06:47.600833+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:48.562060+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:50.560831+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:52.562895+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:54.566085+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:56.564749+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:06:58.566706+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:00.559683+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:02.675086+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/__fixture__/typography",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.745671+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/style.css",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.794324+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts.css",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.794419+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/__fixture__/typography-proof.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.801281+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.888679+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.889263+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/pretendard/PretendardVariable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.889552+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:03.889637+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:04.568062+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:06.564010+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:08.566792+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:10.558704+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:12.563890+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:14.565311+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:16.560990+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:18.564629+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:20.564607+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:22.562018+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:24.563797+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:26.563320+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/__fixture__/typography",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.033780+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts.css",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.052989+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/style.css",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.053083+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/__fixture__/typography-proof.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.057559+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.082132+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/pretendard/PretendardVariable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.083033+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.083283+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:37.087214+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.745156+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/theme.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.759137+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts.css",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.759630+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/style.css",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.759699+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/app.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.763788+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/i18n.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.763859+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/training.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.767497+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/huggingface.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.767607+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/builder.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.767865+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/workspace.js",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.768204+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.774275+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.858743+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/pretendard/PretendardVariable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.859553+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.859601+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.872445+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:07:52.914152+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:54.782559+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:56.782826+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:07:58.781164+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:00.775340+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:02.776011+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:04.775570+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:06.775638+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:08:07.405373+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:08:07.414711+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:08:07.418873+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:08.776183+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:10.775195+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:12.776300+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:14.776972+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:16.776251+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:18.779866+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:20.775942+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:22.775172+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:24.775131+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:26.775259+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:28.776098+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:30.775976+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:32.775686+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:34.776745+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:36.778498+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:38.775739+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:40.776856+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:42.776353+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:44.776657+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:46.776796+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:48.777082+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:50.775949+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:52.776784+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:54.776028+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:56.780258+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:08:58.781417+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:00.783573+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:02.776374+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:04.791705+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:06.781272+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:08.776575+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:10.776614+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:12.776064+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:14.779515+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:16.776005+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:18.779165+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:20.781387+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:22.777626+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:24.776598+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:26.776413+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:28.775822+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:30.776029+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:32.776397+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:34.775612+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:36.782382+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:38.784151+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:40.780736+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:42.783084+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:44.780052+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:46.777856+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:48.777486+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:50.775429+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:52.776038+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:54.786654+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:56.777378+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:09:58.819556+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:00.897207+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:02.800231+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:04.798401+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:06.780229+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200,
+      "at": "2026-10-07T08:10:07.883134+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts.css",
+      "status": 200,
+      "at": "2026-10-07T08:10:07.978724+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/theme.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:07.981853+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/style.css",
+      "status": 200,
+      "at": "2026-10-07T08:10:07.985705+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/i18n.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:07.996680+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/huggingface.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:07.999310+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/app.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.000270+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/training.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.006771+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/workspace.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.009453+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/builder.js",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.013329+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.029830+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.030095+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.031271+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/pretendard/PretendardVariable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.032095+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.068530+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.752166+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.758910+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:10:08.761553+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:09.017183+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:10:09.021225+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:10.046191+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:12.025504+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:14.050016+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:16.091969+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:10:17.499002+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:10:17.527617+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:10:17.532284+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:10:17.533182+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:18.024870+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:20.026227+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:22.026794+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:24.032438+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:26.025485+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:28.023565+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:30.025473+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:32.036098+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:34.035520+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:36.073744+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:38.027786+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:40.056568+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:42.070465+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:44.059101+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:46.028810+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.453518+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.493935+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.677302+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.681107+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.775498+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.784311+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:10:47.790712+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:48.030770+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:10:48.104005+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:10:48.517799+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:10:48.526927+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:10:48.537098+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:10:48.537474+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:50.032045+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:52.029412+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:54.035167+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:56.030839+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:10:58.041290+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:00.051589+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:02.032882+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:04.034558+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:06.031862+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:11:07.468774+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:11:07.479437+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:11:07.484077+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:11:07.500897+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:11:07.988136+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:11:07.996818+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:11:08.002557+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:11:08.002921+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:08.030921+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:10.043641+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:10.089714+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:11:10.098527+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:10.537519+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:11:10.550046+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:12.027881+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:14.034149+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:16.030095+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:18.039527+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:20.047293+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:22.026536+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:24.030334+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:26.030089+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:28.024125+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/presets",
+      "status": 200,
+      "at": "2026-10-07T08:11:29.226328+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/training",
+      "status": 200,
+      "at": "2026-10-07T08:11:29.239436+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace",
+      "status": 200,
+      "at": "2026-10-07T08:11:29.244557+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:11:29.281554+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/models",
+      "status": 200,
+      "at": "2026-10-07T08:11:29.534352+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/download",
+      "status": 200,
+      "at": "2026-10-07T08:11:29.544986+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:11:29.554128+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/avatar",
+      "status": 404,
+      "at": "2026-10-07T08:11:29.554505+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:30.038189+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:31.523001+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:11:31.529768+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:32.027205+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:34.028258+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:36.027964+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:38.026642+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:40.024509+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:42.026031+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:44.025418+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:46.024618+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:48.026723+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:50.035220+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:52.339857+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:54.043672+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:56.052010+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:11:58.030017+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:00.031736+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:02.041846+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:04.028845+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:06.029367+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:08.043331+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:10.039276+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:12.041102+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:14.031164+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:16.026827+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:18.026078+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:20.029513+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:22.038013+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:24.039229+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:25.306254+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:12:25.320486+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:25.692010+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:12:25.702352+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:26.029082+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:28.094186+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:30.034634+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:32.029246+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:34.025525+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:36.030034+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:38.038972+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:40.033631+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:42.033701+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:44.029114+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:46.035278+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:48.032225+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:50.034674+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:52.051307+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:54.081180+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:56.035764+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:12:58.040820+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:00.028029+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:02.044946+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:04.030281+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:06.027004+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:08.033057+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:10.038395+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:12.025308+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:14.046840+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:16.033695+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:18.059643+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:20.047879+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:22.051093+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:24.033175+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:26.031107+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:28.037770+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:30.028099+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:32.025744+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:34.025767+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:36.025263+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:38.031100+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:40.030999+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:42.024475+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:44.030858+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:46.026325+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:48.025765+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:50.027456+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:52.029064+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:54.025124+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:56.025294+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:13:58.026425+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:00.024460+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:02.025523+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:04.025255+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:04.793973+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:14:04.801896+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:05.231711+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:14:05.238823+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:06.024986+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:08.028828+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:10.025964+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:12.026348+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:14.026706+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:16.026388+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:18.025940+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:18.886629+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:14:18.895308+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:19.207388+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:14:19.212662+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:20.028613+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:22.026749+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:24.026354+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:26.024655+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:28.026008+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:30.025293+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:32.040823+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:32.050519+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:14:32.051593+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:32.182433+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/huggingface/account",
+      "status": 200,
+      "at": "2026-10-07T08:14:32.187711+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:34.083340+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:36.030871+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:38.026611+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:40.037361+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:42.029550+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:44.025961+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:46.028172+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:48.028775+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:50.028549+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:52.030462+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:52.052668+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:54.027141+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:54.034513+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:56.024274+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:56.027002+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:14:58.024029+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:14:58.027351+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:00.027606+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:00.045706+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:02.027169+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:02.032369+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:04.026112+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:04.030024+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:06.025656+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:06.029225+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:08.025392+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:08.028469+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:10.023359+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:10.026229+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:12.024546+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:12.028064+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:14.027441+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:14.030867+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:16.025467+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:16.029993+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:18.025240+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:18.028171+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:20.024695+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:20.027154+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:22.024934+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:22.027616+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:24.023688+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:24.026651+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:26.028175+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:26.034695+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 401,
+      "at": "2026-10-07T08:15:28.025095+00:00"
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/status",
+      "status": 200,
+      "at": "2026-10-07T08:15:28.028491+00:00"
+    }
+  ]
+}

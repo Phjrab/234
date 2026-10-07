@@ -1,0 +1,149 @@
+{
+  "fonts": [
+    {
+      "family": "Pretendard Variable",
+      "weight": "100 900",
+      "status": "loaded"
+    },
+    {
+      "family": "Space Grotesk",
+      "weight": "300 700",
+      "status": "loaded"
+    },
+    {
+      "family": "JetBrains Mono",
+      "weight": "400",
+      "status": "loaded"
+    },
+    {
+      "family": "JetBrains Mono",
+      "weight": "500",
+      "status": "loaded"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:18767/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "transfer_bytes": 49556,
+      "decoded_bytes": 49256
+    },
+    {
+      "url": "http://127.0.0.1:18767/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "transfer_bytes": 94124,
+      "decoded_bytes": 93824
+    },
+    {
+      "url": "http://127.0.0.1:18767/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "transfer_bytes": 92464,
+      "decoded_bytes": 92164
+    },
+    {
+      "url": "http://127.0.0.1:18767/fonts/pretendard/PretendardVariable.woff2",
+      "transfer_bytes": 2057988,
+      "decoded_bytes": 2057688
+    }
+  ],
+  "probes": [
+    {
+      "text": "FORGE",
+      "rendered_px": 85.6640625,
+      "official_advance_px": 85.62400000000001,
+      "error_px": 0.040062499999990564,
+      "system_fallback_px": 91.5078125,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "Training Workbench",
+      "rendered_px": 271.5078125,
+      "official_advance_px": 271.46,
+      "error_px": 0.047812500000020464,
+      "system_fallback_px": 258.5,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "학습 설정",
+      "rendered_px": 96.0703125,
+      "official_advance_px": 96.0654296875,
+      "error_px": 0.0048828125,
+      "system_fallback_px": 95.5390625,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "체크포인트 저장 후 일시정지",
+      "rendered_px": 155.7421875,
+      "official_advance_px": 155.736328125,
+      "error_px": 0.005859375,
+      "system_fallback_px": 156.6875,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "Train Loss / Eval Loss",
+      "rendered_px": 115.7265625,
+      "official_advance_px": 115.72265625,
+      "error_px": 0.00390625,
+      "system_fallback_px": 122.1640625,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "2.0e-4",
+      "rendered_px": 79.203125,
+      "official_advance_px": 79.2,
+      "error_px": 0.003124999999997158,
+      "system_fallback_px": 79.4765625,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "120 / 800",
+      "rendered_px": 75.6015625,
+      "official_advance_px": 75.60000000000001,
+      "error_px": 0.0015624999999914735,
+      "system_fallback_px": 75.859375,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "checkpoint-000120",
+      "rendered_px": 132.6015625,
+      "official_advance_px": 132.59999999999997,
+      "error_px": 0.001562500000034106,
+      "system_fallback_px": 133.0546875,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "Qwen/Qwen2.5-0.5B-Instruct",
+      "rendered_px": 202.8046875,
+      "official_advance_px": 202.80000000000007,
+      "error_px": 0.004687499999931788,
+      "system_fallback_px": 203.5,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "0 O 1 I l",
+      "rendered_px": 75.6015625,
+      "official_advance_px": 75.60000000000001,
+      "error_px": 0.0015624999999914735,
+      "system_fallback_px": 75.859375,
+      "distinguishes_system": true,
+      "advance_match": true
+    },
+    {
+      "text": "한글 로그: 체크포인트 저장 후 일시정지",
+      "rendered_px": 226.5703125,
+      "official_advance_px": 226.565625,
+      "error_px": 0.004687499999988631,
+      "system_fallback_px": 226.8828125,
+      "distinguishes_system": true,
+      "advance_match": true
+    }
+  ],
+  "all_advances_match": true,
+  "limit": "IAB exposes no CDP / Rendered Fonts API. Glyph advances match decoded official font data; this is stronger than computed family alone, but not a native per-glyph font attribution."
+}

@@ -1,6 +1,6 @@
 # Forge Fine-tuning Dashboard
 
-**한국어/English를 지원하는 로컬 LLM·VLM GPU 파인튜닝 대시보드**입니다. 데이터셋 준비부터 LoRA/QLoRA 학습, 체크포인트, 검증 손실과 생성 결과 확인까지 한 서버에서 실행합니다.
+**한국어/English를 지원하는 로컬 LLM·VLM AI Training Workbench**입니다. 데이터셋 준비부터 LoRA/QLoRA 학습, 체크포인트, 검증 손실과 생성 결과 확인까지 한 서버에서 실행합니다.
 
 ## 실제로 동작하는 기능
 
@@ -27,7 +27,7 @@
 | google/flan-t5-small | LLM · 인코더·디코더 | LoRA / QLoRA | Apache-2.0 |
 | facebook/bart-large-cnn | LLM · 인코더·디코더 | LoRA / QLoRA | MIT |
 
-Qwen과 SmolVLM은 기본 모델입니다. 나머지는 Hub에서 추가 다운로드해 실제 GPU 학습을 검증했습니다. **학습 설정 → Hugging Face 모델 검색**에서 전체 Hub 모델 저장소를 검색·선택하고 제작사, 모델 계열, LLM/VLM 또는 기타 작업 유형, 파라미터 수, 라이선스, 설치 여부를 확인할 수 있습니다. 제작사·계열·유형 필터, 그룹 표시, 페이지 추가 조회와 정확한 저장소 ID 조회를 제공합니다. 유형·계열은 모델 이름이 아닌 Hub 작업·아키텍처 메타데이터를 사용하며 정보가 없으면 미확인으로 표시합니다.
+Qwen과 SmolVLM은 기본 모델입니다. 나머지는 Hub에서 추가 다운로드해 실제 GPU 학습을 검증했습니다. **모델 → 검색**에서 전체 Hub 모델 저장소를 검색·선택하고 제작사, 모델 계열, LLM/VLM 또는 기타 작업 유형, 파라미터 수, 라이선스, 설치 여부를 확인할 수 있습니다. 제작사·계열·유형 필터, 그룹 표시, 페이지 추가 조회와 정확한 저장소 ID 조회를 제공합니다. 유형·계열은 모델 이름이 아닌 Hub 작업·아키텍처 메타데이터를 사용하며 정보가 없으면 미확인으로 표시합니다.
 
 LLM은 디코더 전용 모델과 인코더·디코더 모델을 모두 지원합니다. **LLM 구조 → 인코더·디코더**로 T5·FLAN-T5·BART·mT5 같은 계열을 찾을 수 있습니다. 번역·요약 모델도 인코더·디코더 목록 또는 정확한 ID로 조회할 수 있습니다. 인코더에는 질문과 대화 이력, 디코더 정답에는 마지막 assistant 응답만 사용합니다. LoRA 대상과 저장·재개 경로도 모델 구조에 맞게 선택합니다.
 
@@ -58,9 +58,9 @@ CLI는 기본 모델 두 개를 준비합니다. 추가 모델은 대시보드�
 2. 설정 → **표시 언어(Display language)**에서 한국어 또는 English를 선택합니다. 브라우저별로 저장됩니다.
 3. **데이터셋**에서 JSONL을 검증·저장하고 train/validation을 분할합니다. 중복이 양쪽에 겹치면 원본을 정리해야 실제 학습을 시작할 수 있습니다.
 4. VLM은 저장된 데이터셋 카드의 이미지 업로드에서 `images/파일이름.png`와 일치하는 PNG/JPEG를 올립니다.
-5. **학습 설정**에서 설치된 모델을 고르거나 **Hugging Face 모델 검색**에서 모델을 선택·다운로드합니다. 분할된 데이터셋을 고르고 학습률·배치·rank·context·epochs·최대 스텝을 설정합니다.
-6. **실제 학습 검사 → 실제 GPU 학습 시작**을 누릅니다. `Queue demo only`는 합성 데모 버튼입니다.
-7. **실험**에서 실제 손실을 확인하고 저장 후 일시정지·재개·취소합니다. 완료 후 **평가** 탭에서 학습 전후 손실과 생성 응답, **체크포인트** 탭에서 가중치를 다운로드합니다.
+5. **새 실험**에서 Dataset → Base model → Method → Hyperparameters → Review → Launch 순서로 설정합니다. 설치된 모델·저장된 분할을 고르고, 미설치 모델은 **모델**에서 검색·지원 여부·접근 조건을 확인한 뒤 다운로드합니다.
+6. Review의 **설정 사전 검사(dry-run)**와 **실제 학습 검사**를 각각 확인하고 Launch에서 **실제 GPU 학습 시작**을 누릅니다. **데모만 큐에 추가**는 별도의 합성 실행입니다. 설정 변경 시 검사 결과는 다시 확인해야 합니다.
+7. 왼쪽 explorer에서 실행을 선택하면 중앙 학습 곡선, 오른쪽 자원·읽기 전용 설정, 하단 **로그/체크포인트/평가/설정**이 같은 실행을 표시합니다. 저장 후 일시정지·재개·취소는 서버가 제공한 상태와 허용 조작을 따릅니다. 완료 후 평가 응답과 체크포인트를 확인합니다.
 
 최대 스텝은 optimizer 업데이트 상한입니다. 데이터 수와 epochs로 계산한 업데이트가 먼저 끝나면 그 시점에 완료됩니다. Gradient accumulation은 마이크로 배치를 모아 한 번 업데이트합니다. 최종 assistant 응답 토큰만 학습 대상으로 사용하며, context를 넘는 입력은 조용히 잘라내지 않고 거부합니다.
 
@@ -82,6 +82,18 @@ JSONL은 UTF-8 텍스트 128 KiB / 1000행 / 50개 데이터셋까지 지원합�
 ## HTTPS LAN 배포
 
 [배포 가이드](docs/deployment.md)와 [LAN/인증](docs/lan-access.md)을 따르세요. 학습 서비스는 `.venv/bin/python server.py --enable-training`으로 실행합니다. 기존 설치의 서비스·디렉터리 이름을 유지해도 데이터와 계정은 호환됩니다.
+
+## Workbench UI
+
+상단 ☀/☾ 버튼 또는 **설정 → 화면 표시 → 화면 모드**에서 화이트·다크 모드를 전환합니다. 선택은 브라우저에 저장되고 새로고침 후 복원됩니다. explorer·console·차트·입력폼 모두 모드를 적용합니다. [테마 검증 및 캡처](docs/ui-redesign/theme/README.md)를 참고하세요.
+
+Experiments를 열면 실험 목록이 왼쪽 영역을 크게 사용합니다. **크게 보기 / 메뉴 보기** 버튼으로 목록과 탐색 메뉴를 전환하며, 실험 항목의 글자·여백과 모바일 선택칸도 넉넉하게 표시합니다.
+
+선택한 실험이 작업 공간의 중심입니다. 오른쪽 inspector는 접을 수 있고 하단 console 높이를 조절할 수 있습니다. 모바일에서는 Run / Inspector / Console을 전환합니다. Datasets / Models / Experiments / Artifacts / Compare / Environment / Access settings에서 기존 기능에 접근합니다.
+
+실측 GPU 값, 예상 VRAM, 합성 Demo loss와 UI fixture 값은 출처를 구분합니다. 결측 loss는 0으로 바꾸지 않으며 차트는 원본 optimizer step을 표시합니다. GPU 정보는 서버 전체 자원으로 실행마다 독립 측정한 값이 아닙니다.
+
+2026-10-07 UI 개편: Python 140개(137 통과·3 skip), DOM 55개, i18n 및 실제 격리 브라우저 73개 검사 통과. before/after 19개 PNG와 한계는 [UI 최종 보고서](docs/ui-redesign/FINAL_REPORT.md), [검증](docs/ui-redesign/VALIDATION.md), [rollback](docs/ui-redesign/ROLLBACK.md)에 있습니다. 이 UI 검증은 실제 GPU 학습·다운로드를 실행하지 않았습니다. 안전한 실제 앱 fixture는 `python3 tools/ui_fixture_server.py --port 18765`로 실행합니다.
 
 ## 검증
 

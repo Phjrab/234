@@ -1,0 +1,80 @@
+[
+  {
+    "capture": "before-en-1920",
+    "language": "en",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "before-ko-1920",
+    "language": "ko",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "capture": "before-ko-1440",
+    "language": "ko",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "capture": "before-en-1440",
+    "language": "en",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "capture": "before-en-390",
+    "language": "en",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "capture": "before-ko-390",
+    "language": "ko",
+    "scroll": [
+      0,
+      0
+    ],
+    "selected": "Instruction adapter · Qwen 0.5B",
+    "viewport": [
+      390,
+      844
+    ]
+  }
+]

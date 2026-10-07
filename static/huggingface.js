@@ -1,6 +1,6 @@
 'use strict';
 let selectedHubModel=null, hfCatalogVersion=0, hfCatalogModels=[], hfNextCursor=null, hfDownloadTimer=null;
-function hfSettingsCard(){return `<section class="feature-box hf-settings"><h3>Hugging Face</h3><div id="hf-account-status" role="status">${t('Loading…')}</div><p>${t('Connect with a Hugging Face read token to download private or gated models. Public models do not require sign-in.')}</p><form id="hf-connect-form"><label for="hf-token">${t('Hugging Face access token')}<input id="hf-token" name="token" type="password" autocomplete="off" spellcheck="false" maxlength="259" placeholder="hf_…" required></label><div class="feature-actions"><button class="button primary" type="submit">${t('Connect account')}</button><button class="button secondary" type="button" id="hf-disconnect">${t('Disconnect account')}</button><a class="button secondary" href="https://huggingface.co/login?next=%2Fsettings%2Ftokens" target="_blank" rel="noopener noreferrer">${t('Hugging Face sign-in ↗')}</a><a class="button secondary" href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">${t('Create read token ↗')}</a></div></form><p class="field-note">${t('The token is stored on this server with owner-only file permissions. It is never returned to the browser or included in experiments.')}</p><div id="hf-account-error" hidden></div></section>`;}
+function hfSettingsCard(){return `<section class="feature-box hf-settings"><h3>Hugging Face</h3><p>${t('Personal access token connection · not OAuth')}</p><div id="hf-account-status" role="status">${t('Loading…')}</div><p>${t('Connect with a Hugging Face read token to download private or gated models. Public models do not require sign-in.')}</p><form id="hf-connect-form"><label for="hf-token">${t('Hugging Face access token')}<input id="hf-token" name="token" type="password" autocomplete="off" spellcheck="false" maxlength="259" placeholder="hf_…" required></label><div class="feature-actions"><button class="button primary" type="submit">${t('Connect account')}</button><button class="button secondary" type="button" id="hf-disconnect">${t('Disconnect account')}</button><a class="button secondary" href="https://huggingface.co/login?next=%2Fsettings%2Ftokens" target="_blank" rel="noopener noreferrer">${t('Hugging Face sign-in ↗')}</a><a class="button secondary" href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">${t('Create read token ↗')}</a></div></form><p class="field-note">${t('The token is stored on this server with owner-only file permissions. It is never returned to the browser or included in experiments.')}</p><div id="hf-account-error" hidden></div></section>`;}
 async function loadHFSettings(){
  const host=$('#hf-account-status');if(!host)return;
  function status(account){if(!host.isConnected)return;host.textContent=account.connected?t('Connected as {username}',{username:account.username}):t('Not connected');$('#hf-disconnect').disabled=!account.connected||!remoteControlsAllowed;$('#hf-connect-form button[type=submit]').disabled=!remoteControlsAllowed;}
@@ -15,15 +15,22 @@ function compactNumber(value){return Number.isFinite(value)?Intl.NumberFormat(I1
 function formatModelBytes(value){return Number.isFinite(value)?(value>=1024**3?(value/1024**3).toFixed(2)+' GiB':(value/1024**2).toFixed(1)+' MiB'):'—';}
 function modelSummary(model){return `${modelIcon(model)}<span class="model-name"><strong>${escapeHtml(model.name||model.id.split('/').at(-1))}</strong><small>${escapeHtml(model.publisher||model.id.split('/')[0])} · ${escapeHtml(model.family||t('Unknown family'))}</small></span><span class="model-type ${model.kind==='VLM'?'vlm':''}">${escapeHtml(modelKind(model.kind))}</span>`;}
 function renderSelectedModel(){
- const host=$('#selected-model-info');if(!host||!selectedHubModel)return;
+ const host=$('#selected-model-info');if(!host)return;if(!selectedHubModel){host.hidden=true;return;}host.hidden=false;
  host.innerHTML=modelSummary(selectedHubModel);bindModelIcons(host);
- const ready=selectedHubModel.installed&&['LLM','VLM'].includes(selectedHubModel.kind);
+ const ready=selectedHubModel.installed&&selectedHubModel.training_candidate!==false&&['LLM','VLM'].includes(selectedHubModel.kind);
  $('#training-start').disabled=!ready||!remoteControlsAllowed||!snapshot?.training?.available;
  $('#training-preflight').disabled=!ready;
+ if(typeof updateBuilderReadiness==='function' && $('#recipe-form'))updateBuilderReadiness();
 }
-async function openModelCatalog(){
+async function renderModels(){
+ $('#workspace-view').innerHTML=featureHeading('models',t('Search, installed files, runtime support and training readiness are separate checks.'))+'<div id="model-catalog"></div>';
+ return openModelCatalog(true);
+}
+async function openModelCatalog(embedded=false){
+ embedded=embedded===true;
  const dialog=$('#model-dialog');
- $('#model-catalog').innerHTML=`<form id="hf-search-form"><div class="hf-search-line"><label>${t('Model search or repository ID')}<input id="hf-search" type="search" maxlength="200" placeholder="Qwen, Llama, publisher/model"></label><button class="button primary" type="submit">${t('Search')}</button><button class="button secondary" type="button" id="hf-exact">${t('Open model ID')}</button></div><div class="hf-filters"><label>${t('Publisher')}<input id="hf-author" placeholder="Qwen, meta-llama…" maxlength="96"></label><label>${t('Model family')}<input id="hf-family" placeholder="qwen2, llama…" maxlength="80"></label><label>${t('Model type')}<select id="hf-kind"><option value="ALL">${t('All')}</option><option>LLM</option><option>VLM</option></select></label><label>${t('Language model format')}<select id="hf-text-task" disabled><option value="causal">${t('Decoder-only')}</option><option value="seq2seq">${t('Encoder-decoder')}</option></select></label><label>${t('Sort')}<select id="hf-sort"><option value="downloads">${t('Downloads')}</option><option value="trendingScore">${t('Trending')}</option><option value="lastModified">${t('Recently updated')}</option></select></label><label>${t('Group by')}<select id="hf-group"><option value="publisher">${t('Publisher')}</option><option value="family">${t('Model family')}</option></select></label></div></form><p class="field-note">${t('Types and families come from Hub task and architecture metadata. All model repositories can be selected; training requires a compatible LLM/VLM snapshot.')}</p><div class="hf-catalog-grid"><section aria-label="${t('Model results')}"><div id="hf-results" aria-live="polite"></div><button type="button" class="button secondary" id="hf-more" hidden>${t('Load more')}</button></section><section id="hf-detail" class="hf-detail" aria-live="polite"><div class="empty">${t('Select a model to view details')}</div></section></div><div id="hf-download-status" role="status"></div><div class="feature-actions"><button type="button" class="button secondary" id="hf-account-settings">${t('Hugging Face account settings')}</button></div>`;
+ const mount=embedded?$('#model-catalog'):$('#model-dialog-catalog');
+ mount.innerHTML=`<form id="hf-search-form"><div class="hf-search-line"><label>${t('Model search or repository ID')}<input id="hf-search" type="search" maxlength="200" placeholder="Qwen, Llama, publisher/model"></label><button class="button primary" type="submit">${t('Search')}</button><button class="button secondary" type="button" id="hf-exact">${t('Open model ID')}</button></div><div class="hf-filters"><label>${t('Publisher')}<input id="hf-author" placeholder="Qwen, meta-llama…" maxlength="96"></label><label>${t('Model family')}<input id="hf-family" placeholder="qwen2, llama…" maxlength="80"></label><label>${t('Model type')}<select id="hf-kind"><option value="ALL">${t('All')}</option><option>LLM</option><option>VLM</option></select></label><label>${t('Language model format')}<select id="hf-text-task" disabled><option value="causal">${t('Decoder-only')}</option><option value="seq2seq">${t('Encoder-decoder')}</option></select></label><label>${t('Sort')}<select id="hf-sort"><option value="downloads">${t('Downloads')}</option><option value="trendingScore">${t('Trending')}</option><option value="lastModified">${t('Recently updated')}</option></select></label><label>${t('Group by')}<select id="hf-group"><option value="publisher">${t('Publisher')}</option><option value="family">${t('Model family')}</option></select></label></div></form><p class="field-note">${t('Types and families come from Hub task and architecture metadata. All model repositories can be selected; training requires a compatible LLM/VLM snapshot.')}</p><div class="hf-catalog-grid"><section aria-label="${t('Model results')}"><div id="hf-results" aria-live="polite"></div><button type="button" class="button secondary" id="hf-more" hidden>${t('Load more')}</button></section><section id="hf-detail" class="hf-detail" aria-live="polite"><div class="empty">${t('Select a model to view details')}</div></section></div><div id="hf-download-status" role="status"></div><div class="feature-actions"><button type="button" class="button secondary" id="hf-account-settings">${t('Hugging Face account settings')}</button></div>`;
  $('#close-model-dialog').onclick=()=>dialog.close();
  $('#hf-account-settings').onclick=()=>{dialog.close();setNav('settings');};
  $('#hf-search-form').onsubmit=event=>{event.preventDefault();searchHFModels(false);};
@@ -31,7 +38,7 @@ async function openModelCatalog(){
  $('#hf-group').onchange=renderHFResults;
  for(const id of ['#hf-kind','#hf-text-task','#hf-sort','#hf-author','#hf-family'])$(id).onchange=()=>{$('#hf-text-task').disabled=$('#hf-kind').value!=='LLM';searchHFModels(false);};
  $('#hf-exact').onclick=()=>showHFModel($('#hf-search').value.trim());
- if(!dialog.open)dialog.showModal();
+ if(!embedded && !dialog.open)dialog.showModal();
  await searchHFModels(false);pollHFDownload();
 }
 async function searchHFModels(append){
@@ -58,13 +65,11 @@ async function showHFModel(id){
   if(matchMedia('(max-width:700px)').matches)host.scrollIntoView({block:'start'});
   $('#hf-select-model').onclick=()=>{
    selectedHubModel=model;
+   if(!$('#recipe-form')){recipeDraft={...defaultRecipe(),model:model.id,kind:['LLM','VLM'].includes(model.kind)?model.kind:'LLM',dataset:''};builderState.source='real';builderState.step=1;builderState.drySignature=null;builderState.preflightSignature=null;$('#model-dialog').close();setNav('recipes');return;}
    $('#recipe-form [name=model]').value=model.id;
-   if(['LLM','VLM'].includes(model.kind)){
-    $('#recipe-form [name=kind]').value=model.kind;
-    const dataset=$('#training-dataset');if(dataset){const match=[...dataset.options].find(option=>option.dataset.kind===model.kind);dataset.value=match?.value||'';dataset.onchange?.();}
-   }
+   if(['LLM','VLM'].includes(model.kind))$('#recipe-form [name=kind]').value=model.kind;
    if(model.installed)$('#training-model').value=model.id;
-   renderSelectedModel();$('#model-dialog').close();
+   renderSelectedModel();refreshBuilderChoices();invalidateBuilderChecks();$('#model-dialog').close();
   };
   $('#hf-download-model').onclick=async()=>{const button=$('#hf-download-model');button.disabled=true;try{await api('/api/huggingface/download',{model:model.id,revision:model.revision});pollHFDownload();}catch(error){toast(error.message,true);button.disabled=false;}};
  }catch(error){if(version===hfDetailVersion)host.innerHTML=`<div class="feature-result error">${escapeHtml(error.message)}</div>`;}
@@ -78,8 +83,8 @@ async function pollHFDownload(){
   if(state.status==='completed'&&nav==='recipes'){
    const key=state.model+'@'+state.revision;
    if(hfCompletedRevision!==key && $('#model-dialog').open && hfDetailModelId===state.model){hfCompletedRevision=key;await showHFModel(state.model);}
-   const cap=await api('/api/training');installedTrainingModels=cap.models;
-   const select=$('#training-model');if(select){const current=$('#recipe-form [name=model]').value;select.innerHTML=cap.models.filter(m=>m.installed).map(m=>`<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)} · ${m.kind} · ${escapeHtml(m.family||'—')}</option>`).join('');select.value=current;const installed=cap.models.find(m=>m.id===current&&m.installed);if(installed){selectedHubModel={...selectedHubModel,...installed};renderSelectedModel();}}
+   const cap=await api('/api/training');installedTrainingModels=cap.models;builderState.cap=cap;
+   const select=$('#training-model');if(select){const current=$('#recipe-form [name=model]').value;select.innerHTML=cap.models.filter(m=>m.installed).map(m=>`<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)} · ${m.kind} · ${escapeHtml(m.family||'—')}</option>`).join('');select.value=current;const installed=cap.models.find(m=>m.id===current&&m.installed);if(installed){selectedHubModel={...selectedHubModel,...installed};renderSelectedModel();invalidateBuilderChecks();}}
   }
  }catch(error){const host=$('#hf-download-status');if(host&&host.isConnected)host.textContent=error.message;}
 }

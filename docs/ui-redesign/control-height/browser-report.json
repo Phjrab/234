@@ -1,0 +1,177 @@
+{
+  "source_sha": "8c80ac47a4b7f9965621ca0f48e910ca55dcdbec",
+  "fixture_id": "forge-workbench-v1",
+  "checks": [
+    {
+      "mode": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "heights": [
+        {
+          "height": 40,
+          "id": "hf-search"
+        },
+        {
+          "height": 40,
+          "id": "hf-author"
+        },
+        {
+          "height": 40,
+          "id": "hf-family"
+        },
+        {
+          "height": 40,
+          "id": "hf-kind"
+        },
+        {
+          "height": 40,
+          "id": "hf-text-task"
+        },
+        {
+          "height": 40,
+          "id": "hf-sort"
+        },
+        {
+          "height": 40,
+          "id": "hf-group"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "mode": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "heights": [
+        {
+          "height": 40,
+          "id": "hf-search"
+        },
+        {
+          "height": 40,
+          "id": "hf-author"
+        },
+        {
+          "height": 40,
+          "id": "hf-family"
+        },
+        {
+          "height": 40,
+          "id": "hf-kind"
+        },
+        {
+          "height": 40,
+          "id": "hf-text-task"
+        },
+        {
+          "height": 40,
+          "id": "hf-sort"
+        },
+        {
+          "height": 40,
+          "id": "hf-group"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "heights": [
+        {
+          "height": 40,
+          "id": "hf-search"
+        },
+        {
+          "height": 40,
+          "id": "hf-author"
+        },
+        {
+          "height": 40,
+          "id": "hf-family"
+        },
+        {
+          "height": 40,
+          "id": "hf-kind"
+        },
+        {
+          "height": 40,
+          "id": "hf-text-task"
+        },
+        {
+          "height": 40,
+          "id": "hf-sort"
+        },
+        {
+          "height": 40,
+          "id": "hf-group"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "mode": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "heights": [
+        {
+          "height": 40,
+          "id": "hf-search"
+        },
+        {
+          "height": 40,
+          "id": "hf-author"
+        },
+        {
+          "height": 40,
+          "id": "hf-family"
+        },
+        {
+          "height": 40,
+          "id": "hf-kind"
+        },
+        {
+          "height": 40,
+          "id": "hf-text-task"
+        },
+        {
+          "height": 40,
+          "id": "hf-sort"
+        },
+        {
+          "height": 40,
+          "id": "hf-group"
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "captures": [
+    {
+      "filename": "models-light.png",
+      "captured_at": "2026-10-07T07:39:25.604Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18766/",
+      "scenario": "Models LLM filter; aligned 40px text and select controls",
+      "mode": "light"
+    },
+    {
+      "filename": "models-dark.png",
+      "captured_at": "2026-10-07T07:40:58.907Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18766/",
+      "scenario": "Models LLM filter; aligned 40px text and select controls",
+      "mode": "dark"
+    }
+  ],
+  "status": "PASS"
+}

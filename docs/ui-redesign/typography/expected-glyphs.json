@@ -1,0 +1,101 @@
+[
+  {
+    "id": "probe-0",
+    "role": "display",
+    "size": 28,
+    "weight": 600,
+    "text": "FORGE",
+    "expected_px": 85.62400000000001,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-1",
+    "role": "display",
+    "size": 28,
+    "weight": 600,
+    "text": "Training Workbench",
+    "expected_px": 271.46,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-2",
+    "role": "ui",
+    "size": 26,
+    "weight": 600,
+    "text": "학습 설정",
+    "expected_px": 96.0654296875,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-3",
+    "role": "ui",
+    "size": 14,
+    "weight": 400,
+    "text": "체크포인트 저장 후 일시정지",
+    "expected_px": 155.736328125,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-4",
+    "role": "ui",
+    "size": 12,
+    "weight": 400,
+    "text": "Train Loss / Eval Loss",
+    "expected_px": 115.72265625,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-5",
+    "role": "mono500",
+    "size": 22,
+    "weight": 500,
+    "text": "2.0e-4",
+    "expected_px": 79.2,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-6",
+    "role": "mono500",
+    "size": 14,
+    "weight": 500,
+    "text": "120 / 800",
+    "expected_px": 75.60000000000001,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-7",
+    "role": "mono",
+    "size": 13,
+    "weight": 400,
+    "text": "checkpoint-000120",
+    "expected_px": 132.59999999999997,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-8",
+    "role": "mono",
+    "size": 13,
+    "weight": 400,
+    "text": "Qwen/Qwen2.5-0.5B-Instruct",
+    "expected_px": 202.80000000000007,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-9",
+    "role": "mono",
+    "size": 14,
+    "weight": 400,
+    "text": "0 O 1 I l",
+    "expected_px": 75.60000000000001,
+    "pretendard_fallback": ""
+  },
+  {
+    "id": "probe-10",
+    "role": "mono",
+    "size": 13,
+    "weight": 400,
+    "text": "한글 로그: 체크포인트 저장 후 일시정지",
+    "expected_px": 226.565625,
+    "pretendard_fallback": "한글로그체크포인트저장후일시정지"
+  }
+]

@@ -1,0 +1,25 @@
+test_bad_config_and_action_payload (test_server.ServerTests.test_bad_config_and_action_payload) ... ok
+test_bind_rejects_public_network (test_server.ServerTests.test_bind_rejects_public_network) ... ok
+test_bundled_fonts_keep_static_security_boundary (test_server.ServerTests.test_bundled_fonts_keep_static_security_boundary) ... ok
+test_create_get_action_retry_lifecycle (test_server.ServerTests.test_create_get_action_retry_lifecycle) ... ok
+test_cross_origin_rejected (test_server.ServerTests.test_cross_origin_rejected) ... ok
+test_dataset_only_larger_body_limit (test_server.ServerTests.test_dataset_only_larger_body_limit) ... ok
+test_duplicate_headers_and_chunked_request (test_server.ServerTests.test_duplicate_headers_and_chunked_request) ... ok
+test_invalid_host (test_server.ServerTests.test_invalid_host) ... ok
+test_localhost_host_accepted (test_server.ServerTests.test_localhost_host_accepted) ... ok
+test_media_type_size_and_json_validation (test_server.ServerTests.test_media_type_size_and_json_validation) ... ok
+test_missing_or_huge_content_length (test_server.ServerTests.test_missing_or_huge_content_length) ... ok
+test_nonbrowser_originless_json_post (test_server.ServerTests.test_nonbrowser_originless_json_post) ... ok
+test_paths_and_routes (test_server.ServerTests.test_paths_and_routes) ... ok
+test_reset_endpoint (test_server.ServerTests.test_reset_endpoint) ... ok
+test_static_and_head (test_server.ServerTests.test_static_and_head) ... ok
+test_static_symlink_cannot_escape (test_server.ServerTests.test_static_symlink_cannot_escape) ... ok
+test_status_and_security_headers (test_server.ServerTests.test_status_and_security_headers) ... ok
+test_unsupported_methods (test_server.ServerTests.test_unsupported_methods) ... ok
+test_worker_advances_and_stops (test_server.ServerTests.test_worker_advances_and_stops) ... ok
+test_workspace_routes_and_dataset_roundtrip (test_server.ServerTests.test_workspace_routes_and_dataset_roundtrip) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 2.342s
+
+OK

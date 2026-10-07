@@ -1,0 +1,1 @@
+57 frontend DOM-stub tests passed (browser layout/integration not covered)
