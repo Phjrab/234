@@ -1,0 +1,127 @@
+{
+  "timestamp_utc": "2026-10-07T10:20:24.098672+00:00",
+  "commit": "d9a4656a5bee38cc9903e8caf5c4b680709423d2",
+  "tls_verified": true,
+  "assets": [
+    {
+      "path": "/app.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 28396,
+      "sha256": "604b06730a1ee827e95a4f2d2152a28243bd0d2ea27ff6b8303a571de91eee7a",
+      "matches_commit": true
+    },
+    {
+      "path": "/builder.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 16521,
+      "sha256": "bb28bd3f68ab108f19d791c2d930f032af23398ccc8f75f522ae65b148757e6d",
+      "matches_commit": true
+    },
+    {
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Medium.woff2",
+      "status": 200,
+      "content_type": "font/woff2",
+      "bytes": 93824,
+      "sha256": "086c48dfbea9ddaff1320f7e09399b8e2924e88ce67453721255db3bdbb5a353",
+      "matches_commit": true
+    },
+    {
+      "path": "/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2",
+      "status": 200,
+      "content_type": "font/woff2",
+      "bytes": 92164,
+      "sha256": "a9cb1cd82332b23a47e3a1239d25d13c86d16c4220695e34b243effa999f45f2",
+      "matches_commit": true
+    },
+    {
+      "path": "/fonts/pretendard/PretendardVariable.woff2",
+      "status": 200,
+      "content_type": "font/woff2",
+      "bytes": 2057688,
+      "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+      "matches_commit": true
+    },
+    {
+      "path": "/fonts/space-grotesk/SpaceGrotesk-Variable.woff2",
+      "status": 200,
+      "content_type": "font/woff2",
+      "bytes": 49256,
+      "sha256": "8e085aa438094f11487a836652edd5c054fa6a96f63fc7c282105ee3a4b08c07",
+      "matches_commit": true
+    },
+    {
+      "path": "/fonts.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 761,
+      "sha256": "c9682526c2faa896a5093459ffafb0f2c439e50337f2b24ac324a69ed356ebed",
+      "matches_commit": true
+    },
+    {
+      "path": "/huggingface.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 15188,
+      "sha256": "198cf7e775ecae4b35928b632506eccb80c52cd3297e8e1c4e54cc1aad0c1605",
+      "matches_commit": true
+    },
+    {
+      "path": "/i18n.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 72376,
+      "sha256": "a45c70a693fb33572dda48f29e8202d4191d21ace30a56918cb0d5291075b95f",
+      "matches_commit": true
+    },
+    {
+      "path": "/index.html",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 12735,
+      "sha256": "fddedcff6a586b522dad6f4afa17fa509a633b43601b0b4a73cc65b1b26ce54a",
+      "matches_commit": true
+    },
+    {
+      "path": "/style.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 35786,
+      "sha256": "5fe7211d64138d8d3176cb8f4741c168a5db70f48f3947a00bf454361d3dd3bb",
+      "matches_commit": true
+    },
+    {
+      "path": "/theme.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 1774,
+      "sha256": "2390a01f0f5081c9ddb088463a86e1280d460a4b4966ff7c42f1d09cd70f670f",
+      "matches_commit": true
+    },
+    {
+      "path": "/training.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 6505,
+      "sha256": "2b96ca031348ec821cca0ec1b73244ef3b729211b83c1d1a141d264a721392ab",
+      "matches_commit": true
+    },
+    {
+      "path": "/workspace.js",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8",
+      "bytes": 38525,
+      "sha256": "4e1a1d2680d262cef7a499f8aeb17f1596456f870485c660f85ce43a52c24579",
+      "matches_commit": true
+    }
+  ],
+  "security": {
+    "unauthenticated_status": 401,
+    "/fonts/pretendard/LICENSE.txt": 404,
+    "/../server.py": 400,
+    "/data/credentials.json": 404,
+    "missing_csrf_logout": 403,
+    "own_session_logout": 200
+  }
+}

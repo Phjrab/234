@@ -45,6 +45,8 @@ sudo systemctl status forge-finetune-dashboard.service
 
 갱신 전 `data/`와 인증 자료를 별도 보호된 위치에 백업하고 실행 중인 서비스를 재시작하세요. 서버 재시작은 로그인 세션을 종료합니다. 인증서·개인 키·실제 데이터·비밀번호를 배포 문서나 커밋에 포함하지 마세요.
 
+정적 UI만 바뀐 배포는 예외입니다. 백엔드가 운영본과 동일한지, 작업트리에 사용자 변경이 없는지 확인하고 공개 디렉터리 밖에 기존 `static/`을 백업한 뒤 검증된 커밋으로 fast-forward할 수 있습니다. 정적 파일은 요청마다 읽으므로 이 경우 서비스 재시작이 필요하지 않습니다. 서비스 PID 유지, HTTPS 자산 해시, 인증·CSRF·CSP를 검증하세요. [Workbench 운영 반영 기록](ui-redesign/PRODUCTION_DEPLOYMENT.md)을 참고하세요.
+
 ## 검증한 호스트
 
 Ubuntu 24.04.5, Python 3.12.3, NVIDIA RTX 3060 12 GB, 드라이버 595.91.07, CUDA Toolkit 13.2에서 설치와 CUDA 커널 실행을 확인했습니다. 대시보드 HTTPS 로그인·환경 진단·한국어/영어 전환도 검증했습니다. PyTorch 2.8.0+cu128 / Transformers 4.57.1 / PEFT 0.17.1 / bitsandbytes 0.48.1에서 LLM/VLM LoRA·QLoRA를 실제 검증했습니다. 더 큰 모델과 다른 버전의 호환성은 별도 확인해야 합니다.
