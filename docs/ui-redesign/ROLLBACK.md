@@ -1,5 +1,7 @@
 # Rollback
 
+A later white/dark mode feature depends on this workbench. Revert `2bf09470dc00e14c990e90bb1527aa770666d4b2` first if it is present; see theme/README.md.
+
 Use a clean working tree and review any later dependent changes before reverting. Preserve unrelated user commits. UI changes are these two local commits:
 
 ```bash

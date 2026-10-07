@@ -1,0 +1,168 @@
+{
+  "source_sha": "2bf09470dc00e14c990e90bb1527aa770666d4b2",
+  "fixture_id": "forge-workbench-v1",
+  "checks": [
+    {
+      "name": "Dark mode survives refresh",
+      "pass": true
+    },
+    {
+      "name": "Mode switch preserves builder input",
+      "pass": true
+    },
+    {
+      "name": "Korean appearance controls available",
+      "pass": true
+    },
+    {
+      "name": "Settings selector and header state agree",
+      "pass": true
+    },
+    {
+      "name": "English appearance controls available",
+      "pass": true
+    },
+    {
+      "name": "White mobile has no page overflow",
+      "pass": true
+    },
+    {
+      "name": "Dark mobile has no page overflow",
+      "pass": true
+    },
+    {
+      "name": "Dark mobile persists on reload",
+      "pass": true
+    }
+  ],
+  "captures": [
+    {
+      "filename": "white-workspace-1440.png",
+      "captured_at": "2026-10-07T07:14:20.166Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "mode": "light"
+    },
+    {
+      "filename": "dark-workspace-1440.png",
+      "captured_at": "2026-10-07T07:14:20.635Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "mode": "dark"
+    },
+    {
+      "filename": "dark-builder-1440.png",
+      "captured_at": "2026-10-07T07:14:21.846Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "mode": "dark"
+    },
+    {
+      "filename": "dark-settings-1440.png",
+      "captured_at": "2026-10-07T07:14:22.269Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "mode": "dark"
+    },
+    {
+      "filename": "white-workspace-390.png",
+      "captured_at": "2026-10-07T07:14:50.188Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "mode": "light"
+    },
+    {
+      "filename": "dark-workspace-390.png",
+      "captured_at": "2026-10-07T07:14:50.590Z",
+      "viewport": "1440x900",
+      "route": "http://127.0.0.1:18765/",
+      "mode": "dark"
+    }
+  ],
+  "styles": [
+    {
+      "mode": "light",
+      "colors": [
+        {
+          "background": "rgb(243, 242, 238)",
+          "border": "rgb(32, 35, 41)",
+          "color": "rgb(32, 35, 41)",
+          "selector": "body"
+        },
+        {
+          "background": "rgb(238, 237, 232)",
+          "border": "rgb(32, 35, 41) rgb(197, 199, 192) rgb(32, 35, 41) rgb(32, 35, 41)",
+          "color": "rgb(32, 35, 41)",
+          "selector": ".sidebar"
+        },
+        {
+          "background": "rgb(255, 254, 250)",
+          "border": "rgb(197, 199, 192)",
+          "color": "rgb(32, 35, 41)",
+          "selector": ".run-data"
+        },
+        {
+          "background": "rgb(168, 68, 20)",
+          "border": "rgb(168, 68, 20)",
+          "color": "rgb(255, 255, 255)",
+          "selector": ".primary"
+        },
+        {
+          "background": "rgb(251, 237, 228)",
+          "border": "rgb(168, 68, 20)",
+          "color": "rgb(141, 55, 16)",
+          "selector": ".nav-item.active"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "border": "rgb(16, 16, 16)",
+          "color": "rgb(16, 16, 16)",
+          "selector": "input"
+        }
+      ]
+    },
+    {
+      "mode": "dark",
+      "colors": [
+        {
+          "background": "rgb(23, 26, 30)",
+          "border": "rgb(241, 242, 244)",
+          "color": "rgb(241, 242, 244)",
+          "selector": "body"
+        },
+        {
+          "background": "rgb(23, 26, 30)",
+          "border": "rgb(241, 242, 244) rgb(81, 88, 99) rgb(241, 242, 244) rgb(241, 242, 244)",
+          "color": "rgb(241, 242, 244)",
+          "selector": ".sidebar"
+        },
+        {
+          "background": "rgb(32, 36, 42)",
+          "border": "rgb(81, 88, 99)",
+          "color": "rgb(241, 242, 244)",
+          "selector": ".run-data"
+        },
+        {
+          "background": "rgb(255, 181, 128)",
+          "border": "rgb(255, 181, 128)",
+          "color": "rgb(32, 35, 41)",
+          "selector": ".primary"
+        },
+        {
+          "background": "rgb(50, 38, 31)",
+          "border": "rgb(178, 135, 101)",
+          "color": "rgb(255, 181, 128)",
+          "selector": ".nav-item.active"
+        },
+        {
+          "background": "rgb(59, 59, 59)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)",
+          "selector": "input"
+        }
+      ]
+    }
+  ],
+  "console": [],
+  "status": "PASS"
+}
