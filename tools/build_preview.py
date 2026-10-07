@@ -12,9 +12,11 @@ css = (ROOT / 'static/style.css').read_text()
 js = (ROOT / 'static/app.js').read_text()
 hf_js = (ROOT / 'static/huggingface.js').read_text()
 training_js = (ROOT / 'static/training.js').read_text()
+builder_js = (ROOT / 'static/builder.js').read_text()
 i18n_js = (ROOT / 'static/i18n.js').read_text()
 workspace_js = (ROOT / 'static/workspace.js').read_text()
 fixture = json.loads((ROOT / 'docs/sample-snapshot.json').read_text())
+fixture['ui_fixture'] = {'id':'offline-demo', 'label':'UI DEMO / SYNTHETIC FIXTURE / 성능·임상·실장비 검증 아님'}
 workspace = Workspace(':memory:', clock=lambda: 1767225600)
 text = '\n'.join(json.dumps({'instruction': f'Synthetic example {i}', 'output': f'Synthetic response {i}'}) for i in range(3))
 dataset = workspace.import_dataset({'name': 'Synthetic preview data', 'kind': 'LLM', 'text': text, 'synthetic': True})['dataset']
@@ -44,10 +46,11 @@ js = js[:start] + '''async function api(path, body) {
 js = 'const OFFLINE_ROUTES=' + json.dumps(routes, ensure_ascii=False).replace('<', '\\u003c') + ';\n' + js
 js = js.replace("'Demo API online'", "'Offline preview'").replace('t("Demo API online")', 't("Offline preview")')
 html = html.replace('<link rel="stylesheet" href="/style.css">', '<style>' + css + '</style>')
-html = html.replace('<script src="/i18n.js" defer></script>', '').replace('<script src="/app.js" defer></script>', '').replace('<script src="/workspace.js" defer></script>', '').replace('<script src="/training.js" defer></script>', '').replace('<script src="/huggingface.js" defer></script>', '')
+html = html.replace('<script src="/i18n.js" defer></script>', '').replace('<script src="/app.js" defer></script>', '').replace('<script src="/workspace.js" defer></script>', '').replace('<script src="/training.js" defer></script>', '').replace('<script src="/huggingface.js" defer></script>', '').replace('<script src="/builder.js" defer></script>', '')
 html = html.replace('All runs, charts and GPU readings are synthetic. No training GPU is connected and no model is downloaded.',
                     'READ-ONLY OFFLINE PREVIEW. Synthetic fixture data; no live API, GPU, training or downloads. Controls require the local server.')
-html = html.replace('</body>', '<script>' + i18n_js + '\n' + js + '\n' + workspace_js + '\n' + hf_js + '\n' + training_js + '''
+html = html.replace('<body>', '<body><div class="fixture-watermark" role="note">UI DEMO / SYNTHETIC FIXTURE / 성능·임상·실장비 검증 아님 · read-only offline preview</div>')
+html = html.replace('</body>', '<script>' + i18n_js + '\n' + js + '\n' + workspace_js + '\n' + hf_js + '\n' + training_js + '\n' + builder_js + '''
 document.addEventListener('click', event => {
  const link = event.target.closest('a[href^="/api/"]');
  if(link) { event.preventDefault(); toast('Downloads require the running local server'); }

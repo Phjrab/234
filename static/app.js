@@ -5,6 +5,8 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&'
 const fmt = (value, digits = 3) => Number.isFinite(Number(value)) && value !== null && value !== undefined ? Number(value).toFixed(digits) : '—';
 const pct = value => Math.max(0, Math.min(100, Number(value) || 0));
 let authToken = null, remoteControlsAllowed = true, connectionLabel = 'Connecting';
+let inspectorHidden = false;
+try { inspectorHidden = localStorage.getItem('forge.inspectorHidden') === 'true'; } catch {}
 let snapshot = null, selectedId = null, filter = 'all', currentTab = 'logs', requestBusy = false, refreshBusy = false, toastTimer, nav = 'overview';
 try { selectedId = localStorage.getItem('forge.selectedRun'); } catch {}
 function toast(message, error = false) { const el = $('#toast'); el.textContent = t(message); el.hidden = false; el.classList.toggle('error', error); clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.hidden = true; }, 4200); }
@@ -21,17 +23,24 @@ async function api(path, body) {
     throw error;
   } finally { clearTimeout(timeout); }
 }
-function setConnection(ok) { connectionLabel = ok ? 'Demo API online' : 'API offline · data stale'; const el = $('#connection'); el.className = 'connection ' + (ok ? 'ok' : 'error'); el.innerHTML = `<i></i> ${ok ? t("Demo API online") : t("API offline · data stale")}`; }
+function setConnection(ok) { connectionLabel = ok ? 'Dashboard API online' : 'API offline · data stale'; const el = $('#connection'); el.className = 'connection ' + (ok ? 'ok' : 'error'); el.innerHTML = `<i></i> ${ok ? t("Dashboard API online") : t("API offline · data stale")}`; }
 async function refresh() {
   if (refreshBusy) return; refreshBusy = true;
   try { snapshot = await api('/api/status'); setConnection(true); render(); }
-  catch(error) { setConnection(false); if(error.status === 401) { snapshot=null; $('#run-detail').hidden=true; $('#tab-content').innerHTML=''; $('#loss-chart').innerHTML=''; } if(error.status === 401 || error.code === 'bootstrap_required' || error.code === 'password_change_required') { connectionLabel = 'Local sign-in required'; $('#connection').innerHTML=`<i></i> ${t("Local sign-in required")}`; if(typeof checkAccess === 'function') checkAccess(); } if (!snapshot) { $('#runs-body').innerHTML = `<tr><td colspan="6" class="empty">${t("Sign in locally to finish setup, or check that python server.py is running.")}</td></tr>`; $('#selected-title').textContent = t("Waiting for the local demo API"); } }
+  catch(error) { setConnection(false); if(error.status === 401) { snapshot=null; clearRunSurfaces(); } if(error.status === 401 || error.code === 'bootstrap_required' || error.code === 'password_change_required') { connectionLabel = 'Local sign-in required'; $('#connection').innerHTML=`<i></i> ${t("Local sign-in required")}`; if(typeof checkAccess === 'function') checkAccess(); } if (!snapshot) { $('#runs-body').innerHTML = `<tr><td colspan="6" class="empty">${t("Sign in locally to finish setup, or check that python server.py is running.")}</td></tr>`; $('#selected-title').textContent = t("Waiting for the local demo API"); } }
   finally { refreshBusy = false; }
 }
-function selectRun(id) { selectedId = id; try { localStorage.setItem('forge.selectedRun', id); } catch {} render(); }
+function clearRunSurfaces(){
+  $('#run-detail').hidden=true;
+  for(const selector of ['#runs-body','#loss-chart','#tab-content','#inspector-config','#mobile-run'])$(selector).innerHTML='';
+  $('#selected-title').textContent=t('Local sign-in required');
+  $('#selected-subtitle').textContent='';$('#run-source').textContent='';$('#run-state').textContent='';
+}
+function selectRun(id) { selectedId = id; try { localStorage.setItem('forge.selectedRun', id); } catch {} if(!['overview','runs','artifacts'].includes(nav))setNav('runs');else render(); }
 function latest(run) { return run.latest_metrics || run.metrics?.at(-1) || {}; }
 function render() {
   if (!snapshot) return;
+  document.body?.setAttribute('data-view', nav);
   const focused = document.activeElement;
   const focusRun = focused?.dataset?.run;
   const focusAction = focused?.dataset?.action;
@@ -54,11 +63,15 @@ function render() {
   $('#gpu-util').textContent = `${fmt(gpu.utilization,0)}%`; $('#gpu-util-bar').style.width = `${pct(gpu.utilization)}%`;
   $('#gpu-memory').textContent = `${fmt(gpu.used_gb,1)} / ${fmt(gpu.total_gb,0)} GB`; $('#gpu-memory-bar').style.width = `${pct(gpu.used_gb / gpu.total_gb * 100)}%`;
   $('#gpu-temp').textContent = `${fmt(gpu.temp_c,0)} °C`;
-  const shown = runs.filter(run => (filter === 'all' || run.kind === filter) && (nav !== 'overview' || ['running','paused'].includes(run.status)));
-  $('#no-runs').textContent = nav === 'overview' ? t("No active demo jobs. Open Experiments to start or inspect a queued run.") : t("No experiments in this view yet");
-  if(nav === 'overview' && !runs.some(run => run.id === selectedId && ['running','paused'].includes(run.status))) selectedId = snapshot.active_run_id || runs.find(run => run.status === 'paused')?.id || null;
-  if(['overview','runs'].includes(nav)) $('#run-detail').hidden = nav === 'overview' && !selectedId;
-  $('.run-data').hidden = nav === 'overview';
+  const shown = runs.filter(run => filter === 'all' || run.kind === filter);
+  $('#no-runs').textContent = t("No experiments in this view yet");
+  const hasSelection = runs.some(run => run.id === selectedId);
+  if(['overview','runs','artifacts'].includes(nav)) $('#run-detail').hidden = !hasSelection;
+  $('#workbench-empty').hidden = !['overview','runs','artifacts'].includes(nav) || hasSelection;
+  $('.run-data').hidden = false;
+  $('#mobile-run').innerHTML = runs.map(run => `<option value="${escapeHtml(run.id)}">${escapeHtml(run.name)} · ${t(run.simulated===false?'Real GPU':'Demo')} · ${escapeHtml(t(run.status))}</option>`).join('');
+  $('#mobile-run').value = selectedId || '';
+  $('#mobile-run-label').hidden = !['overview','runs','artifacts'].includes(nav);
   $('#no-runs').hidden = shown.length > 0;
   $('#runs-body').innerHTML = shown.map(run => {
     const progress = pct(run.progress ?? run.step / run.total_steps * 100), metric = latest(run);
@@ -79,14 +92,28 @@ function render() {
 function renderDetail(run) {
   const real=run.simulated===false;
   const metric = latest(run), step = run.step ?? run.current_step ?? 0;
-  $('#selected-title').textContent = run.name; $('#selected-subtitle').textContent = `${run.kind} · ${(run.method || 'qlora').toUpperCase()} · ${step.toLocaleString()} / ${Number(run.total_steps).toLocaleString()} ${t("steps ·")} ${t(run.status)}`;
+  $('#selected-title').textContent = run.name;
+  $('#selected-subtitle').textContent = `${run.config?.model || run.model_id || '—'} · ${run.kind} · ${(run.method || run.config?.method || 'qlora').toUpperCase()} · ${step.toLocaleString()} / ${Number(run.total_steps).toLocaleString()} ${t('optimizer steps')}`;
+  $('#run-source').textContent = t(real?'Real GPU':'Demo') + (snapshot?.ui_fixture ? ' · '+t('UI fixture') : '');
+  $('#run-source').className = 'pill ' + (real?'real':'demo');
+  $('#run-state').textContent = t(run.status);
+  $('#run-state').className = 'status '+run.status;
+  $('#run-observed').textContent = run.updated_at ? `${t('Observed')}: ${formatTime(run.updated_at)} UTC` : t('Observation time unavailable');
+  $('.data-badge').textContent = t(snapshot?.ui_fixture ? (real?'REAL-SOURCE UI FIXTURE':'DEMO UI FIXTURE') : (real?'MEASURED TRAINING DATA':'SYNTHETIC DATA'));
+  $('#inspector-config').innerHTML = ['model','dataset','method','batch_size','gradient_accumulation','lora_rank','sequence_length','max_steps','seed'].map(key=>`<dt>${escapeHtml(t(key.replaceAll('_',' ')))}</dt><dd>${escapeHtml(run.config?.[key] ?? '—')}</dd>`).join('');
+  $('#revise-config').onclick=()=>prepareRecipeFromRun(run);
+  $('#run-export-json').href=`/api/runs/${encodeURIComponent(run.id)}/export?format=json`;
+  $('#run-export-csv').href=`/api/runs/${encodeURIComponent(run.id)}/export?format=csv`;
+  $('#run-detail').classList.toggle('inspector-hidden', inspectorHidden);
+  $('#inspector-toggle').setAttribute('aria-expanded', String(!inspectorHidden));
+  $('#inspector-toggle').textContent = t(inspectorHidden?'Show inspector':'Hide inspector');
   $('#train-loss').textContent = fmt(metric.loss); $('#eval-loss').textContent = fmt(metric.eval_loss); $('#learning-rate').textContent = metric.learning_rate ? Number(metric.learning_rate).toExponential(1) : '—';
-  $('#current-step').textContent = `${step} / ${run.total_steps}`; $('#chart-context').textContent = `${run.metrics?.length || 0} ${t(real?"points · measured":"points · simulated")}`;
-  $('#loss-chart').innerHTML = chart(run.metrics || [], run.total_steps, !real);
+  $('#current-step').textContent = `${step} / ${run.total_steps}`; $('#chart-context').textContent = `${run.metrics?.length || 0} ${t(snapshot?.ui_fixture && real?'points · measured-source UI fixture':real?'points · measured':'points · simulated')} · ${t('Raw loss · no smoothing')}`;
+  $('#loss-chart').innerHTML = chart(run.metrics || [], run.total_steps, !real, Boolean(snapshot?.ui_fixture));
   const defaultActions = {queued:['start','cancel'],running:['pause','cancel'],paused:['resume','cancel'],failed:['retry'],canceled:['retry'],completed:[]};
   const actions = run.allowed_actions || defaultActions[run.status] || [];
   const labels = {start:t(real?"▷ Start training":"▷ Start demo"),pause:t(real?"Ⅱ Checkpoint & pause":"Ⅱ Pause demo"),resume:t(real?"▷ Resume training":"▷ Resume demo"),cancel:t(real?"× Cancel training":"× Cancel demo"),retry:t("↻ Retry as new run")};
-  $('#run-controls').innerHTML = actions.map(action => `<button class="button ${action === 'cancel' ? 'danger' : action === 'start' || action === 'resume' || action === 'retry' ? 'primary' : 'secondary'}" data-action="${escapeHtml(action)}" ${requestBusy || !remoteControlsAllowed ? 'disabled' : ''}>${labels[action] || escapeHtml(action)}</button>`).join('') || `<span class="status completed">${t("Run finished")}</span>`;
+  $('#run-controls').innerHTML = actions.map(action => `<button class="button ${action === 'cancel' ? 'danger' : action === 'start' || action === 'resume' || action === 'retry' ? 'primary' : 'secondary'}" data-action="${escapeHtml(action)}" ${requestBusy || !remoteControlsAllowed ? 'disabled' : ''}>${labels[action] || escapeHtml(action)}</button>`).join('') || `<span class="status ${escapeHtml(run.status)}">${escapeHtml(t(run.status))}</span>`;
   $$('#run-controls button').forEach(btn => { btn.onclick = () => performAction(run.id, btn.dataset.action); });
   const error = run.error; $('#run-error').hidden = !error;
   if(error) { const message = typeof error === 'string' ? error : error.message || JSON.stringify(error); const injected = run.config?.failure_mode === 'oom'; $('#run-error').innerHTML = `<strong>${t(real?"Training failure:":"Demo failure:")}</strong> ${escapeHtml(t(message))}<div class="field-note" style="margin-top:7px">${injected ? t("Injected OOM scenario. Retry preserves the injection, so it can fail again. Review batch, context and rank in Training setup; a revised recipe uses the normal demo scenario.") : t("Retry creates a new queued run and preserves this original record.")}</div><button id="review-failed-recipe" class="button secondary" style="margin-top:9px">${t("Review training recipe")}</button>`; $('#review-failed-recipe').onclick = () => { if(typeof prepareRecipeFromRun === 'function') prepareRecipeFromRun(run); else setNav('recipes'); }; }
@@ -94,9 +121,11 @@ function renderDetail(run) {
   $('#log-count').textContent = run.logs?.length || 0;
   if (currentTab === 'logs') {
     const wasNearBottom = !$('.log-view') || $('.log-view').scrollHeight - $('.log-view').scrollTop - $('.log-view').clientHeight < 35;
-    const oldScroll = $('.log-view')?.scrollTop || 0; const logsOpen = $('.technical-logs')?.open || false;
-    $('#tab-content').innerHTML = `<details class="technical-logs" ${logsOpen ? 'open' : ''}><summary>${t(real?"Training worker log":"Technical demo log · synthetic, token-like text redacted")}</summary><div class="log-view" aria-label="${t("Synthetic training logs")}">${run.logs?.length ? run.logs.map(log => `<div class="log-line"><span class="log-time">${escapeHtml(formatTime(log.time))}</span><span class="log-level ${String(log.level).toLowerCase()}">${escapeHtml(String(log.level).toUpperCase())}</span><span class="log-message">${escapeHtml(typeof safeTechnicalText === 'function' ? safeTechnicalText(log.message) : log.message)}</span></div>`).join('') : `<span class="log-message">${t("No log events yet. Start this queued demo run to generate events.")}</span>`}</div></details>`;
-    $('.log-view').scrollTop = wasNearBottom ? $('.log-view').scrollHeight : oldScroll;
+    const sameRun = $('#tab-content').dataset.runId === run.id;
+    const oldScroll = sameRun ? ($('.log-view')?.scrollTop || 0) : 0; const logsOpen = !sameRun || !$('.technical-logs') || $('.technical-logs').open;
+    $('#tab-content').dataset.runId = run.id;
+    $('#tab-content').innerHTML = `<details class="technical-logs" ${logsOpen ? 'open' : ''}><summary>${t(real?"Training worker log":"Technical demo log · synthetic, token-like text redacted")}</summary><div class="log-view" aria-label="${t(real?"Training worker log":"Synthetic training logs")}">${run.logs?.length ? run.logs.map(log => `<div class="log-line"><span class="log-time">${escapeHtml(formatTime(log.time))}</span><span class="log-level ${String(log.level).toLowerCase()}">${escapeHtml(String(log.level).toUpperCase())}</span><span class="log-message">${escapeHtml(typeof safeTechnicalText === 'function' ? safeTechnicalText(log.message) : log.message)}</span></div>`).join('') : `<span class="log-message">${t(real?"No worker log events yet":"No log events yet. Start this queued demo run to generate events.")}</span>`}</div></details>`;
+    $('.log-view').scrollTop = !sameRun || wasNearBottom ? $('.log-view').scrollHeight : oldScroll;
   } else if (currentTab === 'checkpoints') {
     $('#tab-content').innerHTML = `<div class="checkpoint-list">${run.checkpoints?.length ? run.checkpoints.map(cp => `<div class="checkpoint"><span>▱</span><div>${escapeHtml(cp.name || cp.label)}<div class="run-meta">${cp.virtual===false?`<a class="button secondary" href="/api/runs/${encodeURIComponent(run.id)}/artifacts/${encodeURIComponent(cp.name)}">${t("Download adapter weights")}</a>`:t("Virtual checkpoint · no weights saved")}</div></div><small>${t("Step")} ${escapeHtml(cp.step)}${cp.size_mb ? ` · ${escapeHtml(cp.size_mb)} ${t(cp.virtual===false?"MB":"MB (simulated)")}` : ''}</small></div>`).join('') : `<div class="empty">${t(real?"No checkpoints yet":"No virtual checkpoints yet. Real model weights are never saved.")}</div>`}</div>`;
   } else if (currentTab === 'evaluation') {
@@ -107,20 +136,20 @@ function renderDetail(run) {
   }
 }
 function formatTime(value) { const date = new Date(value); return Number.isNaN(date.getTime()) ? value : date.toISOString().slice(11,19); }
-function chart(metrics, totalSteps, simulated=true) {
-  if (!metrics.length) return `<div class="chart-empty">${t("Learning curves appear after a demo run starts")}</div>`;
-  const width = 620, height = 175, left = 32, right = 8, top = 12, bottom = 25;
+function chart(metrics, totalSteps, simulated=true, fixture=false) {
+  if (!metrics.length) return `<div class="chart-empty">${t(simulated?"Learning curves appear after a demo run starts":"Learning curves appear after optimizer updates")}</div>`;
+  const width = 800, height = 300, left = 42, right = 16, top = 20, bottom = 32;
   const values = metrics.flatMap(m => [m.loss,m.eval_loss]).filter(v => v !== null && v !== undefined && Number.isFinite(Number(v))).map(Number);
   if (!values.length) return `<div class="chart-empty">${t("Waiting for valid metric points")}</div>`;
   const lo = Math.max(0,Math.floor(Math.min(...values)*2)/2-.25), hi = Math.ceil(Math.max(...values)*2)/2+.25;
   const xmax = Math.max(10,metrics.at(-1).step); const x = v => left + v/xmax*(width-left-right), y = v => top + (hi-v)/(hi-lo)*(height-top-bottom);
-  const line = key => metrics.filter(m => m[key] !== null && m[key] !== undefined && Number.isFinite(Number(m[key]))).map((m,i) => `${i ? 'L' : 'M'}${x(m.step).toFixed(1)},${y(Number(m[key])).toFixed(1)}`).join(' ');
+  const line = key => { let connected=false; return metrics.map(m=>{if(m[key]===null || m[key]===undefined || !Number.isFinite(Number(m[key]))){connected=false;return '';} const point=`${connected?'L':'M'}${x(m.step).toFixed(1)},${y(Number(m[key])).toFixed(1)}`;connected=true;return point;}).join(' '); };
   let grid = '';
-  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="#2a2e39" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="var(--faint)" font-size="8">${v.toFixed(1)}</text>`; }
-  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="var(--faint)" font-size="8">${Math.round(v)}</text>`; }
+  for(let i=0;i<4;i++){ const v = lo + (hi-lo)*i/3, py = y(v); grid += `<line x1="${left}" x2="${width-right}" y1="${py}" y2="${py}" stroke="var(--border)" stroke-dasharray="3 5"/><text x="0" y="${py+3}" fill="var(--faint)" font-size="11">${v.toFixed(1)}</text>`; }
+  for(let i=0;i<5;i++){ const v = xmax*i/4; grid += `<text x="${x(v)}" y="${height-5}" text-anchor="middle" fill="var(--faint)" font-size="11">${Math.round(v)}</text>`; }
   const train = line('loss'), evalPath = line('eval_loss');
   const last = metrics.at(-1);
-  return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${t(simulated?"Synthetic loss chart, {count} points, latest training loss {loss}":"Measured loss chart, {count} points, latest training loss {loss}", {count: metrics.length, loss: fmt(last.loss)})}"><defs><linearGradient id="loss-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b0a0ff" stop-opacity=".17"/><stop offset="1" stop-color="#b0a0ff" stop-opacity="0"/></linearGradient></defs>${grid}${train ? `<path d="${train} L${x(last.step)},${height-bottom} L${x(metrics[0].step)},${height-bottom} Z" fill="url(#loss-fill)"/>` : ''}<path d="${train}" fill="none" stroke="#b0a0ff" stroke-width="2" stroke-linejoin="round"/><path d="${evalPath}" fill="none" stroke="#8ee3cc" stroke-width="1.7" stroke-dasharray="4 3" stroke-linejoin="round"/>${Number.isFinite(last.loss) ? `<circle cx="${x(last.step)}" cy="${y(last.loss)}" r="3" fill="#b0a0ff" stroke="#181b22" stroke-width="2"/>` : ''}</svg>`;
+  return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${t(fixture?"UI fixture loss chart, {count} points, latest training loss {loss}":simulated?"Synthetic loss chart, {count} points, latest training loss {loss}":"Measured loss chart, {count} points, latest training loss {loss}", {count: metrics.length, loss: fmt(last.loss)})}">${grid}<path d="${train}" fill="none" stroke="var(--purple)" stroke-width="2.5" stroke-linejoin="round"/><path d="${evalPath}" fill="none" stroke="var(--mint)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>${metrics.filter(m=>Number.isFinite(m.eval_loss)).map(m=>`<circle cx="${x(m.step)}" cy="${y(m.eval_loss)}" r="2.5" fill="var(--mint)"/>`).join('')}${Number.isFinite(last.loss) ? `<circle cx="${x(last.step)}" cy="${y(last.loss)}" r="3.5" fill="var(--purple)"/>` : ''}</svg>`;
 }
 async function performAction(id, action) {
   if (requestBusy) return; requestBusy = true; render();
@@ -129,7 +158,7 @@ async function performAction(id, action) {
   finally { requestBusy = false; render(); }
 }
 function openDialog(){ $('#form-error').hidden = true; $('#run-dialog').showModal(); }
-$('#new-run').onclick = ()=>snapshot?.training?.available?setNav('recipes'):openDialog(); $('#close-dialog').onclick = () => $('#run-dialog').close(); $('#cancel-dialog').onclick = () => $('#run-dialog').close();
+$('#new-run').onclick = ()=>setNav('recipes'); $('#close-dialog').onclick = () => $('#run-dialog').close(); $('#cancel-dialog').onclick = () => $('#run-dialog').close();
 $('#run-dialog').addEventListener('click', e => { if (e.target === $('#run-dialog')) { const box = $('#run-dialog').getBoundingClientRect(); if(e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) $('#run-dialog').close(); } });
 $('#run-form').addEventListener('submit', async e => {
   e.preventDefault(); if(requestBusy) return; requestBusy = true; const submit = $('#run-form button[type="submit"]'); submit.disabled = true; $('#form-error').hidden = true;
@@ -157,21 +186,34 @@ $$('.tab').forEach(btn => {
   };
 });
 function setNav(value) {
+  if(nav==='recipes' && $('#recipe-form') && typeof readRecipe==='function') recipeDraft=readRecipe();
+  if(typeof loadWorkspaceView==='function') viewVersion++;
   nav = value;
+  document.body?.setAttribute('data-view', value);
   $$('.nav-item').forEach(btn => { btn.classList.toggle('active',btn.dataset.nav === value); btn.setAttribute('aria-current',btn.dataset.nav === value ? 'page' : 'false'); });
-  const advanced = !['overview','runs'].includes(value);
+  const advanced = !['overview','runs','artifacts'].includes(value);
   $('#worker-info').hidden = true;
   $('#workspace-view').hidden = !advanced;
-  $('#run-detail').hidden = advanced;
-  $('#experiments').hidden = advanced;
-  $('.summary-grid').hidden = advanced;
+  $('#run-detail').hidden = advanced || !snapshot?.runs?.some(run=>run.id===selectedId);
+  $('#experiments').hidden = false;
+  $('.summary-grid').hidden = true;
   $('#mobile-view').value = value;
-  const names = {overview:t("Overview"),runs:t("Experiments"),datasets:t("Datasets"),recipes:t("Training setup"),compare:t("Compare runs"),environment:t("Environment"),settings:t("Access settings")};
+  $('#workbench-empty').hidden = advanced || !snapshot;
+  const names = {overview:t('Workbench'),runs:t('Experiments'),artifacts:t('Artifacts'),models:t('Models'),datasets:t('Datasets'),recipes:t('New experiment'),compare:t('Compare runs'),environment:t('Environment'),settings:t('Access settings')};
   $('.breadcrumbs strong').textContent = names[value] || value;
+  if(value==='artifacts') { $('#tab-checkpoints').click?.(); setMobileSurface('console'); }
   render();
   if (advanced && typeof loadWorkspaceView === 'function') loadWorkspaceView(value);
-  if(value === 'runs') $('#experiments').scrollIntoView({behavior:'smooth',block:'start'});
 }
+function setMobileSurface(surface){
+  $('#run-detail').dataset.surface=surface;
+  $$('.mobile-surfaces button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.surface===surface)));
+}
+$('#empty-new').onclick=()=>setNav('recipes');
+$('#mobile-run').onchange=event=>selectRun(event.target.value);
+$$('.mobile-surfaces button').forEach(button=>button.onclick=()=>setMobileSurface(button.dataset.surface));
+$('#inspector-toggle').onclick=()=>{inspectorHidden=!inspectorHidden;try{localStorage.setItem('forge.inspectorHidden',String(inspectorHidden));}catch{}render();};
+$('#console-size').oninput=event=>{const height=Math.max(160,Math.min(400,Number(event.target.value)));$('#run-detail').style.setProperty('--console-height',height+'px');};
 $$('.nav-item').forEach(btn => { btn.onclick = () => setNav(btn.dataset.nav); });
 refresh(); setInterval(refresh,2000); document.addEventListener('visibilitychange', () => { if(!document.hidden) refresh(); });
 
